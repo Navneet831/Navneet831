@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAVNEET CHAUDHARY | F&A Automation Specialist</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Google tag (gtag.js) for Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1XL4LRC5PP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-1XL4LRC5PP');
+    </script>
+
+    <style>
+        /* Apply Inter font and corporate dark mode theme */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117; /* GitHub/Corporate dark background, non-white */
+            color: #f0f6f0; /* Light text for high contrast */
+        }
+        .metric-card {
+            background-color: #161b22; /* Slightly lighter dark shade for cards */
+            border: 1px solid #30363d;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.12);
+        }
+        .section-header {
+            border-bottom: 2px solid #238636; /* Subtle green accent like professional systems */
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .llm-card {
+            background-color: #1f2328;
+            border-left: 4px solid #58a6ff; /* Blue accent for AI */
+        }
+        .list-item {
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed #30363d;
+        }
+        .list-item:last-child {
+            border-bottom: none;
+        }
+        .bg-gradient-expertise {
+            background: linear-gradient(90deg, #1f2328, #161b22);
+        }
+        .job-detail {
+            border-left: 3px solid #58a6ff;
+            padding-left: 1rem;
+            margin-top: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        /* Modal styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 50;
+            display: none;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        .modal-content {
+            background-color: #0d1117;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #30363d;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+        .close-button {
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            color: #f0f6f0;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: #58a6ff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        /* Transition for the reason for leave text */
+        .reason-for-leave {
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+        }
+        .reason-for-leave.expanded {
+            max-height: 1000px; /* Large value to ensure content fits */
+            opacity: 1;
+            margin-top: 0.5rem;
+        }
+
+        .sort-button.active {
+            background-color: #238636;
+            border-color: #238636;
+        }
+        /* COMPACT CERTIFICATION TAG */
+        .cert-tag {
+            background-color: #1f2328; 
+            border: 1px solid #30363d;
+            padding: 0.3rem 0.6rem; 
+            border-radius: 9999px; 
+            font-size: 0.75rem; 
+            color: #f0f6f0; 
+            display: flex;
+            align-items: center;
+            line-height: 1;
+            transition: background-color 0.2s;
+        }
+        /* Skills/Tools Style (Neutral Dark Tag) */
+        .skill-tag {
+            background-color: #30363d;
+            color: #f0f6f0; 
+            padding: 0.3rem 0.6rem;
+            border-radius: 9999px;
+            font-size: 0.875rem; /* Slightly larger text for main skills */
+            font-weight: 600;
+        }
+        /* Highlighted Cert Tag Style (Matching Skill Tag Background for consistency, but using Green text for high value) */
+        .cert-tag-highlight {
+            background-color: #30363d; /* Same background as skill tags */
+            color: #238636; /* Green accent for high value */
+            border-color: #238636; 
+        }
+
+        .cert-tag-title {
+            font-weight: 600; 
+            color: #58a6ff; 
+        }
+        /* Override title color for highlighted tags */
+        .cert-tag-highlight .cert-tag-title {
+            color: #fff; /* White title text for contrast on the dark highlight tag */
+        }
+
+        .cert-tag-detail {
+            color: #9ca3af; 
+        }
+
+        /* SCROLLABLE CONTAINERS */
+        /* .scrollable-content is only applied where scrolling is necessary (Certifications/Achievements/Skills) */
+        .scrollable-content {
+            padding-right: 15px; 
+            overflow-y: auto;
+        }
+        
+        /* Custom Scrollbar Styles (for Webkit browsers) */
+        .scrollable-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        .scrollable-content::-webkit-scrollbar-track {
+            background: #1f2328; 
+            border-radius: 10px;
+        }
+        .scrollable-content::-webkit-scrollbar-thumb {
+            background: #30363d; 
+            border-radius: 10px;
+        }
+        .scrollable-content::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /* Adjust padding for the fixed size segment */
+        #experienceContainer, #achievementsContainer {
+            padding: 0 1rem 0 1rem; 
+        }
+        
+        /* Certifications: REMOVED FIXED HEIGHT AND SCROLLING to expand to match left column */
+        #certificationsList {
+            /* max-height: 240px; */
+            /* overflow-y: auto; */
+            padding-right: 15px;
+        }
+
+        /* Skills: ADDED FIXED HEIGHT AND SCROLLING - ADJUSTED FOR VISUAL BALANCE */
+        #skillsList {
+            /* Increased max-height to visually balance the Qualifications table above it */
+            max-height: 330px; 
+            overflow-y: auto;
+            padding-right: 15px;
+        }
+        
+        /* EXPERIENCE SECTION - REMOVED FIXED HEIGHT AND SCROLLING */
+        #experienceContent {
+            /* Removed max-height and overflow-y: auto; */
+            padding-right: 0;
+            padding: 0 1rem 0 1rem;
+        }
+        
+        /* Table Styling for Education */
+        .education-table th, .education-table td {
+            padding: 0.5rem;
+            text-align: left;
+            border-bottom: 1px solid #30363d;
+        }
+        .education-table th {
+            color: #58a6ff;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+        .education-table td {
+            color: #f0f6f0;
+            font-size: 0.875rem;
+        }
+        .education-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Tab Styles */
+        .tab-button {
+            padding: 0.75rem 1.25rem;
+            font-weight: 600;
+            color: #9ca3af;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            transition: color 0.2s, border-bottom-color 0.2s;
+        }
+        .tab-button.active-tab {
+            color: #238636;
+            border-bottom-color: #238636;
+        }
+        .tab-content {
+            padding-top: 1rem;
+            display: none;
+        }
+
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+        <!-- Header: Name and Branding (Personalized) -->
+        <header class="text-center mb-12">
+            
+            <!-- NEW COMPACT HEADER BLOCK -->
+            <div class="flex flex-col items-center">
+
+                <!-- Row 1: Photo, Name, and Follow Button (All in one horizontal line) -->
+                <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 mb-3">
+                    
+                    <!-- Professional Photo (Left of Name) -->
+                    <img id="profilePhoto" 
+                         src="uploaded:Navneet Chaudhary.jpg-10ee8fee-6476-44ab-a8c9-f2b959ed7372" 
+                         onerror="this.src='https://placehold.co/96x96/161b22/f0f6f0?text=NC'"
+                         alt="Navneet Chaudhary Professional Portrait" 
+                         class="w-24 h-24 object-cover rounded-full border-2 border-[#238636] shadow-xl"
+                         style="box-shadow: 0 0 10px rgba(35, 134, 54, 0.5);">
+
+                    <!-- Name and Follow Group -->
+                    <div class="flex items-center space-x-3">
+                        <h1 class="text-5xl font-extrabold text-[#58a6ff] tracking-tight sm:text-6xl leading-tight">
+                            NAVNEET CHAUDHARY
+                        </h1>
+                        <!-- FOLLOW BUTTON -->
+                        <a href="https://linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=navneet831" target="_blank" class="px-3 py-1 bg-[#58a6ff] text-white font-semibold rounded-lg hover:bg-blue-600 transition duration-200 shadow-md flex items-center space-x-1 text-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Follow</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Row 2: Role, Location, and Cover Letter Button (Kept tight) -->
+                <div class="flex items-center justify-center flex-wrap space-x-3 mt-0">
+                    <p class="text-xl text-gray-400 font-medium">
+                        Assistant Manager, F&A Automation Specialist | Delhi, India
+                    </p>
+                    <!-- Cover Letter Button -->
+                    <button onclick="document.getElementById('coverLetterModal').style.display='block'" class="px-3 py-1 bg-[#238636] text-white font-semibold rounded-lg hover:bg-green-700 transition duration-200 inline-block text-sm shadow-md">
+                        View Full Cover Letter
+                    </button>
+                </div>
+            </div>
+
+            <!-- Row 3: Contact/Social Links -->
+            <div class="mt-4 flex justify-center space-x-4 items-center flex-wrap">
+                
+                <!-- CONTACT INFORMATION -->
+                <a href="mailto:Nvc7162@gmail.com" class="text-white hover:text-[#238636] font-semibold flex items-center">
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-1 10a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v10z"></path></svg>
+                    Nvc7162@gmail.com
+                </a>
+                <span class="text-gray-600">|</span>
+                <a href="tel:+919873394075" class="text-white hover:text-[#238636] font-semibold flex items-center">
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.144a11.058 11.058 0 005.106 5.106l1.144-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.79 21 3 14.21 3 6V5z"></path></svg>
+                    +91 98733 94075
+                </a>
+                
+                <span class="text-gray-600">|</span>
+                
+                <!-- SOCIAL LINKS -->
+                <a href="https://www.linkedin.com/in/navneet831/" target="_blank" class="text-gray-500 hover:text-[#238636]">LinkedIn</a>
+                <a href="https://x.com/navneet831" target="_blank" class="text-gray-500 hover:text-[#238636]">X</a>
+                <a href="https://linktr.ee/navneet831" target="_blank" class="text-gray-500 hover:text-[#238636]">Linktree</a>
+                <a href="https://www.youtube.com/playlist?list=PLEfUln3m0PdhgiQzVE2GM8cwd8WqyfWw2" target="_blank" class="text-gray-500 hover:text-[#238636]">YouTube (Automation)</a>
+                <a href="https://medium.com/@navneet831" target="_blank" class="text-gray-500 hover:text-[#238636]">Medium</a>
+            </div>
+            
+        </header>
+
+        <!-- Profile Summary (Personalized using Resume highlights) -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold section-header">Professional Focus</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                <!-- Card 1: Finance (FP&A, Governance, Compliance) -->
+                <div class="metric-card p-6 rounded-lg">
+                    <p class="text-xs uppercase text-gray-400">Finance Expertise</p>
+                    <p class="text-2xl font-bold mt-1 text-white">Strategic FP&A & Governance</p>
+                    <p class="text-sm text-gray-500 mt-2">6+ years cross-functional expertise covering end-to-end FP&A, Financial Modeling, Project Finance, and meticulous compliance (GST/TDS, IFRS/IndAs).</p>
+                </div>
+
+                <!-- Card 2: Automation (Python, AI, RPA) -->
+                <div class="metric-card p-6 rounded-lg">
+                    <p class="text-xs uppercase text-gray-400">Technical Competency</p>
+                    <p class="text-2xl font-bold mt-1 text-white">AI/RPA-Driven Efficiency</p>
+                    <p class="text-sm text-gray-500 mt-2">Proficient in building Python-based RPA and Streamlit dashboards, **Chat with SQL data**, leveraging Generative AI/Prompt Engineering to cut manual work and accelerate decision-making by 30%.</p>
+                </div>
+
+                <!-- Card 3: Leadership (Mentorship, Persistence, Growth) -->
+                <div class="metric-card p-6 rounded-lg">
+                    <p class="text-xs uppercase text-gray-400">Leadership & Drive</p>
+                    <p class="text-2xl font-bold mt-1 text-white">Team Leadership & Persistence</p>
+                    <p class="text-sm text-gray-500 mt-2">Proven ability to mentor and multiply team capability (promoted intern in 6 months). Driven by adaptability, critical thinking, and persistence in complex financial environments.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Content Sections: Experience, Qualifications, Achievements, Certifications -->
+        <div class="grid grid-cols-1 lg:col-span-3 lg:grid-cols-3 gap-8 mt-10">
+            
+            <!-- Left Column: Detailed Experience & Achievements (lg:col-span-2) -->
+            <div class="lg:col-span-2 space-y-8">
+                
+                <!-- DETAILED EXPERIENCE SECTION -->
+                <section class="p-6 metric-card rounded-lg">
+                    <h2 class="text-2xl font-bold section-header">Professional Experience</h2>
+                    
+                    <!-- Content now expands naturally without internal scrolling -->
+                    <div id="experienceContent" class="experience-content">
+
+                        <!-- Oriana Power Ltd -->
+                        <div class="mb-6">
+                            <h3 class="text-lg font-bold text-[#58a6ff]">Oriana Power Ltd. <span class="text-sm font-normal text-gray-400">(Assistant Manager F&A)</span></h3>
+                            <p class="text-xs text-gray-500 mb-2">June 2025 - September 2025 (Noida)</p>
+                            <div class="job-detail">
+                                <p class="font-bold text-white">Report to Director Finance</p>
+                                <p class="font-bold text-white mt-2">FP&A Lead:</p>
+                                <p class="text-sm text-gray-400">Established the FP&A function from scratch, implementing budgeting, forecasting, and variance analysis that accelerated management decision-making by 30%.</p>
+                                <p class="font-bold text-white mt-2">Cash Flow Management:</p>
+                                <p class="text-sm text-gray-400">Stabilized operations during liquidity crunch with only 8 days' cash on hand by managing cash flow and loan documentation, securing timely bank funding to avert default.</p>
+                                
+                                <!-- Reason for Leave Toggle -->
+                                <div class="mt-3">
+                                    <button onclick="toggleReason(this, 'reasonOriana')" class="text-sm font-medium text-red-400 hover:text-red-300 focus:outline-none flex items-center">
+                                        <span id="iconOriana" class="mr-1 text-lg leading-none">+</span>
+                                        Reason for Leave
+                                    </button>
+                                    <p id="reasonOriana" class="reason-for-leave text-xs text-gray-500 italic p-1 border-l border-gray-600 ml-3">
+                                        Joined to set up FP&A processes; actual responsibilities shifted into loan documentation, leading to exit for role alignment. Now focused on long-term stability in Finance & Accounting/FP&A roles where my expertise can add measurable value.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Grew Energy Pvt Ltd -->
+                        <div class="mb-6">
+                            <h3 class="text-lg font-bold text-[#58a6ff]">Grew Energy Pvt Ltd. <span class="text-sm font-normal text-gray-400">(Assistant Manager F&A)</span></h3>
+                            <p class="text-xs text-gray-500 mb-2">December 2024 - June 2025 (Ahmedabad)</p>
+                            <div class="job-detail">
+                                <p class="font-bold text-white">Automation / MIS:</p>
+                                <p class="text-sm text-gray-400">Engineered process automation by building <b>Python-based RPA, Streamlit dashboards, and AI-enabled database access</b>, reducing MIS preparation time and manual effort by 80%.</p>
+                                 <!-- Reason for Leave Toggle -->
+                                <div class="mt-3">
+                                    <button onclick="toggleReason(this, 'reasonGrew')" class="text-sm font-medium text-red-400 hover:text-red-300 focus:outline-none flex items-center">
+                                        <span id="iconGrew" class="mr-1 text-lg leading-none">+</span>
+                                        Reason for Leave
+                                    </button>
+                                    <p id="reasonGrew" class="reason-for-leave text-xs text-gray-500 italic p-1 border-l border-gray-600 ml-3">
+                                        Role was discontinued after six months as part of organizational changes.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ozone Pharmaceuticals Ltd -->
+                        <div class="mb-6">
+                            <h3 class="text-lg font-bold text-[#58a6ff]">Ozone Pharmaceuticals Ltd. <span class="text-sm font-normal text-gray-400">(Senior Executive - Report to CFO)</span></h3>
+                            <p class="text-xs text-gray-500 mb-2">February 2022 - August 2024 (Delhi)</p>
+                            <div class="job-detail">
+                                <ul class="space-y-2 text-sm text-gray-400">
+                                    <li><b class="text-white">FP&A:</b> Automated MIS to enhance reporting, cutting errors by 40%. Handled Budgeting, Forecasting, and Variance analysis.</li>
+                                    <li><b class="text-white">Project Finance:</b> Analysed state policies, drafted reports, and conducted DCF & payback analysis.</li>
+                                    <li><b class="text-white">Asset Accounting:</b> Overhauled Fixed asset accounting, reduced discrepancies by 20%.</li>
+                                    <li><b class="text-white">Tax Compliance:</b> Managed 31 GST registrations, ensuring 100% compliance, also dealt with TDS and TCS returns.</li>
+                                    <li><b class="text-white">Leadership:</b> Trained an intern to manage core MIS operations independently, leading to their advancement in 6 months.</li>
+                                </ul>
+                                 <!-- Reason for Leave Toggle -->
+                                <div class="mt-3">
+                                    <button onclick="toggleReason(this, 'reasonOzone')" class="text-sm font-medium text-red-400 hover:text-red-300 focus:outline-none flex items-center">
+                                        <span id="iconOzone" class="mr-1 text-lg leading-none">+</span>
+                                        Reason for Leave
+                                    </button>
+                                    <p id="reasonOzone" class="reason-for-leave text-xs text-gray-500 italic p-1 border-l border-gray-600 ml-3">
+                                        Stepped away due to unavoidable family medical responsibilities, resulting in a short career gap.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Shanti Mukand Hospital -->
+                        <div class="mb-6">
+                            <h3 class="text-lg font-bold text-[#58a6ff]">Shanti Mukand Hospital <span class="text-sm font-normal text-gray-400">(Junior Executive F&A)</span></h3>
+                            <p class="text-xs text-gray-500 mb-2">February 2021 - February 2022 (Delhi)</p>
+                            <div class="job-detail">
+                                <p class="font-bold text-white">AP (Vendor Management):</p>
+                                <p class="text-sm text-gray-400">Mitigated high-risk long pending dues, adhering to NPPA Act guidelines for implant suppliers.</p>
+                                 <!-- Reason for Leave Toggle -->
+                                <div class="mt-3">
+                                    <button onclick="toggleReason(this, 'reasonShanti')" class="text-sm font-medium text-red-400 hover:text-red-300 focus:outline-none flex items-center">
+                                        <span id="iconShanti" class="mr-1 text-lg leading-none">+</span>
+                                        Reason for Leave
+                                    </button>
+                                    <p id="reasonShanti" class="reason-for-leave text-xs text-gray-500 italic p-1 border-l border-gray-600 ml-3">
+                                        Left to seek a better role and expand professional responsibility.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Kumar Grover & Company -->
+                        <div class="mb-0">
+                            <h3 class="text-lg font-bold text-[#58a6ff]">Kumar Grover & Company <span class="text-sm font-normal text-gray-400">(Accounts Assistant)</span></h3>
+                            <p class="text-xs text-gray-500 mb-2">February 2019 - January 2021 (Delhi)</p>
+                            <div class="job-detail">
+                                <ul class="space-y-2 text-sm text-gray-400">
+                                    <li><b class="text-white">Taxation:</b> Expertly executed income tax computation of diverse clients, ensuring 100% compliance.</li>
+                                    <li><b class="text-white">Audit:</b> Played a pivotal role in statutory and stock audits, contributing to comprehensive financial assessments.</li>
+                                </ul>
+                                 <!-- Reason for Leave Toggle -->
+                                <div class="mt-3">
+                                    <button onclick="toggleReason(this, 'reasonKumar')" class="text-sm font-medium text-red-400 hover:text-red-300 focus:outline-none flex items-center">
+                                        <span id="iconKumar" class="mr-1 text-lg leading-none">+</span>
+                                        Reason for Leave
+                                    </button>
+                                    <p id="reasonKumar" class="reason-for-leave text-xs text-gray-500 italic p-1 border-l border-gray-600 ml-3">
+                                        Left to gain corporate exposure and advance career prospects.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div> <!-- End experienceContent -->
+                </section>
+                
+                <!-- ACHIEVEMENTS SECTION (MODIFIED TO USE TABS) -->
+                <section class="p-6 metric-card rounded-lg bg-gradient-expertise mb-8">
+                    <h2 class="text-2xl font-bold section-header text-white">Key Achievements & Recognition</h2>
+
+                    <!-- Tab Buttons -->
+                    <div class="flex border-b border-gray-600 -mx-6 px-6">
+                        <button class="tab-button active-tab" onclick="openTab(event, 'professional')">Professional Impact</button>
+                        <button class="tab-button" onclick="openTab(event, 'academic')">Academic & Competition</button>
+                    </div>
+
+                    <!-- Tab Content Container -->
+                    <!-- Removed max-height/scrollable-content wrapper to allow expansion -->
+                    <div id="achievementsContainer">
+                    
+                        <!-- Professional Impact Tab Content (Default Active) -->
+                        <div id="professional" class="tab-content" style="display: block;">
+                            <ul class="space-y-3 text-gray-300 list-disc list-inside ml-4">
+                                <li><b>Performance Impact:</b> Justified a 58% joining hike and earned an exceptional 17.39% appraisal at Ozone Pharmaceuticals Ltd.</li>
+                                <li><b>Digital Transformation:</b> Learned to leverage tech as a non-coder to drive efficiency through automation, eliminating numerous manual tasks.</li>
+                                <li><b>Expertise Development:</b> Developed Horizontal Expertise by pioneering into diverse projects, including financial modeling and tax due diligence.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Academic & Competition Tab Content -->
+                        <div id="academic" class="tab-content">
+                            <ul class="space-y-3 text-gray-300 list-disc list-inside ml-4">
+                                <li><b>NSE Financial Literacy:</b> Winner of the NSE Financial Literacy Quiz (Series 2, March 24).</li>
+                                <li><b>Skillyst:</b> Earned **Bronze medal** in the Skillyst competition.</li>
+                                <li><b>Economics Quiz:</b> Ranked 3rd in an Economics Quiz competition during the 12th Grade (2016).</li>
+                                <li><b>MS Excel:</b> Earned a LinkedIn Skill Assessment badge in Microsoft Excel.</li>
+                            </ul>
+                        </div>
+
+                    </div> <!-- End achievementsContainer -->
+                </section>
+                
+                <!-- EXTRA-CURRICULAR SECTION -->
+                <section class="p-6 metric-card rounded-lg mb-8">
+                    <h2 class="text-2xl font-bold section-header">Extra-Curricular Activities</h2>
+                    <div class="space-y-4 text-sm">
+                        <div class="text-gray-300">
+                            <p class="font-bold text-white">Volunteering (Sep '24 - Nov '24)</p>
+                            <p class="text-gray-400">Volunteered (unpaid) with <b>Robinhood Army NGO</b>, contributing time and effort to community service.</p>
+                        </div>
+                        <div class="text-gray-300">
+                            <p class="font-bold text-white">Thought Leadership (Sep '25 - Present)</p>
+                            <p class="text-gray-400">Publishes finance and economics articles in leading <b>Medium publications</b>, demonstrating knowledge synthesis and communication skills.</p>
+                        </div>
+                        <div class="text-gray-300">
+                            <p class="font-bold text-white">Workshops & Events</p>
+                            <ul class="list-disc list-inside text-gray-400 ml-4 space-y-1">
+                                <li>Attended <b>COP Fintech Olympiad</b> and financial planning webinars.</li>
+                                <li>Participated in <b>Portfolio Management Sanjiv Bhasin’s workshop</b>.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- INTERESTS SECTION -->
+                <section class="p-6 metric-card rounded-lg">
+                    <h2 class="text-2xl font-bold section-header">Interests</h2>
+                    <div class="space-y-4 text-sm">
+                        <div class="text-gray-300">
+                            <p class="text-gray-400 list-disc list-inside">
+                                <b class="text-white">New Perspectives:</b> Actively seeking knowledge that offers a conceptual understanding and continuous learning, informed by interests in geo-economics and applied critical thinking.
+                            </p>
+                        </div>
+                        <div class="text-gray-300">
+                            <p class="text-gray-400">
+                                <b class="text-white">Digital Creation:</b> Interest in App development and leveraging technology to solve problems and improve efficiency.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+
+            </div>
+
+            <!-- Right Column: Qualifications, Skills, Certifications (lg:col-span-1) -->
+            <div class="lg:col-span-1 flex flex-col space-y-8">
+                
+                <!-- Qualifications & Test Scores (UPDATED WITH TABLE) -->
+                <section class="p-6 metric-card rounded-lg">
+                    <h2 class="text-2xl font-bold section-header">Qualifications & Scores</h2>
+                    <div class="overflow-x-auto">
+                        <table class="education-table w-full">
+                            <thead>
+                                <tr>
+                                    <th>Qualification</th>
+                                    <th>Year</th>
+                                    <th>Score</th>
+                                    <th>Institution/Board</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Sorted by Year (Newest to Oldest) -->
+                                <tr>
+                                    <td>M.B.A (Financial Mgmt)</td>
+                                    <td>2026</td>
+                                    <td>Pursuing</td>
+                                    <td>IGNOU</td>
+                                </tr>
+                                <tr>
+                                    <td>M.Com</td>
+                                    <td>2024</td>
+                                    <td>61%</td>
+                                    <td>IGNOU</td>
+                                </tr>
+                                <tr>
+                                    <td>Post-graduate diploma in international operation (PGDIB)</td>
+                                    <td>2022</td>
+                                    <td>N/A</td>
+                                    <td>IGNOU</td>
+                                </tr>
+                                <tr>
+                                    <td>B.Com</td>
+                                    <td>2020</td>
+                                    <td>66%</td>
+                                    <td>Delhi University (DU)</td>
+                                </tr>
+                                <tr>
+                                    <td><b>CA CPT</b></td>
+                                    <td>2018</td>
+                                    <td><b>71%</b></td>
+                                    <td>ICAI</td>
+                                
+                                </tr>
+                                <tr>
+                                    <td>12th (Commerce with Mathematics)</td>
+                                    <td>2017</td>
+                                    <td>68%</td>
+                                    <td>CBSE / RSBV No. 2</td>
+                                </tr>
+                                <tr>
+                                    <td>10th Grade</td>
+                                    <td>2015</td>
+                                    <td>CGPA 8.2</td>
+                                    <td>CBSE</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Skills & Tools (Categorized and RESTRICTED HEIGHT) -->
+                <section class="p-6 metric-card rounded-lg">
+                    <h2 class="text-2xl font-bold section-header">Skills & Tools</h2>
+                    <!-- Added scrollable wrapper with fixed max-height -->
+                    <div id="skillsList" class="scrollable-content" style="max-height: 330px;">
+                        <div class="space-y-4 pr-3">
+                            <div class="text-white text-md font-semibold border-b border-gray-600 pb-1">Financial Governance (Hard)</div>
+                            <div class="flex flex-wrap gap-2 text-sm">
+                                <span class="skill-tag">FP&A</span>
+                                <span class="skill-tag">Financial Modelling</span>
+                                <span class="skill-tag">GST</span>
+                                <span class="skill-tag">TDS</span>
+                                <span class="skill-tag">IndAs/IFRS</span>
+                            </div>
+                            
+                            <div class="text-white text-md font-semibold border-b border-gray-600 pb-1">Technical & Automation (Hard)</div>
+                            <div class="flex flex-wrap gap-2 text-sm">
+                                <span class="skill-tag">RPA (Python/VBA)</span>
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">Generative AI</span>
+                                <span class="skill-tag">Prompt Engineering</span>
+                                <span class="skill-tag">Advanced Excel</span>
+                            </div>
+
+                            <div class="text-white text-md font-semibold border-b border-gray-600 pb-1">Core Systems & Tools</div>
+                            <div class="flex flex-wrap gap-2 text-sm">
+                                <span class="skill-tag">SAP (FICO/MM)</span>
+                                <span class="skill-tag">MS Office</span>
+                                <span class="skill-tag">Tally</span>
+                                <span class="skill-tag">Webtel/Computex</span>
+                                <span class="skill-tag">Jupyter Notebook</span>
+                                <span class="skill-tag">SQLlite3</span>
+                            </div>
+                            
+                            <div class="text-white text-md font-semibold border-b border-gray-600 pb-1">Soft Skills</div>
+                            <div class="flex flex-wrap gap-2 text-sm">
+                                <span class="skill-tag">Leadership</span>
+                                <span class="skill-tag">Adaptability</span>
+                                <span class="skill-tag">Problem-solving</span>
+                                <span class="skill-tag">Critical Thinking</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- CERTIFICATIONS SECTION (EXPANDED HEIGHT) -->
+                <section class="p-6 metric-card rounded-lg">
+                    <h2 class="text-2xl font-bold section-header">Certifications</h2>
+                    
+                    <div class="flex flex-col space-y-3 mb-4">
+                        <!-- Filtering Dropdown -->
+                        <div>
+                            <select id="filterDomain" onchange="filterCertifications(this.value)" class="w-full bg-[#1f2328] border border-gray-600 text-white text-sm rounded-lg p-2.5 focus:ring-[#238636] focus:border-[#238636] transition duration-200">
+                                <option value="Core Finance & Investment">Filter by Domain: Core Finance & Investment</option>
+                                <option value="Tech & Automation">Filter by Domain: Tech & Automation</option>
+                                <option value="All">Filter by Domain: All</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Sorting Buttons -->
+                        <div class="flex space-x-2">
+                            <button id="sortRelevance" class="sort-button active px-3 py-1 text-xs rounded-full border border-gray-600 bg-[#238636] text-white transition duration-200" onclick="sortCertifications('relevance')">
+                                Sort by Relevance
+                            </button>
+                            <button id="sortDate" class="sort-button px-3 py-1 text-xs rounded-full border border-gray-600 hover:bg-gray-700 text-gray-300 transition duration-200" onclick="sortCertifications('date')">
+                                Sort by Date
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Removed max-height and scrollable-content class -->
+                    <div id="certificationsList" class="flex flex-wrap gap-2 text-sm">
+                        <!-- Certifications will be rendered here by JavaScript -->
+                    </div>
+                </section>
+                
+            </div>
+        </div>
+
+        
+        <!-- The AI Knowledge Search section has been removed entirely. -->
+        
+        <!-- Contact/Call to Action - Simplified to only show the link -->
+        <section class="mt-16 text-center">
+            <a href="https://tawk.to/chat/68efdd0e7e16ad19527ac96f/1j7kff0qq" target="_blank" class="text-gray-500 hover:text-[#238636] font-semibold transition duration-200 inline-block text-sm">
+                Direct Chat Link
+            </a>
+        </section>
+
+        <!-- Feature Suggestion Link (as per your request) -->
+        <div class="mt-4 text-center text-sm text-gray-500">
+            <a href="#" class="hover:text-white transition duration-200">Suggest a Feature or Improvement for this Site</a>
+        </div>
+
+    </div>
+
+    <!-- COVER LETTER MODAL (New Tab Simulation) -->
+    <div id="coverLetterModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="document.getElementById('coverLetterModal').style.display='none'">&times;</span>
+            <h2 class="text-3xl font-bold section-header text-white mb-6">Full Cover Letter / Statement of Intent</h2>
+            <blockquote class="p-4 border-l-4 border-[#238636] bg-[#1f2328] rounded-r-lg text-gray-300 italic text-base">
+                <p class="mb-4">Dear Hiring Manager or Finance & Accounts Team,</p>
+                <p class="mb-4">I am writing to express my strong and immediate interest in Senior and Management-level roles within the Finance & Accounts (F&A) domain. With over 6 years of cross-functional experience, my profile offers a unique combination of regulatory compliance (GST, Income Tax, Audit), strategic financial reporting (IFRS/IndAs, DCF Modeling, Fixed Assets), and end-to-end FP&A expertise. I possess the quantifiable rigor and proven ability to automate processes that modern finance leadership demands across sectors including Pharma, Healthcare, and Renewables.</p>
+                <p class="mb-4">My background is defined by a deep track record of impactful process transformation. At Grew Energy, my automation initiatives, including the development of a Management Reporting Dashboard with specialized Cash Flow visualization, successfully reduced MIS preparation time by <b>80%</b> and directly assisted in stabilizing operations during a severe liquidity crunch to avert financial default. This capability in risk mitigation and process optimization is my core value proposition.</p>
+                <p class="mb-4">Beyond automation, I have successfully managed the entire FP&A lifecycle, established budgeting and forecast functions from scratch, and implemented strict AP processes. My methodology follows a top-down approach, building SOPs, conducting thorough research to integrate industry best practices, and utilizing automation (RPA/Python) to ensure a high-quality, audit-ready operational environment. My foundational knowledge, solidified through advanced academic pursuits and strong performance in the CA CPT, ensures meticulous compliance and effective strategic execution in every project, from Capex management to statutory audit support.</p>
+                <p class="mb-4">I am now seeking a stable, long-term opportunity, prioritizing a role where I can fully leverage my expertise in FP&A, Financial Modeling, and Project Finance to contribute strategically, while remaining open to all growth-oriented F&A positions. My work methodology emphasizes conceptual understanding and continuous learning, informed by interests in geo-economics, technology, and applied critical thinking, which allows for effective, strategic problem-solving in dynamic environments. My recent professional transitions have been either due to unavoidable family medical responsibilities or roles being discontinued, which has intensified my focus on finding a mutually beneficial, growth-oriented role.</p>
+                <p>As I am currently available for immediate joining, I am eager to contribute my disciplined, automation-focused, and results-oriented background to your forward-thinking organization. I look forward to the opportunity to discuss my qualifications and how I can help drive your fiscal health.</p>
+                <footer class="mt-4 text-right text-sm text-gray-500">
+                    — Navneet Chaudhary
+                </footer>
+            </blockquote>
+        </div>
+    </div>
+    
+    <!-- Tawk.to Integration Script (UPDATED with new Widget ID) -->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/68efdd0e7e16ad19527ac96f/1j7kff0qq';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+    
+    <script>
+        // --- TAB LOGIC ---
+        function openTab(evt, tabName) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tab-content" and hide them
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tab-button" and remove the active class
+            tablinks = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active-tab");
+                tablinks[i].style.borderBottomColor = "transparent";
+            }
+
+            // Show the current tab, and add an "active-tab" class to the button that opened the tab
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.classList.add("active-tab");
+            evt.currentTarget.style.borderBottomColor = "#238636";
+        }
+        
+        // --- REASON FOR LEAVE LOGIC ---
+
+        /**
+         * Toggles the visibility of the "Reason for Leave" section.
+         * @param {HTMLElement} button - The button element clicked.
+         * @param {string} reasonId - The ID of the reason for leave paragraph.
+         */
+        function toggleReason(button, reasonId) {
+            const reasonElement = document.getElementById(reasonId);
+            const iconElement = button.querySelector('span');
+
+            if (reasonElement.classList.contains('expanded')) {
+                // Minimize
+                reasonElement.classList.remove('expanded');
+                iconElement.textContent = '+';
+            } else {
+                // Maximize
+                reasonElement.classList.add('expanded');
+                iconElement.textContent = '–'; // En dash for better visual alignment than hyphen
+            }
+        }
+
+        // --- CERTIFICATION DATA AND SORTING & FILTERING LOGIC ---
+
+        const certifications = [
+            // Core Finance & Investment
+            // Priority 1: Highest Value (NISM RA)
+            { title: 'Research Analyst', issuer: 'NISM 15', date: 20230801, displayDate: 'Aug 23', relevance: 1, priority: 1, domain: 'Core Finance & Investment' }, 
+            
+            // Priority 2: Next Highest Value (Financial Modelling / Investment)
+            { title: 'Financial Modelling', issuer: 'Wall Street School', date: 20230801, displayDate: 'Aug 23', relevance: 1, priority: 2, domain: 'Core Finance & Investment' }, 
+            { title: 'Investment Banking', issuer: '365 Financial Analyst', date: 20231112, displayDate: 'Nov 23', relevance: 3, priority: 2, domain: 'Core Finance & Investment' }, 
+            
+            // Priority 3: Management/Advanced Finance & Tech (HIGHLIGHTED)
+            { title: 'Private Equity & VC', issuer: 'Bocconi', date: 20240201, displayDate: 'Feb 24', relevance: 3, priority: 3, domain: 'Core Finance & Investment' }, 
+            { title: 'Finance for Managers', issuer: 'IESE Business School', date: 20231201, displayDate: 'Dec 23', relevance: 1, priority: 3, domain: 'Core Finance & Investment' }, 
+            { title: 'PwC GST Taxation Executive', issuer: 'PwC India', date: 20230801, displayDate: 'Aug 23', relevance: 1, priority: 3, domain: 'Core Finance & Investment' },
+            { title: 'AI for everyone', issuer: 'DeepMind.AI', date: 20240101, displayDate: 'Jan 24', relevance: 2, priority: 3, domain: 'Tech & Automation' }, 
+            { title: 'Introduction to Generative AI', issuer: 'Google', date: 20231209, displayDate: 'Dec 23', relevance: 2, priority: 3, domain: 'Tech & Automation' },
+            { title: 'Excel Basics For Data Analysis', issuer: 'IBM / Coursera', date: 20231227, displayDate: 'Dec 23', relevance: 2, priority: 3, domain: 'Tech & Automation' }, 
+            { title: 'Google data analytics', issuer: 'Google', date: 20250101, displayDate: 'Jan 25', relevance: 2, priority: 3, domain: 'Tech & Automation' }, 
+
+            // Priority 4: General FP&A / Core Finance
+            { title: 'The Role of the FP&A Professional', issuer: 'CFI', date: 20231022, displayDate: 'Oct 23', relevance: 1, priority: 4, domain: 'Core Finance & Investment' },
+            { title: 'FP&A: Building a Company\'s Budget', issuer: '365 Financial Analyst', date: 20231112, displayDate: 'Nov 23', relevance: 1, priority: 4, domain: 'Core Finance & Investment' },
+            { title: 'Accounting Fundamentals', issuer: 'CFI', date: 20231023, displayDate: 'Oct 23', relevance: 1, priority: 4, domain: 'Core Finance & Investment' },
+            { title: 'Reading Financial Statements', issuer: 'CFI', date: 20231022, displayDate: 'Oct 23', relevance: 1, priority: 4, domain: 'Core Finance & Investment' },
+            { title: 'Introduction to Corporate Finance', issuer: 'Great Learning', date: 20230801, displayDate: 'Aug 23', relevance: 1, priority: 4, domain: 'Core Finance & Investment' },
+            { title: 'Basics Of Accounting', issuer: 'Great Learning', date: 20230801, displayDate: 'Aug 23', relevance: 1, priority: 4, domain: 'Core Finance & Investment' },
+            { title: 'Fundamental of Taxation', issuer: 'Great Learning', date: 20230801, displayDate: 'Aug 23', relevance: 1, priority: 4, domain: 'Core Finance & Investment' },
+            { title: 'Introduction to Valuation with WACC', issuer: 'Coursera', date: 20231217, displayDate: 'Dec 23', relevance: 1, priority: 4, domain: 'Core Finance & Investment' },
+            { title: 'Investment Risk Management', issuer: 'Coursera', date: 20231217, displayDate: 'Dec 23', relevance: 3, priority: 4, domain: 'Core Finance & Investment' },
+            { title: 'International Business', issuer: 'Coursera', date: 20231224, displayDate: 'Dec 23', relevance: 3, priority: 4, domain: 'Core Finance & Investment' },
+            { title: 'Introduction to Management', issuer: 'Great Learning', date: 20230801, displayDate: 'Aug 23', relevance: 3, priority: 4, domain: 'Core Finance & Investment' },
+            
+            // Priority 5: General Tech/Data Analytics
+            { title: 'Data Analysis with Excel Pivot Tables', issuer: '365 Financial Analyst', date: 20231112, displayDate: 'Nov 23', relevance: 2, priority: 5, domain: 'Tech & Automation' },
+            { title: 'Chat Gpt For Excel', issuer: 'Great Learning', date: 20230801, displayDate: 'Aug 23', relevance: 2, priority: 5, domain: 'Tech & Automation' },
+        ];
+
+        let currentSort = 'relevance'; // Default sort is relevance
+        let currentFilter = 'Core Finance & Investment'; // Default filter is Core Finance & Investment
+
+        /**
+         * Renders the certification list based on the current sorting and filtering criteria.
+         * Note: The priority logic ensures NISM and FMVA equivalents are highlighted and sorted first.
+         */
+        function renderCertifications() {
+            const listElement = document.getElementById('certificationsList');
+            
+            // 1. Apply Filter
+            let filteredCerts = certifications.filter(cert => {
+                if (currentFilter === 'All') {
+                    return true;
+                }
+                return cert.domain === currentFilter;
+            });
+
+            // 2. Apply Sort
+            if (currentSort === 'date') {
+                // Sort by Date (Descending - newest first)
+                filteredCerts.sort((a, b) => b.date - a.date);
+            } else {
+                // Sort by Relevance (Ascending), then PRIORITY (Ascending), then Date (Descending)
+                filteredCerts.sort((a, b) => {
+                    if (a.relevance !== b.relevance) {
+                        return a.relevance - b.relevance; 
+                    }
+                    if (a.priority !== b.priority) {
+                        return a.priority - b.priority; 
+                    }
+                    return b.date - a.date; 
+                });
+            }
+
+            // 3. Render as compact tags
+            listElement.innerHTML = filteredCerts.map(cert => {
+                const isHighlighted = cert.priority <= 3; // Priority 1, 2, or 3 (New rule: include advanced/management certs)
+                const highlightClass = isHighlighted ? 'cert-tag-highlight' : '';
+
+                return `
+                    <div class="cert-tag mb-1 mr-1 ${highlightClass}">
+                        <span class="cert-tag-title">${cert.title}</span>
+                        <span class="cert-tag-detail ml-2">(${cert.issuer})</span>
+                        <span class="cert-tag-detail ml-2 text-[#238636]">${cert.displayDate}</span>
+                    </div>
+                `;
+            }).join('');
+            
+            // Scroll to top after rendering
+            listElement.scrollTop = 0;
+        }
+
+        /**
+         * Changes the sorting criteria and re-renders the list.
+         * @param {string} sortType - 'relevance' or 'date'.
+         */
+        window.sortCertifications = function(sortType) {
+            currentSort = sortType;
+            
+            // Update active button styling
+            document.querySelectorAll('.sort-button').forEach(btn => {
+                btn.classList.remove('active', 'bg-[#238636]', 'text-white', 'hover:bg-gray-700', 'text-gray-300');
+                if (btn.id === `sort${sortType.charAt(0).toUpperCase() + sortType.slice(1)}`) {
+                    btn.classList.add('active', 'bg-[#238636]', 'text-white');
+                } else {
+                    btn.classList.add('hover:bg-gray-700', 'text-gray-300');
+                }
+            });
+
+            renderCertifications();
+        }
+
+        /**
+         * Changes the filtering domain and re-renders the list.
+         * @param {string} domain - 'Core Finance & Investment', 'Tech & Automation', or 'All'.
+         */
+        window.filterCertifications = function(domain) {
+            currentFilter = domain;
+            renderCertifications();
+        }
+
+
+        // Initial render on load
+        window.onload = function() {
+            // Default: Core Finance & Investment, sorted by relevance
+            document.getElementById('filterDomain').value = currentFilter;
+            sortCertifications('relevance'); 
+            
+            // Activate the default tab on load
+            openTab(
+                { currentTarget: document.querySelector('.tab-button:first-child') }, 
+                'professional'
+            );
+        };
+    </script>
+</body>
+</html>
