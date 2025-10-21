@@ -147,56 +147,47 @@
             color: #9ca3af; 
         }
 
-        /* SCROLLABLE CONTAINERS */
-        /* .scrollable-content is only applied where scrolling is necessary (Certifications/Achievements/Skills) */
+        /* SCROLLABLE CONTAINERS - MODIFIED FOR INVISIBLE SCROLLBAR */
         .scrollable-content {
-            padding-right: 15px; 
             overflow-y: auto;
+            /* Hide scrollbar in Firefox */
+            scrollbar-width: none;
+            /* Hide scrollbar in IE/Edge */
+            -ms-overflow-style: none;
+            /* Override padding that was compensating for scrollbar width */
+            padding-right: 0 !important; 
         }
         
-        /* Custom Scrollbar Styles (for Webkit browsers) */
+        /* Hide scrollbar for Webkit browsers (Chrome, Safari) */
         .scrollable-content::-webkit-scrollbar {
-            width: 8px;
+            width: 0px !important; /* Force width to zero */
+            height: 0px !important;
+            background: transparent;
         }
-        .scrollable-content::-webkit-scrollbar-track {
-            background: #1f2328; 
-            border-radius: 10px;
-        }
-        .scrollable-content::-webkit-scrollbar-thumb {
-            background: #30363d; 
-            border-radius: 10px;
-        }
-        .scrollable-content::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
-
+        
         /* Adjust padding for the fixed size segment */
         #experienceContainer, #achievementsContainer {
             padding: 0 1rem 0 1rem; 
         }
         
-        /* Certifications: REMOVED FIXED HEIGHT AND SCROLLING to expand to match left column */
-        #certificationsList {
-            /* max-height: 240px; */
-            /* overflow-y: auto; */
-            padding-right: 15px;
+        /* Skills: Fixed max-height for scrolling */
+        #skillsTabContent {
+            max-height: 250px; /* Constrain height to force scrolling if content exceeds this */
+            /* Removed explicit padding-right, handled by .scrollable-content now */
         }
 
-        /* Skills: ADDED FIXED HEIGHT AND SCROLLING - ADJUSTED FOR VISUAL BALANCE */
-        #skillsList {
-            /* Increased max-height to visually balance the Qualifications table above it */
-            max-height: 330px; 
-            overflow-y: auto;
-            padding-right: 15px;
-        }
-        
-        /* EXPERIENCE SECTION - REMOVED FIXED HEIGHT AND SCROLLING */
+        /* EXPERIENCE SECTION - NEW FIXED HEIGHT AND SCROLLING */
         #experienceContent {
-            /* Removed max-height and overflow-y: auto; */
-            padding-right: 0;
+            max-height: 850px; /* Constrain height to force scrolling if content exceeds this */
             padding: 0 1rem 0 1rem;
         }
         
+        /* EXTRA-CURRICULAR SECTION - NEW FIXED HEIGHT AND SCROLLING */
+        #extraCurricularContent {
+             max-height: 250px; /* Fixed height for containment */
+             /* Removed explicit padding-right, handled by .scrollable-content now */
+        }
+
         /* Table Styling for Education */
         .education-table th, .education-table td {
             padding: 0.5rem;
@@ -215,6 +206,13 @@
         .education-table tr:last-child td {
             border-bottom: none;
         }
+        
+        /* Qualifications Table Container - Added fixed height and scrolling */
+        #qualificationsTableContainer {
+            max-height: 380px; /* Estimate for fixed height. Adjust as necessary if content doesn't fit */
+            /* Removed explicit padding-right, handled by .scrollable-content now */
+        }
+
 
         /* Tab Styles */
         .tab-button {
@@ -232,6 +230,21 @@
         .tab-content {
             padding-top: 1rem;
             display: none;
+        }
+        /* New class for Skills Tab content to keep them distinct from Achievement Tabs */
+        .skills-tab-content {
+             padding-top: 0.5rem;
+             display: none;
+        }
+
+        /* Certifications: Flex-grow is managed in HTML to ensure it fills the container. */
+        #certificationsList {
+            /* The parent element of this div uses flex-grow to stretch. */
+            /* This div uses overflow-y-auto, inheriting the invisible scrollbar styles */
+            display: flex; 
+            flex-grow: 1; 
+            flex-wrap: wrap; 
+            align-content: flex-start; 
         }
 
     </style>
@@ -326,7 +339,7 @@
                 <div class="metric-card p-6 rounded-lg">
                     <p class="text-xs uppercase text-gray-400">Technical Competency</p>
                     <p class="text-2xl font-bold mt-1 text-white">AI/RPA-Driven Efficiency</p>
-                    <p class="text-sm text-gray-500 mt-2">Proficient in building Python-based RPA and Streamlit dashboards, **Chat with SQL data**, leveraging Generative AI/Prompt Engineering to cut manual work and accelerate decision-making by 30%.</p>
+                    <p class="text-sm text-gray-500 mt-2">Proficient in building Python-based RPA and Streamlit dashboards, <b>Chat with SQL data</b>, leveraging Generative AI/Prompt Engineering to cut manual work and accelerate decision-making by 30%.</p>
                 </div>
 
                 <!-- Card 3: Leadership (Mentorship, Persistence, Growth) -->
@@ -339,7 +352,8 @@
         </section>
 
         <!-- Main Content Sections: Experience, Qualifications, Achievements, Certifications -->
-        <div class="grid grid-cols-1 lg:col-span-3 lg:grid-cols-3 gap-8 mt-10">
+        <!-- Added items-stretch to the grid to ensure column height matching -->
+        <div class="grid grid-cols-1 lg:col-span-3 lg:grid-cols-3 gap-8 mt-10 items-stretch">
             
             <!-- Left Column: Detailed Experience & Achievements (lg:col-span-2) -->
             <div class="lg:col-span-2 space-y-8">
@@ -348,18 +362,18 @@
                 <section class="p-6 metric-card rounded-lg">
                     <h2 class="text-2xl font-bold section-header">Professional Experience</h2>
                     
-                    <!-- Content now expands naturally without internal scrolling -->
-                    <div id="experienceContent" class="experience-content">
+                    <!-- Content now has fixed max height and scrolling -->
+                    <div id="experienceContent" class="experience-content scrollable-content" style="max-height: 850px; padding: 0 1rem 0 1rem;">
 
                         <!-- Oriana Power Ltd -->
                         <div class="mb-6">
-                            <h3 class="text-lg font-bold text-[#58a6ff]">Oriana Power Ltd. <span class="text-sm font-normal text-gray-400">(Assistant Manager F&A)</span></h3>
+                            <h3 class="text-lg font-bold text-[#58a6ff]">Oriana Power Ltd. <span class="text-sm font-normal text-gray-400">(Assistant Manager F&A - Report to Director Finance)</span></h3>
                             <p class="text-xs text-gray-500 mb-2">June 2025 - September 2025 (Noida)</p>
                             <div class="job-detail">
-                                <p class="font-bold text-white">Report to Director Finance</p>
-                                <p class="font-bold text-white mt-2">FP&A Lead:</p>
+                                
+                                <p class="text-sm font-bold text-white mt-2">FP&A Lead:</p>
                                 <p class="text-sm text-gray-400">Established the FP&A function from scratch, implementing budgeting, forecasting, and variance analysis that accelerated management decision-making by 30%.</p>
-                                <p class="font-bold text-white mt-2">Cash Flow Management:</p>
+                                <p class="text-sm font-bold text-white mt-2">Cash Flow Management:</p>
                                 <p class="text-sm text-gray-400">Stabilized operations during liquidity crunch with only 8 days' cash on hand by managing cash flow and loan documentation, securing timely bank funding to avert default.</p>
                                 
                                 <!-- Reason for Leave Toggle -->
@@ -380,7 +394,7 @@
                             <h3 class="text-lg font-bold text-[#58a6ff]">Grew Energy Pvt Ltd. <span class="text-sm font-normal text-gray-400">(Assistant Manager F&A)</span></h3>
                             <p class="text-xs text-gray-500 mb-2">December 2024 - June 2025 (Ahmedabad)</p>
                             <div class="job-detail">
-                                <p class="font-bold text-white">Automation / MIS:</p>
+                                <p class="text-sm font-bold text-white">Automation / MIS:</p>
                                 <p class="text-sm text-gray-400">Engineered process automation by building <b>Python-based RPA, Streamlit dashboards, and AI-enabled database access</b>, reducing MIS preparation time and manual effort by 80%.</p>
                                  <!-- Reason for Leave Toggle -->
                                 <div class="mt-3">
@@ -425,7 +439,7 @@
                             <h3 class="text-lg font-bold text-[#58a6ff]">Shanti Mukand Hospital <span class="text-sm font-normal text-gray-400">(Junior Executive F&A)</span></h3>
                             <p class="text-xs text-gray-500 mb-2">February 2021 - February 2022 (Delhi)</p>
                             <div class="job-detail">
-                                <p class="font-bold text-white">AP (Vendor Management):</p>
+                                <p class="text-sm font-bold text-white">AP (Vendor Management):</p>
                                 <p class="text-sm text-gray-400">Mitigated high-risk long pending dues, adhering to NPPA Act guidelines for implant suppliers.</p>
                                  <!-- Reason for Leave Toggle -->
                                 <div class="mt-3">
@@ -469,32 +483,80 @@
                 <section class="p-6 metric-card rounded-lg bg-gradient-expertise mb-8">
                     <h2 class="text-2xl font-bold section-header text-white">Key Achievements & Recognition</h2>
 
-                    <!-- Tab Buttons -->
+                    <!-- Tab Buttons (UPDATED) -->
                     <div class="flex border-b border-gray-600 -mx-6 px-6">
                         <button class="tab-button active-tab" onclick="openTab(event, 'professional')">Professional Impact</button>
                         <button class="tab-button" onclick="openTab(event, 'academic')">Academic & Competition</button>
+                        <button class="tab-button" onclick="openTab(event, 'personalGrowth')">Personal & Growth</button>
                     </div>
 
-                    <!-- Tab Content Container -->
-                    <!-- Removed max-height/scrollable-content wrapper to allow expansion -->
-                    <div id="achievementsContainer">
+                    <!-- Tab Content Container: FIXED MAX HEIGHT SET TO 170PX -->
+                    <div id="achievementsContainer" class="scrollable-content" style="max-height: 170px;">
                     
-                        <!-- Professional Impact Tab Content (Default Active) -->
+                        <!-- Professional Impact Tab Content (Flex alignment applied) -->
                         <div id="professional" class="tab-content" style="display: block;">
-                            <ul class="space-y-3 text-gray-300 list-disc list-inside ml-4">
-                                <li><b>Performance Impact:</b> Justified a 58% joining hike and earned an exceptional 17.39% appraisal at Ozone Pharmaceuticals Ltd.</li>
-                                <li><b>Digital Transformation:</b> Learned to leverage tech as a non-coder to drive efficiency through automation, eliminating numerous manual tasks.</li>
-                                <li><b>Expertise Development:</b> Developed Horizontal Expertise by pioneering into diverse projects, including financial modeling and tax due diligence.</li>
+                            <ul class="space-y-3 text-gray-300 ml-4">
+                                <li class="flex items-start">
+                                    <span class="mr-2 text-[#238636] text-lg leading-none">•</span>
+                                    <p class="flex-grow"><b>Compensation Impact:</b> Achieved a significant 57% joining hike for the high-impact F&A role at Oriana Power Ltd.</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="mr-2 text-[#238636] text-lg leading-none">•</span>
+                                    <p class="flex-grow"><b>Performance Impact:</b> Justified a 58% joining hike and earned an exceptional 17.39% appraisal at Ozone Pharmaceuticals Ltd.</p>
+                                </li>
                             </ul>
                         </div>
 
-                        <!-- Academic & Competition Tab Content -->
-                        <div id="academic" class="tab-content">
-                            <ul class="space-y-3 text-gray-300 list-disc list-inside ml-4">
-                                <li><b>NSE Financial Literacy:</b> Winner of the NSE Financial Literacy Quiz (Series 2, March 24).</li>
-                                <li><b>Skillyst:</b> Earned **Bronze medal** in the Skillyst competition.</li>
-                                <li><b>Economics Quiz:</b> Ranked 3rd in an Economics Quiz competition during the 12th Grade (2016).</li>
-                                <li><b>MS Excel:</b> Earned a LinkedIn Skill Assessment badge in Microsoft Excel.</li>
+                        <!-- Academic & Competition Tab Content (Flex alignment applied) -->
+                        <div id="academic" class="tab-content" style="display: none;">
+                            <ul class="space-y-3 text-gray-300 ml-4">
+                                <li class="flex items-start">
+                                    <span class="mr-2 text-[#238636] text-lg leading-none">•</span>
+                                    <p class="flex-grow"><b>NSE Financial Literacy:</b> Winner of the NSE Financial Literacy Quiz (Series 2, March 24).</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="mr-2 text-[#238636] text-lg leading-none">•</span>
+                                    <p class="flex-grow"><b>Management Quiz:</b> Secured 9th rank in the 25/09/2025 Management September series Quiz <b>on unstop</b>.</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="mr-2 text-[#238636] text-lg leading-none">•</span>
+                                    <p class="flex-grow"><b>Skillyst:</b> Earned <b>Bronze medal</b> in the Skillyst competition.</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="mr-2 text-[#238636] text-lg leading-none">•</span>
+                                    <p class="flex-grow"><b>Economics Quiz:</b> Ranked 3rd in an Economics Quiz competition during the 12th Grade (2016).</p>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="mr-2 text-[#238636] text-lg leading-none">•</span>
+                                    <p class="flex-grow"><b>MS Excel:</b> Earned a LinkedIn Skill Assessment badge in Microsoft Excel.</p>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Personal & Growth Tab Content (Already has Flex alignment) -->
+                        <div id="personalGrowth" class="tab-content" style="display: none;">
+                            <ul class="space-y-3 text-gray-300 ml-4">
+                                <!-- Achievement 1: T-Shaped Expertise (Flex alignment) -->
+                                <li class="flex items-start">
+                                    <span class="mr-2 text-[#238636] text-lg leading-none">•</span> 
+                                    <p class="flex-grow">
+                                        <b>T-Shaped Finance Expertise:</b> Developed across GST, FP&A, Capex, & Accounting; core focus on Automation and Data Analysis.
+                                    </p>
+                                </li>
+                                <!-- Achievement 2: Digital Transformation (Flex alignment) -->
+                                <li class="flex items-start">
+                                    <span class="mr-2 text-[#238636] text-lg leading-none">•</span> 
+                                    <p class="flex-grow">
+                                        <b>Digital Transformation:</b> Learned to leverage tech as a non-coder to drive efficiency through automation, eliminating numerous manual tasks.
+                                    </p>
+                                </li>
+                                <!-- Achievement 3: First-Gen Attendee (Flex alignment) -->
+                                <li class="flex items-start">
+                                    <span class="mr-2 text-[#238636] text-lg leading-none">•</span> 
+                                    <p class="flex-grow">
+                                        First-generation university Attendee.
+                                    </p>
+                                </li>
                             </ul>
                         </div>
 
@@ -504,52 +566,76 @@
                 <!-- EXTRA-CURRICULAR SECTION -->
                 <section class="p-6 metric-card rounded-lg mb-8">
                     <h2 class="text-2xl font-bold section-header">Extra-Curricular Activities</h2>
-                    <div class="space-y-4 text-sm">
-                        <div class="text-gray-300">
-                            <p class="font-bold text-white">Volunteering (Sep '24 - Nov '24)</p>
-                            <p class="text-gray-400">Volunteered (unpaid) with <b>Robinhood Army NGO</b>, contributing time and effort to community service.</p>
-                        </div>
-                        <div class="text-gray-300">
-                            <p class="font-bold text-white">Thought Leadership (Sep '25 - Present)</p>
-                            <p class="text-gray-400">Publishes finance and economics articles in leading <b>Medium publications</b>, demonstrating knowledge synthesis and communication skills.</p>
-                        </div>
-                        <div class="text-gray-300">
-                            <p class="font-bold text-white">Workshops & Events</p>
-                            <ul class="list-disc list-inside text-gray-400 ml-4 space-y-1">
-                                <li>Attended <b>COP Fintech Olympiad</b> and financial planning webinars.</li>
-                                <li>Participated in <b>Portfolio Management Sanjiv Bhasin’s workshop</b>.</li>
-                            </ul>
+                    <!-- Content now has fixed max height and scrolling -->
+                    <div id="extraCurricularContent" class="scrollable-content" style="max-height: 250px;">
+                        <div class="space-y-4 text-sm">
+                            <div class="text-gray-300">
+                                <p class="font-bold text-white">Volunteering (Sep '24 - Nov '24)</p>
+                                <p class="text-gray-400">Volunteered (unpaid) with <b>Robinhood Army NGO</b>, contributing time and effort to community service.</p>
+                            </div>
+                            <div class="text-gray-300">
+                                <p class="font-bold text-white">Thought Leadership (Sep '25 - Present)</p>
+                                <p class="text-gray-400">Publishes finance and economics articles in leading <b>Medium publications</b>, demonstrating knowledge synthesis and communication skills.</p>
+                            </div>
+                            <div class="text-gray-300">
+                                <p class="font-bold text-white">Workshops & Events</p>
+                                <ul class="space-y-1 text-gray-400 ml-4">
+                                    <li class="flex items-start">
+                                        <span class="mr-2 text-[#238636] text-lg leading-none">•</span>
+                                        <p class="flex-grow">Attended <b>Fintech Olympiad</b> and financial planning webinars.</p>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="mr-2 text-[#238636] text-lg leading-none">•</span>
+                                        <p class="flex-grow">Participated in <b>Portfolio Management Sanjiv Bhasin’s workshop</b> at Masters' Union.</p>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </section>
                 
-                <!-- INTERESTS SECTION -->
+                <!-- INTERESTS SECTION (UPDATED FOR HANGING INDENT) -->
                 <section class="p-6 metric-card rounded-lg">
                     <h2 class="text-2xl font-bold section-header">Interests</h2>
-                    <div class="space-y-4 text-sm">
-                        <div class="text-gray-300">
-                            <p class="text-gray-400 list-disc list-inside">
-                                <b class="text-white">New Perspectives:</b> Actively seeking knowledge that offers a conceptual understanding and continuous learning, informed by interests in geo-economics and applied critical thinking.
+                    <!-- Applied Flexbox structure here for hanging indent -->
+                    <ul class="space-y-3 text-gray-400 ml-4 text-sm">
+                        
+                        <!-- Interest 1: Multidisciplinary Learning (Flex alignment) -->
+                        <li class="flex items-start">
+                            <span class="mr-2 text-[#238636] text-lg leading-none">•</span> 
+                            <p class="flex-grow">
+                                <b>Multidisciplinary Learning:</b> Anything that gives new perspective.
                             </p>
-                        </div>
-                        <div class="text-gray-300">
-                            <p class="text-gray-400">
-                                <b class="text-white">Digital Creation:</b> Interest in App development and leveraging technology to solve problems and improve efficiency.
+                        </li>
+                        <!-- Interest 2: Geo-economics (Flex alignment) -->
+                        <li class="flex items-start">
+                            <span class="mr-2 text-[#238636] text-lg leading-none">•</span> 
+                            <p class="flex-grow">
+                                <b>Geo-economics:</b> Analyzing the intersection of geography, geopolitics, and global financial strategy.
                             </p>
-                        </div>
-                    </div>
+                        </li>
+                        <!-- Interest 3: App Development (Flex alignment) -->
+                        <li class="flex items-start">
+                            <span class="mr-2 text-[#238636] text-lg leading-none">•</span> 
+                            <p class="flex-grow">
+                                <b>App Development:</b> Leveraging personal projects to solve business problems and improve efficiency through code.
+                            </p>
+                        </li>
+                    </ul>
                 </section>
 
 
             </div>
 
             <!-- Right Column: Qualifications, Skills, Certifications (lg:col-span-1) -->
-            <div class="lg:col-span-1 flex flex-col space-y-8">
+            <!-- Added h-full to make the flex container fill the column height -->
+            <div class="lg:col-span-1 flex flex-col space-y-8 h-full">
                 
                 <!-- Qualifications & Test Scores (UPDATED WITH TABLE) -->
                 <section class="p-6 metric-card rounded-lg">
                     <h2 class="text-2xl font-bold section-header">Qualifications & Scores</h2>
-                    <div class="overflow-x-auto">
+                    <!-- Added scrollable container around the table -->
+                    <div id="qualificationsTableContainer" class="scrollable-content" style="max-height: 380px;">
                         <table class="education-table w-full">
                             <thead>
                                 <tr>
@@ -582,8 +668,9 @@
                                 <tr>
                                     <td>B.Com</td>
                                     <td>2020</td>
+                                    <!-- UPDATED INSTITUTION -->
                                     <td>66%</td>
-                                    <td>Delhi University (DU)</td>
+                                    <td>DU (SOL)</td>
                                 </tr>
                                 <tr>
                                     <td><b>CA CPT</b></td>
@@ -595,13 +682,15 @@
                                 <tr>
                                     <td>12th (Commerce with Mathematics)</td>
                                     <td>2017</td>
+                                    <!-- REMOVED RSBV NO. 2 -->
                                     <td>68%</td>
-                                    <td>CBSE / RSBV No. 2</td>
+                                    <td>CBSE</td>
                                 </tr>
+                                <!-- NEW 10TH GRADE ENTRY -->
                                 <tr>
                                     <td>10th Grade</td>
                                     <td>2015</td>
-                                    <td>CGPA 8.2</td>
+                                    <td>8.2 CGPA</td>
                                     <td>CBSE</td>
                                 </tr>
                             </tbody>
@@ -609,41 +698,63 @@
                     </div>
                 </section>
 
-                <!-- Skills & Tools (Categorized and RESTRICTED HEIGHT) -->
+                <!-- Skills & Tools (Categorized - NOW USING Functional, Tools, Soft Skills) -->
                 <section class="p-6 metric-card rounded-lg">
                     <h2 class="text-2xl font-bold section-header">Skills & Tools</h2>
-                    <!-- Added scrollable wrapper with fixed max-height -->
-                    <div id="skillsList" class="scrollable-content" style="max-height: 330px;">
-                        <div class="space-y-4 pr-3">
-                            <div class="text-white text-md font-semibold border-b border-gray-600 pb-1">Financial Governance (Hard)</div>
+                    
+                    <!-- Tab Buttons for Skills (Functional/Tools/Soft) -->
+                    <div class="flex border-b border-gray-600 -mx-6 px-6 mb-4">
+                        <button class="tab-button skills-tab-button active-tab" onclick="openSkillsTab(event, 'functionalSkills')">Functional</button>
+                        <button class="tab-button skills-tab-button" onclick="openSkillsTab(event, 'toolsSkills')">Tools</button>
+                        <button class="tab-button skills-tab-button" onclick="openSkillsTab(event, 'softSkills')">Soft Skills</button>
+                    </div>
+
+                    <!-- Tab Content Container with fixed height/scroll -->
+                    <div id="skillsTabContent" class="scrollable-content" style="max-height: 250px;">
+                        
+                        <!-- Functional Skills Tab Content (Domain-specific, Default Active) -->
+                        <div id="functionalSkills" class="skills-tab-content space-y-4" style="display: block;">
+                            <div class="text-white text-md font-semibold border-b border-gray-600 pb-1">Financial Planning, Transformation & Technical Application</div>
                             <div class="flex flex-wrap gap-2 text-sm">
                                 <span class="skill-tag">FP&A</span>
                                 <span class="skill-tag">Financial Modelling</span>
-                                <span class="skill-tag">GST</span>
-                                <span class="skill-tag">TDS</span>
-                                <span class="skill-tag">IndAs/IFRS</span>
+                                <span class="skill-tag">Project Finance</span>
+                                <span class="skill-tag">Working Capital</span>
+                                <span class="skill-tag">RPA</span>
+                                <span class="skill-tag">Automation</span>
+                                <span class="skill-tag">App Development</span>
                             </div>
                             
-                            <div class="text-white text-md font-semibold border-b border-gray-600 pb-1">Technical & Automation (Hard)</div>
+                            <div class="text-white text-md font-semibold border-b border-gray-600 pb-1 mt-4">Accounting & Tax Governance</div>
                             <div class="flex flex-wrap gap-2 text-sm">
-                                <span class="skill-tag">RPA (Python/VBA)</span>
-                                <span class="skill-tag">Python</span>
-                                <span class="skill-tag">Generative AI</span>
-                                <span class="skill-tag">Prompt Engineering</span>
-                                <span class="skill-tag">Advanced Excel</span>
+                                <span class="skill-tag">GST/TDS Compliance</span>
+                                <span class="skill-tag">Asset Accounting</span>
+                                <span class="skill-tag">IFRS/IndAs</span>
+                                <span class="skill-tag">Vendor Management (AP)</span>
                             </div>
-
-                            <div class="text-white text-md font-semibold border-b border-gray-600 pb-1">Core Systems & Tools</div>
+                        </div>
+                        
+                        <!-- Tools Skills Tab Content (Technical & Software) -->
+                        <div id="toolsSkills" class="skills-tab-content space-y-4" style="display: none;">
+                            
+                            <div class="text-white text-md font-semibold border-b border-gray-600 pb-1">ERP & Data Systems</div>
                             <div class="flex flex-wrap gap-2 text-sm">
+                                <span class="skill-tag">Advanced Excel</span>
                                 <span class="skill-tag">SAP (FICO/MM)</span>
-                                <span class="skill-tag">MS Office</span>
+                                <span class="skill-tag">MS Office Suite</span>
                                 <span class="skill-tag">Tally</span>
                                 <span class="skill-tag">Webtel/Computex</span>
-                                <span class="skill-tag">Jupyter Notebook</span>
-                                <span class="skill-tag">SQLlite3</span>
                             </div>
                             
-                            <div class="text-white text-md font-semibold border-b border-gray-600 pb-1">Soft Skills</div>
+                            <div class="text-white text-md font-semibold border-b border-gray-600 pb-1 mt-4">Automation & AI</div>
+                            <div class="flex flex-wrap gap-2 text-sm">
+                                <span class="skill-tag">Generative AI</span>
+                            </div>
+                        </div>
+
+                        <!-- Soft Skills Tab Content (Unchanged) -->
+                        <div id="softSkills" class="skills-tab-content space-y-4" style="display: none;">
+                             <div class="text-white text-md font-semibold border-b border-gray-600 pb-1">Key Soft Skills</div>
                             <div class="flex flex-wrap gap-2 text-sm">
                                 <span class="skill-tag">Leadership</span>
                                 <span class="skill-tag">Adaptability</span>
@@ -651,20 +762,23 @@
                                 <span class="skill-tag">Critical Thinking</span>
                             </div>
                         </div>
+
                     </div>
                 </section>
                 
-                <!-- CERTIFICATIONS SECTION (EXPANDED HEIGHT) -->
-                <section class="p-6 metric-card rounded-lg">
+                <!-- CERTIFICATIONS SECTION (FIXED HEIGHT) -->
+                <!-- The outer section uses flex-grow to stretch the card to the column height -->
+                <section class="p-6 metric-card rounded-lg flex-grow flex flex-col">
                     <h2 class="text-2xl font-bold section-header">Certifications</h2>
                     
+                    <!-- Filtering and Sorting Controls -->
                     <div class="flex flex-col space-y-3 mb-4">
                         <!-- Filtering Dropdown -->
                         <div>
                             <select id="filterDomain" onchange="filterCertifications(this.value)" class="w-full bg-[#1f2328] border border-gray-600 text-white text-sm rounded-lg p-2.5 focus:ring-[#238636] focus:border-[#238636] transition duration-200">
-                                <option value="Core Finance & Investment">Filter by Domain: Core Finance & Investment</option>
-                                <option value="Tech & Automation">Filter by Domain: Tech & Automation</option>
-                                <option value="All">Filter by Domain: All</option>
+                                <option value="Core Finance & Investment">Core Finance & Investment</option>
+                                <option value="Tech & Automation">Tech & Automation</option>
+                                <option value="All">All Certifications</option>
                             </select>
                         </div>
                         
@@ -679,8 +793,8 @@
                         </div>
                     </div>
 
-                    <!-- Removed max-height and scrollable-content class -->
-                    <div id="certificationsList" class="flex flex-wrap gap-2 text-sm">
+                    <!-- List Container uses flex-grow to fill remaining vertical space and overflow-y-auto for scrolling -->
+                    <div id="certificationsList" class="scrollable-content flex flex-wrap gap-2 text-sm flex-grow">
                         <!-- Certifications will be rendered here by JavaScript -->
                     </div>
                 </section>
@@ -712,10 +826,9 @@
             <h2 class="text-3xl font-bold section-header text-white mb-6">Full Cover Letter / Statement of Intent</h2>
             <blockquote class="p-4 border-l-4 border-[#238636] bg-[#1f2328] rounded-r-lg text-gray-300 italic text-base">
                 <p class="mb-4">Dear Hiring Manager or Finance & Accounts Team,</p>
-                <p class="mb-4">I am writing to express my strong and immediate interest in Senior and Management-level roles within the Finance & Accounts (F&A) domain. With over 6 years of cross-functional experience, my profile offers a unique combination of regulatory compliance (GST, Income Tax, Audit), strategic financial reporting (IFRS/IndAs, DCF Modeling, Fixed Assets), and end-to-end FP&A expertise. I possess the quantifiable rigor and proven ability to automate processes that modern finance leadership demands across sectors including Pharma, Healthcare, and Renewables.</p>
+                <p class="mb-4">I am writing to express my strong and immediate interest in Senior and Management-level roles within the Finance & Accounts (F&A) domain. With over 6 years of cross-functional experience, my profile offers a unique combination of regulatory compliance (GST, Income Tax, Audit), strategic financial reporting (IFRS/IndAs, DCF Modeling, Fixed Assets), and end-to-end FP&A expertise. I possess the quantifiable rigor and proven ability to automate processes that modern finance leadership demands across sectors including Pharma, Healthcare, and Renewables. My foundational knowledge, solidified through advanced academic pursuits and strong performance in the CA CPT, ensures meticulous compliance and effective strategic execution in every project, from Capex management to statutory audit support. I am now seeking a stable, long-term opportunity, prioritizing a role where I can fully leverage my expertise in FP&A, Financial Modeling, and Project Finance to contribute strategically, while remaining open to all growth-oriented F&A positions. My recent professional transitions have been either due to unavoidable family medical responsibilities or roles being discontinued, which has intensified my focus on finding a mutually beneficial, growth-oriented role.</p>
                 <p class="mb-4">My background is defined by a deep track record of impactful process transformation. At Grew Energy, my automation initiatives, including the development of a Management Reporting Dashboard with specialized Cash Flow visualization, successfully reduced MIS preparation time by <b>80%</b> and directly assisted in stabilizing operations during a severe liquidity crunch to avert financial default. This capability in risk mitigation and process optimization is my core value proposition.</p>
-                <p class="mb-4">Beyond automation, I have successfully managed the entire FP&A lifecycle, established budgeting and forecast functions from scratch, and implemented strict AP processes. My methodology follows a top-down approach, building SOPs, conducting thorough research to integrate industry best practices, and utilizing automation (RPA/Python) to ensure a high-quality, audit-ready operational environment. My foundational knowledge, solidified through advanced academic pursuits and strong performance in the CA CPT, ensures meticulous compliance and effective strategic execution in every project, from Capex management to statutory audit support.</p>
-                <p class="mb-4">I am now seeking a stable, long-term opportunity, prioritizing a role where I can fully leverage my expertise in FP&A, Financial Modeling, and Project Finance to contribute strategically, while remaining open to all growth-oriented F&A positions. My work methodology emphasizes conceptual understanding and continuous learning, informed by interests in geo-economics, technology, and applied critical thinking, which allows for effective, strategic problem-solving in dynamic environments. My recent professional transitions have been either due to unavoidable family medical responsibilities or roles being discontinued, which has intensified my focus on finding a mutually beneficial, growth-oriented role.</p>
+                <p class="mb-4">My work methodology emphasizes conceptual understanding and continuous learning, informed by interests in geo-economics, technology, and applied critical thinking, which allows for effective, strategic problem-solving in dynamic environments.</p>
                 <p>As I am currently available for immediate joining, I am eager to contribute my disciplined, automation-focused, and results-oriented background to your forward-thinking organization. I look forward to the opportunity to discuss my qualifications and how I can help drive your fiscal health.</p>
                 <footer class="mt-4 text-right text-sm text-gray-500">
                     — Navneet Chaudhary
@@ -738,29 +851,58 @@
     </script>
     
     <script>
-        // --- TAB LOGIC ---
+        // --- ACHIEVEMENT TAB LOGIC (FIXED TO RESET BUTTONS) ---
         function openTab(evt, tabName) {
-            // Declare all variables
-            var i, tabcontent, tablinks;
-
-            // Get all elements with class="tab-content" and hide them
-            tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) {
+            // Get all tab content containers and hide them
+            const tabcontent = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabcontent.length; i++) {
                 tabcontent[i].style.display = "none";
             }
 
-            // Get all elements with class="tab-button" and remove the active class
-            tablinks = document.getElementsByClassName("tab-button");
-            for (i = 0; i < tablinks.length; i++) {
+            // 1. Target only the Achievement tab buttons for unselection
+            const tablinks = document.querySelectorAll(".flex:has(button[onclick^='openTab']) .tab-button");
+            
+            // 2. Loop through all achievement buttons and remove the active state
+            for (let i = 0; i < tablinks.length; i++) {
                 tablinks[i].classList.remove("active-tab");
                 tablinks[i].style.borderBottomColor = "transparent";
             }
 
-            // Show the current tab, and add an "active-tab" class to the button that opened the tab
+            // Show the current tab content
             document.getElementById(tabName).style.display = "block";
-            evt.currentTarget.classList.add("active-tab");
-            evt.currentTarget.style.borderBottomColor = "#238636";
+            
+            // Apply active state to the clicked button
+            if (evt && evt.currentTarget) {
+                evt.currentTarget.classList.add("active-tab");
+                evt.currentTarget.style.borderBottomColor = "#238636";
+            }
+            // Scroll to top of achievements content when changing tabs
+            document.getElementById('achievementsContainer').scrollTop = 0;
         }
+        
+        // --- SKILLS TAB LOGIC ---
+        function openSkillsTab(evt, tabName) {
+            const tabContents = document.getElementsByClassName("skills-tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].style.display = "none";
+            }
+
+            const tabButtons = document.getElementsByClassName("skills-tab-button");
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active-tab");
+                tabButtons[i].style.borderBottomColor = "transparent";
+            }
+
+            document.getElementById(tabName).style.display = "block";
+            
+            if (evt && evt.currentTarget) {
+                evt.currentTarget.classList.add("active-tab");
+                evt.currentTarget.style.borderBottomColor = "#238636";
+            }
+            
+            document.getElementById('skillsTabContent').scrollTop = 0;
+        }
+
         
         // --- REASON FOR LEAVE LOGIC ---
 
@@ -786,7 +928,8 @@
 
         // --- CERTIFICATION DATA AND SORTING & FILTERING LOGIC ---
 
-        const certifications = [
+        // CHANGED FROM const TO var TO AVOID REDECLARATION ERRORS IN SOME EXECUTION ENVIRONMENTS
+        var certifications = [
             // Core Finance & Investment
             // Priority 1: Highest Value (NISM RA)
             { title: 'Research Analyst', issuer: 'NISM 15', date: 20230801, displayDate: 'Aug 23', relevance: 1, priority: 1, domain: 'Core Finance & Investment' }, 
@@ -822,18 +965,18 @@
             { title: 'Chat Gpt For Excel', issuer: 'Great Learning', date: 20230801, displayDate: 'Aug 23', relevance: 2, priority: 5, domain: 'Tech & Automation' },
         ];
 
-        let currentSort = 'relevance'; // Default sort is relevance
-        let currentFilter = 'Core Finance & Investment'; // Default filter is Core Finance & Investment
+        var currentSort = 'relevance'; // Default sort is relevance
+        var currentFilter = 'Core Finance & Investment'; // Default filter is Core Finance & Investment
 
         /**
          * Renders the certification list based on the current sorting and filtering criteria.
          * Note: The priority logic ensures NISM and FMVA equivalents are highlighted and sorted first.
          */
         function renderCertifications() {
-            const listElement = document.getElementById('certificationsList');
+            var listElement = document.getElementById('certificationsList');
             
             // 1. Apply Filter
-            let filteredCerts = certifications.filter(cert => {
+            var filteredCerts = certifications.filter(function(cert) {
                 if (currentFilter === 'All') {
                     return true;
                 }
@@ -843,10 +986,10 @@
             // 2. Apply Sort
             if (currentSort === 'date') {
                 // Sort by Date (Descending - newest first)
-                filteredCerts.sort((a, b) => b.date - a.date);
+                filteredCerts.sort(function(a, b) { return b.date - a.date; });
             } else {
                 // Sort by Relevance (Ascending), then PRIORITY (Ascending), then Date (Descending)
-                filteredCerts.sort((a, b) => {
+                filteredCerts.sort(function(a, b) {
                     if (a.relevance !== b.relevance) {
                         return a.relevance - b.relevance; 
                     }
@@ -858,9 +1001,9 @@
             }
 
             // 3. Render as compact tags
-            listElement.innerHTML = filteredCerts.map(cert => {
-                const isHighlighted = cert.priority <= 3; // Priority 1, 2, or 3 (New rule: include advanced/management certs)
-                const highlightClass = isHighlighted ? 'cert-tag-highlight' : '';
+            listElement.innerHTML = filteredCerts.map(function(cert) {
+                var isHighlighted = cert.priority <= 3; // Priority 1, 2, or 3 (New rule: include advanced/management certs)
+                var highlightClass = isHighlighted ? 'cert-tag-highlight' : '';
 
                 return `
                     <div class="cert-tag mb-1 mr-1 ${highlightClass}">
@@ -883,7 +1026,7 @@
             currentSort = sortType;
             
             // Update active button styling
-            document.querySelectorAll('.sort-button').forEach(btn => {
+            document.querySelectorAll('.sort-button').forEach(function(btn) {
                 btn.classList.remove('active', 'bg-[#238636]', 'text-white', 'hover:bg-gray-700', 'text-gray-300');
                 if (btn.id === `sort${sortType.charAt(0).toUpperCase() + sortType.slice(1)}`) {
                     btn.classList.add('active', 'bg-[#238636]', 'text-white');
@@ -911,10 +1054,20 @@
             document.getElementById('filterDomain').value = currentFilter;
             sortCertifications('relevance'); 
             
-            // Activate the default tab on load
+            // FIX: Use a more robust selector for the Achievement tab button
+            var achievementButton = document.querySelector('.flex:has(button[onclick^="openTab"]) .tab-button:first-child');
+
+            // Activate the default achievement tab on load
             openTab(
-                { currentTarget: document.querySelector('.tab-button:first-child') }, 
+                { currentTarget: achievementButton }, 
                 'professional'
+            );
+            
+            // Activate the default skills tab on load
+            // UPDATED to use 'functionalSkills' as the new default tab
+            openSkillsTab(
+                { currentTarget: document.querySelector('.skills-tab-button:first-child') }, 
+                'functionalSkills'
             );
         };
     </script>
