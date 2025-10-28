@@ -4,21 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NAVNEET CHAUDHARY | F&A Specialist</title>
-    <!-- NEW: SEO Meta Description for better crawlability by Google Jobs and ATS -->
-    <meta name="description" content="FP&A Automation Specialist Delhi | Python Finance | 80% Efficiency Gains | 6+ years cross-functional F&A expertise in GST, compliance, and strategic reporting.">
     <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Load Chart.js for the timeline visualization -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     
     <!-- Google tag (gtag.js) for Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js/id=G-1XL4LRC5PP"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1XL4LRC5PP"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-1XL4LRC5PP');
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-1XL4LRC5PP');
     </script>
 
     <style>
@@ -33,13 +29,11 @@
             border: 1px solid #30363d;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.12);
         }
-        /* CHANGE START: Reduced margin-bottom from 1.5rem to 1rem to tighten space below the main H2 section header. */
         .section-header {
             border-bottom: 2px solid #238636; /* Subtle green accent like professional systems */
             padding-bottom: 0.5rem;
-            margin-bottom: 1rem; /* Reduced from 1.5rem (Tailwind mb-6) */
+            margin-bottom: 1.5rem;
         }
-        /* CHANGE END */
         .llm-card {
             background-color: #1f2328;
             border-left: 4px solid #58a6ff; /* Blue accent for AI */
@@ -47,8 +41,6 @@
         .list-item {
             padding: 0.5rem 0;
             border-bottom: 1px dashed #30363d;
-            margin-top: 0;
-            margin-bottom: 0;
         }
         .list-item:last-child {
             border-bottom: none;
@@ -84,12 +76,6 @@
             border: 1px solid #30363d;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
         }
-        /* New style for the media and mind map modal content, allowing it to be taller and wider */
-        #mediaModal .modal-content, #mindMapModal .modal-content {
-            max-width: 1200px; 
-            height: 90vh; 
-            margin: 5vh auto;
-        }
         .close-button {
             float: right;
             font-size: 28px;
@@ -121,7 +107,7 @@
         }
         /* COMPACT CERTIFICATION TAG */
         .cert-tag {
-            background-color: #1f2328; /* Darker card background */
+            background-color: #1f2328; 
             border: 1px solid #30363d;
             padding: 0.3rem 0.6rem; 
             border-radius: 9999px; 
@@ -131,8 +117,6 @@
             align-items: center;
             line-height: 1;
             transition: background-color 0.2s;
-            /* Added white-space: nowrap to prevent dates from wrapping */
-            white-space: nowrap; 
         }
         /* Skills/Tools Style (Neutral Dark Tag) */
         .skill-tag {
@@ -162,12 +146,6 @@
         .cert-tag-detail {
             color: #9ca3af; 
         }
-        /* Specific style for Expiry Warning Text */
-        .cert-tag .expiry-warning {
-             color: #ef4444; /* Red color */
-             font-weight: 700;
-             margin-left: 0.5rem;
-        }
 
         /* SCROLLABLE CONTAINERS - MODIFIED FOR INVISIBLE SCROLLBAR */
         .scrollable-content {
@@ -195,6 +173,7 @@
         /* Skills: Fixed max-height for scrolling */
         #skillsTabContent {
             max-height: 250px; /* Constrain height to force scrolling if content exceeds this */
+            /* Removed explicit padding-right, handled by .scrollable-content now */
         }
 
         /* EXPERIENCE SECTION - NEW FIXED HEIGHT AND SCROLLING */
@@ -206,6 +185,7 @@
         /* EXTRA-CURRICULAR SECTION - NEW FIXED HEIGHT AND SCROLLING */
         #extraCurricularContent {
              max-height: 250px; /* Fixed height for containment */
+             /* Removed explicit padding-right, handled by .scrollable-content now */
         }
 
         /* Table Styling for Education */
@@ -230,6 +210,7 @@
         /* Qualifications Table Container - Added fixed height and scrolling */
         #qualificationsTableContainer {
             max-height: 380px; /* Estimate for fixed height. Adjust as necessary if content doesn't fit */
+            /* Removed explicit padding-right, handled by .scrollable-content now */
         }
 
 
@@ -255,515 +236,137 @@
              padding-top: 0.5rem;
              display: none;
         }
-        
-        /* *** FIX: ENFORCE FIXED HEIGHT AND SCROLLING FOR PROFESSIONAL DEVELOPMENT LIST *** */
-        #professionalDevelopmentList {
-            max-height: 220px; /* FIXED HEIGHT */
-            overflow-y: auto; /* ENABLE VERTICAL SCROLLING */
+
+        /* Certifications: Flex-grow is managed in HTML to ensure it fills the container. */
+        #certificationsList {
+            /* The parent element of this div uses flex-grow to stretch. */
+            /* This div uses overflow-y-auto, inheriting the invisible scrollbar styles */
             display: flex; 
+            flex-grow: 1; 
             flex-wrap: wrap; 
             align-content: flex-start; 
         }
 
-        /* NEW RULE: Reduced vertical space between skill groups */
-        .skill-group-container {
-            margin-bottom: 1rem; /* Adjust vertical space between rows of tags */
-        }
-        
-        /* NEW: Professional contact bar styling */
-        .contact-bar {
-            padding-top: 1rem;
-            border-top: 1px solid #30363d;
-            margin-top: 1rem;
-        }
-        /* UPDATED: contact-link for better visibility of details */
-        .contact-link {
-            display: flex;
-            align-items: center;
-            padding: 0.4rem 0.6rem;
-            border-radius: 8px;
-            transition: background-color 0.2s, color 0.2s;
-            color: #f0f6f0;
-            background-color: #1f2328;
-            border: 1px solid #30363d;
-            font-size: 0.875rem;
-            font-weight: 500;
-        }
-        /* Style for the Contact Detail span for mobile visibility */
-        .contact-detail {
-            display: inline; /* Default to show on desktop */
-            margin-left: 0.5rem;
-        }
-        /* Hide icon for desktop email/phone to reduce clutter, use full text instead */
-        @media (min-width: 640px) {
-            .contact-link-icon {
-                display: none;
-            }
-            .contact-detail {
-                margin-left: 0; /* Remove margin when icon is hidden */
-            }
-        }
-        /* Mobile adjustment to save space */
-        @media (max-width: 640px) {
-            .contact-detail {
-                display: none;
-            }
-        }
-        .contact-link:hover {
-            background-color: #238636;
-            color: white;
-            border-color: #238636;
-        }
-        /* New class to ensure two items are side-by-side */
-        .contact-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem; /* Reduced gap between side-by-side items */
-        }
-        
-        /* --- NEW: Pitch Integration Styles --- */
-        .avatar-container {
-            position: relative;
-            width: 160px; /* Match image size */
-            height: 160px; /* Match image size */
-            margin: 0 auto; /* Center for mobile */
-        }
-        .avatar-progress-ring {
-            position: absolute;
-            top: 0;
-            left: 0;
-            transform: rotate(-90deg); /* Start from the top */
-        }
-        .progress-ring-circle {
-            transition: stroke-dashoffset 0.35s;
-            stroke-width: 6;
-            stroke: #58a6ff; /* BLUE ACCENT: Distinct from green border */
-            fill: transparent;
-        }
-        /* Status Light */
-        .status-light {
-            /* Dot is kept small, but its visibility is controlled by JS state */
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background-color: #ef4444; /* Red for Idle */
-            box-shadow: 0 0 8px #ef4444;
-            transition: background-color 0.5s, box-shadow 0.5s;
-            z-index: 20;
-        }
-        .status-idle {
-            background-color: #ef4444; /* Red */
-            box-shadow: 0 0 8px #ef4444;
-        }
-        .status-speaking {
-            background-color: #10b981; /* Green */
-            box-shadow: 0 0 12px #10b981, 0 0 20px rgba(16, 185, 129, 0.5);
-            animation: flicker 0.5s infinite alternate;
-        }
-        @keyframes flicker {
-            from { opacity: 1; }
-            to { opacity: 0.8; }
-        }
-        /* Collapsible Pitch Styles */
-        #pitchContainer {
-            margin-top: 1rem;
-            max-width: 100%;
-        }
-        .pitch-content {
-            transition: max-height 0.5s ease-in-out, opacity 0.4s ease-in-out;
-            max-height: 0;
-            overflow: hidden;
-            opacity: 0;
-            background-color: #1f2328;
-            border: 1px solid #30363d;
-            border-radius: 8px;
-            padding: 0 1rem; /* Padding will be adjusted when expanded */
-            line-height: 1.6;
-        }
-        .pitch-content.expanded {
-            max-height: 500px; /* Sufficient height for expansion */
-            opacity: 1;
-            padding: 1rem;
-        }
-        /* Adjusted style for the Follow button to sit lower */
-        .follow-button {
-            /* Removed transformation */
-            transform: none; 
-            margin-left: 0.5rem; /* Space from Play Pitch button */
-        }
-        /* Style for Portfolio and Cover Letter buttons to have better dark mode styling */
-        .secondary-link-button {
-            border: 1px solid #30363d; /* Dark border */
-            background-color: #1f2328; /* Darker background */
-            color: #f0f6f0; /* White text for contrast */
-            font-weight: 600; 
-            transition: background-color 0.2s, color 0.2s;
-        }
-        .secondary-link-button:hover {
-            background-color: #30363d; /* Hover effect */
-            color: #58a6ff; /* Blue hover text */
-        }
-        
-        /* Media Container Styles */
-        .responsive-iframe-container {
-            position: relative;
-            padding-top: 56.25%; /* 16:9 Aspect Ratio */
-            width: 100%;
-            height: 0;
-            overflow: hidden;
-            background-color: #0d1117;
-            border-radius: 8px;
-        }
-        .responsive-iframe-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        
-        /* FAB Buttons - Moved to Top Right below header */
-        #top-right-fabs {
-            position: absolute;
-            top: 120px; /* Position below the header/name area */
-            right: 1.5rem; /* Tailwind 'px-6' equivalent */
-            z-index: 30; 
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem; /* Space between buttons */
-        }
-
-        .fab-icon {
-            width: 40px; 
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            color: white;
-            font-weight: 700;
-        }
-        .fab-icon:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
-        }
-        
-        /* Mind Map FAB (Green accent) */
-        .mind-map-fab {
-            background-color: #238636; 
-        }
-        /* Media FAB (Blue accent) */
-        .media-fab {
-            background-color: #58a6ff; 
-        }
-        /* Social Icon Button (Inherit secondary link style) */
-        .social-icon-btn {
-            background-color: #1f2328;
-            border: 1px solid #30363d;
-            color: #58a6ff;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background-color 0.2s, color 0.2s;
-        }
-        .social-icon-btn:hover {
-            background-color: #30363d;
-            color: white;
-        }
-        
-        /* LinkedIn Specific Styling (Brand Blue) */
-        .linkedin-btn {
-            background-color: #0077B5; /* LinkedIn Blue */
-            border-color: #0077B5;
-            color: white; 
-        }
-        .linkedin-btn:hover {
-            background-color: #005582; /* Darker blue on hover */
-            border-color: #005582;
-            color: white;
-        }
-        /* Overriding the default icon color for LinkedIn */
-        .linkedin-btn svg {
-            stroke: white; 
-        }
-
-
-        /* Responsive placement adjustment */
-        @media (max-width: 1024px) { /* Adjust position for smaller screens */
-             #top-right-fabs {
-                 position: relative;
-                 top: auto;
-                 right: auto;
-                 margin-top: 1rem;
-                 flex-direction: row;
-                 justify-content: center;
-                 flex-wrap: wrap;
-                 width: 100%;
-               }
-               .fab-icon {
-                 width: 36px;
-                 height: 36px;
-               }
-               .social-icon-btn {
-                 width: 36px;
-                 height: 36px;
-               }
-               
-        }
-        @media (min-width: 1024px) { /* Desktop: Ensure top-right position */
-            #top-right-fabs {
-                position: absolute;
-                top: 120px; /* Fixed position */
-                right: 1.5rem;
-                flex-direction: column;
-                align-items: flex-end;
-            }
-        }
     </style>
 </head>
 <body class="min-h-screen">
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
-        <!-- HERO SECTION: Clean, Focused, and Professional -->
-        <header class="mb-6 pt-0"> <!-- REDUCED mb-12 to mb-6, pt-10 to pt-0 -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+        <!-- Header: Name and Branding (Personalized) -->
+        <header class="text-center mb-12">
+            
+            <!-- NEW COMPACT HEADER BLOCK -->
+            <div class="flex flex-col items-center">
+
+                <!-- Row 1: Photo, Name, and Follow Button (All in one horizontal line) -->
+                <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 mb-3">
+                    
+                    <!-- Professional Photo (Left of Name) -->
+                    <img id="profilePhoto" 
+                         src="uploaded:Navneet Chaudhary.jpg-10ee8fee-6476-44ab-a8c9-f2b959ed7372" 
+                         onerror="this.src='https://placehold.co/96x96/161b22/f0f6f0?text=NC'"
+                         alt="Navneet Chaudhary Professional Portrait" 
+                         class="w-24 h-24 object-cover rounded-full border-2 border-[#238636] shadow-xl"
+                         style="box-shadow: 0 0 10px rgba(35, 134, 54, 0.5);">
+
+                    <!-- Name and Follow Group -->
+                    <div class="flex items-center space-x-3">
+                        <h1 class="text-5xl font-extrabold text-[#58a6ff] tracking-tight sm:text-6xl leading-tight">
+                            NAVNEET CHAUDHARY
+                        </h1>
+                        <!-- FOLLOW BUTTON -->
+                        <a href="https://linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=navneet831" target="_blank" class="px-3 py-1 bg-[#58a6ff] text-white font-semibold rounded-lg hover:bg-blue-600 transition duration-200 shadow-md flex items-center space-x-1 text-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Follow</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Row 2: Role, Location, and Cover Letter Button (Kept tight) -->
+                <div class="flex items-center justify-center flex-wrap space-x-3 mt-0">
+                    <p class="text-xl text-gray-400 font-medium">
+                        Assistant Manager, F&A Specialist | Delhi, India
+                    </p>
+                    <!-- Cover Letter Button -->
+                    <button onclick="document.getElementById('coverLetterModal').style.display='block'" class="px-3 py-1 bg-[#238636] text-white font-semibold rounded-lg hover:bg-green-700 transition duration-200 inline-block text-sm shadow-md">
+                        View Full Cover Letter
+                    </button>
+                </div>
+            </div>
+
+            <!-- Row 3: Contact/Social Links -->
+            <div class="mt-4 flex justify-center space-x-4 items-center flex-wrap">
                 
-                <!-- Left Column: Photo, Name, Title, and CONSOLIDATED CONTACTS (REDESIGNED) -->
-                <div class="lg:col-span-1 flex flex-col items-center lg:items-start text-center lg:text-left space-y-4">
-                    
-                    <!-- NEW: Avatar Container with Progress Ring and Status Light (UNCHANGED) -->
-                    <div class="avatar-container transition duration-300 hover:scale-[1.02] transform"
-                        style="box-shadow: 0 0 25px rgba(35, 134, 54, 0.7); border-radius: 50%;">
-                        
-                        <!-- Circular Progress Bar SVG -->
-                        <svg class="avatar-progress-ring" width="160" height="160" viewBox="0 0 160 160" role="progressbar" aria-valuenow="0" aria-valuemax="100">
-                            <!-- Background track (dark gray, subtle) -->
-                            <circle r="77" cx="80" cy="80" fill="transparent" stroke="#30363d" stroke-width="6"></circle>
-                            <!-- Foreground circle (blue progress) -->
-                            <circle id="progressCircle" class="progress-ring-circle" r="77" cx="80" cy="80" stroke-dasharray="483.8" stroke-dashoffset="483.8"></circle>
-                        </svg>
-                        
-                        <!-- Status Light (Hidden initially/when dot isn't needed) -->
-                        <div id="statusLight" class="status-light status-idle"></div>
-
-                        <!-- Professional Photo (Original image) -->
-                        <img id="profilePhoto" 
-                                src="https://placehold.co/160x160/161b22/f0f6f0?text=NC" 
-                                onerror="this.src='https://placehold.co/160x160/161b22/f0f6f0?text=NC'"
-                                alt="Navneet Chaudhary Professional Portrait" 
-                                class="w-40 h-40 object-cover rounded-full border-4 border-[#238636] shadow-2xl"
-                                style="position: relative; z-index: 10;">
-                    </div>
-                    <!-- END NEW AVATAR CONTAINER -->
-
-                    <!-- START MODIFIED SECTION: Name and Title -->
-                    <h1 class="text-4xl font-extrabold text-white tracking-tight sm:text-5xl lg:text-4xl leading-tight">
-                        NAVNEET CHAUDHARY
-                    </h1>
-                    
-                    <p class="text-lg text-[#58a6ff] font-medium mt-[-4px] mb-2">
-                        Assistant Manager, F&A | Delhi, India
-                    </p>
-                    
-                    <!-- !!! START NEW LOCATION FOR PITCH AND FOLLOW BUTTONS (Fixed size, below title) !!! -->
-                    <!-- Added flex-1 to both buttons to enforce equal width -->
-                    <div class="flex space-x-3 w-full max-w-xs mx-auto lg:mx-0 justify-center lg:justify-start mb-4">
-                        <button id="playPitchButton" 
-                                onclick="window.generateElevatorPitch()"
-                                class="flex-1 px-4 py-2 text-sm bg-[#58a6ff] text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-300 flex items-center justify-center space-x-1"
-                                aria-label="Play Introduction Pitch">
-                            <!-- Play Icon SVG -->
-                            <svg id="pitchButtonIcon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197 2.132A1 1 0 0110 13.73v-3.46a1 1 0 011.555-.832l3.197 2.132z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            <span>Play Pitch</span>
-                        </button>
-                        
-                        <!-- Follow Button (LinkedIn Style) - NOW SAME SIZE AS PITCH -->
-                        <button onclick="console.log('Follow clicked'); this.textContent = 'Following'; this.classList.remove('bg-[#58a6ff]', 'hover:bg-blue-600'); this.classList.add('bg-gray-700', 'hover:bg-gray-600');"
-                                class="follow-button flex-1 px-3 py-1 text-sm bg-[#58a6ff] text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-300 flex items-center justify-center"
-                                aria-label="Follow Navneet Chaudhary"
-                                role="button">
-                            Follow
-                        </button>
-                    </div>
-                    <!-- !!! END NEW LOCATION FOR PITCH AND FOLLOW BUTTONS !!! -->
-                    
-                    <!-- Divider line, simulating the old contact bar location -->
-                    <div class="contact-bar w-full justify-center lg:justify-start">
-                        <!-- Removed content, kept for styling boundary if needed. Use border-top/bottom on parent or child if necessary -->
-                        <div class="w-full" style="border-top: 1px solid #30363d; margin-top: -1rem;"></div>
-                    </div>
-
-                </div>
-
-                <!-- Right Column: Headline, About Me, and CONSOLIDATED LINKS -->
-                <div class="lg:col-span-2 text-center lg:text-left space-y-4"> <!-- REDUCED space-y-6 to space-y-4 -->
-                    
-                    <!-- Concise Headline -->
-                    <h2 class="text-3xl sm:text-4xl font-bold text-[#f0f6f0] leading-snug">
-                        F&A Specialist & <span class="text-[#238636]">Automation Strategist</span>
-                    </h2>
-
-                    <!-- About Me Statement - UPDATED (Removed ** around custom text) -->
-                    <p class="text-base text-gray-400 max-w-2xl mx-auto lg:mx-0">
-                        6+ years of expertise in <b>FP&A, strategic finance, and compliance</b>, defined by a <b>proven track record of transformation with measurable achievement in each role</b>. I <b>leverage Python and Generative AI to drive automation and boost efficiency by cutting manual work by 80%</b>.
-                    </p>
-
-                    <!-- CONSOLIDATED PRIMARY LINKS - RESTRUCTURED FOR HORIZONTAL GROUPING -->
-                    <div class="flex flex-col gap-3 pt-2"> 
-                        
-                        <!-- Row 1: Download Resume, Portfolio, Check My Availability (Primary Actions, Horizontal) -->
-                        <div class="flex flex-wrap justify-center lg:justify-start gap-3">
-                            <a id="downloadResumeButton"
-                                href="https://drive.google.com/file/d/1UBxBOqUxtL386miSFkWOXQlG5HWMaUS2/view?usp=sharing"
-                                target="_blank"
-                                class="px-4 py-2 text-sm border border-[#238636] bg-[#238636] text-white font-semibold rounded-lg shadow-md hover:bg-green-600 hover:border-green-600 transition duration-300 flex items-center space-x-1 flex-grow sm:flex-grow-0"
-                                role="button" aria-label="Download my resume (Google Drive)">
-                                <!-- Download Icon SVG -->
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                                <span>Download Resume</span>
-                            </a>
-                            
-                            <!-- 2. Portfolio/Linktree Button -->
-                            <a href="https://linktr.ee/navneet831" 
-                               target="_blank" 
-                               class="px-4 py-2 text-sm font-semibold rounded-lg shadow-md flex-grow sm:flex-grow-0 secondary-link-button"
-                               role="button" aria-label="View all external links including portfolio"
-                               onclick="gtag('event', 'link_click', {'event_category': 'resume_cta', 'event_label': 'linktree_view'})">
-                                Portfolio
-                            </a>
-                            
-                            <!-- 3. Check My Availability Button (Blue accent) -->
-                            <a href="https://calendar.app.google/qtFpe6bA8cr6qPDk8"
-                                target="_blank"
-                                class="px-4 py-2 text-sm border border-[#58a6ff] bg-[#58a6ff] text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 hover:border-blue-600 transition duration-300 flex items-center space-x-1 flex-grow sm:flex-grow-0"
-                                role="button" aria-label="Check my availability for a meeting">
-                                <!-- Calendar Icon SVG -->
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                                <span>Check My Availability</span>
-                            </a>
-                        </div>
-                    
-                        <!-- Row 2: Email, Phone, Cover Letter (Contact/Secondary Action, Horizontal) -->
-                        <!-- RESTORING EMAIL AND PHONE LINKS HERE -->
-                        <div class="flex flex-wrap justify-center lg:justify-start gap-3">
-                            <!-- 4. Email Link (Now a button-style link) -->
-                            <a href="mailto:Nvc7162@gmail.com" class="px-4 py-2 text-sm font-semibold rounded-lg shadow-md flex-grow sm:flex-grow-0 secondary-link-button flex items-center space-x-1" aria-label="Email Nvc7162@gmail.com">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                                <span>Nvc7162@gmail.com</span>
-                            </a>
-
-                            <!-- 5. Phone Link (Now a button-style link) -->
-                            <a href="tel:+919873394075" class="px-4 py-2 text-sm font-semibold rounded-lg shadow-md flex-grow sm:flex-grow-0 secondary-link-button flex items-center space-x-1" aria-label="Call +91 98733 94075">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.5l1 4-3.5 1.5a12.5 12.5 0 005.5 5.5l1.5-3.5 4 1v3.5a2 2 0 01-2 2H5a2 2 0 01-2-2v-14z"></path></svg>
-                                <span>+91 98733 94075</span>
-                            </a>
-
-                            <!-- 6. Full Cover Letter Button - STYLING APPLIED -->
-                            <button onclick="document.getElementById('coverLetterModal').style.display='block'" 
-                                    class="px-4 py-2 text-sm font-semibold rounded-lg shadow-md flex-grow sm:flex-grow-0 secondary-link-button"
-                                    aria-haspopup="dialog" aria-controls="coverLetterModal" aria-label="Open full cover letter">
-                                Cover Letter
-                            </button>
-                        </div>
-                        
-                    </div>
-                    <!-- END CONSOLIDATED PRIMARY LINKS -->
-                    
-                    <!-- CONSOLIDATED SECONDARY LINKS (Empty placeholder, removed for cleanliness) -->
-                </div>
+                <!-- CONTACT INFORMATION -->
+                <a href="mailto:Nvc7162@gmail.com" class="text-white hover:text-[#238636] font-semibold flex items-center">
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-1 10a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v10z"></path></svg>
+                    Nvc7162@gmail.com
+                </a>
+                <span class="text-gray-600">|</span>
+                <a href="tel:+919873394075" class="text-white hover:text-[#238636] font-semibold flex items-center">
+                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.144a11.058 11.058 0 005.106 5.106l1.144-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.79 21 3 14.21 3 6V5z"></path></svg>
+                    +91 98733 94075
+                </a>
+                
+                <span class="text-gray-600">|</span>
+                
+                <!-- SOCIAL LINKS -->
+                <a href="https://www.linkedin.com/in/navneet831/" target="_blank" class="text-gray-500 hover:text-[#238636]">LinkedIn</a>
+                <a href="https://x.com/navneet831" target="_blank" class="text-gray-500 hover:text-[#238636]">X</a>
+                <a href="https://linktr.ee/navneet831" target="_blank" class="text-gray-500 hover:text-[#238636]">Linktree</a>
+                <a href="https://www.youtube.com/playlist?list=PLEfUln3m0PdhgiQzVE2GM8cwd8WqyfWw2" target="_blank" class="text-gray-500 hover:text-[#238636]">YouTube (Automation)</a>
+                <a href="https://medium.com/@navneet831" target="_blank" class="text-gray-500 hover:text-[#238636]">Medium</a>
             </div>
+            
         </header>
-        <!-- END HERO SECTION -->
 
-        <!-- NEW: SOCIAL/UTILITY ICON BAR (Fixed to Top Right on Desktop, Floats to Next Row on Mobile) -->
-        <section id="top-right-fabs" class="lg:absolute lg:top-[120px] lg:right-6 z-30 flex flex-col lg:flex-col items-center lg:items-start gap-3 mt-4 lg:mt-0">
-             
-            <!-- 1. Mind Map FAB (Green accent) - OPEN MODAL -->
-            <button onclick="document.getElementById('mindMapModal').style.display='block'" 
-                    class="fab-icon mind-map-fab"
-                    aria-label="Open Professional Profile Mind Map">
-                <!-- CUSTOM SVG for Mind Map (Matching User's Image) -->
-                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="3" width="4" height="4" rx="1" fill="currentColor" stroke="none"/>
-                    <rect x="3" y="17" width="4" height="4" rx="1" fill="currentColor" stroke="none"/>
-                    <rect x="17" y="10" width="4" height="4" rx="1" fill="currentColor" stroke="none"/>
-                    <line x1="7" y1="5" x2="17" y2="5" stroke="currentColor" stroke-dasharray="4 2"/>
-                    <line x1="7" y1="19" x2="17" y2="19" stroke="currentColor" stroke-dasharray="4 2"/>
-                    <line x1="17" y1="5" x2="17" y2="19" stroke="currentColor" stroke-dasharray="4 2"/>
-                    <line x1="19" y1="12" x2="17" y2="12" stroke="currentColor" stroke-dasharray="4 2"/>
-                </svg>
-            </button>
-            
-            <!-- 2. Media FAB (Blue accent) - OPEN MODAL -->
-            <button onclick="document.getElementById('mediaModal').style.display='block'" 
-                    class="fab-icon media-fab"
-                    aria-label="Open Social Media and Video Links">
-                <!-- Play button icon -->
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197 2.132A1 1 0 0110 13.73v-3.46a1 1 0 011.555-.832l3.197 2.132z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-            </button>
-            
-            <!-- 3. GitHub Icon Button -->
-            <a href="https://github.com/Navneet831" target="_blank" class="social-icon-btn" aria-label="View GitHub Profile">
-                <!-- SVG Icon for GitHub -->
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.904 0l1.543 4.74c.15.462.593.774 1.077.774h4.981c.974 0 1.378 1.258.59 1.81l-4.032 2.932c-.38.277-.525.753-.375 1.215l1.543 4.74c.3.921-.755 1.688-1.54 1.134L12 18.291l-4.032 2.932c-.785.554-1.84-.197-1.54-1.134l1.543-4.74c.15-.462-.005-.938-.375-1.215L2.348 9.251c-.788-.552-.384-1.81.59-1.81h4.981c.484 0 .927-.312 1.077-.774L11.049 2.927z"></path></svg>
-            </a>
+        <!-- Profile Summary (Personalized using Resume highlights) -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold section-header">Professional Focus</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-            <!-- 4. Medium Icon Button -->
-            <a href="https://medium.com/@navneet831" target="_blank" class="social-icon-btn" aria-label="View Medium Articles">
-                 <!-- SVG Icon for Medium (Pencil) -->
-                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
-            </a>
+                <!-- Card 1: Finance (FP&A, Governance, Compliance) -->
+                <div class="metric-card p-6 rounded-lg">
+                    <p class="text-xs uppercase text-gray-400">Finance Expertise</p>
+                    <p class="text-2xl font-bold mt-1 text-white">Strategic FP&A & Governance</p>
+                    <p class="text-sm text-gray-500 mt-2">6+ years cross-functional expertise covering end-to-end FP&A, Financial Modeling, Project Finance, and meticulous compliance (GST/TDS, IFRS/IndAs).</p>
+                </div>
 
-            <!-- 5. LinkedIn Icon Button - STYLED TO BE BRAND BLUE -->
-            <a href="https://www.linkedin.com/in/navneet831/" 
-               target="_blank" 
-               class="social-icon-btn linkedin-btn" 
-               aria-label="View LinkedIn Profile">
-                <!-- Custom SVG for solid LinkedIn icon - 'in' logo -->
-                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="24" height="24" rx="4" fill="none"/>
-                    <path d="M16 8c-1.1 0-2 .9-2 2v7h-3v-7c0-1.1-.9-2-2-2s-2 .9-2 2v7H7V9h3v1.5a3 3 0 0 1 2.6-1.5c2.1 0 3.4 1.8 3.4 4.5V17h3v-7c0-2.8-2.2-5-5-5zM6.5 5.75A1.75 1.75 0 1 1 8.25 4 1.75 1.75 0 0 1 6.5 5.75z" fill="white"/>
-                </svg>
-            </a>
+                <!-- Card 2: Automation (Python, AI, RPA) -->
+                <div class="metric-card p-6 rounded-lg">
+                    <p class="text-xs uppercase text-gray-400">Technical Competency</p>
+                    <p class="text-2xl font-bold mt-1 text-white">AI/RPA-Driven Efficiency</p>
+                    <p class="text-sm text-gray-500 mt-2">Proficient in building Python-based RPA and Streamlit dashboards, <b>Chat with SQL data</b>, leveraging Generative AI/Prompt Engineering to cut manual work and accelerate decision-making by 30%.</p>
+                </div>
 
-        </section>
-        
-        <!-- NEW: Collapsible Elevator Pitch Container -->
-        <section id="pitchContainer" class="mb-4"> <!-- REDUCED mb-8 to mb-4 -->
-            <div id="pitchContent" class="pitch-content text-gray-400 text-sm" aria-expanded="false">
-                <p id="pitchOutput" class="text-white font-medium"></p>
-                <p id="pitchStatus" class="text-xs text-gray-500 mt-2 italic">Click 'Play Pitch' above to hear the introduction.</p>
+                <!-- Card 3: Leadership (Mentorship, Persistence, Growth) -->
+                <div class="metric-card p-6 rounded-lg">
+                    <p class="text-xs uppercase text-gray-400">Leadership & Drive</p>
+                    <p class="text-2xl font-bold mt-1 text-white">Team Leadership & Persistence</p>
+                    <p class="text-sm text-gray-500 mt-2">Proven ability to mentor and multiply team capability (promoted intern in 6 months). Driven by adaptability, critical thinking, and persistence in complex financial environments.</p>
+                </div>
             </div>
         </section>
-        <!-- END NEW PITCH CONTAINER -->
 
         <!-- Main Content Sections: Experience, Qualifications, Achievements, Certifications -->
         <!-- Added items-stretch to the grid to ensure column height matching -->
-        <div class="grid grid-cols-1 lg:col-span-3 lg:grid-cols-3 gap-8 mt-6 items-stretch"> <!-- REDUCED mt-10 to mt-6 -->
+        <div class="grid grid-cols-1 lg:col-span-3 lg:grid-cols-3 gap-8 mt-10 items-stretch">
             
             <!-- Left Column: Detailed Experience & Achievements (lg:col-span-2) -->
-            <div class="lg:col-span-2 space-y-6"> <!-- REDUCED space-y-8 to space-y-6 -->
+            <div class="lg:col-span-2 space-y-8">
                 
                 <!-- DETAILED EXPERIENCE SECTION -->
-                <section class="p-4 metric-card rounded-lg"> <!-- REDUCED p-6 to p-4 -->
+                <section class="p-6 metric-card rounded-lg">
                     <h2 class="text-2xl font-bold section-header">Professional Experience</h2>
                     
                     <!-- Content now has fixed max height and scrolling -->
                     <div id="experienceContent" class="experience-content scrollable-content" style="max-height: 850px; padding: 0 1rem 0 1rem;">
 
                         <!-- Oriana Power Ltd -->
-                        <div class="mb-4"> <!-- REDUCED mb-6 to mb-4 -->
+                        <div class="mb-6">
                             <h3 class="text-lg font-bold text-[#58a6ff]">Oriana Power Ltd. <span class="text-sm font-normal text-gray-400">(Assistant Manager F&A - Report to Director Finance)</span></h3>
                             <p class="text-xs text-gray-500 mb-2">June 2025 - September 2025 (Noida)</p>
                             <div class="job-detail">
@@ -775,37 +378,31 @@
                                 
                                 <!-- Reason for Leave Toggle -->
                                 <div class="mt-3">
-                                    <button onclick="toggleReason(this, 'reasonOriana'); gtag('event', 'gap_view', {'event_label': 'Oriana Power Toggle'})" 
-                                            class="text-sm font-medium text-red-400 hover:text-red-300 focus:outline-none flex items-center"
-                                            aria-expanded="false" aria-controls="reasonOriana" aria-label="Toggle reason for leaving Oriana Power Ltd">
+                                    <button onclick="toggleReason(this, 'reasonOriana')" class="text-sm font-medium text-red-400 hover:text-red-300 focus:outline-none flex items-center">
                                         <span id="iconOriana" class="mr-1 text-lg leading-none">+</span>
                                         Reason for Leave
                                     </button>
-                                    <p id="reasonOriana" class="reason-for-leave text-xs text-gray-500 italic p-1 border-l border-gray-600 ml-3"
-                                        role="region" aria-live="polite">
+                                    <p id="reasonOriana" class="reason-for-leave text-xs text-gray-500 italic p-1 border-l border-gray-600 ml-3">
                                         Joined to set up FP&A processes; actual responsibilities shifted into loan documentation, leading to exit for role alignment. Now focused on long-term stability in Finance & Accounting/FP&A roles where my expertise can add measurable value.
                                     </p>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Grew Energy Pvt Ltd (Streamlit reference removed) -->
-                        <div class="mb-4"> <!-- REDUCED mb-6 to mb-4 -->
+                        
+                        <!-- Grew Energy Pvt Ltd -->
+                        <div class="mb-6">
                             <h3 class="text-lg font-bold text-[#58a6ff]">Grew Energy Pvt Ltd. <span class="text-sm font-normal text-gray-400">(Assistant Manager F&A)</span></h3>
                             <p class="text-xs text-gray-500 mb-2">December 2024 - June 2025 (Ahmedabad)</p>
                             <div class="job-detail">
-                                <!-- CORRECTED LINE: Ensure achievement text starts directly after the bold header on the same line. -->
-                                <p class="text-sm text-gray-400"><b class="text-white">FP&A Automation: Engineered</b> process automation by building <b>Python-based RPA, dashboards, and AI-enabled database access</b>, reducing MIS preparation time and manual effort by 80%.</p>
-                                <!-- Reason for Leave Toggle -->
+                                <p class="text-sm font-bold text-white">MIS:</p>
+                                <p class="text-sm text-gray-400">Engineered process automation by building <b>Python-based RPA, Streamlit dashboards, and AI-enabled database access</b>, reducing MIS preparation time and manual effort by 80%.</p>
+                                 <!-- Reason for Leave Toggle -->
                                 <div class="mt-3">
-                                    <button onclick="toggleReason(this, 'reasonGrew'); gtag('event', 'gap_view', {'event_label': 'Grew Energy Toggle'})" 
-                                            class="text-sm font-medium text-red-400 hover:text-red-300 focus:outline-none flex items-center"
-                                            aria-expanded="false" aria-controls="reasonGrew" aria-label="Toggle reason for leaving Grew Energy Pvt Ltd">
+                                    <button onclick="toggleReason(this, 'reasonGrew')" class="text-sm font-medium text-red-400 hover:text-red-300 focus:outline-none flex items-center">
                                         <span id="iconGrew" class="mr-1 text-lg leading-none">+</span>
                                         Reason for Leave
                                     </button>
-                                    <p id="reasonGrew" class="reason-for-leave text-xs text-gray-500 italic p-1 border-l border-gray-600 ml-3"
-                                        role="region" aria-live="polite">
+                                    <p id="reasonGrew" class="reason-for-leave text-xs text-gray-500 italic p-1 border-l border-gray-600 ml-3">
                                         Role was discontinued after six months as part of organizational changes.
                                     </p>
                                 </div>
@@ -813,27 +410,24 @@
                         </div>
 
                         <!-- Ozone Pharmaceuticals Ltd -->
-                        <div class="mb-4"> <!-- REDUCED mb-6 to mb-4 -->
+                        <div class="mb-6">
                             <h3 class="text-lg font-bold text-[#58a6ff]">Ozone Pharmaceuticals Ltd. <span class="text-sm font-normal text-gray-400">(Senior Executive - Report to CFO)</span></h3>
                             <p class="text-xs text-gray-500 mb-2">February 2022 - August 2024 (Delhi)</p>
                             <div class="job-detail">
-                                <ul class="space-y-1 text-sm text-gray-400"> <!-- REDUCED space-y-2 to space-y-1 -->
+                                <ul class="space-y-2 text-sm text-gray-400">
                                     <li><b class="text-white">FP&A:</b> Automated MIS to enhance reporting, cutting errors by 40%. Handled Budgeting, Forecasting, and Variance analysis.</li>
                                     <li><b class="text-white">Project Finance:</b> Analysed state policies, drafted reports, and conducted DCF & payback analysis.</li>
                                     <li><b class="text-white">Asset Accounting:</b> Overhauled Fixed asset accounting, reduced discrepancies by 20%.</li>
                                     <li><b class="text-white">Tax Compliance:</b> Managed 31 GST registrations, ensuring 100% compliance, also dealt with TDS and TCS returns.</li>
                                     <li><b class="text-white">Leadership:</b> Trained an intern to manage core MIS operations independently, leading to their advancement in 6 months.</li>
                                 </ul>
-                                    <!-- Reason for Leave Toggle -->
+                                 <!-- Reason for Leave Toggle -->
                                 <div class="mt-3">
-                                    <button onclick="toggleReason(this, 'reasonOzone'); gtag('event', 'gap_view', {'event_label': 'Ozone Pharma Toggle'})" 
-                                            class="text-sm font-medium text-red-400 hover:text-red-300 focus:outline-none flex items-center"
-                                            aria-expanded="false" aria-controls="reasonOzone" aria-label="Toggle reason for leaving Ozone Pharmaceuticals Ltd">
+                                    <button onclick="toggleReason(this, 'reasonOzone')" class="text-sm font-medium text-red-400 hover:text-red-300 focus:outline-none flex items-center">
                                         <span id="iconOzone" class="mr-1 text-lg leading-none">+</span>
                                         Reason for Leave
                                     </button>
-                                    <p id="reasonOzone" class="reason-for-leave text-xs text-gray-500 italic p-1 border-l border-gray-600 ml-3"
-                                        role="region" aria-live="polite">
+                                    <p id="reasonOzone" class="reason-for-leave text-xs text-gray-500 italic p-1 border-l border-gray-600 ml-3">
                                         Stepped away due to unavoidable family medical responsibilities, resulting in a short career gap.
                                     </p>
                                 </div>
@@ -841,22 +435,19 @@
                         </div>
 
                         <!-- Shanti Mukand Hospital -->
-                        <div class="mb-4"> <!-- REDUCED mb-6 to mb-4 -->
+                        <div class="mb-6">
                             <h3 class="text-lg font-bold text-[#58a6ff]">Shanti Mukand Hospital <span class="text-sm font-normal text-gray-400">(Junior Executive F&A)</span></h3>
                             <p class="text-xs text-gray-500 mb-2">February 2021 - February 2022 (Delhi)</p>
                             <div class="job-detail">
                                 <p class="text-sm font-bold text-white">AP (Vendor Management):</p>
                                 <p class="text-sm text-gray-400">Mitigated high-risk long pending dues, adhering to NPPA Act guidelines for implant suppliers.</p>
-                                    <!-- Reason for Leave Toggle -->
+                                 <!-- Reason for Leave Toggle -->
                                 <div class="mt-3">
-                                    <button onclick="toggleReason(this, 'reasonShanti'); gtag('event', 'gap_view', {'event_label': 'Shanti Mukand Toggle'})" 
-                                            class="text-sm font-medium text-red-400 hover:text-red-300 focus:outline-none flex items-center"
-                                            aria-expanded="false" aria-controls="reasonShanti" aria-label="Toggle reason for leaving Shanti Mukand Hospital">
+                                    <button onclick="toggleReason(this, 'reasonShanti')" class="text-sm font-medium text-red-400 hover:text-red-300 focus:outline-none flex items-center">
                                         <span id="iconShanti" class="mr-1 text-lg leading-none">+</span>
                                         Reason for Leave
                                     </button>
-                                    <p id="reasonShanti" class="reason-for-leave text-xs text-gray-500 italic p-1 border-l border-gray-600 ml-3"
-                                        role="region" aria-live="polite">
+                                    <p id="reasonShanti" class="reason-for-leave text-xs text-gray-500 italic p-1 border-l border-gray-600 ml-3">
                                         Left to seek a better role and expand professional responsibility.
                                     </p>
                                 </div>
@@ -868,20 +459,17 @@
                             <h3 class="text-lg font-bold text-[#58a6ff]">Kumar Grover & Company <span class="text-sm font-normal text-gray-400">(Accounts Assistant)</span></h3>
                             <p class="text-xs text-gray-500 mb-2">February 2019 - January 2021 (Delhi)</p>
                             <div class="job-detail">
-                                <ul class="space-y-1 text-sm text-gray-400"> <!-- REDUCED space-y-2 to space-y-1 -->
+                                <ul class="space-y-2 text-sm text-gray-400">
                                     <li><b class="text-white">Taxation:</b> Expertly executed income tax computation of diverse clients, ensuring 100% compliance.</li>
                                     <li><b class="text-white">Audit:</b> Played a pivotal role in statutory and stock audits, contributing to comprehensive financial assessments.</li>
                                 </ul>
-                                    <!-- Reason for Leave Toggle -->
+                                 <!-- Reason for Leave Toggle -->
                                 <div class="mt-3">
-                                    <button onclick="toggleReason(this, 'reasonKumar'); gtag('event', 'gap_view', {'event_label': 'Kumar Grover Toggle'})" 
-                                            class="text-sm font-medium text-red-400 hover:text-red-300 focus:outline-none flex items-center"
-                                            aria-expanded="false" aria-controls="reasonKumar" aria-label="Toggle reason for leaving Kumar Grover & Company">
+                                    <button onclick="toggleReason(this, 'reasonKumar')" class="text-sm font-medium text-red-400 hover:text-red-300 focus:outline-none flex items-center">
                                         <span id="iconKumar" class="mr-1 text-lg leading-none">+</span>
                                         Reason for Leave
                                     </button>
-                                    <p id="reasonKumar" class="reason-for-leave text-xs text-gray-500 italic p-1 border-l border-gray-600 ml-3"
-                                        role="region" aria-live="polite">
+                                    <p id="reasonKumar" class="reason-for-leave text-xs text-gray-500 italic p-1 border-l border-gray-600 ml-3">
                                         Left to gain corporate exposure and advance career prospects.
                                     </p>
                                 </div>
@@ -891,45 +479,23 @@
                     </div> <!-- End experienceContent -->
                 </section>
                 
-                
                 <!-- ACHIEVEMENTS SECTION (MODIFIED TO USE TABS) -->
-                <section class="p-4 metric-card rounded-lg bg-gradient-expertise mb-6"> <!-- REDUCED p-6 to p-4, mb-8 to mb-6 -->
-                    <h2 class="text-2xl font-bold section-header">Key Achievements & Recognition</h2>
+                <section class="p-6 metric-card rounded-lg bg-gradient-expertise mb-8">
+                    <h2 class="text-2xl font-bold section-header text-white">Key Achievements & Recognition</h2>
 
-                    <!-- Tab Buttons (UPDATED with ARIA) -->
-                    <div class="flex border-b border-gray-600 -mx-4 px-4" role="tablist"> <!-- REDUCED -mx-6/-px-6 to -mx-4/-px-4 -->
-                        <button class="tab-button active-tab" 
-                                onclick="window.openTab(event, 'professional')" 
-                                id="tab-professional" 
-                                role="tab" 
-                                aria-controls="professional" 
-                                aria-selected="true">
-                            Professional Impact
-                        </button>
-                        <button class="tab-button" 
-                                onclick="window.openTab(event, 'academic')" 
-                                id="tab-academic" 
-                                role="tab" 
-                                aria-controls="academic" 
-                                aria-selected="false">
-                            Academic & Competition
-                        </button>
-                        <button class="tab-button" 
-                                onclick="window.openTab(event, 'personalGrowth')" 
-                                id="tab-personalGrowth" 
-                                role="tab" 
-                                aria-controls="personalGrowth" 
-                                aria-selected="false">
-                            Personal & Growth
-                        </button>
+                    <!-- Tab Buttons (UPDATED) -->
+                    <div class="flex border-b border-gray-600 -mx-6 px-6">
+                        <button class="tab-button active-tab" onclick="openTab(event, 'professional')">Professional Impact</button>
+                        <button class="tab-button" onclick="openTab(event, 'academic')">Academic & Competition</button>
+                        <button class="tab-button" onclick="openTab(event, 'personalGrowth')">Personal & Growth</button>
                     </div>
 
                     <!-- Tab Content Container: FIXED MAX HEIGHT SET TO 170PX -->
                     <div id="achievementsContainer" class="scrollable-content" style="max-height: 170px;">
                     
                         <!-- Professional Impact Tab Content (Flex alignment applied) -->
-                        <div id="professional" class="tab-content" role="tabpanel" aria-labelledby="tab-professional" style="display: block;">
-                            <ul class="space-y-2 text-gray-300 ml-4"> <!-- REDUCED space-y-3 to space-y-2 -->
+                        <div id="professional" class="tab-content" style="display: block;">
+                            <ul class="space-y-3 text-gray-300 ml-4">
                                 <li class="flex items-start">
                                     <span class="mr-2 text-[#238636] text-lg leading-none">•</span>
                                     <p class="flex-grow"><b>Compensation Impact:</b> Achieved a significant 57% joining hike for the high-impact F&A role at Oriana Power Ltd.</p>
@@ -942,8 +508,8 @@
                         </div>
 
                         <!-- Academic & Competition Tab Content (Flex alignment applied) -->
-                        <div id="academic" class="tab-content" role="tabpanel" aria-labelledby="tab-academic" style="display: none;">
-                            <ul class="space-y-2 text-gray-300 ml-4"> <!-- REDUCED space-y-3 to space-y-2 -->
+                        <div id="academic" class="tab-content" style="display: none;">
+                            <ul class="space-y-3 text-gray-300 ml-4">
                                 <li class="flex items-start">
                                     <span class="mr-2 text-[#238636] text-lg leading-none">•</span>
                                     <p class="flex-grow"><b>NSE Financial Literacy:</b> Winner of the NSE Financial Literacy Quiz (Series 2, March 24).</p>
@@ -968,8 +534,8 @@
                         </div>
                         
                         <!-- Personal & Growth Tab Content (Already has Flex alignment) -->
-                        <div id="personalGrowth" class="tab-content" role="tabpanel" aria-labelledby="tab-personalGrowth" style="display: none;">
-                            <ul class="space-y-2 text-gray-300 ml-4"> <!-- REDUCED space-y-3 to space-y-2 -->
+                        <div id="personalGrowth" class="tab-content" style="display: none;">
+                            <ul class="space-y-3 text-gray-300 ml-4">
                                 <!-- Achievement 1: T-Shaped Expertise (Flex alignment) -->
                                 <li class="flex items-start">
                                     <span class="mr-2 text-[#238636] text-lg leading-none">•</span> 
@@ -987,7 +553,7 @@
                                 <!-- Achievement 3: First-Gen Attendee (Flex alignment) -->
                                 <li class="flex items-start">
                                     <span class="mr-2 text-[#238636] text-lg leading-none">•</span> 
-                            <p class="flex-grow">
+                                    <p class="flex-grow">
                                         First-generation university Attendee.
                                     </p>
                                 </li>
@@ -997,13 +563,12 @@
                     </div> <!-- End achievementsContainer -->
                 </section>
                 
-                
                 <!-- EXTRA-CURRICULAR SECTION -->
-                <section class="p-4 metric-card rounded-lg mb-6"> <!-- REDUCED p-6 to p-4, mb-8 to mb-6 -->
+                <section class="p-6 metric-card rounded-lg mb-8">
                     <h2 class="text-2xl font-bold section-header">Extra-Curricular Activities</h2>
                     <!-- Content now has fixed max height and scrolling -->
                     <div id="extraCurricularContent" class="scrollable-content" style="max-height: 250px;">
-                        <div class="space-y-3 text-sm"> <!-- REDUCED space-y-4 to space-y-3 -->
+                        <div class="space-y-4 text-sm">
                             <div class="text-gray-300">
                                 <p class="font-bold text-white">Volunteering (Sep '24 - Nov '24)</p>
                                 <p class="text-gray-400">Volunteered (unpaid) with <b>Robinhood Army NGO</b>, contributing time and effort to community service.</p>
@@ -1028,12 +593,12 @@
                         </div>
                     </div>
                 </section>
-
+                
                 <!-- INTERESTS SECTION (UPDATED FOR HANGING INDENT) -->
-                <section class="p-4 metric-card rounded-lg"> <!-- REDUCED p-6 to p-4 -->
+                <section class="p-6 metric-card rounded-lg">
                     <h2 class="text-2xl font-bold section-header">Interests</h2>
                     <!-- Applied Flexbox structure here for hanging indent -->
-                    <ul class="space-y-2 text-gray-400 ml-4 text-sm"> <!-- REDUCED space-y-3 to space-y-2 -->
+                    <ul class="space-y-3 text-gray-400 ml-4 text-sm">
                         
                         <!-- Interest 1: Multidisciplinary Learning (Flex alignment) -->
                         <li class="flex items-start">
@@ -1062,13 +627,13 @@
 
             </div>
 
-            <!-- Right Column: Qualifications, Certifications, Skills (lg:col-span-1) -->
+            <!-- Right Column: Qualifications, Skills, Certifications (lg:col-span-1) -->
             <!-- Added h-full to make the flex container fill the column height -->
-            <div class="lg:col-span-1 flex flex-col space-y-6 h-full"> <!-- REDUCED space-y-8 to space-y-6 -->
+            <div class="lg:col-span-1 flex flex-col space-y-8 h-full">
                 
-                <!-- Qualifications & Test Scores (ACADEMIC) -->
-                <section class="p-4 metric-card rounded-lg"> <!-- REDUCED p-6 to p-4 -->
-                    <h2 class="text-2xl font-bold section-header">Education</h2>
+                <!-- Qualifications & Test Scores (UPDATED WITH TABLE) -->
+                <section class="p-6 metric-card rounded-lg">
+                    <h2 class="text-2xl font-bold section-header">Qualifications & Scores</h2>
                     <!-- Added scrollable container around the table -->
                     <div id="qualificationsTableContainer" class="scrollable-content" style="max-height: 380px;">
                         <table class="education-table w-full">
@@ -1095,7 +660,7 @@
                                     <td>IGNOU</td>
                                 </tr>
                                 <tr>
-                                    <td>PG Diploma in International Operation</td>
+                                    <td>Post-graduate diploma in international operation (PGDIB)</td>
                                     <td>2022</td>
                                     <td>62%</td>
                                     <td>IGNOU</td>
@@ -1107,7 +672,13 @@
                                     <td>66%</td>
                                     <td>DU (SOL)</td>
                                 </tr>
-                                <!-- CA CPT REMOVED FROM HERE -->
+                                <tr>
+                                    <td><b>CA CPT</b></td>
+                                    <td>2018</td>
+                                    <td><b>71%</b></td>
+                                    <td>ICAI</td>
+                                
+                                </tr>
                                 <tr>
                                     <td>12th (Commerce with Mathematics)</td>
                                     <td>2017</td>
@@ -1127,66 +698,35 @@
                     </div>
                 </section>
 
-                <!-- CORE CERTIFICATIONS SECTION (Static - NISM, CA CPT) -->
-                <section class="p-4 metric-card rounded-lg"> <!-- REDUCED p-6 to p-4 -->
-                    <h2 class="text-2xl font-bold section-header">Certifications</h2>
-                    
-                    <div id="coreCertList" class="flex flex-wrap gap-3 text-sm">
-                        <!-- Core Certs will be rendered here by JavaScript via renderCoreCerts() -->
-                    </div>
-                </section>
-
-                <!-- Skills & Tools (Categorized) -->
-                <section class="p-4 metric-card rounded-lg"> <!-- REDUCED p-6 to p-4 -->
+                <!-- Skills & Tools (Categorized - NOW USING Functional, Tools, Soft Skills) -->
+                <section class="p-6 metric-card rounded-lg">
                     <h2 class="text-2xl font-bold section-header">Skills & Tools</h2>
                     
-                    <!-- Tab Buttons for Skills (Functional/Tools/Soft) - Added ARIA -->
-                    <div class="flex border-b border-gray-600 -mx-4 px-4" role="tablist"> <!-- REDUCED -mx-6/-px-6 to -mx-4/-px-4 -->
-                        <button class="tab-button skills-tab-button active-tab" 
-                                onclick="window.openSkillsTab(event, 'functionalSkills')"
-                                id="tab-functionalSkills" 
-                                role="tab" 
-                                aria-controls="functionalSkills" 
-                                aria-selected="true">
-                            Functional
-                        </button>
-                        <button class="tab-button skills-tab-button" 
-                                onclick="window.openSkillsTab(event, 'toolsSkills')"
-                                id="tab-toolsSkills" 
-                                role="tab" 
-                                aria-controls="toolsSkills" 
-                                aria-selected="false">
-                            Tools
-                        </button>
-                        <button class="tab-button skills-tab-button" 
-                                onclick="window.openSkillsTab(event, 'softSkills')"
-                                id="tab-softSkills" 
-                                role="tab" 
-                                aria-controls="softSkills" 
-                                aria-selected="false">
-                            Soft Skills
-                        </button>
+                    <!-- Tab Buttons for Skills (Functional/Tools/Soft) -->
+                    <div class="flex border-b border-gray-600 -mx-6 px-6 mb-4">
+                        <button class="tab-button skills-tab-button active-tab" onclick="openSkillsTab(event, 'functionalSkills')">Functional</button>
+                        <button class="tab-button skills-tab-button" onclick="openSkillsTab(event, 'toolsSkills')">Tools</button>
+                        <button class="tab-button skills-tab-button" onclick="openSkillsTab(event, 'softSkills')">Soft Skills</button>
                     </div>
 
                     <!-- Tab Content Container with fixed height/scroll -->
                     <div id="skillsTabContent" class="scrollable-content" style="max-height: 250px;">
                         
                         <!-- Functional Skills Tab Content (Domain-specific, Default Active) -->
-                        <div id="functionalSkills" class="skills-tab-content space-y-2" role="tabpanel" aria-labelledby="tab-functionalSkills" style="display: block;"> <!-- REDUCED space-y-3 to space-y-2 -->
-                            <h3 class="text-sm font-semibold text-gray-400 mb-0">Finance/FP&A</h3> <!-- REDUCED mb-1 to mb-0 -->
-                            <div class="flex flex-wrap gap-2 text-sm skill-group-container">
-                                <span class="skill-tag">FP&A Automation</span>
-                                <span class="skill-tag">Python for Finance</span>
-                                <span class="skill-tag">AI Strategy & Prompt Eng.</span>
+                        <div id="functionalSkills" class="skills-tab-content space-y-4" style="display: block;">
+                            <div class="text-white text-md font-semibold border-b border-gray-600 pb-1">Financial Planning, Transformation & Technical Application</div>
+                            <div class="flex flex-wrap gap-2 text-sm">
+                                <span class="skill-tag">FP&A</span>
                                 <span class="skill-tag">Financial Modelling</span>
                                 <span class="skill-tag">Project Finance</span>
                                 <span class="skill-tag">Working Capital</span>
                                 <span class="skill-tag">RPA</span>
+                                <span class="skill-tag">Automation</span>
                                 <span class="skill-tag">App Development</span>
                             </div>
                             
-                            <h3 class="text-sm font-semibold text-gray-400 mb-0 mt-2">Accounting/Compliance</h3> <!-- REDUCED mb-1/mt-3 to mb-0/mt-2 -->
-                            <div class="flex flex-wrap gap-2 text-sm skill-group-container">
+                            <div class="text-white text-md font-semibold border-b border-gray-600 pb-1 mt-4">Accounting & Tax Governance</div>
+                            <div class="flex flex-wrap gap-2 text-sm">
                                 <span class="skill-tag">GST/TDS Compliance</span>
                                 <span class="skill-tag">Asset Accounting</span>
                                 <span class="skill-tag">IFRS/IndAs</span>
@@ -1195,28 +735,27 @@
                         </div>
                         
                         <!-- Tools Skills Tab Content (Technical & Software) -->
-                        <div id="toolsSkills" class="skills-tab-content space-y-2" role="tabpanel" aria-labelledby="tab-toolsSkills" style="display: none;"> <!-- REDUCED space-y-3 to space-y-2 -->
+                        <div id="toolsSkills" class="skills-tab-content space-y-4" style="display: none;">
                             
-                            <h3 class="text-sm font-semibold text-gray-400 mb-0">Core Systems/Data</h3> <!-- REDUCED mb-1 to mb-0 -->
-                            <div class="flex flex-wrap gap-2 text-sm skill-group-container">
-                                <span class="skill-tag">Python</span>
+                            <div class="text-white text-md font-semibold border-b border-gray-600 pb-1">ERP & Data Systems</div>
+                            <div class="flex flex-wrap gap-2 text-sm">
                                 <span class="skill-tag">Advanced Excel</span>
                                 <span class="skill-tag">SAP (FICO/MM)</span>
                                 <span class="skill-tag">MS Office Suite</span>
                                 <span class="skill-tag">Tally</span>
+                                <span class="skill-tag">Webtel/Computex</span>
                             </div>
                             
-                            <h3 class="text-sm font-semibold text-gray-400 mb-0 mt-2">Automation/AI</h3> <!-- REDUCED mb-1/mt-3 to mb-0/mt-2 -->
-                            <div class="flex flex-wrap gap-2 text-sm skill-group-container">
+                            <div class="text-white text-md font-semibold border-b border-gray-600 pb-1 mt-4">Automation & AI</div>
+                            <div class="flex flex-wrap gap-2 text-sm">
                                 <span class="skill-tag">Generative AI</span>
-                                <span class="skill-tag">Google Data Analytics</span>
                             </div>
                         </div>
 
-                        <!-- Soft Skills Tab Content (Unchanged) - Heading Removed -->
-                        <div id="softSkills" class="skills-tab-content space-y-2" role="tabpanel" aria-labelledby="tab-softSkills" style="display: none;"> <!-- REDUCED space-y-3 to space-y-2 -->
-                             <h3 class="text-sm font-semibold text-gray-400 mb-0">Key Soft Skills</h3> <!-- REDUCED mb-1 to mb-0 -->
-                            <div class="flex flex-wrap gap-2 text-sm skill-group-container">
+                        <!-- Soft Skills Tab Content (Unchanged) -->
+                        <div id="softSkills" class="skills-tab-content space-y-4" style="display: none;">
+                             <div class="text-white text-md font-semibold border-b border-gray-600 pb-1">Key Soft Skills</div>
+                            <div class="flex flex-wrap gap-2 text-sm">
                                 <span class="skill-tag">Leadership</span>
                                 <span class="skill-tag">Adaptability</span>
                                 <span class="skill-tag">Problem-solving</span>
@@ -1227,140 +766,70 @@
                     </div>
                 </section>
                 
-                <!-- PROFESSIONAL DEVELOPMENT CERTIFICATIONS SECTION (Dynamic - Remaining Certs) -->
-                <section class="p-4 metric-card rounded-lg flex flex-col" style="min-height: 290px;"> <!-- REDUCED p-6 to p-4, min-height preserved for consistency -->
+                <!-- CERTIFICATIONS SECTION (FIXED HEIGHT) -->
+                <!-- The outer section uses flex-grow to stretch the card to the column height -->
+                <section class="p-6 metric-card rounded-lg flex-grow flex flex-col">
                     <h2 class="text-2xl font-bold section-header">Certifications</h2>
                     
                     <!-- Filtering and Sorting Controls -->
-                    <div class="flex flex-col space-y-2 mb-3"> <!-- REDUCED space-y-3 to space-y-2, mb-4 to mb-3 -->
+                    <div class="flex flex-col space-y-3 mb-4">
                         <!-- Filtering Dropdown -->
                         <div>
-                            <select id="filterDomain" onchange="window.filterCertifications(this.value)" class="w-full bg-[#1f2328] border border-gray-600 text-white text-sm rounded-lg p-2.5 focus:ring-[#238636] focus:border-[#238636] transition duration-200" aria-label="Filter certifications by domain">
-                                <option value="All">All</option>
-                                <option value="Finance & Accounts">Finance & Accounts</option>
+                            <select id="filterDomain" onchange="filterCertifications(this.value)" class="w-full bg-[#1f2328] border border-gray-600 text-white text-sm rounded-lg p-2.5 focus:ring-[#238636] focus:border-[#238636] transition duration-200">
+                                <option value="Core Finance & Investment">Core Finance & Investment</option>
                                 <option value="Tech & Automation">Tech & Automation</option>
+                                <option value="All">All Certifications</option>
                             </select>
                         </div>
                         
-                        <!-- Sorting Buttons - Added ARIA -->
-                        <div class="flex space-x-2 pt-2" role="group" aria-label="Certification sorting options">
-                            <button id="sortRelevance" class="sort-button active px-3 py-1 text-xs rounded-full border border-gray-600 bg-[#238636] text-white transition duration-200" 
-                                    onclick="window.sortCertifications('relevance')" aria-pressed="true">
+                        <!-- Sorting Buttons -->
+                        <div class="flex space-x-2">
+                            <button id="sortRelevance" class="sort-button active px-3 py-1 text-xs rounded-full border border-gray-600 bg-[#238636] text-white transition duration-200" onclick="sortCertifications('relevance')">
                                 Sort by Relevance
                             </button>
-                            <button id="sortDate" class="sort-button px-3 py-1 text-xs rounded-full border border-gray-600 hover:bg-gray-700 text-gray-300 transition duration-200" 
-                                    onclick="window.sortCertifications('date')" aria-pressed="false">
+                            <button id="sortDate" class="sort-button px-3 py-1 text-xs rounded-full border border-gray-600 hover:bg-gray-700 text-gray-300 transition duration-200" onclick="sortCertifications('date')">
                                 Sort by Date
                             </button>
                         </div>
                     </div>
 
-                    <!-- List Container: FILLS REMAINING SPACE AND IS SCROLLABLE -->
-                    <!-- *** APPLIED FIXED MAX-HEIGHT AND SCROLLING HERE *** -->
-                    <div id="professionalDevelopmentList" class="scrollable-content flex flex-wrap gap-2 text-sm" style="max-height: 220px;"> 
+                    <!-- List Container uses flex-grow to fill remaining vertical space and overflow-y-auto for scrolling -->
+                    <div id="certificationsList" class="scrollable-content flex flex-wrap gap-2 text-sm flex-grow">
                         <!-- Certifications will be rendered here by JavaScript -->
                     </div>
-                    
                 </section>
                 
             </div>
         </div>
 
         
-        <!-- FOOTER SECTION - MODIFIED TO INCLUDE CREDIT AND LINK -->
-        <section class="mt-8 text-center border-t border-gray-700 pt-4"> <!-- REDUCED mt-16/pt-6 to mt-8/pt-4 -->
-            <!-- Feature Suggestion Link - RENAMED -->
-            <a href="https://tawk.to/chat/68efdd0e7e16ad19527ac96f/1j7kff0qq" target="_blank" class="text-gray-500 hover:text-[#238636] font-semibold transition duration-200 inline-block text-sm" aria-label="Start a direct chat with Zenith">
-                Chat with Zenith my AI powered Assistant.
+        <!-- The AI Knowledge Search section has been removed entirely. -->
+        
+        <!-- Contact/Call to Action - Simplified to only show the link -->
+        <section class="mt-16 text-center">
+            <a href="https://tawk.to/chat/68efdd0e7e16ad19527ac96f/1j7kff0qq" target="_blank" class="text-gray-500 hover:text-[#238636] font-semibold transition duration-200 inline-block text-sm">
+                Direct Chat Link
             </a>
-
-            <!-- Credit Line -->
-            <div class="mt-4 text-sm text-gray-500">
-                © Navneet Chaudhary
-            </div>
         </section>
 
-    </div>
-    
-    <!-- MODAL DEFINITIONS (No longer needed to be fixed/floating) -->
-    
-    <!-- MEDIA MODAL (New popup for X and YouTube) -->
-    <div id="mediaModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="media-modal-title">
-        <div class="modal-content">
-            <span class="close-button" onclick="document.getElementById('mediaModal').style.display='none'" aria-label="Close media modal">&times;</span>
-            <h2 id="media-modal-title" class="text-3xl font-bold section-header text-white mb-6">Digital Portfolio: Social & Video</h2>
-            
-            <div class="h-[90%] overflow-y-auto">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 h-full">
-                    
-                    <!-- LEFT COLUMN: X TIMELINE -->
-                    <div class="flex flex-col space-y-4">
-                        <h3 class="text-xl font-semibold text-[#58a6ff]">My X (Twitter) Feed</h3>
-                        <div class="bg-[#1f2328] p-4 rounded-lg flex-grow min-h-0 overflow-y-auto border border-[#30363d]">
-                            <!-- X Timeline Embed Code -->
-                            <!-- data-height="500" ensures it fits nicely in the container -->
-                            <a class="twitter-timeline" data-height="500" data-theme="dark" href="https://twitter.com/navneet831?ref_src=twsrc%5Etfw">Tweets by navneet831</a> 
-                            <!-- The script to render this timeline is placed at the end of the body -->
-                        </div>
-                    </div>
-                    
-                    <!-- RIGHT COLUMN: YOUTUBE VIDEO -->
-                    <div class="flex flex-col space-y-4">
-                        <h3 class="text-xl font-semibold text-[#58a6ff]">My Automation Insights (YouTube)</h3>
-                        <div class="bg-[#1f2328] p-4 rounded-lg flex-grow min-h-0 border border-[#30363d]">
-                            <!-- Responsive YouTube Embed Container (Placeholder) -->
-                            <div class="responsive-iframe-container">
-                                <!-- Replace YOUR_VIDEO_ID with a specific video ID, e.g., for a Python finance video -->
-                                <iframe src="https://www.youtube.com/embed/g2Dq3f4R7yQ?rel=0" 
-                                        frameborder="0" 
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                        allowfullscreen 
-                                        title="YouTube video player - FP&A Automation">
-                                </iframe>
-                            </div>
-                            <p class="text-sm text-gray-400 mt-4">
-                                <b class="text-white">Video Description:</b> A demonstration of key automation processes using Python, designed to accelerate financial close and MIS reporting. This showcases practical application of the automation skills listed in my portfolio.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- Feature Suggestion Link (as per your request) -->
+        <div class="mt-4 text-center text-sm text-gray-500">
+            <a href="#" class="hover:text-white transition duration-200">Suggest a Feature or Improvement for this Site</a>
         </div>
-    </div>
-    
-    <!-- MIND MAP MODAL (New iFrame Modal) -->
-    <div id="mindMapModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="mindmap-modal-title">
-        <div class="modal-content">
-            <span class="close-button" onclick="document.getElementById('mindMapModal').style.display='none'" aria-label="Close mind map modal">&times;</span>
-            <h2 id="mindmap-modal-title" class="text-3xl font-bold section-header text-white mb-6">Professional Profile: Mind Map</h2>
-            
-            <!-- iFrame loads the Mind map.html file -->
-            <!-- Note: Setting height here ensures the iframe container has a known height in the modal -->
-            <div class="responsive-iframe-container" style="padding-top: 0; width: 100%; height: 80vh;">
-                <!-- CORRECTED SRC: Ensure correct file path -->
-                <iframe src="Mind map.html" 
-                        frameborder="0" 
-                        allowfullscreen 
-                        title="Interactive Mind Map of Professional Experience" 
-                        style="height: 100%; width: 100%; position: relative; margin-top: 0;">
-                </iframe>
-            </div>
-            <p class="text-sm text-gray-400 mt-4">
-                This interactive mind map visualizes my professional journey, skills, and education in a structured, hierarchical format.
-            </p>
-        </div>
+
     </div>
 
-    <!-- COVER LETTER MODAL (New Tab Simulation) - Added ARIA Role -->
-    <div id="coverLetterModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <!-- COVER LETTER MODAL (New Tab Simulation) -->
+    <div id="coverLetterModal" class="modal">
         <div class="modal-content">
-            <span class="close-button" onclick="document.getElementById('coverLetterModal').style.display='none'" aria-label="Close modal">&times;</span>
-            <h2 id="modal-title" class="text-3xl font-bold section-header text-white mb-6">Cover Letter / Statement of Intent</h2>
+            <span class="close-button" onclick="document.getElementById('coverLetterModal').style.display='none'">&times;</span>
+            <h2 class="text-3xl font-bold section-header text-white mb-6">Full Cover Letter / Statement of Intent</h2>
             <blockquote class="p-4 border-l-4 border-[#238636] bg-[#1f2328] rounded-r-lg text-gray-300 italic text-base">
-                <p class="mb-4 text-white font-semibold">TARGETING: $\text{₹}20-25\text{L}$ Assistant Manager, FP&A / Immediate Join</p>
-                <p class="mb-4">I am writing to express my strong interest in a senior F&A role. With 6+ years of expertise spanning <b>FP&A, strategic finance, and compliance</b>, my value is defined by measurable process automation. I successfully leveraged <b>Python and Generative AI</b> to drive efficiency, cutting manual MIS effort by <b>80%</b> and securing timely bank funding during a liquidity crunch.</p>
-                <p class="mb-4">My background, solidified by the <b>CA CPT, NISM, and Financial Modelling</b> certifications, ensures compliance and strategic financial execution. My recent transitions were due to organizational changes and unavoidable family medical leave, which I utilized to secure the <b>Google Data Analytics Certification</b>—strengthening my toolkit for immediate impact.</p>
-                <p>I offer a disciplined, automation-focused approach ready to drive fiscal health in a forward-thinking organization. The detailed financial model for my automation initiatives is attached via Linktree.</p>
+                <p class="mb-4">Dear Hiring Manager or Finance & Accounts Team,</p>
+                <p class="mb-4">I am writing to express my strong and immediate interest in Senior and Management-level roles within the Finance & Accounts (F&A) domain. With over 6 years of cross-functional experience, my profile offers a unique combination of regulatory compliance (GST, Income Tax, Audit), strategic financial reporting (IFRS/IndAs, DCF Modeling, Fixed Assets), and end-to-end FP&A expertise. I possess the quantifiable rigor and proven ability to automate processes that modern finance leadership demands across sectors including Pharma, Healthcare, and Renewables. My foundational knowledge, solidified through advanced academic pursuits and strong performance in the CA CPT, ensures meticulous compliance and effective strategic execution in every project, from Capex management to statutory audit support. I am now seeking a stable, long-term opportunity, prioritizing a role where I can fully leverage my expertise in FP&A, Financial Modeling, and Project Finance to contribute strategically, while remaining open to all growth-oriented F&A positions. My recent professional transitions have been either due to unavoidable family medical responsibilities or roles being discontinued, which has intensified my focus on finding a mutually beneficial, growth-oriented role.</p>
+                <p class="mb-4">My background is defined by a deep track record of impactful process transformation. At Grew Energy, my automation initiatives, including the development of a Management Reporting Dashboard with specialized Cash Flow visualization, successfully reduced MIS preparation time by <b>80%</b> and directly assisted in stabilizing operations during a severe liquidity crunch to avert financial default. This capability in risk mitigation and process optimization is my core value proposition.</p>
+                <p class="mb-4">My work methodology emphasizes conceptual understanding and continuous learning, informed by interests in geo-economics, technology, and applied critical thinking, which allows for effective, strategic problem-solving in dynamic environments.</p>
+                <p>As I am currently available for immediate joining, I am eager to contribute my disciplined, automation-focused, and results-oriented background to your forward-thinking organization. I look forward to the opportunity to discuss my qualifications and how I can help drive your fiscal health.</p>
                 <footer class="mt-4 text-right text-sm text-gray-500">
                     — Navneet Chaudhary
                 </footer>
@@ -1381,553 +850,225 @@
     })();
     </script>
     
-    <!-- Load Twitter Widgets script (Needed for the X timeline in the modal) -->
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    
-    <!-- Combined and updated JavaScript logic in a single module block -->
-    <script type="module">
-        // --- Firebase Setup (Minimal Auth for compliance) ---
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
-        if (Object.keys(firebaseConfig).length > 0) {
-            const app = initializeApp(firebaseConfig);
-            const auth = getAuth(app);
-            signInAnonymously(auth).catch(e => console.error("Firebase Auth Error:", e));
-        }
-
-        // --- CORE APPLICATION LOGIC (Moved and combined from previous script block) ---
-        
-        // --- ACHIEVEMENT TAB LOGIC ---
-        window.openTab = function(evt, tabName) {
+    <script>
+        // --- ACHIEVEMENT TAB LOGIC (FIXED TO RESET BUTTONS) ---
+        function openTab(evt, tabName) {
+            // Get all tab content containers and hide them
             const tabcontent = document.getElementsByClassName("tab-content");
             for (let i = 0; i < tabcontent.length; i++) {
                 tabcontent[i].style.display = "none";
-                tabcontent[i].setAttribute('aria-hidden', 'true');
             }
-            const tablinks = document.querySelectorAll(".flex:has(button[onclick^='window.openTab']) .tab-button");
+
+            // 1. Target only the Achievement tab buttons for unselection
+            const tablinks = document.querySelectorAll(".flex:has(button[onclick^='openTab']) .tab-button");
+            
+            // 2. Loop through all achievement buttons and remove the active state
             for (let i = 0; i < tablinks.length; i++) {
                 tablinks[i].classList.remove("active-tab");
                 tablinks[i].style.borderBottomColor = "transparent";
-                tablinks[i].setAttribute('aria-selected', 'false');
             }
-            const currentTab = document.getElementById(tabName);
-            currentTab.style.display = "block";
-            currentTab.setAttribute('aria-hidden', 'false');
+
+            // Show the current tab content
+            document.getElementById(tabName).style.display = "block";
+            
+            // Apply active state to the clicked button
             if (evt && evt.currentTarget) {
                 evt.currentTarget.classList.add("active-tab");
                 evt.currentTarget.style.borderBottomColor = "#238636";
-                evt.currentTarget.setAttribute('aria-selected', 'true');
             }
+            // Scroll to top of achievements content when changing tabs
             document.getElementById('achievementsContainer').scrollTop = 0;
         }
         
         // --- SKILLS TAB LOGIC ---
-        window.openSkillsTab = function(evt, tabName) {
+        function openSkillsTab(evt, tabName) {
             const tabContents = document.getElementsByClassName("skills-tab-content");
             for (let i = 0; i < tabContents.length; i++) {
                 tabContents[i].style.display = "none";
-                tabContents[i].setAttribute('aria-hidden', 'true');
             }
+
             const tabButtons = document.getElementsByClassName("skills-tab-button");
             for (let i = 0; i < tabButtons.length; i++) {
                 tabButtons[i].classList.remove("active-tab");
                 tabButtons[i].style.borderBottomColor = "transparent";
-                tabButtons[i].setAttribute('aria-selected', 'false');
             }
-            const currentTab = document.getElementById(tabName);
-            currentTab.style.display = "block";
-            currentTab.setAttribute('aria-hidden', 'false');
+
+            document.getElementById(tabName).style.display = "block";
+            
             if (evt && evt.currentTarget) {
                 evt.currentTarget.classList.add("active-tab");
                 evt.currentTarget.style.borderBottomColor = "#238636";
-                evt.currentTarget.setAttribute('aria-selected', 'true');
             }
+            
             document.getElementById('skillsTabContent').scrollTop = 0;
         }
+
         
         // --- REASON FOR LEAVE LOGIC ---
-        window.toggleReason = function(button, reasonId) {
+
+        /**
+         * Toggles the visibility of the "Reason for Leave" section.
+         * @param {HTMLElement} button - The button element clicked.
+         * @param {string} reasonId - The ID of the reason for leave paragraph.
+         */
+        function toggleReason(button, reasonId) {
             const reasonElement = document.getElementById(reasonId);
             const iconElement = button.querySelector('span');
-            const isExpanded = reasonElement.classList.contains('expanded');
-            button.setAttribute('aria-expanded', !isExpanded);
-            if (isExpanded) {
+
+            if (reasonElement.classList.contains('expanded')) {
+                // Minimize
                 reasonElement.classList.remove('expanded');
                 iconElement.textContent = '+';
             } else {
+                // Maximize
                 reasonElement.classList.add('expanded');
-                iconElement.textContent = '–';
+                iconElement.textContent = '–'; // En dash for better visual alignment than hyphen
             }
         }
 
         // --- CERTIFICATION DATA AND SORTING & FILTERING LOGIC ---
+
+        // CHANGED FROM const TO var TO AVOID REDECLARATION ERRORS IN SOME EXECUTION ENVIRONMENTS
         var certifications = [
-            // Core Certs (isCoreCert: true)
-            { title: 'CA CPT', issuer: 'ICAI', date: 20180101, displayDate: '2018', relevance: 1, priority: 1, domain: 'Finance & Accounts', score: '71.5%', isCoreCert: true }, 
-            { title: 'Research Analyst', issuer: 'NISM 15', date: 20240726, displayDate: 'Jul 24', relevance: 1, priority: 2, domain: 'Finance & Accounts', expiryDate: 20270722, score: '64.25%', isCoreCert: true }, 
+            // Core Finance & Investment
+            // Priority 1: Highest Value (NISM RA)
+            { title: 'Research Analyst', issuer: 'NISM 15', date: 20230801, displayDate: 'Aug 23', relevance: 1, priority: 1, domain: 'Core Finance & Investment' }, 
             
-            // PROFESSIONAL DEVELOPMENT SECTION (isCoreCert: false)
-            { title: 'Financial Modelling', issuer: 'Wall Street School', date: 20230801, displayDate: 'Aug 23', relevance: 1, priority: 0.5, domain: 'Finance & Accounts', isCoreCert: false },
-            { title: 'Finance for Managers', issuer: 'IESE Business School', date: 202312001, displayDate: 'Dec 23', relevance: 1, priority: 3, domain: 'Finance & Accounts', isCoreCert: false }, 
-            { title: 'PwC GST Taxation Executive', issuer: 'PwC India', date: 20230801, displayDate: 'Aug 23', relevance: 1, priority: 4, domain: 'Finance & Accounts', isCoreCert: false },
-            { title: 'Google Data Analytics', issuer: 'Google', date: 20250101, displayDate: 'Jan 25', relevance: 2, priority: 5, domain: 'Tech & Automation', isCoreCert: false }, 
-            { title: 'AI for everyone', issuer: 'DeepMind.AI', date: 20240101, displayDate: 'Jan 24', relevance: 2, priority: 6, domain: 'Tech & Automation', isCoreCert: false }, 
-            { title: 'Excel Basics For Data Analysis', issuer: 'IBM / Coursera', date: 20231227, displayDate: 'Dec 23', relevance: 2, priority: 7, domain: 'Tech & Automation', isCoreCert: false }, 
-            { title: 'Private Equity & VC', issuer: 'Bocconi', date: 20240201, displayDate: 'Feb 24', relevance: 3, priority: 8, domain: 'Finance & Accounts', isCoreCert: false }, 
-            { title: 'Investment Banking', issuer: '365 Financial Analyst', date: 20231112, displayDate: 'Nov 23', relevance: 3, priority: 9, domain: 'Finance & Accounts', isCoreCert: false }, 
-            { title: 'Introduction to Generative AI', issuer: 'Google', date: 20231209, displayDate: 'Dec 23', relevance: 2, priority: 10, domain: 'Tech & Automation', isCoreCert: false },
-            { title: 'The Role of the FP&A Professional', issuer: 'CFI', date: 20231022, displayDate: 'Oct 23', relevance: 1, priority: 11, domain: 'Finance & Accounts', isCoreCert: false },
-            { title: 'FP&A: Building a Company\'s Budget', issuer: '365 Financial Analyst', date: 20231112, displayDate: 'Nov 23', relevance: 1, priority: 12, domain: 'Finance & Accounts', isCoreCert: false },
-            { title: 'Accounting Fundamentals', issuer: 'CFI', date: 20231023, displayDate: 'Oct 23', relevance: 1, priority: 13, domain: 'Finance & Accounts', isCoreCert: false },
-            { title: 'Introduction to Valuation with WACC', issuer: 'Coursera', date: 20231217, displayDate: 'Dec 23', relevance: 1, priority: 15, domain: 'Finance & Accounts', isCoreCert: false },
-            { title: 'Investment Risk Management', issuer: 'Coursera', date: 20231217, displayDate: 'Dec 23', relevance: 3, priority: 16, domain: 'Finance & Accounts', isCoreCert: false },
-            { title: 'Data Analysis with Excel Pivot Tables', issuer: '365 Financial Analyst', date: 20231112, displayDate: 'Nov 23', relevance: 2, priority: 17, domain: 'Tech & Automation', isCoreCert: false },
-            { title: 'International Business', issuer: 'Coursera', date: 20231224, displayDate: 'Dec 23', relevance: 3, priority: 18, domain: 'Finance & Accounts', isCoreCert: false }, 
-            { title: 'Introduction to Financial Control', issuer: 'Udemy', date: 20250901, displayDate: 'Sep 25', relevance: 1, priority: 19, domain: 'Finance & Accounts', isCoreCert: false }, 
-            { title: 'Introduction to Corporate Finance', issuer: 'Great Learning', date: 20230801, displayDate: 'Aug 23', relevance: 1, priority: 21, domain: 'Finance & Accounts', isCoreCert: false },
-            { title: 'Fundamental of Taxation', issuer: 'Great Learning', date: 20230801, displayDate: 'Aug 23', relevance: 1, priority: 22, domain: 'Finance & Accounts', isCoreCert: false },
-            { title: 'Introduction to Management', issuer: 'Great Learning', date: 20230801, displayDate: 'Aug 23', relevance: 3, priority: 23, domain: 'Finance & Accounts', isCoreCert: false },
-            { title: 'Chat Gpt For Excel', issuer: 'Great Learning', date: 20230801, displayDate: 'Aug 23', relevance: 2, priority: 24, domain: 'Tech & Automation', isCoreCert: false }, 
+            // Priority 2: Next Highest Value (Financial Modelling / Investment)
+            { title: 'Financial Modelling', issuer: 'Wall Street School', date: 20230801, displayDate: 'Aug 23', relevance: 1, priority: 2, domain: 'Core Finance & Investment' }, 
+            { title: 'Investment Banking', issuer: '365 Financial Analyst', date: 20231112, displayDate: 'Nov 23', relevance: 3, priority: 2, domain: 'Core Finance & Investment' }, 
             
+            // Priority 3: Management/Advanced Finance & Tech (HIGHLIGHTED)
+            { title: 'Private Equity & VC', issuer: 'Bocconi', date: 20240201, displayDate: 'Feb 24', relevance: 3, priority: 3, domain: 'Core Finance & Investment' }, 
+            { title: 'Finance for Managers', issuer: 'IESE Business School', date: 20231201, displayDate: 'Dec 23', relevance: 1, priority: 3, domain: 'Core Finance & Investment' }, 
+            { title: 'PwC GST Taxation Executive', issuer: 'PwC India', date: 20230801, displayDate: 'Aug 23', relevance: 1, priority: 3, domain: 'Core Finance & Investment' },
+            { title: 'AI for everyone', issuer: 'DeepMind.AI', date: 20240101, displayDate: 'Jan 24', relevance: 2, priority: 3, domain: 'Tech & Automation' }, 
+            { title: 'Introduction to Generative AI', issuer: 'Google', date: 20231209, displayDate: 'Dec 23', relevance: 2, priority: 3, domain: 'Tech & Automation' },
+            { title: 'Excel Basics For Data Analysis', issuer: 'IBM / Coursera', date: 20231227, displayDate: 'Dec 23', relevance: 2, priority: 3, domain: 'Tech & Automation' }, 
+            { title: 'Google data analytics', issuer: 'Google', date: 20250101, displayDate: 'Jan 25', relevance: 2, priority: 3, domain: 'Tech & Automation' }, 
+
+            // Priority 4: General FP&A / Core Finance
+            { title: 'The Role of the FP&A Professional', issuer: 'CFI', date: 20231022, displayDate: 'Oct 23', relevance: 1, priority: 4, domain: 'Core Finance & Investment' },
+            { title: 'FP&A: Building a Company\'s Budget', issuer: '365 Financial Analyst', date: 20231112, displayDate: 'Nov 23', relevance: 1, priority: 4, domain: 'Core Finance & Investment' },
+            { title: 'Accounting Fundamentals', issuer: 'CFI', date: 20231023, displayDate: 'Oct 23', relevance: 1, priority: 4, domain: 'Core Finance & Investment' },
+            { title: 'Reading Financial Statements', issuer: 'CFI', date: 20231022, displayDate: 'Oct 23', relevance: 1, priority: 4, domain: 'Core Finance & Investment' },
+            { title: 'Introduction to Corporate Finance', issuer: 'Great Learning', date: 20230801, displayDate: 'Aug 23', relevance: 1, priority: 4, domain: 'Core Finance & Investment' },
+            { title: 'Basics Of Accounting', issuer: 'Great Learning', date: 20230801, displayDate: 'Aug 23', relevance: 1, priority: 4, domain: 'Core Finance & Investment' },
+            { title: 'Fundamental of Taxation', issuer: 'Great Learning', date: 20230801, displayDate: 'Aug 23', relevance: 1, priority: 4, domain: 'Core Finance & Investment' },
+            { title: 'Introduction to Valuation with WACC', issuer: 'Coursera', date: 20231217, displayDate: 'Dec 23', relevance: 1, priority: 4, domain: 'Core Finance & Investment' },
+            { title: 'Investment Risk Management', issuer: 'Coursera', date: 20231217, displayDate: 'Dec 23', relevance: 3, priority: 4, domain: 'Core Finance & Investment' },
+            { title: 'International Business', issuer: 'Coursera', date: 20231224, displayDate: 'Dec 23', relevance: 3, priority: 4, domain: 'Core Finance & Investment' },
+            { title: 'Introduction to Management', issuer: 'Great Learning', date: 20230801, displayDate: 'Aug 23', relevance: 3, priority: 4, domain: 'Core Finance & Investment' },
+            
+            // Priority 5: General Tech/Data Analytics
+            { title: 'Data Analysis with Excel Pivot Tables', issuer: '365 Financial Analyst', date: 20231112, displayDate: 'Nov 23', relevance: 2, priority: 5, domain: 'Tech & Automation' },
+            { title: 'Chat Gpt For Excel', issuer: 'Great Learning', date: 20230801, displayDate: 'Aug 23', relevance: 2, priority: 5, domain: 'Tech & Automation' },
         ];
 
-        var currentSort = 'relevance'; 
-        var currentFilter = 'All'; 
+        var currentSort = 'relevance'; // Default sort is relevance
+        var currentFilter = 'Core Finance & Investment'; // Default filter is Core Finance & Investment
 
-        window.renderCertifications = function() {
-            var listElement = document.getElementById('professionalDevelopmentList');
-            if (!listElement) { console.error("Target element 'professionalDevelopmentList' not found."); return; }
+        /**
+         * Renders the certification list based on the current sorting and filtering criteria.
+         * Note: The priority logic ensures NISM and FMVA equivalents are highlighted and sorted first.
+         */
+        function renderCertifications() {
+            var listElement = document.getElementById('certificationsList');
             
+            // 1. Apply Filter
             var filteredCerts = certifications.filter(function(cert) {
-                if (cert.isCoreCert) { return false; }
-                if (currentFilter === 'All') { return true; }
+                if (currentFilter === 'All') {
+                    return true;
+                }
                 return cert.domain === currentFilter;
             });
 
+            // 2. Apply Sort
             if (currentSort === 'date') {
+                // Sort by Date (Descending - newest first)
                 filteredCerts.sort(function(a, b) { return b.date - a.date; });
             } else {
+                // Sort by Relevance (Ascending), then PRIORITY (Ascending), then Date (Descending)
                 filteredCerts.sort(function(a, b) {
-                    if (a.relevance !== b.relevance) { return a.relevance - b.relevance; }
-                    if (a.priority !== b.priority) { return a.priority - b.priority; }
+                    if (a.relevance !== b.relevance) {
+                        return a.relevance - b.relevance; 
+                    }
+                    if (a.priority !== b.priority) {
+                        return a.priority - b.priority; 
+                    }
                     return b.date - a.date; 
                 });
             }
-            
+
+            // 3. Render as compact tags
             listElement.innerHTML = filteredCerts.map(function(cert) {
-                var isHighlighted = cert.priority <= 7; 
+                var isHighlighted = cert.priority <= 3; // Priority 1, 2, or 3 (New rule: include advanced/management certs)
                 var highlightClass = isHighlighted ? 'cert-tag-highlight' : '';
-                var dateColorClass = isHighlighted ? 'text-white' : 'text-[#238636]';
-                
+
                 return `
                     <div class="cert-tag mb-1 mr-1 ${highlightClass}">
                         <span class="cert-tag-title">${cert.title}</span>
                         <span class="cert-tag-detail ml-2">(${cert.issuer})</span>
-                        <span class="cert-tag-detail text-gray-600 mx-1">|</span>
-                        <span class="cert-tag-detail ${dateColorClass}">${cert.displayDate}</span>
+                        <span class="cert-tag-detail ml-2 text-[#238636]">${cert.displayDate}</span>
                     </div>
                 `;
             }).join('');
             
-            const scrollContainer = listElement.closest('.scrollable-content');
-            if (scrollContainer) { scrollContainer.scrollTop = 0; }
+            // Scroll to top after rendering
+            listElement.scrollTop = 0;
         }
 
+        /**
+         * Changes the sorting criteria and re-renders the list.
+         * @param {string} sortType - 'relevance' or 'date'.
+         */
         window.sortCertifications = function(sortType) {
             currentSort = sortType;
+            
+            // Update active button styling
             document.querySelectorAll('.sort-button').forEach(function(btn) {
-                const isSelected = btn.id === `sort${sortType.charAt(0).toUpperCase() + sortType.slice(1)}`;
                 btn.classList.remove('active', 'bg-[#238636]', 'text-white', 'hover:bg-gray-700', 'text-gray-300');
-                btn.setAttribute('aria-pressed', isSelected);
-                if (isSelected) {
+                if (btn.id === `sort${sortType.charAt(0).toUpperCase() + sortType.slice(1)}`) {
                     btn.classList.add('active', 'bg-[#238636]', 'text-white');
                 } else {
                     btn.classList.add('hover:bg-gray-700', 'text-gray-300');
                 }
             });
-            window.renderCertifications();
+
+            renderCertifications();
         }
 
+        /**
+         * Changes the filtering domain and re-renders the list.
+         * @param {string} domain - 'Core Finance & Investment', 'Tech & Automation', or 'All'.
+         */
         window.filterCertifications = function(domain) {
             currentFilter = domain;
-            window.renderCertifications();
-        }
-
-        window.renderCoreCerts = function(coreCerts) { 
-            const listElement = document.getElementById('coreCertList'); 
-            if (!listElement) { console.error("Target element 'coreCertList' not found."); return; }
-            
-            const TODAY_DATE = 20251024; // Oct 24, 2025 (Updated date)
-
-            coreCerts.sort((a, b) => a.priority - b.priority); 
-            
-            listElement.innerHTML = coreCerts.map(cert => {
-                let warningHtml = '';
-                let dateColorClass = 'text-white';
-                let scoreHtml = cert.score ? 
-                    `<span class="cert-tag-detail text-gray-600 mx-1">|</span>
-                     <span class="cert-tag-detail text-white font-bold">${cert.score}</span>` : '';
-                
-                if (cert.expiryDate) {
-                    if (TODAY_DATE >= cert.expiryDate) {
-                        warningHtml = `<span class="cert-tag-detail text-red-500 mx-1">|</span><span class="cert-tag-detail expiry-warning" aria-label="Certification expired or due for renewal">EXPIRED</span>`;
-                        dateColorClass = 'text-red-400';
-                        scoreHtml = cert.score ? `<span class="cert-tag-detail text-gray-600 mx-1">|</span><span class="cert-tag-detail text-red-400 font-bold">${cert.score}</span>` : '';
-                    } 
-                }
-
-                return `
-                    <div class="cert-tag cert-tag-highlight">
-                        <span class="cert-tag-title">${cert.title}</span>
-                        <span class="cert-tag-detail ml-2">(${cert.issuer})</span>
-                        <span class="cert-tag-detail text-gray-600 mx-1">|</span>
-                        <span class="cert-tag-detail ${dateColorClass}">${cert.displayDate}</span>
-                        ${scoreHtml}
-                        ${warningHtml}
-                    </div>
-                `;
-            }).join('');
-        }
-        
-        // --- PITCH INTEGRATION LOGIC ---
-        // 1. API Key updated with user's provided key
-        const apiKey = "AIzaSyA7mpJyL21zh1vfxlodZthXR7wSh5os_Pc"; 
-        const TTS_MODEL = 'gemini-2.5-flash-preview-tts';
-        // 2. Voice updated back to Charon as requested
-        const VOICE_NAME = "Charon"; 
-
-        // Hardcoded pitch from user - UPDATED PITCH TEXT (More punchy and value-focused)
-        const FINAL_ELEVATOR_PITCH = `Say in a confident, authoritative, and executive tone, with a slight Indian accent:
-            <b>Is your financial reporting still a manual chore?</b> I'm Navneet Chaudhary, Assistant Manager of F\&A, an automation strategist who drives 80\% efficiency gains. With six years of cross-functional expertise from GST to FP\&A, I eliminate repetitive tasks, build Python-powered systems, and free up teams for strategic work. I bring immediate, quantifiable impact. My track record isn't just compliance, it's transformation. Let's discuss how I can implement true digital financial control in your organization. Chat with Zenith, my AI-powered assistant, for any immediate questions.
-        `;
-
-        // --- DOM Elements ---
-        const playPitchButton = document.getElementById('playPitchButton');
-        const statusLight = document.getElementById('statusLight');
-        const pitchContent = document.getElementById('pitchContent');
-        const pitchOutput = document.getElementById('pitchOutput');
-        const pitchStatus = document.getElementById('pitchStatus');
-        const pitchButtonIcon = document.getElementById('pitchButtonIcon');
-        
-        // Progress Bar Elements
-        const progressCircle = document.getElementById('progressCircle');
-        const radius = progressCircle ? progressCircle.r.baseVal.value : 77;
-        const circumference = 2 * Math.PI * radius;
-        if (progressCircle) {
-            progressCircle.style.strokeDasharray = `${circumference} ${circumference}`;
-            progressCircle.style.strokeDashoffset = circumference;
-        }
-
-        let isProcessing = false;
-        let audioInstance = null;
-        
-        /**
-         * Updates the circular progress bar stroke offset.
-         */
-        function setProgress(percent) {
-            if (!progressCircle) return;
-            const offset = circumference - (percent / 100) * circumference;
-            progressCircle.style.strokeDashoffset = offset;
-            progressCircle.closest('svg').setAttribute('aria-valuenow', percent);
-        }
-        
-        /**
-         * Stops audio playback and resets the UI to the "ready" state.
-         */
-        function stopAudioAndReset() {
-            if (audioInstance) {
-                audioInstance.pause();
-                audioInstance.currentTime = 0;
-                URL.revokeObjectURL(audioInstance.src); 
-                audioInstance = null;
-            }
-            cancelAnimationFrame(window.animationFrameId);
-            isProcessing = false;
-            playPitchButton.disabled = false;
-            playPitchButton.querySelector('span').textContent = 'Play Pitch';
-            pitchButtonIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197 2.132A1 1 0 0110 13.73v-3.46a1 1 0 011.555-.832l3.197 2.132z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>'; // Play icon
-            
-            pitchStatus.innerHTML = "Pitch stopped. Click 'Play Pitch' to resume.";
-            setProgress(0);
-            statusLight.classList.remove('status-speaking');
-            statusLight.classList.add('status-idle');
+            renderCertifications();
         }
 
 
-        // --- Utility Functions (Base64, PCM/WAV Conversion) ---
-        function base64ToArrayBuffer(base64) {
-            const binaryString = atob(base64);
-            const len = binaryString.length;
-            const bytes = new Uint8Array(len);
-            for (let i = 0; i < len; i++) {
-                bytes[i] = binaryString.charCodeAt(i);
-            }
-            return bytes.buffer;
-        }
-
-        function pcmToWav(pcmData, sampleRate) {
-            const numChannels = 1;
-            const bytesPerSample = 2;
-            const buffer = new ArrayBuffer(44 + pcmData.byteLength);
-            const view = new DataView(buffer);
-            let offset = 0;
-            function writeString(str) {
-                for (let i = 0; i < str.length; i++) { view.setUint8(offset++, str.charCodeAt(i)); }
-            }
-            writeString('RIFF'); view.setUint32(offset, 36 + pcmData.byteLength, true); offset += 4;
-            writeString('WAVE');
-            writeString('fmt '); view.setUint32(offset, 16, true); offset += 4;
-            view.setUint16(offset, 1, true); offset += 2; 
-            view.setUint16(offset, numChannels, true); offset += 2;
-            view.setUint32(offset, sampleRate, true); offset += 4;
-            view.setUint32(offset, sampleRate * numChannels * bytesPerSample, true); offset += 4;
-            view.setUint16(offset, numChannels * bytesPerSample, true); offset += 2;
-            view.setUint16(offset, 16, true); offset += 2; 
-            writeString('data'); view.setUint32(offset, pcmData.byteLength, true); offset += 4;
-            new Int16Array(buffer, offset).set(new Int16Array(pcmData));
-            return new Blob([buffer], { type: 'audio/wav' });
-        }
-
-        /**
-         * Toggles the visibility of the collapsible pitch content.
-         */
-        function togglePitchContent(expand) {
-            if (expand) {
-                pitchContent.classList.add('expanded');
-                pitchContent.setAttribute('aria-expanded', 'true');
-            } else {
-                pitchContent.classList.remove('expanded');
-                pitchContent.setAttribute('aria-expanded', 'false');
-            }
-        }
-
-        // Play the audio blob and manage the speaking animation and progress bar
-        function playAudio(audioBlob, durationMs) {
-            const audioUrl = URL.createObjectURL(audioBlob);
-            
-            if (audioInstance) {
-                audioInstance.pause();
-                URL.revokeObjectURL(audioInstance.src); 
-            }
-            
-            audioInstance = new Audio(audioUrl);
-            
-            let startTime = performance.now();
-            
-            const updateProgress = (timestamp) => {
-                const elapsed = timestamp - startTime;
-                const percent = Math.min(100, (elapsed / durationMs) * 100);
-                setProgress(percent);
-                if (percent < 100 && !audioInstance.paused) {
-                    window.animationFrameId = requestAnimationFrame(updateProgress);
-                } else if (percent >= 100) {
-                    setProgress(100); // Ensure it reaches 100%
-                }
-            };
-            
-            statusLight.classList.add('status-speaking');
-            statusLight.classList.remove('status-idle');
-            
-            playPitchButton.disabled = false; // Allow stopping
-            playPitchButton.querySelector('span').textContent = 'Stop Pitch';
-            pitchButtonIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6M14 9v6" />'; // Stop icon
-            
-            togglePitchContent(true); 
-            
-            audioInstance.onplay = () => {
-                startTime = performance.now();
-                window.animationFrameId = requestAnimationFrame(updateProgress);
-            }
-
-            audioInstance.onended = () => {
-                cancelAnimationFrame(window.animationFrameId);
-                setProgress(100);
-                statusLight.classList.remove('status-speaking');
-                statusLight.classList.add('status-idle');
-                playPitchButton.disabled = false;
-                playPitchButton.querySelector('span').textContent = 'Play Pitch'; 
-                pitchButtonIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197 2.132A1 1 0 0110 13.73v-3.46a1 1 0 011.555-.832l3.197 2.132z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>'; // Play icon
-                pitchStatus.innerHTML = '<span class="text-[#238636] font-semibold">Pitch delivered successfully. Click to play again.</span>';
-                URL.revokeObjectURL(audioUrl); 
-                audioInstance = null;
-                isProcessing = false; // Reset processing flag after full cycle
-            };
-
-            audioInstance.onerror = (e) => {
-                cancelAnimationFrame(window.animationFrameId);
-                console.error("Audio playback error:", e);
-                pitchStatus.innerHTML = '<span class="text-red-500 font-semibold">Audio playback failed. Pitch text available.</span>';
-                stopAudioAndReset(); // Use reset function to handle error state fully
-            };
-
-            audioInstance.play().catch(e => {
-                 cancelAnimationFrame(window.animationFrameId);
-                 console.warn("Autoplay prevented:", e);
-                 isProcessing = false;
-                 playPitchButton.disabled = false;
-                 playPitchButton.querySelector('span').textContent = 'Play Pitch'; 
-                 pitchButtonIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197 2.132A1 1 0 0110 13.73v-3.46a1 1 0 011.555-.832l3.197 2.132z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>'; // Play icon
-                 pitchStatus.innerHTML = '<span class="text-yellow-500 font-semibold">Playback requires user interaction. Click the button again.</span>';
-                 setProgress(0);
-                 statusLight.classList.remove('status-speaking');
-                 statusLight.classList.add('status-idle');
-            });
-        }
-
-        function setThinkingState() {
-            isProcessing = true;
-            playPitchButton.disabled = true;
-            playPitchButton.querySelector('span').textContent = 'Synthesizing...';
-            pitchStatus.textContent = "The introduction audio is synthesizing...";
-            
-            statusLight.classList.remove('status-idle');
-            statusLight.classList.remove('status-speaking'); // Remove speaking class if present
-            statusLight.style.backgroundColor = '#f59e0b'; // Amber for synthesizing
-            statusLight.style.boxShadow = '0 0 10px #f59e0b';
-            pitchButtonIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 0014.28 2.052L17.5 5.3m-1.761 4.717a1 1 0 01-1.292.213L10 8l-.3 1.5M4 12a8 8 0 0015.356 2.052L17.5 17.3m-1.761-4.717a1 1 0 01-1.292.213L10 16l-.3 1.5"></path>'; // Load icon
-            
-            setProgress(0);
-            togglePitchContent(true); 
-        }
-        
-        async function callGeminiTtsApi(text) {
-            // Corrected API URL domain
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${TTS_MODEL}:generateContent?key=${apiKey}`;
-            
-            // Note: We remove HTML tags before sending the text to TTS, as TTS only processes plain text.
-            const plainText = text.replace(/<[^>]*>?/gm, '').trim();
-
-            const payload = {
-                contents: [{ parts: [{ text: plainText }] }], 
-                generationConfig: {
-                    responseModalities: ["AUDIO"],
-                    speechConfig: {
-                        voiceConfig: { prebuiltVoiceConfig: { voiceName: VOICE_NAME } }
-                    }
-                },
-                model: TTS_MODEL
-            };
-            
-            for (let i = 0; i < 3; i++) {
-                try {
-                    const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-                    const result = await response.json();
-                    
-                    const part = result?.candidates?.[0]?.content?.parts?.[0];
-                    const audioData = part?.inlineData?.data;
-                    const mimeType = part?.inlineData?.mimeType;
-
-                    if (audioData && mimeType && mimeType.startsWith("audio/L16;")) {
-                        const sampleRateMatch = mimeType.match(/rate=(\d+)/);
-                        const sampleRate = sampleRateMatch ? parseInt(sampleRateMatch[1], 10) : 16000;
-                        
-                        const wordCount = plainText.split(/\s+/).length;
-                        // Estimate duration: 250ms per word is a standard, quick estimate.
-                        const estimatedDurationMs = wordCount * 250; 
-                        
-                        return { audioData, sampleRate, estimatedDurationMs };
-                    }
-                    // Handle non-200 responses with an informative error
-                    if (!response.ok) {
-                        const errorBody = JSON.stringify(result, null, 2);
-                        throw new Error(`API returned status ${response.status}. Body: ${errorBody}`);
-                    }
-                    // Handle generic API failure or unexpected response structure
-                    throw new Error("Invalid TTS response structure or missing audio data.");
-                } catch (error) {
-                    console.error(`Attempt ${i + 1} failed for TTS API:`, error);
-                    if (i < 2) await new Promise(resolve => setTimeout(resolve, Math.pow(2, i) * 1000));
-                }
-            }
-            throw new Error("Failed to get audio from Gemini TTS after multiple retries.");
-        }
-
-        window.generateElevatorPitch = async function() {
-            if (audioInstance) {
-                // If audio is currently playing, stop it and reset UI
-                stopAudioAndReset();
-                return;
-            }
-            if (isProcessing) return;
-
-            setThinkingState();
-
-            try {
-                const pitchText = FINAL_ELEVATOR_PITCH;
-                // Pitch text is HTML for formatting the bold title
-                // We strip the instruction "Say in a confident, authoritative..." for display
-                const instructionPrefix = 'Say in a confident, authoritative, and executive tone, with a slight Indian accent:';
-                const displayPitchText = pitchText.startsWith(instructionPrefix) 
-                                         ? pitchText.substring(instructionPrefix.length).trim() 
-                                         : pitchText;
-                pitchOutput.innerHTML = displayPitchText; 
-                
-                const { audioData, sampleRate, estimatedDurationMs } = await callGeminiTtsApi(pitchText);
-
-                const pcmData = base64ToArrayBuffer(audioData);
-                const pcm16 = new Int16Array(pcmData);
-                const wavBlob = pcmToWav(pcm16, sampleRate);
-                
-                playPitchButton.querySelector('span').textContent = 'Stop Pitch';
-                pitchStatus.textContent = "Playing pitch...";
-                playAudio(wavBlob, estimatedDurationMs);
-
-            } catch (error) {
-                console.error("Pitch Generation Failure:", error);
-                // Ensure full pitch text is displayed if audio fails
-                const instructionPrefix = 'Say in a confident, authoritative, and executive tone, with a slight Indian accent:';
-                const displayPitchText = FINAL_ELEVATOR_PITCH.startsWith(instructionPrefix) 
-                                         ? FINAL_ELEVATOR_PITCH.substring(instructionPrefix.length).trim() 
-                                         : FINAL_ELEVATOR_PITCH;
-                pitchOutput.innerHTML = displayPitchText; 
-                pitchStatus.innerHTML = '<span class="text-red-500 font-semibold">Critical Failure: Could not generate audio. Pitch text is displayed.</span>';
-                
-                stopAudioAndReset(); // Ensure full reset on critical failure
-            }
-        }
-        
-        window.initZenith = function() { 
-            // Set initial status to ready/idle (Red dot, 0 progress)
-            statusLight.classList.add('status-idle');
-            setProgress(0);
-            
-            // FIX: Ensure the full pitch text without the instruction is displayed.
-            const instructionPrefix = 'Say in a confident, authoritative, and executive tone, with a slight Indian accent:';
-            let displayPitch = FINAL_ELEVATOR_PITCH.startsWith(instructionPrefix) 
-                                ? FINAL_ELEVATOR_PITCH.substring(instructionPrefix.length).trim()
-                                : FINAL_ELEVATOR_PITCH;
-                                
-            // Only show the bolded first sentence if available
-            const firstSentenceMatch = displayPitch.match(/<b>.*?<\/b>/);
-            if (firstSentenceMatch) {
-                pitchOutput.innerHTML = firstSentenceMatch[0];
-            } else {
-                 pitchOutput.innerHTML = displayPitch;
-            }
-            
-            pitchStatus.textContent = "Click 'Play Pitch' above to hear the introduction (now with executive tone).";
-            togglePitchContent(false); // Ensure pitch is collapsed initially
-        }
-        
-        // --- CHART.JS INITIALIZATION ---
-        // Removed window.initializeChart function
-        
-        // --- Run Initialization on Load ---
+        // Initial render on load
         window.onload = function() {
-            // Existing profile logic initialization
-            const coreCerts = certifications.filter(c => c.isCoreCert === true);
-            window.renderCoreCerts(coreCerts);
-            document.getElementById('filterDomain').value = 'All'; 
-            window.sortCertifications('relevance'); 
-            var achievementButton = document.querySelector('.flex:has(button[onclick^="window.openTab"]) .tab-button:first-child');
-            window.openTab({ currentTarget: achievementButton }, 'professional');
-            window.openSkillsTab({ currentTarget: document.querySelector('.skills-tab-button:first-child') }, 'functionalSkills');
-            // Removed initialization call for chart: window.initializeChart();
+            // Default: Core Finance & Investment, sorted by relevance
+            document.getElementById('filterDomain').value = currentFilter;
+            sortCertifications('relevance'); 
             
-            // NEW Pitch Init
-            window.initZenith();
+            // FIX: Use a more robust selector for the Achievement tab button
+            var achievementButton = document.querySelector('.flex:has(button[onclick^="openTab"]) .tab-button:first-child');
+
+            // Activate the default achievement tab on load
+            openTab(
+                { currentTarget: achievementButton }, 
+                'professional'
+            );
+            
+            // Activate the default skills tab on load
+            // UPDATED to use 'functionalSkills' as the new default tab
+            openSkillsTab(
+                { currentTarget: document.querySelector('.skills-tab-button:first-child') }, 
+                'functionalSkills'
+            );
         };
     </script>
 </body>
