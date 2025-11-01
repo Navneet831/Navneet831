@@ -8,21 +8,43 @@
     <meta name="description" content="FP&A Automation Specialist Delhi | Python Finance | 80% Efficiency Gains | 6+ years cross-functional F&A expertise in GST, compliance, and strategic reporting.">
     <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- NEW Tailwind Config for Mind Map Colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'cfo-navy': '#1e40af', // Navy for root
+                        'cfo-slate': '#64748b', // Slate for collapsed
+                        'cfo-teal': '#0d9488', // Teal for leaves
+                        'cfo-blue': '#3b82f6', // Blue for expanded
+                    },
+                }
+            }
+        }
+    </script>
     <!-- Load Chart.js for the timeline visualization -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     
-    <!-- NEW: Load D3.js v7 CDN for the Mind Map -->
+    <!-- Load D3.js v7 CDN for the Mind Map -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
     
     <!-- Google tag (gtag.js) for Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js/id=G-1XL4LRC5PP"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1XL4LRC5PP"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-1XL4LRC5PP');
     </script>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GT-57Z944P3');</script>
 
     <!-- NEW: JSON-LD Structured Data for SEO and Google Jobs Crawl -->
     <script type="application/ld+json">
@@ -126,6 +148,7 @@
             max-width: 1200px; 
             height: 90vh; 
             margin: 5vh auto;
+            padding: 10px; /* Tightened for mind map */
         }
         .close-button {
             float: right;
@@ -567,52 +590,88 @@
             }
         }
         
-        /* --- NEW D3 MIND MAP STYLES (Based on Mind map2.html) --- */
+        /* --- UPDATED D3 MIND MAP STYLES (Integrated from index (2).html - Enhanced Dark Theme, Nov 2025) --- */
+        /* Enhanced font family and base styles for maximum clarity */
+        #mindMapModal .modal-content {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: #0f172a; /* Slate-900 for mind map consistency */
+        }
+        
+        /* Custom styles for the dark theme D3 elements - boosted contrast and size */
 
-        /* Style for the links (connecting lines) */
+        /* Style for the links (connecting lines) - thicker for visibility */
         .link {
             fill: none;
-            stroke: #374151; /* Gray-700 for subtle connection */
+            stroke: #6b7280; /* Gray-500 for better visibility */
             stroke-width: 2px;
             transition: stroke 0.3s ease;
         }
 
-        /* Style for the nodes (circles) */
+        /* Style for the nodes (circles) - larger radius for touch targets */
         .node circle {
             cursor: pointer;
-            fill: #10b981; /* Corporate Accent: Emerald-500 */
-            stroke: #064e3b; /* Darker border */
+            fill: #0d9488; /* Teal-600 for leaves, professional */
+            stroke: #0f766e; /* Darker teal border */
             stroke-width: 3px;
             transition: fill 0.3s, stroke 0.3s;
         }
-
-        /* Style for collapsed nodes */
+        
+        /* Style for collapsed expandable nodes */
         .node--internal circle {
-            fill: #1f2937; /* Darker fill for internal nodes */
-            stroke: #374151; /* Medium gray border */
+            fill: #64748b; /* Slate-500 for collapsed */
+            stroke: #475569; /* Slate-600 border */
         }
 
-        /* Style for the text labels */
+        /* Enhanced text labels - professional font */
         .node text {
-            fill: #f3f4f6; /* Light gray for high contrast */
-            font-size: 14px;
-            pointer-events: none; /* Prevents text from blocking circle clicks */
-            font-weight: 500;
+            fill: #f1f5f9; /* Slate-50 */
+            font-size: 12px; /* Slightly larger for readability */
+            pointer-events: none;
+            font-weight: 500; /* Medium weight */
+            text-shadow: 0.5px 0.5px 1px rgba(15, 23, 42, 0.8);
         }
 
-        /* Text outline/shadow for better readability on dark background */
+        /* Enhanced text outline/shadow for superior readability */
         .text-outline {
-            stroke: rgba(17, 24, 39, 0.9); /* Dark background color for outline (Matching body/card background) */
-            stroke-width: 4px;
+            stroke: rgba(15, 23, 42, 0.95);
+            stroke-width: 1.5px;
+            opacity: 0.9;
+            fill: none;
         }
 
-        /* Specific style for the SVG container to allow scrolling */
+        /* Enhanced SVG container: fixed viewport, independent scroll - ADAPTED FOR MODAL */
         #tree-svg-container {
-            overflow: auto; /* IMPORTANT: Allows scrolling */
-            flex-grow: 1; /* Allow it to fill space in modal content */
-            min-height: 80vh; 
+            height: 100%; /* Full modal height */
             width: 100%;
+            overflow: auto;
+            overflow-x: scroll;
+            overflow-y: scroll;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: #475569 #1e293b;
         }
+
+        /* Webkit scrollbar styling */
+        #tree-svg-container::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        #tree-svg-container::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+
+        #tree-svg-container::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 3px;
+        }
+
+        #tree-svg-container::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+
     </style>
 </head>
 <body class="min-h-screen">
@@ -725,7 +784,7 @@
                                target="_blank" 
                                class="px-4 py-2 text-sm font-semibold rounded-lg shadow-md flex-grow sm:flex-grow-0 secondary-link-button"
                                role="button" aria-label="View all external links including portfolio"
-                               onclick="gtag('event', 'link_click', {'event_category': 'resume_cta', 'event_label': 'linktree_view'})">
+                               onclick="gtag('event', 'link_click', {'event_category': 'resume_cta', 'event_label': 'linktree_view'});">
                                 Portfolio
                             </a>
                             
@@ -979,7 +1038,6 @@
                     </div> <!-- End experienceContent -->
                 </section>
                 
-                
                 <!-- ACHIEVEMENTS SECTION (MODIFIED TO USE TABS) -->
                 <section class="p-4 metric-card rounded-lg bg-gradient-expertise mb-6"> <!-- REDUCED p-6 to p-4, mb-8 to mb-6 -->
                     <h2 class="text-2xl font-bold section-header">Key Achievements & Recognition</h2>
@@ -1084,7 +1142,6 @@
 
                     </div> <!-- End achievementsContainer -->
                 </section>
-                
                 
                 <!-- EXTRA-CURRICULAR SECTION -->
                 <section class="p-4 metric-card rounded-lg mb-6"> <!-- REDUCED p-6 to p-4, mb-8 to mb-6 -->
@@ -1448,14 +1505,14 @@
         <div class="modal-content flex flex-col">
             <!-- UPDATED onclick to use new function -->
             <span class="close-button" onclick="window.closeMindMapModal()" aria-label="Close mind map modal">&times;</span>
-            <h2 id="mindmap-modal-title" class="text-3xl font-bold section-header text-white mb-6">Professional Profile: Interactive Mind Map</h2>
-            
-            <!-- INTEGRATED D3 MIND MAP CONTENT HERE -->
-            <!-- Use tree-svg-container as the scrollable element -->
-            <div id="tree-svg-container" class="relative">
+            <!-- Title in left top -->
+            <div class="absolute top-4 left-4 z-10">
+                <h1 class="text-2xl font-semibold text-cfo-teal tracking-tight">Navneet Mind Map</h1>
+            </div>
+            <!-- Visualization Container - Full viewport with independent scroll -->
+            <div class="relative" id="tree-svg-container">
                 <svg id="tree-svg"></svg>
             </div>
-            
             <p class="text-sm text-gray-400 mt-4 flex-shrink-0">
                 This interactive mind map visualizes my professional journey, skills, and education in a structured, hierarchical format. Click any node to collapse or expand branches.
             </p>
@@ -1468,7 +1525,7 @@
             <span class="close-button" onclick="document.getElementById('coverLetterModal').style.display='none'" aria-label="Close modal">&times;</span>
             <h2 id="modal-title" class="text-3xl font-bold section-header text-white mb-6">Cover Letter / Statement of Intent</h2>
             <blockquote class="p-4 border-l-4 border-[#238636] bg-[#1f2328] rounded-r-lg text-gray-300 italic text-base">
-                <p class="mb-4 text-white font-semibold">TARGETING: $\text{₹}20-25\text{L}$ Assistant Manager, FP&A / Immediate Join</p>
+                <p class="mb-4 text-white font-semibold">TARGETING: ₹20-25L Assistant Manager, FP&A / Immediate Join</p>
                 <p class="mb-4">I am writing to express my strong interest in a senior F&A role. With 6+ years of expertise spanning <b>FP&A, strategic finance, and compliance</b>, my value is defined by measurable process automation. I successfully leveraged <b>Python and Generative AI</b> to drive efficiency, cutting manual MIS effort by <b>80%</b> and securing timely bank funding during a liquidity crunch.</p>
                 <p class="mb-4">My background, solidified by the <b>CA CPT, NISM, and Financial Modelling</b> certifications, ensures compliance and strategic financial execution. My recent transitions were due to organizational changes and unavoidable family medical leave, which I utilized to secure the <b>Google Data Analytics Certification</b>—strengthening my toolkit for immediate impact.</p>
                 <p>I offer a disciplined, automation-focused approach ready to drive fiscal health in a forward-thinking organization. The detailed financial model for my automation initiatives is attached via Linktree.</p>
@@ -1497,163 +1554,170 @@
             signInAnonymously(auth).catch(e => console.error("Firebase Auth Error:", e));
         }
         
-        // --- D3.JS DATA STRUCTURE (Copied from Mind map2.html) ---
+        // --- PROFESSIONAL DATA STRUCTURE (v10.0: Recruiter-Facing, Few Words, Color-Coded, Nov 1 Update) ---
+        // Nov 1: EY AI cert active (post-Oct 25). Structure: Central "Navneet Chaudhary" → 9 branches (exact prompt). Color: Expertise teal, Skills blue, Tools gray, Achievements green, Leadership orange, Edu purple, Certs indigo, Projects cyan, Recognition yellow (Tailwind extend). Collapsed default; expand for hierarchy. Export: Browser devtools PNG/SVG; Ctrl+P PDF.
         const treeData = {
-            "name": "Navneet Chaudhary: Transformation Catalyst", // Higher impact title
+            "name": "Navneet Chaudhary", 
             "children": [
                 {
-                    "name": "I. CORE FUNCTIONAL EXPERTISE",
+                    "name": "Expertise",
                     "children": [
-                        {
-                            "name": "Financial Planning & Analysis (FP&A)",
-                            "children": [
-                                { "name": "Established FP&A function from scratch (Oriana)" },
-                                { "name": "Automated P&L/MIS Reporting, reducing TAT by 40% (Ozone)" },
-                                { "name": "Oversight of Capex Planning & Management (Renewable/Grew Energy)" } 
-                            ]
-                        },
-                        {
-                            "name": "Treasury & Capital Management", 
-                            "children": [
-                                { "name": "Stabilized Cash Flow during extreme 8-day liquidity crunch (Oriana)" }, 
-                                { "name": "Secured timely bank funding to avert potential default" },
-                                { "name": "Managed Debt Funding for Project Contexts" }, // Consolidated
-                            ]
-                        },
-                        {
-                            "name": "Statutory Compliance & Taxation (India)",
-                            "children": [
-                                { "name": "Led GST Compliance across 31 Registrations (100% accuracy)" },
-                                { "name": "Executed Tax Due Diligence and departmental liaisons" } // Removed routine filing/computation
-                            ]
-                        },
-                        {
-                            "name": "Financial Reporting & Control",
-                            "children": [
-                                { "name": "Optimized AP & Vendor Mgt, reducing outstanding balances by 25%" }, 
-                                { "name": "Led Inventory & Fixed Asset Revamp, reducing discrepancies by 20%" } 
-                                // Removed routine finalization
-                            ]
-                        },
+                        { "name": "FP&A" },
+                        { "name": "Accounting" },
+                        { "name": "Taxation" },
+                        { "name": "Audit" },
+                        { "name": "Project Finance" },
+                        { "name": "Cash Flow Management" }
                     ]
                 },
                 {
-                    "name": "II. DIGITAL & ANALYTICAL EDGE", 
+                    "name": "Skills",
                     "children": [
-                        {
-                            "name": "Technology & Automation Implementation",
-                            "children": [
-                                { "name": "Developed Gen AI Chatbot for enhanced reporting interface" }, 
-                                { "name": "Implemented SQL for enhanced data structuring and access" }, 
-                                { "name": "Python-based RPA implementation for MIS preparation (Oriana)" }, 
-                                { "name": "Created Streamlit Dashboards for Data Visualization" },
-                                { "name": "Advanced Excel/VBA Mastery for operational automation" }
-                            ]
-                        },
-                    ]
-                },
-                 {
-                    "name": "III. STRATEGIC ACUMEN & CERTIFICATIONS", 
-                    "children": [
-                        {
-                            "name": "Strategic & Critical Thinking", 
-                            "children": [
-                                { "name": "Contrarian Thinking & Multidisciplinary Learning" },
-                                { "name": "Adopted Top-down approach: SOPs, Automate, Integrate Best Practices" }, 
-                                { "name": "Executed DCF-backed Strategic Viability Assessment for new plant" } 
-                            ]
-                        },
-                        {
-                            "name": "Financial Analysis & Investment Focus",
-                            "children": [
-                                { "name": "NISM 15 (Research Analyst) Certified" },
-                                { "name": "Expertise in Financial Modeling (DCF, Payback, Valuation)" },
-                                { "name": "Future Focus: Investment Banking, FinTech, Mgt Consulting" }
-                            ]
-                        }
+                        { "name": "Financial Modelling" },
+                        { "name": "Budgeting & Forecasting" },
+                        { "name": "Financial Reporting (IFRS/Ind AS)" },
+                        { "name": "Tax Compliance (GST/TDS/TCS)" },
+                        { "name": "Process Automation/RPA" },
+                        { "name": "Data Analytics & Visualisation" }
                     ]
                 },
                 {
-                    "name": "IV. INDUSTRY & CONTEXTUAL EXPERIENCE", 
+                    "name": "Tools",
                     "children": [
-                        {
-                            "name": "Power & Renewable Energy (Oriana, Grew Energy)",
-                            "children": [
-                                { "name": "Conducted Stock Audit of 5GW Modules Manufacturing Facility (Jaipur)" },
-                                { "name": "Navigated Financial Operations in high-growth, cash-constrained environment" }
-                            ]
-                        },
-                        {
-                            "name": "Pharmaceuticals & FMCG (Ozone Pharmaceuticals)",
-                            "children": [
-                                { "name": "Managed P&L for a ₹20 Cr portfolio with complex tax structure" },
-                                { "name": "Oversaw National Footprint - High Volume GST Compliance" }
-                            ]
-                        },
-                        {
-                            "name": "Healthcare Services (Shanti Mukand Hospital)",
-                            "children": [
-                                // Consolidated - Removed NPPA, focused on transferrable skill
-                                { "name": "Focused on Cost Control and Vendor Management" } 
-                            ]
-                        },
-                        {
-                            "name": "Audit & Advisory (Kumar Grover & Co.)",
-                            "children": [
-                                { "name": "Pivotal role in Statutory & Stock Audits and financial assessments" },
-                                // Removed routine Income Tax computation
-                            ]
-                        }
+                        { "name": "SAP (FICO/MM)" },
+                        { "name": "Tally" },
+                        { "name": "Advanced Excel" },
+                        { "name": "AI Tools" }
+                    ]
+                },
+                {
+                    "name": "Achievements",
+                    "children": [
+                        { "name": "Built FP&A Function (+30% Speed)" },
+                        { "name": "Managed Liquidity Crisis" },
+                        { "name": "Automated MIS (−80% Manual Effort)" },
+                        { "name": "Fixed Asset Accuracy (+20%)" },
+                        { "name": "57% & 58% Joining Hikes" },
+                        { "name": "17.39% Appraisal" }
+                    ]
+                },
+                {
+                    "name": "Leadership",
+                    "children": [
+                        { "name": "Mentored Team" },
+                        { "name": "Multiplier" },
+                        { "name": "Cost efficient team building" },
+                        { "name": "Capability Building" }
+                    ]
+                },
+                {
+                    "name": "Education",
+                    "children": [
+                        { "name": "M.Com (IGNOU)" },
+                        { "name": "PGDIB (IGNOU)" },
+                        { "name": "B.Com (DU)" },
+                        { "name": "CA CPT (ICAI)" }
+                    ]
+                },
+                {
+                    "name": "Certifications",
+                    "children": [
+                        { "name": "NISM 15" },
+                        { "name": "PwC GST" },
+                        { "name": "Financial Modelling (TWSS)" },
+                        { "name": "Private Equity & VC (Bocconi)" },
+                        { "name": "Finance for Managers (IESE)" },
+                        { "name": "Google Data Analytics" },
+                        { "name": "AI for Everyone (DeepMind)" },
+                        { "name": "EY AI Essentials (2025)" }
+                    ]
+                },
+                {
+                    "name": "Projects",
+                    "children": [
+                        { "name": "Cash Flow Analytics Dashboard" },
+                        { "name": "Interactive Python Dashboard" },
+                        { "name": "AI Finance Tools" }
+                    ]
+                },
+                {
+                    "name": "Recognition & Activities",
+                    "children": [
+                        { "name": "Winner NSE Quiz" },
+                        { "name": "Rank 3 Economics Quiz" },
+                        { "name": "Robinhood Army Volunteer" }
                     ]
                 }
             ]
         };
 
-        // --- D3.JS GLOBAL VARIABLES AND FUNCTIONS ---
+        // --- D3.JS INITIALIZATION - Cluster for No Overlap, Color-Coded Branches ---
         let i = 0, duration = 750, root;
-        const margin = { top: 20, right: 100, bottom: 20, left: 100 };
+        const margin = { top: 20, right: 150, bottom: 20, left: 150 }; // Tight for pro
         let svg, g, container; 
         let width = 0;
         let height = 0;
-        let treemap;
-        let isD3MapInitialized = false;
+        let cluster; // Use cluster for compact no-overlap
+        let mindMapInitialized = false; // Prevent re-init
+
+        // Branch colors (extend Tailwind)
+        const branchColors = {
+            'Expertise': '#10b981', // Green
+            'Skills': '#3b82f6', // Blue
+            'Tools': '#6b7280', // Gray
+            'Achievements': '#f59e0b', // Amber
+            'Leadership': '#ef4444', // Red
+            'Education': '#8b5cf6', // Violet
+            'Certifications': '#06b6d4', // Cyan
+            'Projects': '#14b8a6', // Teal
+            'Recognition & Activities': '#f97316' // Orange
+        };
+
+        // Wrap function - increased maxWidth to reduce wrapping and improve single-line readability
+        function wrap(texts, maxWidth) {
+            texts.each(function() {
+                var text = d3.select(this),
+                    words = text.text().split(/\s+/).reverse(),
+                    word,
+                    line = [],
+                    lineNumber = 0,
+                    lineHeight = 1.1,
+                    x = text.attr("x"),
+                    y = text.attr("y"),
+                    dy = parseFloat(text.attr("dy")),
+                    tspan = text.text(null)
+                                .append("tspan")
+                                .attr("x", x)
+                                .attr("y", y)
+                                .attr("dy", dy + "em")
+                                .attr("text-anchor", text.attr("text-anchor"));
+
+                while (word = words.pop()) {
+                    line.push(word);
+                    tspan.text(line.join(" "));
+                    if (tspan.node().getComputedTextLength() > maxWidth && line.length > 1) {
+                        line.pop();
+                        tspan.text(line.join(" "));
+                        line = [word];
+                        tspan = text.append("tspan")
+                                    .attr("x", x)
+                                    .attr("y", y)
+                                    .attr("dy", ++lineNumber * lineHeight + dy + "em")
+                                    .attr("text-anchor", text.attr("text-anchor"))
+                                    .text(word);
+                    }
+                }
+            });
+        }
 
         function setupSvg() {
             container = document.getElementById('tree-svg-container');
-            
-            // Clear existing SVG
             d3.select("#tree-svg").remove();
-
-            // Append SVG object to the container
-            svg = d3.select("#tree-svg-container").append("svg")
-                .attr("id", "tree-svg");
-
-            // Append a group element to contain the tree visualization
-            g = svg.append("g")
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-            
-            // D3 Tree Layout Function (configured for vertical L-R)
-            treemap = d3.tree();
-            
-            // Assigns parent, children, height, depth
-            root = d3.hierarchy(treeData, function (d) { return d.children; });
-            
-            // Set initial position for transition
-            root.x0 = container.clientHeight / 2;
-            root.y0 = 0;
-
-            // Collapse after the first level to keep it clean and focused
-            if (root.children) {
-                // Collapse only from Level 1 onwards, keeping the three main branches visible initially
-                root.children.forEach(c => {
-                    if (c.children) {
-                       c.children.forEach(collapse);
-                    }
-                });
-            }
+            svg = d3.select("#tree-svg-container").append("svg").attr("id", "tree-svg");
+            g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+            cluster = d3.cluster().separation((a, b) => (a.parent == b.parent ? 3 : 5)); // Increased separation for more space between nodes/leaves
         }
 
-        // Function to recursively collapse a node and its children
         function collapse(d) {
             if (d.children) {
                 d._children = d.children;
@@ -1661,276 +1725,188 @@
                 d.children = null;
             }
         }
-
-        // Toggle children on click.
+        
         function click(event, d) {
             if (d.children) {
                 d._children = d.children;
                 d.children = null;
-            } else {
+            } else if (d._children) {
                 d.children = d._children;
                 d._children = null;
             }
             update(d);
         }
 
-        // Main update function to redraw the tree
         function update(source) {
-            // Assigns the x and y position for the nodes
-            const treeDataComputed = treemap(root);
-
-            // Compute the new tree layout.
+            const treeDataComputed = cluster(root);
             const nodes = treeDataComputed.descendants();
             const links = treeDataComputed.descendants().slice(1);
 
-            // Normalize for fixed-depth (y-coordinate in L-R layout)
-            nodes.forEach(function (d) { d.y = d.depth * 280; }); 
+            nodes.forEach(d => { d.y = d.depth * 250; }); // Increased radial separation for more horizontal space
 
-            // --- Re-sizing and Re-centering logic ---
-            // Recalculate the required SVG size and group translation
-            const max_x = d3.max(nodes, d => d.x) || 500;
-            const min_x = d3.min(nodes, d => d.x) || 0;
-            const requiredHeight = (max_x - min_x) + (margin.top + margin.bottom);
+            // Root fixed center
+            const layoutSizeX = cluster.size()[0];
+            root.x = layoutSizeX / 2;
+            root.y = 0;
+            nodes.forEach(d => { if (d.parent) d.x = d.parent.x + (d.x - root.x) * 0.6; }); // Adjusted compression for balanced spread
+
+            // Fix main branches to static vertical positions
+            const n = root.children ? root.children.length : 0;
+            if (n > 0) {
+                const halfSpread = (layoutSizeX / 2) - 100;
+                root.children.forEach((child, i) => {
+                    let target_x;
+                    if (n === 1) {
+                        target_x = layoutSizeX / 2;
+                    } else {
+                        const pos = 2 * i / (n - 1) - 1; // -1 to 1
+                        target_x = layoutSizeX / 2 + pos * halfSpread;
+                    }
+                    const delta = target_x - child.x;
+                    function shift(node) {
+                        node.x += delta;
+                        if (node.children) {
+                            node.children.forEach(shift);
+                        }
+                    }
+                    shift(child);
+                });
+            }
+
+            const vertical_rel = nodes.map(d => d.x - root.x);
+            const min_v = d3.min(vertical_rel) || 0;
+            const max_v = d3.max(vertical_rel) || 0;
+            const extent_v = max_v - min_v;
+            const padding = 150;
+            const requiredHeight = extent_v + margin.top + margin.bottom + 2 * padding;
             const containerHeight = container.clientHeight;
+            const containerWidth = container.clientWidth;
             
-            const finalSvgHeight = Math.max(containerHeight, requiredHeight + 100);
-            const finalSvgWidth = width + margin.left + margin.right + 200; 
+            const finalSvgHeight = Math.max(containerHeight, requiredHeight);
+            const maxDepthY = d3.max(nodes, d => d.y) || width;
+            const finalSvgWidth = Math.max(containerWidth, maxDepthY + margin.left + margin.right + 100);
 
-            svg.transition()
-               .duration(duration)
-               .attr("width", finalSvgWidth + 'px')
-               .attr("height", finalSvgHeight + 'px');
+            svg.transition().duration(duration).attr("width", finalSvgWidth + 'px').attr("height", finalSvgHeight + 'px');
 
-            const centerOffset = finalSvgHeight / 2 - (root.x || 500 / 2) + margin.top;
-            g.transition()
-             .duration(duration)
-             .attr("transform", `translate(${margin.left}, ${centerOffset})`);
+            const rootScreenX = margin.left + 50;
+            const rootScreenY = margin.top + padding - min_v;
+            g.transition().duration(duration).attr("transform", `translate(${rootScreenX}, ${rootScreenY})`);
             
-            // ****************** Nodes section ***************************
+            setTimeout(() => {
+                 container.scrollTop = rootScreenY - (container.clientHeight / 2);
+                 container.scrollLeft = 0;
+            }, duration);
 
-            // Update the nodes...
-            const node = g.selectAll('g.node')
-                .data(nodes, function (d) { return d.id || (d.id = ++i); });
-
-            // Enter any new nodes at the parent's previous position.
-            const nodeEnter = node.enter().append('g')
-                .attr('class', 'node')
-                .attr('transform', function (d) {
-                    return 'translate(' + source.y0 + ',' + source.x0 + ')';
-                })
+            // Nodes
+            const node = g.selectAll('g.node').data(nodes, d => d.id || (d.id = ++i));
+            const nodeEnter = node.enter().append('g').attr('class', 'node')
+                .attr('transform', d => `translate(${source.y0},${source.x0 - root.x})`)
                 .on('click', click);
 
-            // Add Circle for the nodes
-            nodeEnter.append('circle')
-                .attr('r', 1e-6)
-                .attr('class', function (d) { return d._children ? 'node--internal' : 'node--leaf'; })
-                .style("fill", function (d) {
-                    // Root is different, L1 nodes different, others standard
-                    if (d.depth === 0) return '#0e7490'; // Cyan-700
-                    if (d.depth === 1) return '#2563eb'; // Blue-600
-                    return d._children ? "#374151" : "#10b981"; // Dark gray if collapsed, corporate accent if open
+            nodeEnter.append('circle').attr('r', 1e-6)
+                .attr('class', d => d._children ? 'node--internal' : 'node--leaf')
+                .style("fill", d => {
+                    if (d.depth === 0) return '#1e40af'; // Root navy
+                    if (d.data.name in branchColors) return branchColors[d.data.name]; // Branch color
+                    if (d.children || d._children) return '#64748b'; // Collapsed slate
+                    return '#0d9488'; // Leaf teal
+                })
+                .style("stroke", d => {
+                    if (d.depth === 0) return '#1d4ed8'; // Navy stroke
+                    if (d.data.name in branchColors) return branchColors[d.data.name] + '80'; // Branch stroke variant
+                    return (d.children || d._children) ? '#475569' : '#0f766e';
                 });
 
-            // Add labels for the nodes (Text Outline/Shadow)
-            nodeEnter.append('text')
-                .attr("dy", ".35em")
-                .attr("x", function (d) {
-                    // Position text to the right of the node
-                    return d.children || d._children ? -15 : 15;
-                })
-                .attr("text-anchor", function (d) {
-                    // Anchor text away from the node
-                    return d.children || d._children ? "end" : "start";
-                })
-                .text(function (d) { return d.data.name; })
-                .clone(true).lower() // Clone and lower to create a subtle shadow/outline effect on text
-                .attr('class', 'text-outline')
-                .style("fill", null); // Clear fill for the stroke layer
+            const texts = nodeEnter.append('text').attr("dy", ".35em").attr("x", 10).attr("text-anchor", "start")
+                .text(d => d.data.name);
+            wrap(texts, 250); // Increased maxWidth to minimize wrapping and keep most labels on single line
+            texts.clone(true).lower().attr('class', 'text-outline');
 
-
-            // UPDATE section
             const nodeUpdate = nodeEnter.merge(node);
+            nodeUpdate.transition().duration(duration)
+                .attr('transform', d => `translate(${d.y},${d.x - root.x})`);
 
-            // Transition to the proper position for the node
-            nodeUpdate.transition()
-                .duration(duration)
-                .attr('transform', function (d) {
-                    return 'translate(' + d.y + ',' + d.x + ')';
-                });
+            wrap(nodeUpdate.select('text'), 250); // Same increased width
+            nodeUpdate.select('text').clone(true).lower().attr('class', 'text-outline');
 
-            // Update the node attributes and style
             nodeUpdate.select('circle')
-                .attr('r', 8)
-                .style("fill", function (d) {
-                    if (d.depth === 0) return '#0e7490';
-                    if (d.depth === 1) return '#2563eb';
-                    return d._children ? "#374151" : "#10b981";
+                .attr('r', 7) // Compact
+                .style("fill", d => {
+                    if (d.depth === 0) return '#1e40af';
+                    if (d.data.name in branchColors) return branchColors[d.data.name];
+                    if (d.children) return '#3b82f6'; // Expanded blue
+                    if (d._children) return '#64748b';
+                    return '#0d9488';
                 })
-                .style("stroke", function (d) {
-                     return d._children ? "#4b5563" : "#064e3b";
+                .style("stroke", d => {
+                    if (d.depth === 0) return '#1d4ed8';
+                    if (d.data.name in branchColors) return branchColors[d.data.name] + '80';
+                    return (d.children || d._children) ? '#475569' : '#0f766e';
                 });
 
-            // Remove any exiting nodes
-            const nodeExit = node.exit().transition()
-                .duration(duration)
-                .attr('transform', function (d) {
-                    return 'translate(' + source.y + ',' + source.x + ')';
-                })
-                .remove();
+            const nodeExit = node.exit().transition().duration(duration)
+                .attr('transform', d => `translate(${source.y},${source.x - root.x})`).remove();
+            nodeExit.select('circle').attr('r', 1e-6);
+            nodeExit.select('text').style('fill-opacity', 1e-6);
 
-            // On exit reduce the node circles size to 0
-            nodeExit.select('circle')
-                .attr('r', 1e-6);
-
-            // On exit reduce the opacity of text labels
-            nodeExit.select('text')
-                .style('fill-opacity', 1e-6);
-
-            // ****************** Links section ***************************
-
-            // Update the links...
-            const link = g.selectAll('path.link')
-                .data(links, function (d) { return d.id; });
-
-            // Enter any new links at the parent's previous position.
-            const linkEnter = link.enter().insert('path', "g")
-                .attr("class", "link")
-                .attr('d', function (d) {
-                    const o = { x: source.x0, y: source.y0 };
+            // Links
+            const link = g.selectAll('path.link').data(links, d => d.id);
+            const linkEnter = link.enter().insert('path', "g").attr("class", "link")
+                .attr('d', d => {
+                    const o = { x: source.x0 - root.x, y: source.y0 };
                     return diagonal(o, o);
                 });
 
-            // UPDATE
             const linkUpdate = linkEnter.merge(link);
+            linkUpdate.transition().duration(duration)
+                .attr('d', d => {
+                    const sd = { x: d.x - root.x, y: d.y };
+                    const pd = { x: d.parent.x - root.x, y: d.parent.y };
+                    return diagonal(sd, pd);
+                });
 
-            // Transition back to the new proper position.
-            linkUpdate.transition()
-                .duration(duration)
-                .attr('d', function (d) { return diagonal(d, d.parent); });
-
-            // Remove any exiting links
-            link.exit().transition()
-                .duration(duration)
-                .attr('d', function (d) {
-                    const o = { x: source.x, y: source.y };
+            link.exit().transition().duration(duration)
+                .attr('d', d => {
+                    const o = { x: source.x - root.x, y: source.y };
                     return diagonal(o, o);
-                })
-                .remove();
+                }).remove();
 
-            // Store the old positions for transition.
-            nodes.forEach(function (d) {
-                d.x0 = d.x;
-                d.y0 = d.y;
-            });
+            nodes.forEach(d => { d.x0 = d.x; d.y0 = d.y; });
 
-            // Creates a curved (diagonal) path from parent to the child nodes
             function diagonal(s, d) {
-                return `M ${s.y} ${s.x}
-                        C ${(s.y + d.y) / 2} ${s.x},
-                          ${(s.y + d.y) / 2} ${d.x},
-                          ${d.y} ${d.x}`;
+                return `M ${s.y} ${s.x} C ${(s.y + d.y) / 2} ${s.x}, ${(s.y + d.y) / 2} ${d.x}, ${d.y} ${d.x}`;
             }
         }
-
-        // Function to handle window resize and update D3 properties
+        
         function resizeAndDraw() {
-            const containerEl = document.getElementById('tree-svg-container');
-            if (!containerEl) return;
-            
-            const containerWidth = containerEl.clientWidth;
-            const containerHeight = containerEl.clientHeight;
-
-            // Use the available height and width for initial calculation
+            const containerWidth = container.clientWidth;
+            const containerHeight = container.clientHeight;
             width = containerWidth - margin.left - margin.right;
             height = containerHeight - margin.top - margin.bottom;
+            cluster.size([Math.max(height, 800), width]);
 
-            // Set a minimum height for the SVG to ensure vertical centering works
-            const minHeight = Math.max(height, 500); 
-
-            // L-R layout means width is used for depth separation, height for sibling separation
-            treemap.size([minHeight, width]); 
-
-            // If root exists, redraw it from its current state
             if (root) {
-                // Compute the new tree layout to determine the total required vertical space
-                const treeDataComputed = treemap(root);
-                const nodes = treeDataComputed.descendants();
-                
-                // Find the vertical extent of the tree
-                const max_x = d3.max(nodes, d => d.x) || minHeight;
-                const min_x = d3.min(nodes, d => d.x) || 0;
-                const requiredHeight = (max_x - min_x) + (margin.top + margin.bottom);
-
-                // Set the SVG dimensions based on content size and container size
-                const finalSvgHeight = Math.max(containerHeight, requiredHeight + 100);
-                const finalSvgWidth = width + margin.left + margin.right + 200; // Add padding for depth
-
-                svg.attr("width", finalSvgWidth + 'px')
-                   .attr("height", finalSvgHeight + 'px');
-
-                // Adjust the main group translation to center the view vertically
-                const centerOffset = finalSvgHeight / 2 - (root.x || minHeight / 2) + margin.top;
-                g.attr("transform", `translate(${margin.left}, ${centerOffset})`);
-                
                 update(root);
-                
-                // Scroll to center the root node (after D3 calculation completes)
-                if (root.x !== undefined && root.y !== undefined) {
-                    const rootScreenX = root.y + margin.left;
-                    const rootScreenY = root.x + centerOffset;
-                    
-                    // Center the root in the viewport
-                    containerEl.scrollTop = rootScreenY - containerHeight / 2;
-                    containerEl.scrollLeft = rootScreenX - containerWidth / 4; // Shift root slightly left
-                }
             }
         }
 
-        
-        // Function to open media modal and start video
-        // UPDATED: Using the new playlist embed URL provided by the user.
-        const CURRENT_VIDEO_EMBED_URL = `https://www.youtube.com/embed/videoseries?list=PLEfUln3m0PdhgiQzVE2GM8cwd8WqyfWw2&autoplay=1&rel=0`;
-        
-        window.openMediaModal = function() {
-            document.getElementById('mediaModal').style.display = 'block';
-            const youtubeIframe = document.getElementById('youtubeIframe');
-            // Set the src to the CURRENT_VIDEO_EMBED_URL (Playlist) to enable playback when modal is opened
-            if (youtubeIframe) {
-                youtubeIframe.src = CURRENT_VIDEO_EMBED_URL;
-            }
+        // NEW: Modal-Adapted Init Function (Replaces window.onload)
+        function initMindMap() {
+            if (mindMapInitialized) return;
+            mindMapInitialized = true;
+            setupSvg(); 
+            root = d3.hierarchy(treeData, d => d.children);
+            root.x0 = height / 2;
+            root.y0 = 0;
+
+            // Collapse all
+            root.children.forEach(collapse);
+            
+            resizeAndDraw();
+            window.addEventListener('resize', resizeAndDraw);
+            gtag('event', 'modal_open', { 'event_category': 'engagement', 'event_label': 'mind_map_viewed' });
         }
 
-        // Function to close media modal and stop video
-        window.closeMediaModal = function() {
-            document.getElementById('mediaModal').style.display = 'none';
-            const youtubeIframe = document.getElementById('youtubeIframe');
-            // Remove the src to stop video playback in the background
-            if (youtubeIframe) {
-                youtubeIframe.src = '';
-            }
-        }
-        
-        // Mind Map Modal Control (Now initializes the integrated D3 map)
-        window.openMindMapModal = function() {
-            document.getElementById('mindMapModal').style.display = 'block';
-            if (!isD3MapInitialized) {
-                // Initial setup runs only once
-                setupSvg(); 
-                isD3MapInitialized = true;
-                // Add event listener for responsiveness
-                window.addEventListener('resize', resizeAndDraw);
-            }
-            // IMPORTANT: Call resizeAndDraw on open to render the tree correctly when visible
-            // Request animation frame ensures the container width is properly calculated
-            requestAnimationFrame(() => requestAnimationFrame(resizeAndDraw));
-        }
-
-        // Function to close mind map modal
-        window.closeMindMapModal = function() {
-            document.getElementById('mindMapModal').style.display = 'none';
-            // D3 elements remain in the DOM but are hidden, ready for next opening
-        }
-        
         // --- ACHIEVEMENT TAB LOGIC (UNCHANGED) ---
         window.openTab = function(evt, tabName) {
             const tabcontent = document.getElementsByClassName("tab-content");
@@ -2095,7 +2071,7 @@
             const listElement = document.getElementById('coreCertList'); 
             if (!listElement) { console.error("Target element 'coreCertList' not found."); return; }
             
-            const TODAY_DATE = 20251024; // Oct 24, 2025 (Updated date)
+            const TODAY_DATE = 20251101; // Nov 1, 2025
 
             coreCerts.sort((a, b) => a.priority - b.priority); 
             
@@ -2136,7 +2112,7 @@
 
         // Hardcoded pitch from user - UPDATED PITCH TEXT (More punchy and value-focused)
         const FINAL_ELEVATOR_PITCH = `Say in a confident, authoritative, and executive tone, with a slight Indian accent:
-            <b>Is your financial reporting still a manual chore?</b> I'm Navneet Chaudhary, Assistant Manager of F\&A, an automation strategist who drives 80\% efficiency gains. With six years of cross-functional expertise from GST to FP\&A, I eliminate repetitive tasks, build Python-powered systems, and free up teams for strategic work. I bring immediate, quantifiable impact. My track record isn't just compliance, it's transformation. Let's discuss how I can implement true digital financial control in your organization. Chat with Zenith, my AI-powered assistant, for any immediate questions.
+            <b>Is your financial reporting still a manual chore?</b> I'm Navneet Chaudhary, Assistant Manager of F&A, an automation strategist who drives 80% efficiency gains. With six years of cross-functional expertise from GST to FP&A, I eliminate repetitive tasks, build Python-powered systems, and free up teams for strategic work. I bring immediate, quantifiable impact. My track record isn't just compliance, it's transformation. Let's discuss how I can implement true digital financial control in your organization. Chat with Zenith, my AI-powered assistant, for any immediate questions.
         `;
 
         // --- DOM Elements ---
@@ -2446,6 +2422,41 @@
             pitchStatus.textContent = "Click 'Play Pitch' above to hear the introduction (now with executive tone).";
             togglePitchContent(false); // Ensure pitch is collapsed initially
         }
+
+        // Function to open media modal and start video
+        // UPDATED: Using the new playlist embed URL provided by the user.
+        const CURRENT_VIDEO_EMBED_URL = `https://www.youtube.com/embed/videoseries?list=PLEfUln3m0PdhgiQzVE2GM8cwd8WqyfWw2&autoplay=1&rel=0`;
+        
+        window.openMediaModal = function() {
+            document.getElementById('mediaModal').style.display = 'block';
+            const youtubeIframe = document.getElementById('youtubeIframe');
+            // Set the src to the CURRENT_VIDEO_EMBED_URL (Playlist) to enable playback when modal is opened
+            if (youtubeIframe) {
+                youtubeIframe.src = CURRENT_VIDEO_EMBED_URL;
+            }
+        }
+
+        // Function to close media modal and stop video
+        window.closeMediaModal = function() {
+            document.getElementById('mediaModal').style.display = 'none';
+            const youtubeIframe = document.getElementById('youtubeIframe');
+            // Remove the src to stop video playback in the background
+            if (youtubeIframe) {
+                youtubeIframe.src = '';
+            }
+        }
+        
+        // Mind Map Modal Control (Now initializes the integrated D3 map)
+        window.openMindMapModal = function() {
+            document.getElementById('mindMapModal').style.display = 'block';
+            initMindMap(); // Trigger init on open
+        }
+
+        // Function to close mind map modal
+        window.closeMindMapModal = function() {
+            document.getElementById('mindMapModal').style.display = 'none';
+            // D3 elements remain in the DOM but are hidden, ready for next opening
+        }
         
         // --- Run Initialization on Load ---
         window.onload = function() {
@@ -2460,7 +2471,20 @@
             
             // Pitch Init
             window.initZenith();
+
+            // Close modal on outside click (best practice)
+            window.onclick = function(event) {
+                const modal = document.getElementById('mindMapModal');
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            }
         };
     </script>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GT-57Z944P3"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
 </body>
 </html>
