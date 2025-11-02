@@ -56,8 +56,7 @@
       "url": "https://your-profile-url.com",
       "sameAs": [
         "https://www.linkedin.com/in/navneet831/",
-        "https://github.com/Navneet831",
-        "https://medium.com/@navneet831"
+        "https://github.com/Navneet831"
       ],
       "alumniOf": [
         {"@type": "EducationalOrganization", "name": "Indira Gandhi National Open University (IGNOU)"},
@@ -90,7 +89,8 @@
         .metric-card {
             background-color: #161b22; /* Slightly lighter dark shade for cards */
             border: 1px solid #30363d;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.12);
+            /* Huly.io Inspiration: Softened shadow for a cleaner look */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.2);
         }
         /* CHANGE START: Reduced margin-bottom from 1.5rem to 1rem to tighten space below the main H2 section header. */
         .section-header {
@@ -316,14 +316,7 @@
              display: none;
         }
         
-        /* *** FIX: ENFORCE FIXED HEIGHT AND SCROLLING FOR PROFESSIONAL DEVELOPMENT LIST *** */
-        #professionalDevelopmentList {
-            max-height: 220px; /* FIXED HEIGHT */
-            overflow-y: auto; /* ENABLE VERTICAL SCROLLING */
-            display: flex; 
-            flex-wrap: wrap; 
-            align-content: flex-start; 
-        }
+        /* *** REMOVED REDUNDANT CSS BLOCK for #professionalDevelopmentList *** */
 
         /* NEW RULE: Reduced vertical space between skill groups */
         .skill-group-container {
@@ -400,33 +393,8 @@
             stroke: #58a6ff; /* BLUE ACCENT: Distinct from green border */
             fill: transparent;
         }
-        /* Status Light */
-        .status-light {
-            /* Dot is kept small, but its visibility is controlled by JS state */
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background-color: #ef4444; /* Red for Idle */
-            box-shadow: 0 0 8px #ef4444;
-            transition: background-color 0.5s, box-shadow 0.5s;
-            z-index: 20;
-        }
-        .status-idle {
-            background-color: #ef4444; /* Red */
-            box-shadow: 0 0 8px #ef4444;
-        }
-        .status-speaking {
-            background-color: #10b981; /* Green */
-            box-shadow: 0 0 12px #10b981, 0 0 20px rgba(16, 185, 129, 0.5);
-            animation: flicker 0.5s infinite alternate;
-        }
-        @keyframes flicker {
-            from { opacity: 1; }
-            to { opacity: 0.8; }
-        }
+        /* Status Light CSS block removed */
+
         /* Collapsible Pitch Styles */
         #pitchContainer {
             margin-top: 1rem;
@@ -462,10 +430,48 @@
             font-weight: 600; 
             transition: background-color 0.2s, color 0.2s;
         }
+        /* FIX: Apply permanent 3D look to secondary buttons */
+        .secondary-link-button {
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4);
+        }
         .secondary-link-button:hover {
             background-color: #30363d; /* Hover effect */
             color: #58a6ff; /* Blue hover text */
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.6); /* Inset shadow for press effect */
         }
+        
+        /* NEW: 3D Button Styling (Primary Buttons - Resume, Schedule, Play Pitch) */
+        .action-button-3d {
+            transition: all 0.15s ease-out;
+            /* Default 3D lift/shadow (Always visible) */
+            box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.4), 0 1px 3px 0 rgba(0, 0, 0, 0.15);
+        }
+
+        .action-button-3d:hover {
+            /* Simulates a press/lift reversal */
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.6);
+            transform: translateY(1px); /* Slight downward press visual */
+        }
+        
+        /* LinkedIn Specific Styling (Brand Blue) */
+        .linkedin-btn {
+            background-color: #0077B5; /* LinkedIn Blue */
+            border-color: #0077B5;
+            color: white; 
+            /* Ensure the 3D shadow is applied here too */
+            box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.4), 0 1px 3px 0 rgba(0, 0, 0, 0.15);
+        }
+        .linkedin-btn:hover {
+            background-color: #005582; /* Darker blue on hover */
+            border-color: #005582;
+            color: white;
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.6); /* Inset shadow for press effect */
+        }
+        /* Overriding the default icon color for LinkedIn */
+        .linkedin-btn svg {
+            stroke: white; 
+        }
+
         
         /* Media Container Styles */
         .responsive-iframe-container {
@@ -541,23 +547,6 @@
             color: white;
         }
         
-        /* LinkedIn Specific Styling (Brand Blue) */
-        .linkedin-btn {
-            background-color: #0077B5; /* LinkedIn Blue */
-            border-color: #0077B5;
-            color: white; 
-        }
-        .linkedin-btn:hover {
-            background-color: #005582; /* Darker blue on hover */
-            border-color: #005582;
-            color: white;
-        }
-        /* Overriding the default icon color for LinkedIn */
-        .linkedin-btn svg {
-            stroke: white; 
-        }
-
-
         /* Responsive placement adjustment */
         @media (max-width: 1024px) { /* Adjust position for smaller screens */
              #top-right-fabs {
@@ -697,16 +686,14 @@
                             <circle id="progressCircle" class="progress-ring-circle" r="77" cx="80" cy="80" stroke-dasharray="483.8" stroke-dashoffset="483.8"></circle>
                         </svg>
                         
-                        <!-- Status Light (Hidden initially/when dot isn't needed) -->
-                        <div id="statusLight" class="status-light status-idle"></div>
+                        <!-- Status Light (REMOVED) -->
 
-                        <!-- Professional Photo (Original image) -->
+                        <!-- Professional Photo (Live Image - UPDATED SOURCE) -->
                         <img id="profilePhoto" 
-                                src="https://placehold.co/160x160/161b22/f0f6f0?text=NC" 
-                                onerror="this.src='https://placehold.co/160x160/161b22/f0f6f0?text=NC'"
-                                alt="Navneet Chaudhary Professional Portrait" 
-                                class="w-40 h-40 object-cover rounded-full border-4 border-[#238636] shadow-2xl"
-                                style="position: relative; z-index: 10;">
+                             src="https://raw.githubusercontent.com/Navneet831/Intro/main/Profile.png" 
+                             alt="Navneet Chaudhary Professional Portrait" 
+                             style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 2px solid #3b82f6; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); position: relative; z-index: 10;"
+                             onerror="this.onerror=null; this.src='https://placehold.co/150x150/161b22/f0f6f0?text=NC';">
                     </div>
                     <!-- END NEW AVATAR CONTAINER -->
 
@@ -724,28 +711,29 @@
                     <div class="flex space-x-3 w-full max-w-xs mx-auto lg:mx-0 justify-center lg:justify-start mb-4">
                         <button id="playPitchButton" 
                                 onclick="window.generateElevatorPitch()"
-                                class="flex-1 px-4 py-2 text-sm bg-[#58a6ff] text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-300 flex items-center justify-center space-x-1"
+                                class="flex-1 px-4 py-2 text-sm bg-[#58a6ff] text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition action-button-3d flex items-center justify-center space-x-1"
                                 aria-label="Play Introduction Pitch">
                             <!-- Play Icon SVG -->
                             <svg id="pitchButtonIcon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197 2.132A1 1 0 0110 13.73v-3.46a1 1 0 011.555-.832l3.197 2.132z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                             <span>Play Pitch</span>
                         </button>
                         
-                        <!-- FOLLOW BUTTON: Changed from <button> to <a> tag and added href/target -->
-                        <a href="https://linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=navneet831" 
+                        <!-- FOLLOW BUTTON: LinkedIn Link (TEXT: "LinkedIn", ICON: REMOVED) -->
+                        <a href="https://www.linkedin.com/in/navneet831/" 
                                 target="_blank"
-                                class="follow-button flex-1 px-3 py-1 text-sm bg-[#58a6ff] text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-300 flex items-center justify-center"
-                                aria-label="Follow Navneet Chaudhary on LinkedIn"
+                                class="follow-button flex-1 px-3 py-1 text-sm font-semibold rounded-lg shadow-md linkedin-btn action-button-3d flex items-center justify-center space-x-1"
+                                aria-label="View Navneet Chaudhary's LinkedIn Profile"
                                 role="button"
                                 onclick="gtag('event', 'link_click', {'event_category': 'social', 'event_label': 'linkedin_follow_button'});">
-                            Follow
+                            <!-- SVG Icon REMOVED -->
+                            <span>LinkedIn</span>
                         </a>
                     </div>
                     <!-- !!! END NEW LOCATION FOR PITCH AND FOLLOW BUTTONS !!! -->
                     
                     <!-- Divider line, simulating the old contact bar location -->
                     <div class="contact-bar w-full justify-center lg:justify-start">
-                        <!-- Removed content, kept for styling boundary if needed. Use border-top/bottom on parent or child if necessary -->
+                        <!-- Added horizontal line for visual break -->
                         <div class="w-full" style="border-top: 1px solid #30363d; margin-top: -1rem;"></div>
                     </div>
 
@@ -772,7 +760,7 @@
                             <a id="downloadResumeButton"
                                 href="https://drive.google.com/file/d/1UBxBOqUxtL386miSFkWOXQlG5HWMaUS2/view?usp=sharing"
                                 target="_blank"
-                                class="px-4 py-2 text-sm border border-[#238636] bg-[#238636] text-white font-semibold rounded-lg shadow-md hover:bg-green-600 hover:border-green-600 transition duration-300 flex items-center space-x-1 flex-grow sm:flex-grow-0"
+                                class="px-4 py-2 text-sm border border-[#238636] bg-[#238636] text-white font-semibold rounded-lg shadow-md hover:bg-green-600 hover:border-green-600 transition action-button-3d flex items-center space-x-1 flex-grow sm:flex-grow-0"
                                 role="button" aria-label="Download my resume (Google Drive)">
                                 <!-- Download Icon SVG -->
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
@@ -782,7 +770,7 @@
                             <!-- 2. Portfolio/Linktree Button -->
                             <a href="https://linktr.ee/navneet831" 
                                target="_blank" 
-                               class="px-4 py-2 text-sm font-semibold rounded-lg shadow-md flex-grow sm:flex-grow-0 secondary-link-button"
+                               class="px-4 py-2 text-sm font-semibold rounded-lg shadow-md flex-grow sm:flex-grow-0 secondary-link-button action-button-3d"
                                role="button" aria-label="View all external links including portfolio"
                                onclick="gtag('event', 'link_click', {'event_category': 'resume_cta', 'event_label': 'linktree_view'});">
                                 Portfolio
@@ -792,7 +780,7 @@
                             <!-- UPDATED CTA TEXT AND ARIA LABEL -->
                             <a href="https://calendar.app.google/qtFpe6bA8cr6qPDk8"
                                 target="_blank"
-                                class="px-4 py-2 text-sm border border-[#58a6ff] bg-[#58a6ff] text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 hover:border-blue-600 transition duration-300 flex items-center space-x-1 flex-grow sm:flex-grow-0"
+                                class="px-4 py-2 text-sm border border-[#58a6ff] bg-[#58a6ff] text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 hover:border-blue-600 transition action-button-3d flex items-center space-x-1 flex-grow sm:flex-grow-0"
                                 role="button" aria-label="Schedule a discussion via Google Calendar">
                                 <!-- Calendar Icon SVG -->
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
@@ -804,23 +792,26 @@
                         <!-- RESTORING EMAIL AND PHONE LINKS HERE -->
                         <div class="flex flex-wrap justify-center lg:justify-start gap-3">
                             <!-- 4. Email Link (Now a button-style link) -->
-                            <a href="mailto:Nvc7162@gmail.com" class="px-4 py-2 text-sm font-semibold rounded-lg shadow-md flex-grow sm:flex-grow-0 secondary-link-button flex items-center space-x-1" aria-label="Email Nvc7162@gmail.com">
+                            <a href="mailto:Nvc7162@gmail.com" class="px-4 py-2 text-sm font-semibold rounded-lg shadow-md flex-grow sm:flex-grow-0 secondary-link-button action-button-3d flex items-center space-x-1" aria-label="Email Nvc7162@gmail.com">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                                 <span>Nvc7162@gmail.com</span>
                             </a>
 
                             <!-- 5. Phone Link (Now a button-style link) -->
-                            <a href="tel:+919873394075" class="px-4 py-2 text-sm font-semibold rounded-lg shadow-md flex-grow sm:flex-grow-0 secondary-link-button flex items-center space-x-1" aria-label="Call +91 98733 94075">
+                            <a href="tel:+919873394075" class="px-4 py-2 text-sm font-semibold rounded-lg shadow-md flex-grow sm:flex-grow-0 secondary-link-button action-button-3d flex items-center space-x-1" aria-label="Call +91 98733 94075">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.5l1 4-3.5 1.5a12.5 12.5 0 005.5 5.5l1.5-3.5 4 1v3.5a2 2 0 01-2 2H5a2 2 0 01-2-2v-14z"></path></svg>
                                 <span>+91 98733 94075</span>
                             </a>
 
-                            <!-- 6. Full Cover Letter Button - STYLING APPLIED -->
-                            <button onclick="document.getElementById('coverLetterModal').style.display='block'" 
-                                    class="px-4 py-2 text-sm font-semibold rounded-lg shadow-md flex-grow sm:flex-grow-0 secondary-link-button"
-                                    aria-haspopup="dialog" aria-controls="coverLetterModal" aria-label="Open full cover letter">
-                                Cover Letter
-                            </button>
+                            <!-- 6. Full Cover Letter Link (UPDATED: Added Download Icon) -->
+                            <a href="https://drive.google.com/file/d/19VaToDZPDiaPzNfH8QOty_EjZtr9LIn6/view?usp=sharing"
+                                target="_blank" 
+                                class="px-4 py-2 text-sm font-semibold rounded-lg shadow-md flex-grow sm:flex-grow-0 secondary-link-button action-button-3d flex items-center space-x-1"
+                                role="button" aria-label="Open full cover letter (Google Drive)">
+                                <!-- Download Icon SVG (Same as Resume) -->
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                                <span>Cover Letter</span>
+                            </a>
                         </div>
                         
                     </div>
@@ -860,29 +851,18 @@
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197 2.132A1 1 0 0110 13.73v-3.46a1 1 0 011.555-.832l3.197 2.132z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
             </button>
             
+            <!-- --- SOCIAL ICONS BELOW THE CONTACT LINE (Matching image reference) --- -->
+
             <!-- 3. GitHub Icon Button -->
             <a href="https://github.com/Navneet831" target="_blank" class="social-icon-btn" aria-label="View GitHub Profile">
-                <!-- SVG Icon for GitHub -->
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.904 0l1.543 4.74c.15.462.593.774 1.077.774h4.981c.974 0 1.378 1.258.59 1.81l-4.032 2.932c-.38.277-.525.753-.375 1.215l1.543 4.74c.3.921-.755 1.688-1.54 1.134L12 18.291l-4.032 2.932c-.785.554-1.84-.197-1.54-1.134l1.543-4.74c.15-.462-.005-.938-.375-1.215L2.348 9.251c-.788-.552-.384-1.81.59-1.81h4.981c.484 0 .927-.312 1.077-.774L11.049 2.927z"></path></svg>
-            </a>
-
-            <!-- 4. Medium Icon Button -->
-            <a href="https://medium.com/@navneet831" target="_blank" class="social-icon-btn" aria-label="View Medium Articles">
-                <!-- SVG Icon for Medium (Pencil) -->
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
-            </a>
-
-            <!-- 5. LinkedIn Icon Button - STYLED TO BE BRAND BLUE -->
-            <a href="https://www.linkedin.com/in/navneet831/" 
-               target="_blank" 
-               class="social-icon-btn linkedin-btn" 
-               aria-label="View LinkedIn Profile">
-                <!-- Custom SVG for solid LinkedIn icon - 'in' logo -->
-                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="24" height="24" rx="4" fill="none"/>
-                    <path d="M16 8c-1.1 0-2 .9-2 2v7h-3v-7c0-1.1-.9-2-2-2s-2 .9-2 2v7H7V9h3v1.5a3 3 0 0 1 2.6-1.5c2.1 0 3.4 1.8 3.4 4.5V17h3v-7c0-2.8-2.2-5-5-5zM6.5 5.75A1.75 1.75 0 1 1 8.25 4 1.75 1.75 0 0 1 6.5 5.75z" fill="white"/>
+                <!-- Authentic GitHub SVG Icon (Source: Official octocat shape) -->
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.463 2 11.974c0 4.417 2.865 8.163 6.843 9.49.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.34-3.369-1.34-.454-1.152-1.107-1.464-1.107-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.027 1.531 1.027.892 1.529 2.341 1.089 2.91.83.092-.644.35-1.089.635-1.336-2.22-.251-4.555-1.111-4.555-4.943 0-1.092.39-1.983 1.029-2.675-.103-.252-.446-1.266.098-2.638 0 0 .84-.268 2.75 1.022A9.28 9.28 0 0112 6.883c.85.004 1.701.114 2.502.336 1.909-1.29 2.747-1.022 2.747-1.022.544 1.372.203 2.386.1 2.638.638.692 1.028 1.583 1.028 2.675 0 3.844-2.336 4.681-4.563 4.935.359.307.678.92.678 1.854 0 1.336-.012 2.417-.012 2.747 0 .267.18.578.688.482C21.137 20.137 24 16.39 24 11.974 24 6.463 19.522 2 14 2h-2z"/>
                 </svg>
             </a>
+
+            <!-- 4. Medium Icon Button (REMOVED) -->
+            <!-- The Medium link has been removed as requested -->
 
         </section>
         
@@ -939,7 +919,7 @@
                         <!-- Grew Energy Pvt Ltd (Streamlit reference removed) -->
                         <div class="mb-4"> <!-- REDUCED mb-6 to mb-4 -->
                             <h3 class="text-lg font-bold text-[#58a6ff]">Grew Energy Pvt Ltd. <span class="text-sm font-normal text-gray-400">(Assistant Manager F&A)</span></h3>
-                            <p class="text-xs text-gray-500 mb-2">December 2024 - June 2025 (Ahmedabad)</p>
+                            <p class="text-xs text-gray-500 mb-2">December 2024 - June 9, 2025 (Ahmedabad)</p>
                             <div class="job-detail">
                                 <!-- CORRECTED LINE: Ensure achievement text starts directly after the bold header on the same line. -->
                                 <p class="text-sm text-gray-400"><b class="text-white">FP&A Automation: Engineered</b> process automation by building <b>Python-based RPA, dashboards, and AI-enabled database access</b>, reducing MIS preparation time and manual effort by 80%.</p>
@@ -1228,7 +1208,7 @@
                             <tbody>
                                 <!-- Sorted by Year (Newest to Oldest) -->
                                 <tr>
-                                    <td>M.B.A (Financial Mgmt)</td>
+                                    <td>M.B.A FM</td>
                                     <td>2026</td>
                                     <td>Pursuing</td>
                                     <td>IGNOU</td>
@@ -1240,7 +1220,7 @@
                                     <td>IGNOU</td>
                                 </tr>
                                 <tr>
-                                    <td>PG Diploma in International Operation</td>
+                                    <td>PGDIBO</td>
                                     <td>2022</td>
                                     <td>62%</td>
                                     <td>IGNOU</td>
@@ -1254,17 +1234,17 @@
                                 </tr>
                                 <!-- CA CPT REMOVED FROM HERE -->
                                 <tr>
-                                    <td>12th (Commerce with Mathematics)</td>
+                                    <td>12th C/M</td>
                                     <td>2017</td>
                                     <!-- REMOVED RSBV NO. 2 -->
                                     <td>68%</td>
                                     <td>CBSE</td>
                                 </tr>
-                                <!-- NEW 10TH GRADE ENTRY -->
+                                <!-- NEW 10TH GRADE ENTRY (Updated to 78%) -->
                                 <tr>
-                                    <td>10th Grade</td>
+                                    <td>10th</td>
                                     <td>2015</td>
-                                    <td>8.2 CGPA</td>
+                                    <td>78%</td>
                                     <td>CBSE</td>
                                 </tr>
                             </tbody>
@@ -1414,7 +1394,7 @@
         
         <!-- FOOTER SECTION - MODIFIED TO INCLUDE CREDIT AND LINK -->
         <section class="mt-8 text-center border-t border-gray-700 pt-4"> <!-- REDUCED mt-16/pt-6 to mt-8/pt-4 -->
-            <!-- Feature Suggestion Link - RENAMED -->
+            <!-- Feature Suggestion Link - RENAMED. Tawk.to is linked externally -->
             <a href="https://tawk.to/chat/68efdd0e7e16ad19527ac96f/1j7kff0qq" target="_blank" class="text-gray-500 hover:text-[#238636] font-semibold transition duration-200 inline-block text-sm" aria-label="Start a direct chat with Zenith">
                 Chat with Zenith my AI powered Assistant.
             </a>
@@ -1427,7 +1407,7 @@
 
     </div>
     
-    <!-- MODAL DEFINITIONS (No longer needed to be fixed/floating) -->
+    <!-- MODAL DEFINITIONS (Cover Letter Modal has been removed) -->
     
     <!-- MEDIA MODAL (New popup for Portfolio/Playlist) -->
     <div id="mediaModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="media-modal-title">
@@ -1519,28 +1499,28 @@
         </div>
     </div>
 
-    <!-- COVER LETTER MODAL (New Tab Simulation) - Added ARIA Role -->
-    <div id="coverLetterModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-        <div class="modal-content">
-            <span class="close-button" onclick="document.getElementById('coverLetterModal').style.display='none'" aria-label="Close modal">&times;</span>
-            <h2 id="modal-title" class="text-3xl font-bold section-header text-white mb-6">Cover Letter / Statement of Intent</h2>
-            <blockquote class="p-4 border-l-4 border-[#238636] bg-[#1f2328] rounded-r-lg text-gray-300 italic text-base">
-                <p class="mb-4 text-white font-semibold">TARGETING: ₹20-25L Assistant Manager, FP&A / Immediate Join</p>
-                <p class="mb-4">I am writing to express my strong interest in a senior F&A role. With 6+ years of expertise spanning <b>FP&A, strategic finance, and compliance</b>, my value is defined by measurable process automation. I successfully leveraged <b>Python and Generative AI</b> to drive efficiency, cutting manual MIS effort by <b>80%</b> and securing timely bank funding during a liquidity crunch.</p>
-                <p class="mb-4">My background, solidified by the <b>CA CPT, NISM, and Financial Modelling</b> certifications, ensures compliance and strategic financial execution. My recent transitions were due to organizational changes and unavoidable family medical leave, which I utilized to secure the <b>Google Data Analytics Certification</b>—strengthening my toolkit for immediate impact.</p>
-                <p>I offer a disciplined, automation-focused approach ready to drive fiscal health in a forward-thinking organization. The detailed financial model for my automation initiatives is attached via Linktree.</p>
-                <footer class="mt-4 text-right text-sm text-gray-500">
-                    — Navneet Chaudhary
-                </footer>
-            </blockquote>
-        </div>
-    </div>
-    
-    <!-- Tawk.to Integration Script (REMOVED due to error) -->
     
     <!-- Load Twitter Widgets script (Needed for the X timeline in the modal) -->
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     
+    <!-- --- TAWK.TO SCRIPT (Re-added outside module for maximum load reliability) --- -->
+    <script type="text/javascript">
+    try {
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            s1.async=true;
+            s1.src='https://embed.tawk.to/68efdd0e7e16ad19527ac96f/1j7kff0qq';
+            s1.charset='UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1,s0);
+        })();
+    } catch(e) {
+        console.warn("Tawk.to script failed to load:", e);
+    }
+    </script>
+    <!-- -------------------------------------------------------------------------- -->
+
     <!-- Combined and updated JavaScript logic in a single module block -->
     <script type="module">
         // --- Firebase Setup (Minimal Auth for compliance) ---
@@ -1549,13 +1529,17 @@
         
         const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
         if (Object.keys(firebaseConfig).length > 0) {
-            const app = initializeApp(firebaseConfig);
-            const auth = getAuth(app);
-            signInAnonymously(auth).catch(e => console.error("Firebase Auth Error:", e));
+            try {
+                const app = initializeApp(firebaseConfig);
+                const auth = getAuth(app);
+                // Auth token logic is correctly omitted for this non-data app, defaulting to anonymous sign-in
+                signInAnonymously(auth).catch(e => console.error("Firebase Auth Error (Anonymous):", e));
+            } catch(e) {
+                 console.error("Firebase Initialization Error:", e);
+            }
         }
         
         // --- PROFESSIONAL DATA STRUCTURE (v10.0: Recruiter-Facing, Few Words, Color-Coded, Nov 1 Update) ---
-        // Nov 1: EY AI cert active (post-Oct 25). Structure: Central "Navneet Chaudhary" → 9 branches (exact prompt). Color: Expertise teal, Skills blue, Tools gray, Achievements green, Leadership orange, Edu purple, Certs indigo, Projects cyan, Recognition yellow (Tailwind extend). Collapsed default; expand for hierarchy. Export: Browser devtools PNG/SVG; Ctrl+P PDF.
         const treeData = {
             "name": "Navneet Chaudhary", 
             "children": [
@@ -1614,7 +1598,8 @@
                     "name": "Education",
                     "children": [
                         { "name": "M.Com (IGNOU)" },
-                        { "name": "PGDIB (IGNOU)" },
+                        { "name": "M.B.A FM (IGNOU)" },
+                        { "name": "PGDIBO (IGNOU)" }, /* CORRECTED FROM PGDIB */
                         { "name": "B.Com (DU)" },
                         { "name": "CA CPT (ICAI)" }
                     ]
@@ -1655,8 +1640,6 @@
         let i = 0, duration = 750, root;
         const margin = { top: 20, right: 150, bottom: 20, left: 150 }; // Tight for pro
         let svg, g, container; 
-        let width = 0;
-        let height = 0;
         let cluster; // Use cluster for compact no-overlap
         let mindMapInitialized = false; // Prevent re-init
 
@@ -1712,10 +1695,11 @@
 
         function setupSvg() {
             container = document.getElementById('tree-svg-container');
-            d3.select("#tree-svg").remove();
+            // Remove existing SVG to prevent duplicates on re-init attempts
+            d3.select("#tree-svg-container").select("svg").remove(); 
             svg = d3.select("#tree-svg-container").append("svg").attr("id", "tree-svg");
             g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
-            cluster = d3.cluster().separation((a, b) => (a.parent == b.parent ? 3 : 5)); // Increased separation for more space between nodes/leaves
+            cluster = d3.cluster().separation((a, b) => (a.parent == b.parent ? 3 : 5)); 
         }
 
         function collapse(d) {
@@ -1738,114 +1722,96 @@
         }
 
         function update(source) {
+            // Recalculate size based on current container dimensions
+            const containerWidth = container.clientWidth;
+            const containerHeight = container.clientHeight;
+            const width = containerWidth - margin.left - margin.right;
+            const height = containerHeight - margin.top - margin.bottom;
+            cluster.size([Math.max(height, 800), width]); // Use current or min size for cluster layout
+
             const treeDataComputed = cluster(root);
             const nodes = treeDataComputed.descendants();
             const links = treeDataComputed.descendants().slice(1);
 
-            nodes.forEach(d => { d.y = d.depth * 250; }); // Increased radial separation for more horizontal space
+            nodes.forEach(d => { d.y = d.depth * 250; }); 
 
-            // Root fixed center
-            const layoutSizeX = cluster.size()[0];
-            root.x = layoutSizeX / 2;
-            root.y = 0;
-            nodes.forEach(d => { if (d.parent) d.x = d.parent.x + (d.x - root.x) * 0.6; }); // Adjusted compression for balanced spread
-
-            // Fix main branches to static vertical positions
-            const n = root.children ? root.children.length : 0;
-            if (n > 0) {
-                const halfSpread = (layoutSizeX / 2) - 100;
-                root.children.forEach((child, i) => {
-                    let target_x;
-                    if (n === 1) {
-                        target_x = layoutSizeX / 2;
-                    } else {
-                        const pos = 2 * i / (n - 1) - 1; // -1 to 1
-                        target_x = layoutSizeX / 2 + pos * halfSpread;
-                    }
-                    const delta = target_x - child.x;
-                    function shift(node) {
-                        node.x += delta;
-                        if (node.children) {
-                            node.children.forEach(shift);
-                        }
-                    }
-                    shift(child);
-                });
-            }
-
-            const vertical_rel = nodes.map(d => d.x - root.x);
+            // Calculate extents to determine required SVG dimensions and translation
+            const vertical_rel = nodes.map(d => d.x);
             const min_v = d3.min(vertical_rel) || 0;
             const max_v = d3.max(vertical_rel) || 0;
             const extent_v = max_v - min_v;
             const padding = 150;
+
             const requiredHeight = extent_v + margin.top + margin.bottom + 2 * padding;
-            const containerHeight = container.clientHeight;
-            const containerWidth = container.clientWidth;
-            
-            const finalSvgHeight = Math.max(containerHeight, requiredHeight);
             const maxDepthY = d3.max(nodes, d => d.y) || width;
-            const finalSvgWidth = Math.max(containerWidth, maxDepthY + margin.left + margin.right + 100);
+            const requiredWidth = maxDepthY + margin.left + margin.right + 100;
 
-            svg.transition().duration(duration).attr("width", finalSvgWidth + 'px').attr("height", finalSvgHeight + 'px');
+            // Final SVG dimensions (ensuring it's large enough for content and container)
+            const finalSvgHeight = Math.max(containerHeight, requiredHeight);
+            const finalSvgWidth = Math.max(containerWidth, requiredWidth);
 
+            svg.transition().duration(duration)
+               .attr("width", finalSvgWidth + 'px')
+               .attr("height", finalSvgHeight + 'px');
+
+            // Center the graph vertically in the calculated space
             const rootScreenX = margin.left + 50;
-            const rootScreenY = margin.top + padding - min_v;
+            // Calculate the Y translation to center the graph vertically
+            const rootScreenY = margin.top + padding - min_v; 
+            
             g.transition().duration(duration).attr("transform", `translate(${rootScreenX}, ${rootScreenY})`);
             
-            setTimeout(() => {
-                 container.scrollTop = rootScreenY - (container.clientHeight / 2);
-                 container.scrollLeft = 0;
-            }, duration);
 
             // Nodes
             const node = g.selectAll('g.node').data(nodes, d => d.id || (d.id = ++i));
             const nodeEnter = node.enter().append('g').attr('class', 'node')
-                .attr('transform', d => `translate(${source.y0},${source.x0 - root.x})`)
+                .attr('transform', d => `translate(${source.y0},${source.x0})`)
                 .on('click', click);
 
             nodeEnter.append('circle').attr('r', 1e-6)
                 .attr('class', d => d._children ? 'node--internal' : 'node--leaf')
                 .style("fill", d => {
                     if (d.depth === 0) return '#1e40af'; // Root navy
-                    if (d.data.name in branchColors) return branchColors[d.data.name]; // Branch color
+                    // Use parent's name to determine branch color
+                    const branchName = d.depth === 1 ? d.data.name : (d.parent ? d.parent.data.name : 'Unknown');
+                    if (branchName in branchColors) return branchColors[branchName];
                     if (d.children || d._children) return '#64748b'; // Collapsed slate
                     return '#0d9488'; // Leaf teal
                 })
                 .style("stroke", d => {
                     if (d.depth === 0) return '#1d4ed8'; // Navy stroke
-                    if (d.data.name in branchColors) return branchColors[d.data.name] + '80'; // Branch stroke variant
                     return (d.children || d._children) ? '#475569' : '#0f766e';
                 });
 
             const texts = nodeEnter.append('text').attr("dy", ".35em").attr("x", 10).attr("text-anchor", "start")
                 .text(d => d.data.name);
-            wrap(texts, 250); // Increased maxWidth to minimize wrapping and keep most labels on single line
+            wrap(texts, 250); 
             texts.clone(true).lower().attr('class', 'text-outline');
 
             const nodeUpdate = nodeEnter.merge(node);
             nodeUpdate.transition().duration(duration)
-                .attr('transform', d => `translate(${d.y},${d.x - root.x})`);
+                .attr('transform', d => `translate(${d.y},${d.x})`);
 
-            wrap(nodeUpdate.select('text'), 250); // Same increased width
+            wrap(nodeUpdate.select('text'), 250);
             nodeUpdate.select('text').clone(true).lower().attr('class', 'text-outline');
 
             nodeUpdate.select('circle')
-                .attr('r', 7) // Compact
+                .attr('r', 7) 
                 .style("fill", d => {
                     if (d.depth === 0) return '#1e40af';
-                    if (d.data.name in branchColors) return branchColors[d.data.name];
+                    const branchName = d.depth === 1 ? d.data.name : (d.parent ? d.parent.data.name : 'Unknown');
+                    if (branchName in branchColors) return branchColors[branchName];
                     if (d.children) return '#3b82f6'; // Expanded blue
                     if (d._children) return '#64748b';
                     return '#0d9488';
                 })
                 .style("stroke", d => {
                     if (d.depth === 0) return '#1d4ed8';
-                    if (d.data.name in branchColors) return branchColors[d.data.name] + '80';
                     return (d.children || d._children) ? '#475569' : '#0f766e';
                 });
 
             const nodeExit = node.exit().transition().duration(duration)
-                .attr('transform', d => `translate(${source.y},${source.x - root.x})`).remove();
+                .attr('transform', d => `translate(${source.y},${source.x})`).remove();
             nodeExit.select('circle').attr('r', 1e-6);
             nodeExit.select('text').style('fill-opacity', 1e-6);
 
@@ -1853,21 +1819,17 @@
             const link = g.selectAll('path.link').data(links, d => d.id);
             const linkEnter = link.enter().insert('path', "g").attr("class", "link")
                 .attr('d', d => {
-                    const o = { x: source.x0 - root.x, y: source.y0 };
+                    const o = { x: source.x0, y: source.y0 };
                     return diagonal(o, o);
                 });
 
             const linkUpdate = linkEnter.merge(link);
             linkUpdate.transition().duration(duration)
-                .attr('d', d => {
-                    const sd = { x: d.x - root.x, y: d.y };
-                    const pd = { x: d.parent.x - root.x, y: d.parent.y };
-                    return diagonal(sd, pd);
-                });
+                .attr('d', d => diagonal(d, d.parent));
 
             link.exit().transition().duration(duration)
                 .attr('d', d => {
-                    const o = { x: source.x - root.x, y: source.y };
+                    const o = { x: source.x, y: source.y };
                     return diagonal(o, o);
                 }).remove();
 
@@ -1879,12 +1841,6 @@
         }
         
         function resizeAndDraw() {
-            const containerWidth = container.clientWidth;
-            const containerHeight = container.clientHeight;
-            width = containerWidth - margin.left - margin.right;
-            height = containerHeight - margin.top - margin.bottom;
-            cluster.size([Math.max(height, 800), width]);
-
             if (root) {
                 update(root);
             }
@@ -1892,17 +1848,31 @@
 
         // NEW: Modal-Adapted Init Function (Replaces window.onload)
         function initMindMap() {
-            if (mindMapInitialized) return;
-            mindMapInitialized = true;
+            if (mindMapInitialized) {
+                // If already initialized, just ensure redraw on current dimensions
+                resizeAndDraw();
+                return;
+            }
+            
+            mindMapInitialized = true; // Set flag early
             setupSvg(); 
             root = d3.hierarchy(treeData, d => d.children);
+            
+            // Set initial collapse state
+            root.children.forEach(collapse);
+            
+            // Initial draw needs current dimensions
+            const containerWidth = container.clientWidth;
+            const containerHeight = container.clientHeight;
+            const width = containerWidth - margin.left - margin.right;
+            const height = containerHeight - margin.top - margin.bottom;
+            cluster.size([Math.max(height, 800), width]);
             root.x0 = height / 2;
             root.y0 = 0;
 
-            // Collapse all
-            root.children.forEach(collapse);
+            update(root); // Perform initial update
             
-            resizeAndDraw();
+            // FIX: Ensure listener is only attached ONCE
             window.addEventListener('resize', resizeAndDraw);
             gtag('event', 'modal_open', { 'event_category': 'engagement', 'event_label': 'mind_map_viewed' });
         }
@@ -1917,7 +1887,7 @@
             const tablinks = document.querySelectorAll(".flex:has(button[onclick^='window.openTab']) .tab-button");
             for (let i = 0; i < tablinks.length; i++) {
                 tablinks[i].classList.remove("active-tab");
-                tablinks[i].style.borderBottomColor = "transparent";
+                // Removed explicit style setting: tablinks[i].style.borderBottomColor = "transparent";
                 tablinks[i].setAttribute('aria-selected', 'false');
             }
             const currentTab = document.getElementById(tabName);
@@ -1925,7 +1895,7 @@
             currentTab.setAttribute('aria-hidden', 'false');
             if (evt && evt.currentTarget) {
                 evt.currentTarget.classList.add("active-tab");
-                evt.currentTarget.style.borderBottomColor = "#238636";
+                // Removed redundant explicit style setting
                 evt.currentTarget.setAttribute('aria-selected', 'true');
             }
             document.getElementById('achievementsContainer').scrollTop = 0;
@@ -1941,7 +1911,7 @@
             const tabButtons = document.getElementsByClassName("skills-tab-button");
             for (let i = 0; i < tabButtons.length; i++) {
                 tabButtons[i].classList.remove("active-tab");
-                tabButtons[i].style.borderBottomColor = "transparent";
+                // Removed explicit style setting: tabButtons[i].style.borderBottomColor = "transparent";
                 tabButtons[i].setAttribute('aria-selected', 'false');
             }
             const currentTab = document.getElementById(tabName);
@@ -1949,7 +1919,7 @@
             currentTab.setAttribute('aria-hidden', 'false');
             if (evt && evt.currentTarget) {
                 evt.currentTarget.classList.add("active-tab");
-                evt.currentTarget.style.borderBottomColor = "#238636";
+                // Removed redundant explicit style setting
                 evt.currentTarget.setAttribute('aria-selected', 'true');
             }
             document.getElementById('skillsTabContent').scrollTop = 0;
@@ -2103,11 +2073,10 @@
             }).join('');
         }
         
-        // --- PITCH INTEGRATION LOGIC (UNCHANGED) ---
-        // 1. API Key updated with user's provided key
-        const apiKey = "AIzaSyA7mpJyL21zh1vfxlodZthXR7wSh5os_Pc"; 
+        // --- PITCH INTEGRATION LOGIC (UPDATED API KEY) ---
+        // FIX: Replaced hardcoded API Key with empty string for runtime injection by Canvas
+        const apiKey = ""; 
         const TTS_MODEL = 'gemini-2.5-flash-preview-tts';
-        // 2. Voice updated back to Charon as requested
         const VOICE_NAME = "Charon"; 
 
         // Hardcoded pitch from user - UPDATED PITCH TEXT (More punchy and value-focused)
@@ -2117,7 +2086,6 @@
 
         // --- DOM Elements ---
         const playPitchButton = document.getElementById('playPitchButton');
-        const statusLight = document.getElementById('statusLight');
         const pitchContent = document.getElementById('pitchContent');
         const pitchOutput = document.getElementById('pitchOutput');
         const pitchStatus = document.getElementById('pitchStatus');
@@ -2152,10 +2120,16 @@
             if (audioInstance) {
                 audioInstance.pause();
                 audioInstance.currentTime = 0;
-                URL.revokeObjectURL(audioInstance.src); 
+                // Only revoke URL if it exists to avoid errors on non-playing state
+                if (audioInstance.src && audioInstance.src.startsWith('blob:')) {
+                    URL.revokeObjectURL(audioInstance.src); 
+                }
                 audioInstance = null;
             }
-            cancelAnimationFrame(window.animationFrameId);
+            if (window.animationFrameId) {
+                cancelAnimationFrame(window.animationFrameId);
+                window.animationFrameId = null;
+            }
             isProcessing = false;
             playPitchButton.disabled = false;
             playPitchButton.querySelector('span').textContent = 'Play Pitch';
@@ -2163,8 +2137,6 @@
             
             pitchStatus.innerHTML = "Pitch stopped. Click 'Play Pitch' to resume.";
             setProgress(0);
-            statusLight.classList.remove('status-speaking');
-            statusLight.classList.add('status-idle');
         }
 
 
@@ -2182,13 +2154,14 @@
         function pcmToWav(pcmData, sampleRate) {
             const numChannels = 1;
             const bytesPerSample = 2;
-            const buffer = new ArrayBuffer(44 + pcmData.byteLength);
+            const pcm16 = new Int16Array(pcmData);
+            const buffer = new ArrayBuffer(44 + pcm16.byteLength);
             const view = new DataView(buffer);
             let offset = 0;
             function writeString(str) {
                 for (let i = 0; i < str.length; i++) { view.setUint8(offset++, str.charCodeAt(i)); }
             }
-            writeString('RIFF'); view.setUint32(offset, 36 + pcmData.byteLength, true); offset += 4;
+            writeString('RIFF'); view.setUint32(offset, 36 + pcm16.byteLength, true); offset += 4;
             writeString('WAVE');
             writeString('fmt '); view.setUint32(offset, 16, true); offset += 4;
             view.setUint16(offset, 1, true); offset += 2; 
@@ -2197,8 +2170,9 @@
             view.setUint32(offset, sampleRate * numChannels * bytesPerSample, true); offset += 4;
             view.setUint16(offset, numChannels * bytesPerSample, true); offset += 2;
             view.setUint16(offset, 16, true); offset += 2; 
-            writeString('data'); view.setUint32(offset, pcmData.byteLength, true); offset += 4;
-            new Int16Array(buffer, offset).set(new Int16Array(pcmData));
+            writeString('data'); view.setUint32(offset, pcm16.byteLength, true); offset += 4;
+            // FIX: Simplified Int16Array setting for robust buffer handling
+            new Int16Array(buffer, offset).set(pcm16);
             return new Blob([buffer], { type: 'audio/wav' });
         }
 
@@ -2232,15 +2206,12 @@
                 const elapsed = timestamp - startTime;
                 const percent = Math.min(100, (elapsed / durationMs) * 100);
                 setProgress(percent);
-                if (percent < 100 && !audioInstance.paused) {
+                if (percent < 100 && audioInstance && !audioInstance.paused) {
                     window.animationFrameId = requestAnimationFrame(updateProgress);
                 } else if (percent >= 100) {
                     setProgress(100); // Ensure it reaches 100%
                 }
             };
-            
-            statusLight.classList.add('status-speaking');
-            statusLight.classList.remove('status-idle');
             
             playPitchButton.disabled = false; // Allow stopping
             playPitchButton.querySelector('span').textContent = 'Stop Pitch';
@@ -2254,28 +2225,18 @@
             }
 
             audioInstance.onended = () => {
-                cancelAnimationFrame(window.animationFrameId);
-                setProgress(100);
-                statusLight.classList.remove('status-speaking');
-                statusLight.classList.add('status-idle');
-                playPitchButton.disabled = false;
-                playPitchButton.querySelector('span').textContent = 'Play Pitch'; 
-                pitchButtonIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197 2.132A1 1 0 0110 13.73v-3.46a1 1 0 011.555-.832l3.197 2.132z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>'; // Play icon
+                stopAudioAndReset(); // Use reset function on end
                 pitchStatus.innerHTML = '<span class="text-[#238636] font-semibold">Pitch delivered successfully. Click to play again.</span>';
-                URL.revokeObjectURL(audioUrl); 
-                audioInstance = null;
-                isProcessing = false; // Reset processing flag after full cycle
             };
 
             audioInstance.onerror = (e) => {
-                cancelAnimationFrame(window.animationFrameId);
                 console.error("Audio playback error:", e);
                 pitchStatus.innerHTML = '<span class="text-red-500 font-semibold">Audio playback failed. Pitch text available.</span>';
-                stopAudioAndReset(); // Use reset function to handle error state fully
+                stopAudioAndReset(); 
             };
 
             audioInstance.play().catch(e => {
-                 cancelAnimationFrame(window.animationFrameId);
+                 // Handle autoplay policy restriction (common on first click)
                  console.warn("Autoplay prevented:", e);
                  isProcessing = false;
                  playPitchButton.disabled = false;
@@ -2283,8 +2244,6 @@
                  pitchButtonIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197 2.132A1 1 0 0110 13.73v-3.46a1 1 0 011.555-.832l3.197 2.132z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>'; // Play icon
                  pitchStatus.innerHTML = '<span class="text-yellow-500 font-semibold">Playback requires user interaction. Click the button again.</span>';
                  setProgress(0);
-                 statusLight.classList.remove('status-speaking');
-                 statusLight.classList.add('status-idle');
             });
         }
 
@@ -2294,10 +2253,6 @@
             playPitchButton.querySelector('span').textContent = 'Synthesizing...';
             pitchStatus.textContent = "The introduction audio is synthesizing...";
             
-            statusLight.classList.remove('status-idle');
-            statusLight.classList.remove('status-speaking'); // Remove speaking class if present
-            statusLight.style.backgroundColor = '#f59e0b'; // Amber for synthesizing
-            statusLight.style.boxShadow = '0 0 10px #f59e0b';
             pitchButtonIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 0014.28 2.052L17.5 5.3m-1.761 4.717a1 1 0 01-1.292.213L10 8l-.3 1.5M4 12a8 8 0 0015.356 2.052L17.5 17.3m-1.761-4.717a1 1 0 01-1.292.213L10 16l-.3 1.5"></path>'; // Load icon
             
             setProgress(0);
@@ -2305,10 +2260,7 @@
         }
         
         async function callGeminiTtsApi(text) {
-            // Corrected API URL domain
             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${TTS_MODEL}:generateContent?key=${apiKey}`;
-            
-            // Note: We remove HTML tags before sending the text to TTS, as TTS only processes plain text.
             const plainText = text.replace(/<[^>]*>?/gm, '').trim();
 
             const payload = {
@@ -2336,20 +2288,17 @@
                         const sampleRate = sampleRateMatch ? parseInt(sampleRateMatch[1], 10) : 16000;
                         
                         const wordCount = plainText.split(/\s+/).length;
-                        // Estimate duration: 250ms per word is a standard, quick estimate.
                         const estimatedDurationMs = wordCount * 250; 
                         
                         return { audioData, sampleRate, estimatedDurationMs };
                     }
-                    // Handle non-200 responses with an informative error
                     if (!response.ok) {
                         const errorBody = JSON.stringify(result, null, 2);
                         throw new Error(`API returned status ${response.status}. Body: ${errorBody}`);
                     }
-                    // Handle generic API failure or unexpected response structure
                     throw new Error("Invalid TTS response structure or missing audio data.");
                 } catch (error) {
-                    console.error(`Attempt ${i + 1} failed for TTS API:`, error);
+                    // Do not log retries as errors to console
                     if (i < 2) await new Promise(resolve => setTimeout(resolve, Math.pow(2, i) * 1000));
                 }
             }
@@ -2358,7 +2307,6 @@
 
         window.generateElevatorPitch = async function() {
             if (audioInstance) {
-                // If audio is currently playing, stop it and reset UI
                 stopAudioAndReset();
                 return;
             }
@@ -2368,8 +2316,6 @@
 
             try {
                 const pitchText = FINAL_ELEVATOR_PITCH;
-                // Pitch text is HTML for formatting the bold title
-                // We strip the instruction "Say in a confident, authoritative, and executive tone, with a slight Indian accent:" for display
                 const instructionPrefix = 'Say in a confident, authoritative, and executive tone, with a slight Indian accent:';
                 const displayPitchText = pitchText.startsWith(instructionPrefix) 
                                              ? pitchText.substring(instructionPrefix.length).trim() 
@@ -2379,8 +2325,8 @@
                 const { audioData, sampleRate, estimatedDurationMs } = await callGeminiTtsApi(pitchText);
 
                 const pcmData = base64ToArrayBuffer(audioData);
-                const pcm16 = new Int16Array(pcmData);
-                const wavBlob = pcmToWav(pcm16, sampleRate);
+                // Corrected pcmToWav function usage
+                const wavBlob = pcmToWav(pcmData, sampleRate);
                 
                 playPitchButton.querySelector('span').textContent = 'Stop Pitch';
                 pitchStatus.textContent = "Playing pitch...";
@@ -2388,7 +2334,6 @@
 
             } catch (error) {
                 console.error("Pitch Generation Failure:", error);
-                // Ensure full pitch text is displayed if audio fails
                 const instructionPrefix = 'Say in a confident, authoritative, and executive tone, with a slight Indian accent:';
                 const displayPitchText = FINAL_ELEVATOR_PITCH.startsWith(instructionPrefix) 
                                              ? FINAL_ELEVATOR_PITCH.substring(instructionPrefix.length).trim() 
@@ -2396,13 +2341,12 @@
                 pitchOutput.innerHTML = displayPitchText; 
                 pitchStatus.innerHTML = '<span class="text-red-500 font-semibold">Critical Failure: Could not generate audio. Pitch text is displayed.</span>';
                 
-                stopAudioAndReset(); // Ensure full reset on critical failure
+                stopAudioAndReset(); 
             }
         }
         
         window.initZenith = function() { 
-            // Set initial status to ready/idle (Red dot, 0 progress)
-            statusLight.classList.add('status-idle');
+            // Set initial status to ready/idle 
             setProgress(0);
             
             // FIX: Ensure the full pitch text without the instruction is displayed.
@@ -2424,59 +2368,87 @@
         }
 
         // Function to open media modal and start video
-        // UPDATED: Using the new playlist embed URL provided by the user.
         const CURRENT_VIDEO_EMBED_URL = `https://www.youtube.com/embed/videoseries?list=PLEfUln3m0PdhgiQzVE2GM8cwd8WqyfWw2&autoplay=1&rel=0`;
         
+        // --- FIX 1: Modal Open Robustness (Media Modal) ---
         window.openMediaModal = function() {
             document.getElementById('mediaModal').style.display = 'block';
             const youtubeIframe = document.getElementById('youtubeIframe');
-            // Set the src to the CURRENT_VIDEO_EMBED_URL (Playlist) to enable playback when modal is opened
-            if (youtubeIframe) {
-                youtubeIframe.src = CURRENT_VIDEO_EMBED_URL;
-            }
+            
+            // Use setTimeout to allow the modal to fully render and calculate dimensions
+            setTimeout(() => {
+                if (youtubeIframe) {
+                    youtubeIframe.src = CURRENT_VIDEO_EMBED_URL;
+                }
+                gtag('event', 'modal_open', { 'event_category': 'engagement', 'event_label': 'media_viewed' });
+            }, 50); 
         }
 
         // Function to close media modal and stop video
         window.closeMediaModal = function() {
             document.getElementById('mediaModal').style.display = 'none';
             const youtubeIframe = document.getElementById('youtubeIframe');
-            // Remove the src to stop video playback in the background
             if (youtubeIframe) {
+                // Setting src to empty stops playback
                 youtubeIframe.src = '';
             }
         }
         
         // Mind Map Modal Control (Now initializes the integrated D3 map)
+        // --- FIX 2: Modal Open Robustness & D3 Init (Mind Map Modal) ---
         window.openMindMapModal = function() {
-            document.getElementById('mindMapModal').style.display = 'block';
-            initMindMap(); // Trigger init on open
+            const modal = document.getElementById('mindMapModal');
+            modal.style.display = 'block';
+            
+            // Use setTimeout to ensure the modal is visibly rendered before D3 calculates its SVG bounds
+            setTimeout(() => {
+                if (!mindMapInitialized) {
+                    initMindMap(); // Trigger init on first open
+                } else {
+                     resizeAndDraw(); // Recalculate layout on subsequent opens
+                }
+            }, 50); 
         }
 
         // Function to close mind map modal
         window.closeMindMapModal = function() {
             document.getElementById('mindMapModal').style.display = 'none';
-            // D3 elements remain in the DOM but are hidden, ready for next opening
         }
         
         // --- Run Initialization on Load ---
+        // FIX: Moved Core Certs and Professional Certs rendering outside of onload
+        // to minimize perceived load time for the Certifications section.
+        const coreCerts = certifications.filter(c => c.isCoreCert === true);
+        window.renderCoreCerts(coreCerts);
+        window.sortCertifications('relevance'); 
+
         window.onload = function() {
-            // Existing profile logic initialization
-            const coreCerts = certifications.filter(c => c.isCoreCert === true);
-            window.renderCoreCerts(coreCerts);
+            
             document.getElementById('filterDomain').value = 'All'; 
-            window.sortCertifications('relevance'); 
+            
             var achievementButton = document.querySelector('.flex:has(button[onclick^="window.openTab"]) .tab-button:first-child');
-            window.openTab({ currentTarget: achievementButton }, 'professional');
-            window.openSkillsTab({ currentTarget: document.querySelector('.skills-tab-button:first-child') }, 'functionalSkills');
+            // Ensure button exists before clicking it to open the default tab
+            if (achievementButton) {
+                window.openTab({ currentTarget: achievementButton }, 'professional');
+            }
+            var functionalSkillsButton = document.querySelector('.skills-tab-button:first-child');
+             if (functionalSkillsButton) {
+                window.openSkillsTab({ currentTarget: functionalSkillsButton }, 'functionalSkills');
+             }
             
             // Pitch Init
             window.initZenith();
 
             // Close modal on outside click (best practice)
             window.onclick = function(event) {
-                const modal = document.getElementById('mindMapModal');
-                if (event.target === modal) {
-                    modal.style.display = 'none';
+                const mindMapModal = document.getElementById('mindMapModal');
+                const mediaModal = document.getElementById('mediaModal');
+                
+                if (event.target === mindMapModal) {
+                    mindMapModal.style.display = 'none';
+                }
+                if (event.target === mediaModal) {
+                    window.closeMediaModal(); 
                 }
             }
         };
