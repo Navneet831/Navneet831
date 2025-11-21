@@ -74,7 +74,7 @@
         // GTM
         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GT-57Z944P3');
         
-        // Microsoft Clarity (UPDATED ID)
+        // Microsoft Clarity (ID Configured)
         (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "j25v0x9rav");
         
         window.clarity('set', 'mask', 'full');
@@ -906,9 +906,9 @@
             }
             
             // 2. Fetch Certifications (Sheet: Certification)
-            // Columns: A (S.no), B (S.no R), C (Certifications), D (Institution), E (Score), F (Date)
-            // Note: Google Sheet Column Index starts at 0. A=0, B=1, C=2, D=3, E=4, F=5
-            const certUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=Certification&range=A:F`;
+            // Columns: A (S.no), B (S.no R), C (Certifications), D (Institution), E (Score), F (Date), G (Link - New)
+            // Note: Google Sheet Column Index starts at 0. A=0 ... G=6
+            const certUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=Certification&range=A:G`;
             
             try {
                 const certResponse = await fetch(certUrl);
@@ -930,7 +930,8 @@
                              t: c[2]?.v,         // C: Title
                              i: c[3]?.v,         // D: Institution
                              sc: c[4]?.v,        // E: Score
-                             y: c[5]?.v || c[5]?.f // F: Date (Year/Date) - Can be object or formatted string
+                             y: c[5]?.v || c[5]?.f, // F: Date (Year/Date)
+                             l: c[6]?.v // G: Link (URL)
                          };
                     }).filter(item => item && item.t && item.t !== "Certifications" && item.t !== "Certification"); // Filter out empty rows AND header row
                     
@@ -1068,18 +1069,30 @@
                 }
             });
             
-            list.innerHTML = sorted.map(c => `
-                <div class="flex justify-between items-center p-3 rounded-lg bg-bg hover:bg-slate-800 border border-transparent hover:border-slate-700 transition group">
-                    <div>
-                        <div class="text-sm font-bold text-white group-hover:text-accent-primary transition-colors">${c.t}</div>
-                        <div class="text-xs text-text-muted">${c.i}</div>
+            list.innerHTML = sorted.map(c => {
+                // If c.l exists, wrap content in <a>, else use <div>
+                const content = `
+                    <div class="flex justify-between items-center p-3 rounded-lg bg-bg hover:bg-slate-800 border border-transparent hover:border-slate-700 transition group cursor-pointer">
+                        <div>
+                            <div class="text-sm font-bold text-white group-hover:text-accent-primary transition-colors flex items-center gap-2">
+                                ${c.t}
+                                ${c.l ? `<svg class="w-3 h-3 opacity-50 group-hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>` : ''}
+                            </div>
+                            <div class="text-xs text-text-muted">${c.i}</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-xs font-mono text-white">${formatDateMMYY(c.y)}</div>
+                            ${c.sc ? `<div class="text-[10px] text-accent-secondary font-bold">${c.sc}</div>` : ''}
+                        </div>
                     </div>
-                    <div class="text-right">
-                        <div class="text-xs font-mono text-white">${formatDateMMYY(c.y)}</div>
-                        ${c.sc ? `<div class="text-[10px] text-accent-secondary font-bold">${c.sc}</div>` : ''}
-                    </div>
-                </div>
-            `).join('');
+                `;
+                
+                if(c.l) {
+                    return `<a href="${c.l}" target="_blank" rel="noopener noreferrer" class="block no-underline">${content}</a>`;
+                } else {
+                    return content;
+                }
+            }).join('');
             document.getElementById('sortBtn').innerText = isSortRel ? "Sort: Relevance" : "Sort: Date";
         }
 
@@ -1182,7 +1195,7 @@
             const container = document.getElementById('pitchTextContainer');
 
             if (!apiKey) {
-                alert("API Key Missing! Please open index.html and paste your Gemini API Key in line 837.");
+                alert("API Key Missing! Please open index.html and paste your Gemini API Key in line 849.");
                 return;
             }
 
