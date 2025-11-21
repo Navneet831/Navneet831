@@ -18,6 +18,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
 
+    <!-- Vercel Analytics (The correct way for Static HTML) -->
+    <script src="/_vercel/insights/script.js"></script>
+
     <!-- Tailwind Config for Corporate Dark Theme -->
     <script>
         tailwind.config = {
@@ -68,9 +71,12 @@
 
     <!-- Analytics & Verification -->
     <script>
-        // GTM & Clarity
+        // GTM
         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GT-57Z944P3');
-        (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "CLARITY_PROJECT_ID");
+        
+        // Microsoft Clarity (UPDATED ID)
+        (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "j25v0x9rav");
+        
         window.clarity('set', 'mask', 'full');
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push('config', 'G-1XL4LRC5PP', {'anonymize_ip': true, 'allow_google_signals': false, 'user_id': undefined, 'send_page_view': false});
@@ -112,11 +118,6 @@
         .timeline-line { display: none; } /* Removed vertical line */
         .timeline-dot { display: none; } /* Removed dots */
         
-        /* D3 & Visuals */
-        .node circle { cursor: pointer; stroke-width: 2px; transition: all 0.3s; }
-        .node text { font-family: 'Inter', sans-serif; font-weight: 500; text-shadow: 0 1px 2px rgba(0,0,0,0.8); pointer-events: none; }
-        .link { fill: none; stroke: #475569; stroke-width: 1.5px; transition: all 0.3s; }
-
         /* FAQ Accordion Styling */
         .accordion-content {
             max-height: 0;
@@ -133,6 +134,58 @@
             max-height: 400px; /* Fixed height for scrollable area */
             overflow-y: auto;
             padding-right: 4px; /* Space for scrollbar */
+        }
+
+        /* --- MIND MAP SPECIFIC STYLES (Ported from Source) --- */
+        #mindMapContainer {
+            background-color: #0f172a; /* Match Theme */
+            overflow: auto; /* Enable scroll */
+            overflow-x: scroll;
+            overflow-y: scroll;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: #475569 #1e293b;
+        }
+        
+        /* Scrollbar matching main theme */
+        #mindMapContainer::-webkit-scrollbar { width: 6px; height: 6px; }
+        #mindMapContainer::-webkit-scrollbar-track { background: #1e293b; }
+        #mindMapContainer::-webkit-scrollbar-thumb { background: #475569; border-radius: 3px; }
+        #mindMapContainer::-webkit-scrollbar-thumb:hover { background: #64748b; }
+
+        /* D3 Elements */
+        .link {
+            fill: none;
+            stroke: #6b7280; /* Gray-500 */
+            stroke-width: 2px;
+            transition: stroke 0.3s ease;
+        }
+
+        .node circle {
+            cursor: pointer;
+            stroke-width: 3px;
+            transition: fill 0.3s, stroke 0.3s;
+        }
+        
+        .node--internal circle {
+            fill: #64748b;
+            stroke: #475569;
+        }
+
+        .node text {
+            fill: #f1f5f9;
+            font-size: 12px;
+            pointer-events: none;
+            font-weight: 500;
+            text-shadow: 0.5px 0.5px 1px rgba(15, 23, 42, 0.8);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .text-outline {
+            stroke: rgba(15, 23, 42, 0.95);
+            stroke-width: 1.5px;
+            opacity: 0.9;
+            fill: none;
         }
     </style>
 </head>
@@ -683,14 +736,8 @@
     <!-- LOGIC -->
     <script>
         /* --- 1. STATE & DATA --- */
-        const certs = [
-            { t: "CA CPT", i: "ICAI", y: 2018, rel: 1, core: true, sc: "71.5%" },
-            { t: "NISM Research Analyst", i: "NISM", y: 2024, rel: 1, core: true, sc: "64.25%" },
-            { t: "Google Data Analytics", i: "Google", y: 2023, rel: 2, core: false },
-            { t: "Financial Modelling", i: "WSS", y: 2023, rel: 1, core: false },
-            { t: "AI for Everyone", i: "DeepMind", y: 2024, rel: 2, core: false },
-            { t: "PwC GST Executive", i: "PwC", y: 2023, rel: 1, core: false }
-        ];
+        // CERTIFICATIONS are now fetched dynamically. Initial array is empty placeholder.
+        let certs = [];
         let isSortRel = true;
         let faqData = []; 
 
@@ -779,15 +826,15 @@
         
         // Main Init Function
         document.addEventListener('DOMContentLoaded', () => {
-            renderCerts();
+            // renderCerts() is called AFTER data fetch now
             fetchFAQData();      // Fetch FAQs
-            fetchProfileData();  // Fetch Pitch & Journey
+            fetchProfileData();  // Fetch Pitch, Journey AND Certifications (updated function)
             startMixpanelTracking(); // Init Tracking
         });
 
         async function fetchFAQData() {
             const statusElement = document.getElementById('faq-status');
-            statusElement.innerText = "Fetching data...";
+            if(statusElement) statusElement.innerText = "Fetching data...";
             // Range B:C from FAQ Sheet
             const queryUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=FAQ&range=B:C`;
 
@@ -807,15 +854,16 @@
                     }).filter(item => item !== null);
 
                     if (faqData.length > 0) {
-                        statusElement.remove();
+                        if(statusElement) statusElement.remove();
                         renderFAQ();
                     } else {
-                        statusElement.innerText = "FAQ Sheet is empty.";
+                        if(statusElement) statusElement.innerText = "FAQ Sheet is empty.";
                     }
                 }
             } catch (error) {
                 console.error("FAQ Fetch Error:", error);
-                document.getElementById('faq-container').innerHTML = `<div class="text-accent-alert text-xs">Failed to load FAQs.</div>`;
+                const container = document.getElementById('faq-container');
+                if(container) container.innerHTML = `<div class="text-accent-alert text-xs">Failed to load FAQs.</div>`;
             }
         }
 
@@ -823,50 +871,74 @@
             const journeyContentEl = document.getElementById('journey-modal-content');
             const pitchEl = document.getElementById('pitchStatus');
             
-            // Fetch from 'About me' sheet, expanded range B1:B12 for safety
-            // B1 = Pitch, B2 = Journey
-            const queryUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=About%20me&range=B1:B12`;
+            // 1. Fetch Profile Info (About me)
+            const profileUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=About%20me&range=B1:B10`;
 
             try {
-                const response = await fetch(queryUrl);
+                const response = await fetch(profileUrl);
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 const text = await response.text();
                 const jsonText = text.replace(/.*google.visualization.Query.setResponse\({(.*?)}\);/s, '{$1}');
                 const json = JSON.parse(jsonText);
-                
-                // Debug Log
-                console.log("%c[Profile Data Debug]", "color: #10b981", json);
 
                 if (json.table && json.table.rows) {
-                    // Row 0 = B1 (Pitch)
-                    // Row 1 = B2 (Journey)
-                    const pitchVal = json.table.rows[0]?.c[0]?.v;
-                    
-                    // Safety check for Journey: Ensure array has enough rows
+                    const pitchVal = json.table.rows[0]?.c[0]?.v; // B1
+                    // Safety check for Journey (B2)
                     let journeyVal = null;
                     if(json.table.rows.length > 1) {
-                        journeyVal = json.table.rows[1]?.c[0]?.v;
+                        journeyVal = json.table.rows[1]?.c[0]?.v; // B2
                     }
 
-                    // 1. Update Pitch
                     if(pitchVal) {
                         PITCH_TEXT = pitchVal;
                         document.getElementById('pitchTranscript').innerText = `"${pitchVal.replace('Say in a confident, authoritative, executive tone with a slight Indian accent: ', '')}"`;
                         pitchEl.innerText = "Ready to play (AI Synthesized)";
                     }
 
-                    // 2. Update Journey (Into Modal)
                     if(journeyVal) {
-                        // Simple formatting: convert newlines to paragraphs or breaks
                         journeyContentEl.innerHTML = journeyVal.split('\n').map(p => `<p class="mb-2">${p}</p>`).join('');
                     } else {
-                        journeyContentEl.innerHTML = `<span class="text-accent-alert">Journey content not found in Cell B2.</span><br><span class="text-xs text-text-muted">Please check sheet: "About me" > Cell B2.</span>`;
+                        journeyContentEl.innerHTML = `<span class="text-accent-alert">Journey content not found.</span>`;
                     }
                 }
             } catch (error) {
                 console.error("Profile Fetch Error:", error);
-                journeyContentEl.innerText = "Unable to load journey details due to network/permission error.";
-                pitchEl.innerText = "Error loading dynamic pitch.";
+            }
+            
+            // 2. Fetch Certifications (Sheet: Certification)
+            // Columns: A (S.no), B (S.no R), C (Certifications), D (Institution), E (Score), F (Date)
+            // Note: Google Sheet Column Index starts at 0. A=0, B=1, C=2, D=3, E=4, F=5
+            const certUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=Certification&range=A:F`;
+            
+            try {
+                const certResponse = await fetch(certUrl);
+                if (!certResponse.ok) throw new Error(`Cert HTTP error!`);
+                const certText = await certResponse.text();
+                const certJsonText = certText.replace(/.*google.visualization.Query.setResponse\({(.*?)}\);/s, '{$1}');
+                const certJson = JSON.parse(certJsonText);
+                
+                if (certJson.table && certJson.table.rows) {
+                     // Remove slice(1) to include ALL rows, but filter out header row explicitly
+                    certs = certJson.table.rows.map(row => {
+                         // Ensure row has enough cells
+                         const c = row.c;
+                         if (!c) return null;
+                         
+                         return {
+                             sno: c[0]?.v,       // A: S.no (Date sort proxy)
+                             rel: c[1]?.v,       // B: S.no (R) (Relevance sort)
+                             t: c[2]?.v,         // C: Title
+                             i: c[3]?.v,         // D: Institution
+                             sc: c[4]?.v,        // E: Score
+                             y: c[5]?.v || c[5]?.f // F: Date (Year/Date) - Can be object or formatted string
+                         };
+                    }).filter(item => item && item.t && item.t !== "Certifications" && item.t !== "Certification"); // Filter out empty rows AND header row
+                    
+                    renderCerts(); // Render after fetch
+                }
+            } catch (e) {
+                console.error("Cert Fetch Error:", e);
+                document.getElementById('certList').innerHTML = `<div class="text-xs text-accent-alert">Unable to load certifications.</div>`;
             }
         }
 
@@ -949,16 +1021,61 @@
 
         function renderCerts() {
             const list = document.getElementById('certList');
-            const sorted = [...certs].sort((a, b) => isSortRel ? a.rel - b.rel : b.y - a.y);
+            if(!list) return;
+            
+            // Helper to format Date(yyyy,m,d) -> MM/YY
+            function formatDateMMYY(dateString) {
+                if (!dateString) return '';
+                try {
+                    // Case 1: Google Visualization Date format "Date(2024,5,23)"
+                    // Note: In JS Date(y,m,d), month is 0-indexed (0=Jan, 5=Jun).
+                    let dateObj;
+                    if (dateString.toString().includes("Date")) {
+                        const parts = dateString.match(/\d+/g);
+                        if (parts && parts.length >= 2) {
+                             // parts[0] = year, parts[1] = month index (0-11)
+                             // Standard JS Date(y, m, d) treats m as 0-indexed.
+                             // To display user intent, usually +1 is needed for standard display if input was 0-indexed.
+                             // Assuming Google Sheet API returns standard 0-indexed month for Date objects.
+                             dateObj = new Date(parts[0], parts[1], parts[2] || 1);
+                        }
+                    } else {
+                        // Try parsing as normal string "2024-05-23"
+                        dateObj = new Date(dateString);
+                    }
+
+                    if (dateObj && !isNaN(dateObj.getTime())) {
+                        // Get Month (0-11) -> Add 1 -> Pad 0
+                        const mm = (dateObj.getMonth() + 1).toString().padStart(2, '0');
+                        const yy = dateObj.getFullYear().toString().slice(-2);
+                        return `${mm}/${yy}`;
+                    }
+                    return dateString; // Fallback
+                } catch (e) {
+                    return dateString;
+                }
+            }
+
+            // Sort Logic: 
+            // if isSortRel is true, sort by 'rel' (Relevance, Column B) ASCENDING
+            // if isSortRel is false, sort by 'sno' (Date Proxy, Column A) DESCENDING (assuming higher S.No is newer) OR by 'y' if parsable
+            const sorted = [...certs].sort((a, b) => {
+                if (isSortRel) {
+                    return (a.rel || 99) - (b.rel || 99);
+                } else {
+                    // Fallback to S.No for date ordering if specific date logic is complex
+                    return (b.sno || 0) - (a.sno || 0);
+                }
+            });
             
             list.innerHTML = sorted.map(c => `
                 <div class="flex justify-between items-center p-3 rounded-lg bg-bg hover:bg-slate-800 border border-transparent hover:border-slate-700 transition group">
                     <div>
-                        <div class="text-sm font-bold ${c.core ? 'text-white' : 'text-gray-300'} group-hover:text-accent-primary transition-colors">${c.t}</div>
+                        <div class="text-sm font-bold text-white group-hover:text-accent-primary transition-colors">${c.t}</div>
                         <div class="text-xs text-text-muted">${c.i}</div>
                     </div>
                     <div class="text-right">
-                        <div class="text-xs font-mono text-white">${c.y}</div>
+                        <div class="text-xs font-mono text-white">${formatDateMMYY(c.y)}</div>
                         ${c.sc ? `<div class="text-[10px] text-accent-secondary font-bold">${c.sc}</div>` : ''}
                     </div>
                 </div>
@@ -1056,9 +1173,18 @@
         }
         
         async function togglePitch() {
+            // WARNING: IN A STATIC HTML FILE, THE BROWSER CANNOT SEE VERCEL ENV VARS.
+            // YOU MUST PASTE YOUR API KEY HERE FOR THIS TO WORK.
+            const apiKey = ""; // <--- PASTE YOUR GOOGLE GEMINI API KEY HERE
+            
             const btn = document.getElementById('playPitchBtn');
             const status = document.getElementById('pitchStatus');
             const container = document.getElementById('pitchTextContainer');
+
+            if (!apiKey) {
+                alert("API Key Missing! Please open index.html and paste your Gemini API Key in line 837.");
+                return;
+            }
 
             // If playing, stop
             if (btn.classList.contains('playing')) {
@@ -1077,7 +1203,6 @@
             status.innerHTML = `<span class="animate-pulse text-accent-secondary">Synthesizing Audio via Zenith AI...</span>`;
 
             try {
-                const apiKey = ""; // PROVIDED BY ENV
                 const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${apiKey}`;
                 
                 const response = await fetch(url, {
