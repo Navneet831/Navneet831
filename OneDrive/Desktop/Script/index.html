@@ -18,9 +18,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
 
-    <!-- Vercel Analytics (The correct way for Static HTML) -->
-    <script src="/_vercel/insights/script.js"></script>
-
     <!-- Tailwind Config for Corporate Dark Theme -->
     <script>
         tailwind.config = {
@@ -74,26 +71,20 @@
         // GTM
         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GT-57Z944P3');
         
-        // Microsoft Clarity (ID Configured)
-        (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "j25v0x9rav");
-        
-        window.clarity('set', 'mask', 'full');
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push('config', 'G-1XL4LRC5PP', {'anonymize_ip': true, 'allow_google_signals': false, 'user_id': undefined, 'send_page_view': false});
     </script>
 
     <!-- Mixpanel SDK -->
     <script type="text/javascript">
-(function(e,c){if(!c.__SV){var l,h;window.mixpanel=c;c._i=[];c.init=function(q,r,f){function t(d,a){var g=a.split(".");2==g.length&&(d=d[g[0]],a=g[1]);d[a]=function(){d.push([a].concat(Array.prototype.slice.call(arguments,0)))}}var b=c;"undefined"!==typeof f?b=c[f]=[]:f="mixpanel";b.people=b.people||[];b.toString=function(d){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);d||(a+=" (stub)");return a};b.people.toString=function(){return b.toString(1)+".people (stub)"};l="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders start_session_recording stop_session_recording people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");
- for(h=0;h<l.length;h++)t(b,l[h]);var n="set set_once union unset remove delete".split(" ");b.get_group=function(){function d(p){a[p]=function(){b.push([g,[p].concat(Array.prototype.slice.call(arguments,0))])}}for(var a={},g=["get_group"].concat(Array.prototype.slice.call(arguments,0)),m=0;m<n.length;m++)d(n[m]);return a};c._i.push([q,r,f])};c.__SV=1.2;var k=e.createElement("script");k.type="text/javascript";k.async=!0;k.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===
- e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=e.getElementsByTagName("script")[0];e.parentNode.insertBefore(k,e)}})(document,window.mixpanel||[])
+        (function(e,c){if(!c.__SV){var l,h;window.mixpanel=c;c._i=[];c.init=function(q,r,f){function t(d,a){var g=a.split(".");2==g.length&&(d=d[g[0]],a=g[1]);d[a]=function(){d.push([a].concat(Array.prototype.slice.call(arguments,0)))}}var b=c;"undefined"!==typeof f?b=c[f]=[]:f="mixpanel";b.people=b.people||[];b.toString=function(d){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);d||(a+=" (stub)");return a};b.people.toString=function(){return b.toString(1)+".people (stub)"};l="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders start_session_recording stop_session_recording people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");
+        for(h=0;h<l.length;h++)t(b,l[h]);var n="set set_once union unset remove delete".split(" ");b.get_group=function(){function d(p){a[p]=function(){b.push([g,[p].concat(Array.prototype.slice.call(arguments,0))])}}for(var a={},g=["get_group"].concat(Array.prototype.slice.call(arguments,0)),m=0;m<n.length;m++)d(n[m]);return a};c._i.push([q,r,f])};c.__SV=1.2;var k=e.createElement("script");k.type="text/javascript";k.async=!0;k.src="https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=e.getElementsByTagName("script")[0];e.parentNode.insertBefore(k,e)}})(document,window.mixpanel||[])
 
- mixpanel.init('c78b58539a26878c3d43e1a83a118494', {
-  autocapture: true,
-  record_sessions_percent: 100,
- })
-
-</script>
+        mixpanel.init('c78b58539a26878c3d43e1a83a118494', {
+            autocapture: true,
+            record_sessions_percent: 100,
+        })
+    </script>
 
     <style>
         /* Global Reset & Scrollbar Styling */
@@ -114,9 +105,9 @@
         
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* Timeline Alignment - REMOVED DOTS/LINE FOR CLEANER LOOK */
-        .timeline-line { display: none; } /* Removed vertical line */
-        .timeline-dot { display: none; } /* Removed dots */
+        /* Timeline Alignment */
+        .timeline-line { display: none; } 
+        .timeline-dot { display: none; } 
         
         /* FAQ Accordion Styling */
         .accordion-content {
@@ -125,38 +116,35 @@
             transition: max-height 0.4s ease-out;
         }
         .accordion-content.active {
-            max-height: 500px; /* Arbitrary large height for smooth transition */
+            max-height: 500px; 
             transition: max-height 0.6s ease-in;
         }
         
         /* New: Fixed Height and Scroll for FAQ Content */
         #faq-container-wrapper {
-            max-height: 400px; /* Fixed height for scrollable area */
+            max-height: 400px;
             overflow-y: auto;
-            padding-right: 4px; /* Space for scrollbar */
+            padding-right: 4px;
         }
 
-        /* --- MIND MAP SPECIFIC STYLES (Ported from Source) --- */
+        /* --- MIND MAP SPECIFIC STYLES --- */
         #mindMapContainer {
-            background-color: #0f172a; /* Match Theme */
-            overflow: auto; /* Enable scroll */
-            overflow-x: scroll;
-            overflow-y: scroll;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: thin;
-            scrollbar-color: #475569 #1e293b;
+            background-color: #0f172a;
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            cursor: grab;
         }
         
-        /* Scrollbar matching main theme */
-        #mindMapContainer::-webkit-scrollbar { width: 6px; height: 6px; }
-        #mindMapContainer::-webkit-scrollbar-track { background: #1e293b; }
-        #mindMapContainer::-webkit-scrollbar-thumb { background: #475569; border-radius: 3px; }
-        #mindMapContainer::-webkit-scrollbar-thumb:hover { background: #64748b; }
+        #mindMapContainer:active {
+            cursor: grabbing;
+        }
 
         /* D3 Elements */
         .link {
             fill: none;
-            stroke: #6b7280; /* Gray-500 */
+            stroke: #6b7280;
             stroke-width: 2px;
             transition: stroke 0.3s ease;
         }
@@ -179,13 +167,6 @@
             font-weight: 500;
             text-shadow: 0.5px 0.5px 1px rgba(15, 23, 42, 0.8);
             font-family: 'Inter', sans-serif;
-        }
-
-        .text-outline {
-            stroke: rgba(15, 23, 42, 0.95);
-            stroke-width: 1.5px;
-            opacity: 0.9;
-            fill: none;
         }
     </style>
 </head>
@@ -221,7 +202,6 @@
                 </li>
                 <li>
                     <a href="#faq" onclick="window.scrollToSection('faq')" class="flex items-center h-12 px-4 text-text-secondary hover:text-white hover:bg-slate-800 transition group relative">
-                        <!-- FAQ Icon -->
                         <svg class="w-6 h-6 shrink-0 group-hover:text-accent-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.734.143-1.478.275-2.222.396C10.51 13.91 10 14.545 10 15.25V17m0-7v7m0 0h.01"></path></svg>
                         <span class="ml-4 text-sm font-medium sidebar-text whitespace-nowrap">FAQ</span>
                     </a>
@@ -312,7 +292,6 @@
                         <div class="flex-1 text-center sm:text-left w-full">
                             <div class="flex flex-col gap-2 mb-4">
                                 <h1 class="text-4xl lg:text-5xl font-extrabold text-white tracking-tight">NAVNEET CHAUDHARY</h1>
-                                <!-- Improved contrast using strong accent color -->
                                 <p class="text-accent-secondary text-lg font-medium tracking-wide">Assistant Manager, F&A | Automation Strategist</p>
                             </div>
 
@@ -431,15 +410,12 @@
                             <span class="text-xs font-mono text-text-muted bg-bg px-2 py-1 rounded border border-slate-700">6+ YEARS</span>
                         </div>
                         
-                        <!-- REMOVED TIMELINE LINE/DOTS - Updated classes for padding alignment -->
                         <div class="p-6 relative max-h-[800px] overflow-y-auto custom-scrollbar" id="exp-scroll">
                             
                             <!-- 1. Current / Gap -->
                             <div class="relative pl-0 mb-12 group">
                                 <div class="flex justify-between items-start mb-1.5">
-                                    <!-- Consolidated title -->
                                     <h3 class="font-bold text-white text-lg">Content Creation</h3>
-                                    <!-- CONSISTENT TIME COLOR: text-accent-secondary -->
                                     <span class="text-xs font-mono text-accent-secondary bg-slate-800 px-2 py-1 rounded border border-slate-700">Sep 25 - Present</span>
                                 </div>
                                 <p class="text-sm text-slate-500 font-medium mb-3">Naukri Creator Hub & Finance Writer</p>
@@ -453,7 +429,6 @@
                             <div class="relative pl-0 mb-12 group">
                                 <div class="flex justify-between items-start mb-1.5">
                                     <h3 class="font-bold text-white text-lg">Oriana Power Ltd.</h3>
-                                    <!-- CONSISTENT TIME COLOR: text-accent-secondary -->
                                     <span class="text-xs font-mono text-accent-secondary bg-slate-800 px-2 py-1 rounded border border-slate-700">Jun 25 - Sep 25</span>
                                 </div>
                                 <p class="text-sm text-accent-secondary font-medium mb-3">Assistant Manager F&A <span class="text-slate-500 font-normal">(Report to Director)</span></p>
@@ -462,14 +437,12 @@
                                     <li><strong class="text-white">FP&A Lead:</strong> Accelerated decision making by 30% via new forecasting models.</li>
                                     <li><strong class="text-white">Crisis Management:</strong> Stabilized ops during liquidity crunch (8 days cash) via strategic funding.</li>
                                 </ul>
-                                <!-- REMOVED compliance-note div -->
                             </div>
 
                              <!-- 3. Grew Energy -->
                             <div class="relative pl-0 mb-12 group">
                                 <div class="flex justify-between items-start mb-1.5">
                                     <h3 class="font-bold text-white text-lg">Grew Energy Pvt Ltd.</h3>
-                                    <!-- CONSISTENT TIME COLOR: text-accent-secondary -->
                                     <span class="text-xs font-mono text-accent-secondary bg-slate-800 px-2 py-1 rounded border border-slate-700">Dec 24 - Jun 25</span>
                                 </div>
                                 <p class="text-sm text-accent-secondary font-medium mb-3">Assistant Manager F&A</p>
@@ -478,15 +451,12 @@
                                     <li><strong class="text-white">Stock Audit:</strong> Led physical inventory audit of PV modules at 5GW Jaipur plant.</li>
                                     <li><strong class="text-white">Efficiency:</strong> Reduced MIS prep time by 80% via Python dashboards.</li>
                                 </ul>
-                                <!-- REMOVED compliance-note div -->
                             </div>
 
                             <!-- 4. Volunteering (Robinhood Army) -->
                             <div class="relative pl-0 mb-12 group">
                                 <div class="flex justify-between items-start mb-1.5">
-                                    <!-- Changed color to match other job titles -->
                                     <h3 class="font-bold text-white text-lg">Volunteering (Robinhood Army)</h3>
-                                    <!-- CONSISTENT TIME COLOR: text-accent-secondary -->
                                     <span class="text-xs font-mono text-accent-secondary bg-slate-800 px-2 py-1 rounded border border-slate-700">Sep 24 - Nov 24</span>
                                 </div>
                                 <p class="text-sm text-text-muted mb-2">Community Service</p>
@@ -497,7 +467,6 @@
                             <div class="relative pl-0 mb-12 group">
                                 <div class="flex justify-between items-start mb-1.5">
                                     <h3 class="font-bold text-white text-lg">Ozone Pharmaceuticals Ltd.</h3>
-                                    <!-- CONSISTENT TIME COLOR: text-accent-secondary -->
                                     <span class="text-xs font-mono text-accent-secondary bg-slate-800 px-2 py-1 rounded border border-slate-700">Feb 22 - Aug 24</span>
                                 </div>
                                 <p class="text-sm text-accent-secondary font-medium mb-3">Senior Executive <span class="text-slate-500 font-normal">(Report to CFO)</span></p>
@@ -507,14 +476,12 @@
                                     <li><strong class="text-white">Asset Accounting:</strong> Overhauled fixed assets, reduced discrepancies by 20%.</li>
                                     <li><strong class="text-white">Leadership:</strong> Mentored intern to Senior Exec level in 6 months.</li>
                                 </ul>
-                                <!-- REMOVED compliance-note div -->
                             </div>
 
                             <!-- 6. Shanti Mukand -->
                             <div class="relative pl-0 mb-12 group">
                                 <div class="flex justify-between items-start mb-1.5">
                                     <h3 class="font-bold text-white text-lg">Shanti Mukand Hospital</h3>
-                                    <!-- CONSISTENT TIME COLOR: text-accent-secondary -->
                                     <span class="text-xs font-mono text-accent-secondary bg-slate-800 px-2 py-1 rounded border border-slate-700">Feb 21 - Feb 22</span>
                                 </div>
                                 <p class="text-sm text-accent-secondary font-medium mb-2">Junior Executive F&A</p>
@@ -528,7 +495,6 @@
                             <div class="relative pl-0 group">
                                 <div class="flex justify-between items-start mb-1.5">
                                     <h3 class="font-bold text-white text-lg">Kumar Grover & Company</h3>
-                                    <!-- CONSISTENT TIME COLOR: text-accent-secondary -->
                                     <span class="text-xs font-mono text-accent-secondary bg-slate-800 px-2 py-1 rounded border border-slate-700">Feb 19 - Jan 21</span>
                                 
                                 </div>
@@ -553,7 +519,6 @@
                                          <div class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center text-yellow-500 font-bold border border-slate-700 shrink-0 shadow-sm">🏆</div>
                                          <div>
                                              <div class="text-sm font-bold text-white">NSE Financial Literacy Quiz</div>
-                                             <!-- Updated text for NSE quiz result -->
                                              <div class="text-xs text-text-muted">Top 30% (NSE Winner Band), March 2024</div>
                                          </div>
                                      </li>
@@ -655,7 +620,6 @@
                     </h2>
                 </div>
                 
-                <!-- FIX 3: This container has the fixed height and scroll overflow -->
                 <div id="faq-container-wrapper" class="space-y-3 custom-scrollbar">
                     <div id="faq-container" class="space-y-3">
                         <p id="faq-status" class="text-sm text-text-muted italic">Loading FAQs from Google Sheet...</p>
@@ -673,7 +637,7 @@
 
     <!-- 1. Mind Map Modal -->
     <div id="mindMapModal" class="fixed inset-0 z-50 hidden">
-        <div class="absolute inset-0 modal-backdrop" onclick="window.closeMindMapModal()"></div>
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="window.closeMindMapModal()"></div>
         <div class="absolute inset-4 lg:inset-10 bg-bg border border-slate-700 rounded-xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in zoom-in duration-300">
             <div class="p-4 border-b border-slate-800 flex justify-between items-center bg-slate-900">
                 <h2 class="text-lg font-bold text-white">Career Architecture</h2>
@@ -687,7 +651,7 @@
 
     <!-- 2. Media/Portfolio Modal -->
     <div id="mediaModal" class="fixed inset-0 z-50 hidden">
-        <div class="absolute inset-0 modal-backdrop" onclick="window.closeMediaModal()"></div>
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="window.closeMediaModal()"></div>
         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] max-w-4xl bg-bg border border-slate-700 rounded-xl shadow-2xl p-6 animate-in fade-in zoom-in duration-300">
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-lg font-bold text-white">Automation Portfolio</h2>
@@ -716,7 +680,7 @@
 
     <!-- 3. Journey Modal -->
     <div id="journeyModal" class="fixed inset-0 z-50 hidden">
-        <div class="absolute inset-0 modal-backdrop" onclick="window.closeJourneyModal()"></div>
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="window.closeJourneyModal()"></div>
         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] max-w-3xl bg-bg border border-slate-700 rounded-xl shadow-2xl p-6 animate-in fade-in zoom-in duration-300">
             <div class="flex justify-between items-center mb-4 border-b border-slate-800 pb-4">
                 <div class="flex items-center gap-3">
@@ -736,24 +700,17 @@
     <!-- LOGIC -->
     <script>
         /* --- 1. STATE & DATA --- */
-        // CERTIFICATIONS are now fetched dynamically. Initial array is empty placeholder.
         let certs = [];
         let isSortRel = true;
         let faqData = []; 
-
-        // Google Sheet Config
         const SPREADSHEET_ID = '1ozWrImLTkJHvteWcmX7AXq_Se_pjk6QUkenB3XqIBxw';
         
-        // PITCH TEXT CONTAINER (Global Variable)
-        let PITCH_TEXT = "Say in a confident, authoritative, executive tone with a slight Indian accent: Is your financial reporting still a manual chore? I'm Navneet Chaudhary, Assistant Manager of F&A. I leverage Python and GenAI to drive 80% efficiency gains, eliminating repetitive tasks to free up strategic focus. My track record isn't just compliance; it's transformation. Let's discuss implementing true digital financial control.";
+        let PITCH_TEXT = ""; // Will be populated from Google Sheets
         
-        /* --- 2. MIXPANEL TRACKING LOGIC (Custom Time-on-Section) --- */
-
-        // Constant for consistent time period color
+        /* --- 2. MIXPANEL TRACKING LOGIC --- */
         const TRACKING_COLOR_STYLE = 'color: #10b981; font-weight: bold;';
         let currentActiveSection = 'highlights'; 
         
-        // Tracks the visible section ID (or 'general' if none dominate)
         function getActiveSection() {
             const sections = ['highlights', 'experience', 'skills', 'faq'];
             let active = 'general';
@@ -761,7 +718,6 @@
                 const el = document.getElementById(id);
                 if (el) {
                     const rect = el.getBoundingClientRect();
-                    // Section is considered active if it covers the center third of the viewport
                     const viewportCenter = window.innerHeight / 2;
                     if (rect.top < viewportCenter && rect.bottom > viewportCenter) {
                         active = id;
@@ -772,28 +728,17 @@
             return active;
         }
 
-        // Logs the time spent on the previous section and starts the timer for the new one.
         function trackSectionTime(newSection, eventType) {
-            // Only track if the section has actually changed and it's not the generic area
             if (newSection !== currentActiveSection && newSection !== 'general') {
-                
-                // 1. Track time spent on the PREVIOUS section (stops the timer)
-                if (currentActiveSection !== 'general') {
-                     // Check if mixpanel is initialized before using
-                     if (typeof mixpanel !== 'undefined' && mixpanel.track) {
+                if (currentActiveSection !== 'general' && typeof mixpanel !== 'undefined' && mixpanel.track) {
                         mixpanel.track('Time Spent on Section', {
                             'Section Name': currentActiveSection,
                             'Trigger': eventType
                         });
-                        console.log(`%c[Mixpanel] Tracked time on: ${currentActiveSection} (Trigger: ${eventType})`, TRACKING_COLOR_STYLE);
-                    }
                 }
-
-                // 2. Start timing the NEW section
                 if (typeof mixpanel !== 'undefined' && mixpanel.time_event) {
                     mixpanel.time_event('Time Spent on Section');
                     currentActiveSection = newSection;
-                    console.log(`%c[Mixpanel] Started timing: ${newSection}`, 'color: #3b82f6; font-weight: bold;');
                 }
             }
         }
@@ -804,38 +749,28 @@
             scrollTimer = setTimeout(() => {
                 const newSection = getActiveSection();
                 trackSectionTime(newSection, 'Scroll Change');
-            }, 500); // Debounce scroll event to prevent excessive tracking
+            }, 500);
         }
 
         function startMixpanelTracking() {
-            // 1. Start timing the initial section (assuming 'highlights' is visible)
             const initialSection = getActiveSection();
-            if (initialSection !== 'general') {
-                if (typeof mixpanel !== 'undefined' && mixpanel.time_event) {
-                    mixpanel.time_event('Time Spent on Section');
-                    currentActiveSection = initialSection;
-                }
+            if (initialSection !== 'general' && typeof mixpanel !== 'undefined' && mixpanel.time_event) {
+                mixpanel.time_event('Time Spent on Section');
+                currentActiveSection = initialSection;
             }
-            console.log(`%c[Mixpanel Init] Tracking engagement and time on section. Initial section: ${currentActiveSection}`, 'color: #3b82f6; font-size: 11px; font-weight: bold;');
-
-            // 2. Set up scroll listener for continuous passive time tracking
             document.getElementById('main-scroll').addEventListener('scroll', handleScrollTimeTracking);
         }
         
         /* --- 3. DATA FETCHING CONTROLLER --- */
-        
-        // Main Init Function
         document.addEventListener('DOMContentLoaded', () => {
-            // renderCerts() is called AFTER data fetch now
-            fetchFAQData();      // Fetch FAQs
-            fetchProfileData();  // Fetch Pitch, Journey AND Certifications (updated function)
-            startMixpanelTracking(); // Init Tracking
+            fetchFAQData();
+            fetchProfileData();
+            startMixpanelTracking();
         });
 
         async function fetchFAQData() {
             const statusElement = document.getElementById('faq-status');
             if(statusElement) statusElement.innerText = "Fetching data...";
-            // Range B:C from FAQ Sheet
             const queryUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=FAQ&range=B:C`;
 
             try {
@@ -871,7 +806,6 @@
             const journeyContentEl = document.getElementById('journey-modal-content');
             const pitchEl = document.getElementById('pitchStatus');
             
-            // 1. Fetch Profile Info (About me)
             const profileUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=About%20me&range=B1:B10`;
 
             try {
@@ -882,16 +816,17 @@
                 const json = JSON.parse(jsonText);
 
                 if (json.table && json.table.rows) {
-                    const pitchVal = json.table.rows[0]?.c[0]?.v; // B1
-                    // Safety check for Journey (B2)
+                    const pitchVal = json.table.rows[0]?.c[0]?.v;
                     let journeyVal = null;
                     if(json.table.rows.length > 1) {
-                        journeyVal = json.table.rows[1]?.c[0]?.v; // B2
+                        journeyVal = json.table.rows[1]?.c[0]?.v;
                     }
 
                     if(pitchVal) {
                         PITCH_TEXT = pitchVal;
-                        document.getElementById('pitchTranscript').innerText = `"${pitchVal.replace('Say in a confident, authoritative, executive tone with a slight Indian accent: ', '')}"`;
+                        // Clean the text if it already contains instructions to avoid duplication
+                        const displayText = pitchVal.replace(/^Say.*?:/i, '').trim();
+                        document.getElementById('pitchTranscript').innerText = `"${displayText}"`;
                         pitchEl.innerText = "Ready to play (AI Synthesized)";
                     }
 
@@ -905,9 +840,6 @@
                 console.error("Profile Fetch Error:", error);
             }
             
-            // 2. Fetch Certifications (Sheet: Certification)
-            // Columns: A (S.no), B (S.no R), C (Certifications), D (Institution), E (Score), F (Date), G (Link - New)
-            // Note: Google Sheet Column Index starts at 0. A=0 ... G=6
             const certUrl = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=Certification&range=A:G`;
             
             try {
@@ -918,24 +850,21 @@
                 const certJson = JSON.parse(certJsonText);
                 
                 if (certJson.table && certJson.table.rows) {
-                     // Remove slice(1) to include ALL rows, but filter out header row explicitly
                     certs = certJson.table.rows.map(row => {
-                         // Ensure row has enough cells
                          const c = row.c;
                          if (!c) return null;
-                         
                          return {
-                             sno: c[0]?.v,       // A: S.no (Date sort proxy)
-                             rel: c[1]?.v,       // B: S.no (R) (Relevance sort)
-                             t: c[2]?.v,         // C: Title
-                             i: c[3]?.v,         // D: Institution
-                             sc: c[4]?.v,        // E: Score
-                             y: c[5]?.v || c[5]?.f, // F: Date (Year/Date)
-                             l: c[6]?.v // G: Link (URL)
+                             sno: c[0]?.v,       
+                             rel: c[1]?.v,       
+                             t: c[2]?.v,         
+                             i: c[3]?.v,         
+                             sc: c[4]?.v,        
+                             y: c[5]?.v || c[5]?.f, 
+                             l: c[6]?.v 
                          };
-                    }).filter(item => item && item.t && item.t !== "Certifications" && item.t !== "Certification"); // Filter out empty rows AND header row
+                    }).filter(item => item && item.t && item.t !== "Certifications" && item.t !== "Certification"); 
                     
-                    renderCerts(); // Render after fetch
+                    renderCerts();
                 }
             } catch (e) {
                 console.error("Cert Fetch Error:", e);
@@ -956,15 +885,12 @@
         function rotateFlashcard() {
             currentImpact = (currentImpact + 1) % impacts.length;
             const data = impacts[currentImpact];
-            
-            // Elements
             const label = document.getElementById('fc-label');
             const val = document.getElementById('fc-value');
             const desc = document.getElementById('fc-desc');
             const detail = document.getElementById('fc-detail');
             const inds = [0,1,2,3].map(i => document.getElementById('ind-'+i));
             
-            // Fade out
             label.style.opacity = 0;
             val.style.opacity = 0;
             desc.style.opacity = 0;
@@ -977,13 +903,11 @@
                 desc.className = `text-xs font-bold uppercase tracking-wide px-2 py-1 rounded transition-all duration-300 ${data.color} ${data.bg}`;
                 detail.innerText = data.desc;
                 
-                // Update indicators
                 inds.forEach((ind, idx) => {
                    ind.style.opacity = idx === currentImpact ? '1' : '0.3';
                    ind.className = `h-1 w-full rounded transition-all ${idx === currentImpact ? 'bg-accent-primary' : 'bg-slate-700'}`;
                 });
                 
-                // Fade in
                 label.style.opacity = 1;
                 val.style.opacity = 1;
                 desc.style.opacity = 1;
@@ -1002,17 +926,12 @@
         function toggleSidebarDesktop() {
             const sb = document.getElementById('sidebar');
             const toggleBtn = document.getElementById('sidebarToggle').querySelector('svg');
-            
             sb.classList.toggle('collapsed');
-            
-            // Rotate arrow
             if(sb.classList.contains('collapsed')) {
                 toggleBtn.style.transform = "rotate(180deg)";
             } else {
                 toggleBtn.style.transform = "rotate(0deg)";
             }
-
-            // Trigger mind map resize if it's open
             setTimeout(() => {
                 if(!document.getElementById('mindMapModal').classList.contains('hidden')) {
                      // D3 resize handled by responsive layout
@@ -1024,53 +943,52 @@
             const list = document.getElementById('certList');
             if(!list) return;
             
-            // Helper to format Date(yyyy,m,d) -> MM/YY
             function formatDateMMYY(dateString) {
                 if (!dateString) return '';
                 try {
-                    // Case 1: Google Visualization Date format "Date(2024,5,23)"
-                    // Note: In JS Date(y,m,d), month is 0-indexed (0=Jan, 5=Jun).
                     let dateObj;
                     if (dateString.toString().includes("Date")) {
                         const parts = dateString.match(/\d+/g);
                         if (parts && parts.length >= 2) {
-                             // parts[0] = year, parts[1] = month index (0-11)
-                             // Standard JS Date(y, m, d) treats m as 0-indexed.
-                             // To display user intent, usually +1 is needed for standard display if input was 0-indexed.
-                             // Assuming Google Sheet API returns standard 0-indexed month for Date objects.
                              dateObj = new Date(parts[0], parts[1], parts[2] || 1);
                         }
                     } else {
-                        // Try parsing as normal string "2024-05-23"
                         dateObj = new Date(dateString);
                     }
 
                     if (dateObj && !isNaN(dateObj.getTime())) {
-                        // Get Month (0-11) -> Add 1 -> Pad 0
                         const mm = (dateObj.getMonth() + 1).toString().padStart(2, '0');
                         const yy = dateObj.getFullYear().toString().slice(-2);
                         return `${mm}/${yy}`;
                     }
-                    return dateString; // Fallback
+                    return dateString;
                 } catch (e) {
                     return dateString;
                 }
             }
 
-            // Sort Logic: 
-            // if isSortRel is true, sort by 'rel' (Relevance, Column B) ASCENDING
-            // if isSortRel is false, sort by 'sno' (Date Proxy, Column A) DESCENDING (assuming higher S.No is newer) OR by 'y' if parsable
+            const getTimestamp = (dStr) => {
+                try {
+                    if(!dStr) return 0;
+                    if (dStr.toString().includes("Date")) {
+                        const parts = dStr.match(/\d+/g);
+                        if (parts && parts.length) return new Date(parts[0], parts[1]||0, parts[2]||1).getTime();
+                    }
+                    return new Date(dStr).getTime();
+                } catch(e) { return 0; }
+            };
+
             const sorted = [...certs].sort((a, b) => {
                 if (isSortRel) {
                     return (a.rel || 99) - (b.rel || 99);
                 } else {
-                    // Fallback to S.No for date ordering if specific date logic is complex
-                    return (b.sno || 0) - (a.sno || 0);
+                    const tA = getTimestamp(a.y);
+                    const tB = getTimestamp(b.y);
+                    return tB - tA;
                 }
             });
             
             list.innerHTML = sorted.map(c => {
-                // If c.l exists, wrap content in <a>, else use <div>
                 const content = `
                     <div class="flex justify-between items-center p-3 rounded-lg bg-bg hover:bg-slate-800 border border-transparent hover:border-slate-700 transition group cursor-pointer">
                         <div>
@@ -1101,12 +1019,8 @@
             renderCerts();
         }
 
-        // Overrides the global scrollToSection function to integrate Mixpanel tracking
         window.scrollToSection = function(id) {
-            // 1. Tracking: Log time spent on the old section and start timer for the new one.
             trackSectionTime(id, 'Sidebar Click');
-            
-            // 2. Original functionality
             document.getElementById(id).scrollIntoView({behavior: 'smooth'});
             if(window.innerWidth < 1024) toggleSidebarMobile();
         }
@@ -1133,7 +1047,6 @@
             const content = document.getElementById(`content-${index}`);
             const arrow = document.getElementById(`arrow-${index}`);
             
-            // Close all others
             document.querySelectorAll('.accordion-content').forEach((item, idx) => {
                 if (idx !== index && item.classList.contains('active')) {
                     item.classList.remove('active');
@@ -1141,7 +1054,6 @@
                 }
             });
 
-            // Toggle current
             content.classList.toggle('active');
             arrow.classList.toggle('rotate-180');
         }
@@ -1178,7 +1090,6 @@
             writeString('data'); 
             view.setUint32(offset, pcm16.byteLength, true); offset += 4;
             
-            // Copy PCM data
             const destPcm = new Int16Array(buffer, offset);
             destPcm.set(pcm16);
             
@@ -1186,18 +1097,11 @@
         }
         
         async function togglePitch() {
-            // WARNING: IN A STATIC HTML FILE, THE BROWSER CANNOT SEE VERCEL ENV VARS.
-            // YOU MUST PASTE YOUR API KEY HERE FOR THIS TO WORK.
-            const apiKey = ""; // <--- PASTE YOUR GOOGLE GEMINI API KEY HERE
+            const apiKey = "AIzaSyBrIwJg75jiXBHezO3eJLNLChU560OYA48"; 
             
             const btn = document.getElementById('playPitchBtn');
             const status = document.getElementById('pitchStatus');
             const container = document.getElementById('pitchTextContainer');
-
-            if (!apiKey) {
-                alert("API Key Missing! Please open index.html and paste your Gemini API Key in line 849.");
-                return;
-            }
 
             // If playing, stop
             if (btn.classList.contains('playing')) {
@@ -1209,7 +1113,6 @@
                 return;
             }
 
-            // Play / Generate
             container.classList.remove('hidden');
             btn.disabled = true;
             btn.classList.add('opacity-75', 'cursor-wait');
@@ -1218,11 +1121,16 @@
             try {
                 const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${apiKey}`;
                 
+                // Use the fetched text, but ensure we add the specific persona instruction
+                // Remove any previous hardcoded instruction from the string first if it exists
+                const cleanText = PITCH_TEXT.replace(/^Say.*?:/i, '').trim();
+                const textToSay = `Say with the accent of a 27 year old Indian male professional: ${cleanText}`;
+
                 const response = await fetch(url, {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({
-                        contents: [{ parts: [{ text: PITCH_TEXT }] }], // USES DYNAMIC PITCH TEXT
+                        contents: [{ parts: [{ text: textToSay }] }],
                         generationConfig: {
                             responseModalities: ["AUDIO"],
                             speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: "Charon" } } }
@@ -1230,25 +1138,24 @@
                     })
                 });
 
+                if (!response.ok) throw new Error("API Error: " + response.statusText);
+
                 const data = await response.json();
-                if (!data.candidates) throw new Error("API Error");
+                if (!data.candidates) throw new Error("API Error: No candidates");
                 
                 const part = data.candidates[0].content.parts[0];
                 const audioBase64 = part.inlineData.data;
-                const mimeType = part.inlineData.mimeType; // e.g. "audio/L16; rate=24000"
+                const mimeType = part.inlineData.mimeType;
                 
-                // Parse Sample Rate
-                let sampleRate = 24000; // Default fallback
+                let sampleRate = 24000;
                 const match = mimeType.match(/rate=(\d+)/);
                 if (match) sampleRate = parseInt(match[1], 10);
 
-                // Decode Base64 to Uint8Array
                 const binaryString = atob(audioBase64);
                 const len = binaryString.length;
                 const bytes = new Uint8Array(len);
                 for (let i = 0; i < len; i++) bytes[i] = binaryString.charCodeAt(i);
 
-                // Convert Raw PCM to Valid WAV Buffer
                 const wavBuffer = pcmToWavArrayBuffer(bytes, sampleRate);
 
                 audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -1259,14 +1166,12 @@
                 source.connect(audioCtx.destination);
                 source.start(0);
                 
-                // UI Playing State
                 btn.disabled = false;
                 btn.classList.remove('opacity-75', 'cursor-wait', 'bg-accent-secondary');
                 btn.classList.add('playing', 'bg-accent-alert', 'hover:bg-red-700', 'shadow-3d-alert');
                 document.getElementById('playBtnText').innerText = "STOP";
                 status.innerText = "Playing...";
                 
-                // Visualize Progress Ring
                 const ring = document.getElementById('pitchProgressRing');
                 const duration = buffer.duration * 1000;
                 const start = Date.now();
@@ -1309,7 +1214,6 @@
             document.getElementById('ytFrame').src = "";
         }
         
-        // JOURNEY MODAL
         function openJourneyModal() {
             document.getElementById('journeyModal').classList.remove('hidden');
         }
@@ -1317,7 +1221,7 @@
             document.getElementById('journeyModal').classList.add('hidden');
         }
 
-        /* --- 9. D3 MIND MAP (INTERACTIVE RESTORED) */
+        /* --- 9. D3 MIND MAP --- */
         const rawTreeData = {
             "name": "Navneet", 
             "children": [
@@ -1334,7 +1238,6 @@
         function openMindMapModal() {
             const modal = document.getElementById('mindMapModal');
             modal.classList.remove('hidden');
-            // Wait for transition to finish before calculating dimensions
             setTimeout(initD3, 300);
         }
         function closeMindMapModal() {
@@ -1346,10 +1249,8 @@
             width = container.clientWidth;
             height = container.clientHeight;
             
-            // Clear previous SVG
             d3.select("#mindMapContainer").selectAll("*").remove();
 
-            // Zoom behavior
             const zoom = d3.zoom().on("zoom", (e) => {
                 g.attr("transform", e.transform);
             });
@@ -1357,27 +1258,17 @@
             svg = d3.select("#mindMapContainer").append("svg")
                 .attr("width", width).attr("height", height)
                 .call(zoom)
-                .append("g"); // Main group
+                .append("g");
                 
-            // Initial Transform centered
             g = svg.append("g").attr("transform", `translate(${width/2 - 50},${height/2})`);
 
-            // Hierarchy
             root = d3.hierarchy(rawTreeData, d => d.children);
             root.x0 = height / 2;
             root.y0 = 0;
 
-            tree = d3.tree().size([height, width - 150]); // Adjusted size
+            tree = d3.tree().size([height, width - 150]);
             
             update(root);
-        }
-
-        function collapse(d) {
-            if(d.children) {
-                d._children = d.children;
-                d._children.forEach(collapse);
-                d.children = null;
-            }
         }
 
         function update(source) {
@@ -1385,14 +1276,11 @@
             const nodes = treeData.descendants();
             const links = treeData.descendants().slice(1);
 
-            // Normalize for fixed depth
             nodes.forEach(d => { d.y = d.depth * 150 });
 
-            // --- Nodes ---
             const node = g.selectAll('g.node')
                 .data(nodes, d => d.id || (d.id = ++i));
 
-            // Enter
             const nodeEnter = node.enter().append('g')
                 .attr('class', 'node')
                 .attr("transform", d => `translate(${source.y0},${source.x0})`)
@@ -1410,7 +1298,6 @@
                 .style("fill", "#f1f5f9")
                 .text(d => d.data.name);
 
-            // Update
             const nodeUpdate = nodeEnter.merge(node);
             
             nodeUpdate.transition().duration(duration)
@@ -1421,7 +1308,6 @@
                 .style("fill", d => d._children ? "#3b82f6" : "#10b981")
                 .attr('cursor', 'pointer');
 
-            // Exit
             const nodeExit = node.exit().transition().duration(duration)
                 .attr("transform", d => `translate(${source.y},${source.x})`)
                 .remove();
@@ -1429,11 +1315,9 @@
             nodeExit.select('circle').attr('r', 1e-6);
             nodeExit.select('text').style('fill-opacity', 1e-6);
 
-            // --- Links ---
             const link = g.selectAll('path.link')
                 .data(links, d => d.id);
 
-            // Enter
             const linkEnter = link.enter().insert('path', "g")
                 .attr("class", "link")
                 .attr('d', d => {
@@ -1441,12 +1325,10 @@
                     return diagonal(o, o);
                 });
 
-            // Update
             const linkUpdate = linkEnter.merge(link);
             linkUpdate.transition().duration(duration)
                 .attr('d', d => diagonal(d, d.parent));
 
-            // Exit
             link.exit().transition().duration(duration)
                 .attr('d', d => {
                     const o = {x: source.x, y: source.y};
@@ -1454,7 +1336,6 @@
                 })
                 .remove();
 
-            // Stash positions
             nodes.forEach(d => {
                 d.x0 = d.x;
                 d.y0 = d.y;
@@ -1483,7 +1364,6 @@
             window.open("https://tawk.to/chat/68efdd0e7e16ad19527ac96f/1j7kff0qq", "_blank", "width=400,height=600");
         }
         
-        // Tawk.to Script Injection (Restored)
         var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
         (function(){
         var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
@@ -1493,7 +1373,6 @@
         s1.setAttribute('crossorigin','*');
         s0.parentNode.insertBefore(s1,s0);
         })();
-
     </script>
 </body>
 </html>
