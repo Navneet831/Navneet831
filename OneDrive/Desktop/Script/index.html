@@ -513,7 +513,7 @@
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
                                 </button>
                             </div>
-                            <p class="text-accent-text-emphasis text-base font-medium tracking-wide pt-0">FP&A | FinTech | Strategic Finance</p> 
+                            <p class="text-accent-text-emphasis text-base font-medium tracking-wide pt-0">FP&A|FinTech|Strategic Finance|Automation Strategist|</p> 
                             
 
                             <!-- Recruiter-focused Pitch (Compact & Insightful) -->
@@ -682,13 +682,13 @@
                                         </ul>
                                     </div>
 
-                                    <!-- 2. Content Creation (Sept 25 - Nov 25) -->
+                                    <!-- 2. Content Creation (Sep 25 - Dec 25) - UPDATED ROLE TEXT -->
                                     <div class="relative pl-0 mb-6 group"> 
                                         <div class="flex justify-between items-start mb-1"> 
-                                            <h3 class="font-extrabold text-lg text-accent-primary border-b border-slate-700 pb-1 mb-2">Content Creation & Project Dev</h3> <!-- Company/Group to green (accent-primary) -->
-                                            <span class="text-xs font-mono text-accent-primary bg-slate-800 px-2 py-1 rounded border border-slate-700">Sep 25 - Nov 25</span>
+                                            <h3 class="font-extrabold text-lg text-accent-primary border-b border-slate-700 pb-1 mb-2">Career Break (Content Creation & Project Dev)</h3> <!-- Company/Group to green (accent-primary) -->
+                                            <span class="text-xs font-mono text-accent-primary bg-slate-800 px-2 py-1 rounded border border-slate-700">Sep 25 - Dec 25</span>
                                         </div>
-                                        <p class="text-sm text-blue-400 font-medium mb-2">Naukri Creator Hub & Finance Writer</p> <!-- Designation/Role to blue-400 -->
+                                        <p class="text-sm text-blue-400 font-medium mb-2">Tech Portfolio & Article Writing</p> <!-- Designation/Role updated here -->
                                         <!-- Applied single-line alignment fix -->
                                         <ul class="list-none text-xs text-accent-text-secondary space-y-2 mb-2 pl-2"> 
                                             <li class="flex items-start">
@@ -887,7 +887,7 @@
                     <section class="glass-card rounded-2xl shadow-terminal p-6">
                         <div class="flex justify-between items-center mb-4">
                             <h3 class="text-xs font-bold text-accent-text-muted uppercase tracking-wider">Certifications</h3>
-                            <button onclick="window.app.sortCerts()" class="text-xs text-accent-primary hover:underline" id="sortBtn">Sort: Relevance</button>
+                            <button onclick="window.app.sortCerts()" class="text-xs text-accent-primary hover:underline" id="sortBtn">Sort: Latest</button>
                         </div>
                         <div id="certList" class="space-y-2 max-h-[400px] overflow-y-auto custom-scrollbar pr-1"> 
                             <p id="cert-status" class="text-xs text-text-muted italic">Loading certifications...</p>
@@ -1011,13 +1011,15 @@
         // Placeholder for the Google Sheet ID. Replace with your actual ID.
         window.app.SPREADSHEET_ID = '1ozWrImLTkJHvteWcmX7AXq_Se_pjk6QUkenB3XqIBxw';
 
-        // FIX 1: Using Vercel/Cloudflare Worker proxy endpoint for TTS security
-        window.app.TTS_API_URL = 'https://tts-proxy.vercel.app/api/tts'; 
+        // FIX 1 & UPDATE: Simulate fetching the TTS API URL from an environment variable (window.TTS_API_ENDPOINT), 
+        // falling back to the hardcoded proxy if not defined.
+        window.app.TTS_API_URL = window.TTS_API_ENDPOINT || 'https://tts-proxy.vercel.app/api/tts'; 
 
         window.app.PITCH_TEXT = "Hello, I am Navneet Chaudhary. I am a T-shaped finance professional, combining deep expertise in FP&A and Compliance, with horizontal skills in Python, RPA, and Generative AI. I specialize in driving operational alpha, such as engineering an 80% reduction in manual reporting effort and accelerating decision-making by 30%. My goal is to transform finance into a scalable, data-driven engine. Thank you for your time.";
         window.app.certs = [];
         window.app.faqData = [];
-        window.app.isSortRel = true;
+        // UPDATED: Default sort to false (Latest first) based on user's implicit desire to sort by date (Col F)
+        window.app.isSortRel = false; 
         window.app.flashcardInterval = null; 
         
         // FIX 3: Increased flashcard rotation time to 7000ms (7 seconds)
@@ -1034,16 +1036,17 @@
         window.app.isPitchPlaying = false; 
         window.app.currentAudio = null; 
         
-        // Hardcoded fallback data
+        // Hardcoded fallback data (Dates need to be accurate for sorting to work)
         window.app.fallbackCerts = [
-            { t: "NISM Research Analyst", i: "SEBI Certified", y: "Date(2024, 2, 1)", l: "#", rel: 1, sc: 100 },
-            { t: "Financial Modelling", i: "The Wall Street School", y: "Date(2024, 7, 15)", l: "#", rel: 2, sc: 95 },
-            { t: "GST Taxation", i: "PwC", y: "Date(2024, 10, 1)", l: "#", rel: 3, sc: 90 },
-            { t: "FP&A: Building Budgets", i: "365 Financial Analysts", y: "Date(2024, 8, 1)", l: "#", rel: 4, sc: 90 },
-            { t: "Investment Banking", i: "365 Financial Analysts", y: "Date(2024, 6, 1)", l: "#", rel: 5, sc: 85 },
-            { t: "Google Data Analytics", i: "Google", y: "Date(2023, 11, 1)", l: "#", rel: 6, sc: 80 },
-            { t: "Finance for Managers", i: "IESE Business School", y: "Date(2023, 9, 1)", l: "#", rel: 7, sc: 75 },
-            { t: "Private Equity & VC", i: "Bocconi University", y: "Date(2023, 1, 1)", l: "#", rel: 8, sc: 70 },
+            // Using ISO 8601 strings for robust date parsing in the fallback
+            { t: "NISM Research Analyst", i: "SEBI Certified", y: "2024-03-01", l: "#", rel: 1, sc: 100 },
+            { t: "Financial Modelling", i: "The Wall Street School", y: "2024-07-15", l: "#", rel: 2, sc: 95 },
+            { t: "GST Taxation", i: "PwC", y: "2024-10-01", l: "#", rel: 3, sc: 90 },
+            { t: "FP&A: Building Budgets", i: "365 Financial Analysts", y: "2024-08-01", l: "#", rel: 4, sc: 90 },
+            { t: "Investment Banking", i: "365 Financial Analysts", y: "2024-06-01", l: "#", rel: 5, sc: 85 },
+            { t: "Google Data Analytics", i: "Google", y: "2023-12-01", l: "#", rel: 6, sc: 80 },
+            { t: "Finance for Managers", i: "IESE Business School", y: "2023-09-01", l: "#", rel: 7, sc: 75 },
+            { t: "Private Equity & VC", i: "Bocconi University", y: "2023-01-01", l: "#", rel: 8, sc: 70 },
         ];
         
         window.app.fallbackFAQ = [
@@ -1053,15 +1056,16 @@
             { question: "What is 'Operational Alpha'?", answer: "Operational Alpha refers to the quantifiable gains achieved beyond standard performance, including 30% acceleration in decision-making speed, 100% compliance record across 31 GST registrations, and stabilizing liquidity during a cash crisis." }
         ];
         
-        // --- MASTER SOURCE OF TRUTH FOR PROFESSIONAL JOURNEY TIMELINE ---
+        // --- MASTER SOURCE OF TRUTH FOR PROFESSIONAL JOURNEY TIMELINE (UPDATED ROLE) ---
         // Used to render the chronological timeline view (back face)
         window.app.professionalJourney = [
             // Note: Dates use 0-indexed month (0=Jan, 11=Dec) for accurate JS Date objects.
-            { company: "Grew Energy Pvt Ltd.", role: "Assistant Manager Accounts", tenure: "Dec 25 - Present", desc: "Current focus: Accounts Leadership, Financial Closure, and FinTech integration.", start: new Date(2025, 11, 25), color: '#10b981' }, // GREEN
-            { company: "Content Creation & Project Dev", role: "Naukri Creator Hub & Finance Writer", tenure: "Sep 25 - Nov 25", desc: "Focused on portfolio building (6 Python Financial Dashboards) and thought leadership.", start: new Date(2025, 8, 1), color: '#10b981' }, // GREEN
+            { company: "Grew Energy Pvt Ltd.", role: "Assistant Manager Accounts", tenure: "Dec 25 - Present", desc: "Accounts Leadership, Financial Closure, and FinTech integration.", start: new Date(2025, 11, 25), color: '#10b981' }, // GREEN
+            // UPDATED: role changed from "Naukri Creator Hub & Finance Writer"
+            { company: "Career break (Content Creation & Project Dev)", role: "Tech Portfolio & Article Writing", tenure: "Sep 25 - Nov 25", desc: "Built tech portfolio and article writing on Medium and LinkedIn; also selected for Naukri Creator Hub.", start: new Date(2025, 8, 1), color: '#ef4444' }, // RED
             { company: "Oriana Power Ltd.", role: "Assistant Manager Finance", tenure: "Jun 25 - Sep 25", desc: "Crisis Cash Management and Internal Controls implementation during liquidity crunch.", start: new Date(2025, 5, 12), color: '#f59e0b' }, // YELLOW (Crisis/Pivot)
-            { company: "Grew Energy Pvt Ltd.", role: "Assistant Manager Finance", tenure: "Dec 24 - Jun 25", desc: "Initial tenure focused on FP&A and MIS reporting automation (80% efficiency).", start: new Date(2024, 11, 1), color: '#3b82f6' }, // BLUE (Core)
-            { company: "Career Break & Volunteering", role: "Community Service & Family Medical", tenure: "Sep 24 - Nov 24", desc: "Dedicated time for family medical responsibilities & community service.", start: new Date(2024, 8, 1), color: '#ef4444' }, // RED (Break)
+            { company: "Grew Energy Pvt Ltd.", role: "Assistant Manager Finance", tenure: "Dec 24 - Jun 25", desc: "FP&A and MIS reporting.", start: new Date(2024, 11, 1), color: '#3b82f6' }, // BLUE (Core)
+            { company: "Career Break & Volunteering", role: "Community Service & Family Medical Emergency", tenure: "Sep 24 - Nov 24", desc: "Mothers medical treatment & community service at robinhood army.", start: new Date(2024, 8, 1), color: '#ef4444' }, // RED (Break)
             { company: "Ozone Pharmaceuticals Ltd.", role: "Senior Executive", tenure: "Feb 22 - Aug 24", desc: "GST Compliance (100% record), Tax Due Diligence, and MIS automation.", start: new Date(2022, 1, 1), color: '#3b82f6' }, // BLUE (Core)
             { company: "Shanti Mukand Hospital", role: "Junior Executive Finance", tenure: "Feb 21 - Feb 22", desc: "AP Management & NPPA compliance adherence.", start: new Date(2021, 1, 1), color: '#3b82f6' }, // BLUE (Foundation)
             { company: "Kumar Grover & Company", role: "Accounts Assistant", tenure: "Feb 19 - Jan 21", desc: "Taxation (ITR) & Statutory Audits.", start: new Date(2019, 1, 1), color: '#3b82f6' }, // BLUE (Foundation)
@@ -1196,11 +1200,13 @@
         window.app.getTimestamp = function(dStr) {
             try {
                 if(!dStr) return 0;
+                // Check if it's the Google Sheet Date format
                 if (dStr.toString().includes("Date")) {
                     const parts = dStr.match(/\d+/g);
                     // Same adjustment for 0-indexed month when converting Google Sheet date to timestamp
                     if (parts && parts.length) return new Date(parseInt(parts[0]), parseInt(parts[1]||0), parseInt(parts[2]||1)).getTime();
-                }
+                } 
+                // Treat as ISO 8601 or similar string
                 return new Date(dStr).getTime();
             } catch(e) { return 0; }
         };
@@ -1212,13 +1218,17 @@
             const list = document.getElementById('certList');
             if(!list) return;
             
-            // Sort by relevance (ascending) or date (descending)
+            // Sort:
+            // - If !isSortRel (default), sort by Date (Col F/index 5) descending (Latest first).
+            // - If isSortRel, sort by Relevance (Col B/index 1) ascending (1=Most Relevant).
             const sorted = [...window.app.certs].sort((a, b) => {
                 if (window.app.isSortRel) {
+                    // Sort by Relevance (Ascending)
                     return (a.rel || 99) - (b.rel || 99);
                 } else {
-                    const tA = window.app.getTimestamp(a.y);
-                    const tB = window.app.getTimestamp(b.y);
+                    // Sort by Date (Descending - Latest First)
+                    const tA = window.app.getTimestamp(a.y); // 'y' is the date value (Col F)
+                    const tB = window.app.getTimestamp(b.y); // 'y' is the date value (Col F)
                     return tB - tA;
                 }
             });
@@ -1278,11 +1288,12 @@
             `).join('');
         };
         
-        // NEW FUNCTION: Renders the chronological timeline for the back face
+        // UPDATED: Renders the chronological timeline for the back face
         window.app.renderTimeline = function() {
             const container = document.getElementById('exp-timeline-scroll');
             if (!container) return;
 
+            // REMOVED: The 'desc' field from the rendered content per user request for a cleaner timeline.
             const timelineHtml = window.app.professionalJourney.map(item => `
                 <div class="timeline-item pb-6">
                     <span class="timeline-dot" style="background-color: ${item.color};"></span>
@@ -1290,7 +1301,7 @@
                         <p class="text-sm font-bold" style="color: ${item.color};">${item.company} (${item.role})</p>
                         <span class="text-xs font-mono text-accent-text-muted">${item.tenure}</span>
                     </div>
-                    <p class="text-xs text-accent-text-secondary mt-1">${item.desc}</p>
+                    <!-- Removed: <p class="text-xs text-accent-text-secondary mt-1">${item.desc}</p> -->
                 </div>
             `).join('');
 
@@ -1446,7 +1457,7 @@
             const certStatusEl = document.getElementById('cert-status');
             if(certStatusEl) certStatusEl.innerText = "Fetching certifications...";
             
-            // NOTE: Certificate data needs column E (index 4) for the score (sc)
+            // Range A:G covers: A (Sno), B (Relevance), C (Title), D (Institution), E (Score), F (Date), G (Link)
             const certUrl = `https://docs.google.com/spreadsheets/d/${window.app.SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=Certification&range=A:G`;
 
             try {
@@ -1457,15 +1468,16 @@
                 if (certRows.length > 1) { 
                     window.app.certs = certRows.slice(1).map(row => {
                            const c = row.c;
-                           if (!c || !c[2]?.v) return null; // Ensure title exists
+                           // Ensure Title (Col C, index 2) and Date (Col F, index 5) exist for sorting
+                           if (!c || !c[2]?.v || (!c[5]?.v && !c[5]?.f)) return null; 
                            return {
-                               sno: c[0]?.v,      // Serial Number
-                               rel: c[1]?.v,      // Relevance Score
-                               t: c[2]?.v,        // Title
-                               i: c[3]?.v,        // Institution
-                               sc: c[4]?.v,      // Score (from column E, index 4)
-                               y: c[5]?.v || c[5]?.f, // Date (Raw value or formatted value 'f')
-                               l: c[6]?.v        // Link
+                               sno: c[0]?.v,      // Serial Number (Ignored for sorting)
+                               rel: c[1]?.v,      // Relevance Score (Col B, index 1)
+                               t: c[2]?.v,        // Title (Col C, index 2)
+                               i: c[3]?.v,        // Institution (Col D, index 3)
+                               sc: c[4]?.v,      // Score (Col E, index 4)
+                               y: c[5]?.v || c[5]?.f, // Date (Col F, index 5)
+                               l: c[6]?.v        // Link (Col G, index 6)
                            };
                     }).filter(item => item !== null); 
                     
@@ -1532,6 +1544,7 @@
         /* --- 6. INTERACTION LOGIC --- */
         
         window.app.sortCerts = function() {
+            // Toggle between false (Latest: sort by date) and true (Relevance: sort by rel)
             window.app.isSortRel = !window.app.isSortRel;
             window.app.renderCerts();
         };
@@ -1707,7 +1720,7 @@
         };
 
         window.app.fetchTtsAudio = async function(text) {
-             // FIX 1: Use the Vercel/Cloudflare Worker proxy endpoint instead of direct API call
+             // FIX 1: Use the configured TTS API URL (which now checks for environment variable or fallback)
             const apiUrl = window.app.TTS_API_URL;
             const maxRetries = 3;
             let attempt = 0;
