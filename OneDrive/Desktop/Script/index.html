@@ -1011,9 +1011,10 @@
         // Placeholder for the Google Sheet ID. Replace with your actual ID.
         window.app.SPREADSHEET_ID = '1ozWrImLTkJHvteWcmX7AXq_Se_pjk6QUkenB3XqIBxw';
 
-        // FIX 1 & UPDATE: Simulate fetching the TTS API URL from an environment variable (window.TTS_API_ENDPOINT), 
-        // falling back to the hardcoded proxy if not defined.
-        window.app.TTS_API_URL = window.TTS_API_ENDPOINT || 'https://tts-proxy.vercel.app/api/tts'; 
+        // 1. TTS API Configuration: Use the provided API key and the Gemini TTS endpoint
+        const API_KEY = "AIzaSyBrIwJg75jiXBHezO3eJLNLChU560OYA48"; 
+        window.app.TTS_API_ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${API_KEY}`;
+        window.app.TTS_API_URL = window.app.TTS_API_ENDPOINT; // Set the URL directly
 
         window.app.PITCH_TEXT = "Hello, I am Navneet Chaudhary. I am a T-shaped finance professional, combining deep expertise in FP&A and Compliance, with horizontal skills in Python, RPA, and Generative AI. I specialize in driving operational alpha, such as engineering an 80% reduction in manual reporting effort and accelerating decision-making by 30%. My goal is to transform finance into a scalable, data-driven engine. Thank you for your time.";
         window.app.certs = [];
@@ -1665,7 +1666,7 @@
             if (typeof mixpanel !== 'undefined') mixpanel.track('Zenith Chat Click', { 'Context': 'Sidebar' });
         };
 
-        // Utility functions for audio conversion (Unchanged)
+        // Utility functions for audio conversion 
         window.app.base64ToArrayBuffer = function(base64) {
             const binaryString = window.atob(base64);
             const len = binaryString.length;
@@ -1718,16 +1719,30 @@
 
             return new Blob([buffer], { type: 'audio/wav' });
         };
-
+        
+        /**
+         * Fetches TTS audio from the Gemini API and converts the resulting PCM data to a WAV URL.
+         */
         window.app.fetchTtsAudio = async function(text) {
-             // FIX 1: Use the configured TTS API URL (which now checks for environment variable or fallback)
             const apiUrl = window.app.TTS_API_URL;
             const maxRetries = 3;
             let attempt = 0;
             
+            // Note: The TTS model works best with prompt engineering for tone.
+            const systemPrompt = "Act as a professional corporate announcer. Deliver the speech in a clear, professional, and slightly enthusiastic tone.";
+            
             const payload = {
-                text: `Say in a clear, professional, and slightly enthusiastic tone: ${text}`,
-                voice: "Orus"
+                contents: [{ parts: [{ text: text }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] },
+                generationConfig: {
+                    responseModalities: ["AUDIO"],
+                    speechConfig: {
+                        voiceConfig: {
+                            // Using a firm, professional voice (Kore or Orus)
+                            prebuiltVoiceConfig: { voiceName: "Orus" } 
+                        }
+                    }
+                }
             };
 
             while (attempt < maxRetries) {
@@ -1739,36 +1754,42 @@
                         body: JSON.stringify(payload)
                     });
 
-                    if (!response.ok) throw new Error(`Proxy/TTS failed with status ${response.status}`);
+                    if (!response.ok) throw new Error(`TTS API failed with status ${response.status}`);
                     
                     const result = await response.json();
+                    const candidate = result.candidates?.[0];
+                    const part = candidate?.content?.parts?.find(p => p.inlineData);
                     
-                    // Assuming the proxy returns base64 and mimeType directly
-                    const audioData = result?.audioData;
-                    const mimeType = result?.mimeType || 'audio/L16;rate=24000'; 
+                    const audioData = part?.inlineData?.data;
+                    const mimeType = part?.inlineData?.mimeType; // Should be audio/L16;rate=24000
 
-                    if (audioData) {
+                    if (audioData && mimeType && mimeType.startsWith('audio/L16')) {
                         const rateMatch = mimeType.match(/rate=(\d+)/);
-                        const sampleRate = rateMatch ? parseInt(rateMatch[1], 10) : 24000;
+                        // Default to 24000 if not found, as L16 often implies this rate
+                        const sampleRate = rateMatch ? parseInt(rateMatch[1], 10) : 24000; 
                         
                         const pcmData = window.app.base64ToArrayBuffer(audioData);
                         const pcm16 = new Int16Array(pcmData);
                         const wavBlob = window.app.pcmToWav(pcm16, sampleRate);
                         return URL.createObjectURL(wavBlob);
                     } else {
-                        throw new Error("Proxy response missing audio data.");
+                        // Log the full error response for debugging
+                        console.error("TTS API response missing expected audio data or format:", result);
+                        throw new Error("TTS response invalid or missing audio data.");
                     }
                 } catch (error) {
                     if (attempt < maxRetries) {
                         await new Promise(resolve => setTimeout(resolve, Math.pow(2, attempt) * 1000));
+                        console.log(`TTS retry attempt ${attempt}...`);
                     } else {
-                        console.error("Failed to fetch TTS audio after multiple retries via proxy.", error);
+                        console.error("Failed to fetch TTS audio after multiple retries.", error);
                         return null;
                     }
                 }
             }
             return null;
         };
+
 
         window.app.togglePitch = async function() {
             const btn = document.getElementById('playPitchBtn');
