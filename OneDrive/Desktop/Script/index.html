@@ -6,6 +6,9 @@
     <title>NAVNEET CHAUDHARY | Strategic Finance & FinTech Hybrid</title>
     <meta name="description" content="T-Shaped Professional: Deep FP&A expertise combined with Python/RPA execution skills, delivering 2X-3X ROI and 80% efficiency gains.">
     
+    <!-- MANDATORY SEO COMPLIANCE: NO INDEXING -->
+    <meta name="robots" content="noindex"> 
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://cdn.tailwindcss.com">
     
@@ -62,7 +65,7 @@
     </script>
 
     <script>
-        // GTM Placeholder
+        // GTM Placeholder (Existing, required for tracking)
         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GT-57Z944P3');
         
         window.dataLayer = window.dataLayer || [];
@@ -198,15 +201,15 @@
         }
 
         .btn-action-accent::before {
-             content: '';
-             position: absolute;
-             top: 0;
-             left: 0;
-             width: 100%;
-             height: 100%;
-             pointer-events: none;
-             background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.15) 30%, rgba(255, 255, 255, 0) 60%);
-             border-radius: 12px;
+              content: '';
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              pointer-events: none;
+              background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.15) 30%, rgba(255, 255, 255, 0) 60%);
+              border-radius: 12px;
         }
         
         /* Apply small variant styles */
@@ -297,7 +300,7 @@
         
         /* Sidebar collapse for mobile */
         #sidebar.mobile-hidden {
-             transform: translateX(-100%);
+              transform: translateX(-100%);
         }
         
         /* Critical: Fix to force sidebar visibility on desktop when not collapsed */
@@ -489,12 +492,10 @@
 
                             <!-- Action Buttons Group Vertical/Stacked (NOW FOR MEDIA LINKS ONLY) -->
                             <div class="flex flex-col gap-2 w-full justify-center lg:justify-start"> 
-                                <!-- REMOVED: PLAY PITCH button -->
-                                
-                                <!-- PITCH DECK button (Moved from main content area) -->
+                                <!-- PITCH DECK button (Removed Interactive) -->
                                 <button onclick="window.app.openPitchDeckModal()" class="btn-action-primary small flex items-center justify-center gap-2 px-3 py-2 text-xs font-bold transition-all duration-150 whitespace-nowrap" aria-label="View Pitch Deck"> 
                                     <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 12H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                                    PITCH DECK
+                                    <span>PITCH DECK</span>
                                 </button>
                             </div>
                         </div>
@@ -529,7 +530,6 @@
                                     </a>
                                     
                                     <!-- COVER LETTER button -->
-                                    <!-- EDITED: Added download icon to match RESUME button -->
                                     <a href="https://drive.google.com/uc?export=download&id=19VaToDZPDiaPzNfH8QOty_EjZtr9LIn6" target="_blank" class="btn-action-accent small flex items-center gap-2 text-sm font-bold transition-all duration-150 flex-1 whitespace-nowrap min-w-[100px] sm:min-w-0"> 
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                                         <span>COVER LETTER</span>
@@ -681,7 +681,7 @@
                                     <div class="relative pl-0 mb-6 group"> 
                                         <div class="flex justify-between items-start mb-1"> 
                                             <h3 class="font-extrabold text-lg text-accent-primary border-b border-slate-700 pb-1 mb-2">Career Break (Content Creation & Project Dev)</h3> <!-- Company/Group to green (accent-primary) -->
-                                            <span class="text-xs font-mono text-accent-primary bg-slate-800 px-2 py-1 rounded border border-slate-700">Sep 25 - Dec 25</span>
+                                            <span class="text-xs font-mono text-accent-primary bg-slate-800 px-2 py-1 rounded border border-slate-700">Sep 25 - Nov 25</span>
                                         </div>
                                         <p class="text-sm text-blue-400 font-medium mb-2">Tech Portfolio & Article Writing</p> <!-- Designation/Role updated here -->
                                         <!-- Applied single-line alignment fix -->
@@ -882,7 +882,8 @@
                     <section class="glass-card rounded-2xl shadow-terminal p-6">
                         <div class="flex justify-between items-center mb-4">
                             <h3 class="text-xs font-bold text-accent-text-muted uppercase tracking-wider">Certifications</h3>
-                            <button onclick="window.app.sortCerts()" class="text-xs text-accent-primary hover:underline" id="sortBtn">Sort: Latest</button>
+                            <!-- Initial text now reflects the default sort by Relevance (true) -->
+                            <button onclick="window.app.sortCerts()" class="text-xs text-accent-primary hover:underline" id="sortBtn">Sort: Relevance</button>
                         </div>
                         <div id="certList" class="space-y-2 max-h-[400px] overflow-y-auto custom-scrollbar pr-1"> 
                             <p id="cert-status" class="text-xs text-text-muted italic">Loading certifications...</p>
@@ -980,12 +981,12 @@
         </div>
     </div>
     
-    <!-- 4. Pitch Deck Modal (NEWLY ADDED) -->
+    <!-- 4. Pitch Deck Modal (UPDATED TITLE) -->
     <div id="pitchDeckModal" class="fixed inset-0 z-50 hidden">
         <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="window.app.closePitchDeckModal()"></div>
         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] max-w-6xl h-[95%] bg-bg border border-slate-700 rounded-xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in zoom-in duration-300">
             <div class="p-4 border-b border-slate-800 flex justify-between items-center bg-slate-900 shrink-0">
-                <h2 class="text-lg font-bold text-white">Interactive Pitch Deck</h2>
+                <h2 class="text-lg font-bold text-white">Pitch Deck</h2>
                 <button onclick="window.app.closePitchDeckModal()" class="btn-action-primary small flex items-center justify-center text-white text-xs px-3 py-2" aria-label="Close Pitch Deck">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                     <span class="ml-1">CLOSE</span>
@@ -1006,12 +1007,8 @@
         // Placeholder for the Google Sheet ID. Replace with your actual ID.
         window.app.SPREADSHEET_ID = '1ozWrImLTkJHvteWcmX7AXq_Se_pjk6QUkenB3XqIBxw';
 
-        // TTS and Pitch logic removed
-        
-        window.app.certs = [];
-        window.app.faqData = [];
-        // UPDATED: Default sort to false (Latest first) based on user's implicit desire to sort by date (Col F)
-        window.app.isSortRel = false; 
+        // Set Relevance as default (true) for Certifications, per user request.
+        window.app.isSortRel = true; 
         window.app.flashcardInterval = null; 
         
         // FIX 3: Increased flashcard rotation time to 7000ms (7 seconds)
@@ -1039,11 +1036,12 @@
             { t: "Private Equity & VC", i: "Bocconi University", y: "2023-01-01", l: "#", rel: 8, sc: 70 },
         ];
         
+        // UPDATED: Added link parameter to fallback data
         window.app.fallbackFAQ = [
-            { question: "What is the core value proposition?", answer: "Navneet is a 'T-Shaped Hybrid,' combining vertical depth in FP&A, Accounting, and Compliance with horizontal execution skills in Python, RPA, and Generative AI to drive tangible process automation and financial clarity." },
-            { question: "What is your largest measurable impact?", answer: "At Grew Energy Pvt Ltd, proprietary Python/RPA scripts were deployed to automate MIS preparation, resulting in an 80% reduction in manual effort. This is the core of the Systemic Efficiency Engineering mandate." },
-            { question: "Why the career gap in 2024?", answer: "The gap from Sep 2024 - Nov 2024 was a pre-planned break for family medical responsibilities, which are now fully resolved. The time was constructively used for community service (Robinhood Army) and professional development." },
-            { question: "What is 'Operational Alpha'?", answer: "Operational Alpha refers to the quantifiable gains achieved beyond standard performance, including 30% acceleration in decision-making speed, 100% compliance record across 31 GST registrations, and stabilizing liquidity during a cash crisis." }
+            { question: "What is the core value proposition?", answer: "Navneet is a 'T-Shaped Hybrid,' combining vertical depth in FP&A, Accounting, and Compliance with horizontal execution skills in Python, RPA, and Generative AI to drive tangible process automation and financial clarity.", link: "https://www.linkedin.com/in/navneet831/" },
+            { question: "What is your largest measurable impact?", answer: "At Grew Energy Pvt Ltd, proprietary Python/RPA scripts were deployed to automate MIS preparation, resulting in an 80% reduction in manual effort. This is the core of the Systemic Efficiency Engineering mandate.", link: "" },
+            { question: "Why the career gap in 2024?", answer: "The gap from Sep 2024 - Nov 2024 was a pre-planned break for family medical responsibilities, which are now fully resolved. The time was constructively used for community service (Robinhood Army) and professional development.", link: "" },
+            { question: "What is 'Operational Alpha'?", answer: "Operational Alpha refers to the quantifiable gains achieved beyond standard performance, including 30% acceleration in decision-making speed, 100% compliance record across 31 GST registrations, and stabilizing liquidity during a cash crisis.", link: "" }
         ];
         
         // --- MASTER SOURCE OF TRUTH FOR PROFESSIONAL JOURNEY TIMELINE (UPDATED ROLE) ---
@@ -1209,8 +1207,8 @@
             if(!list) return;
             
             // Sort:
-            // - If !isSortRel (default), sort by Date (Col F/index 5) descending (Latest first).
-            // - If isSortRel, sort by Relevance (Col B/index 1) ascending (1=Most Relevant).
+            // - If isSortRel (default), sort by Relevance (Col B/index 1) ascending (1=Most Relevant).
+            // - If !isSortRel, sort by Date (Col F/index 5) descending (Latest first).
             const sorted = [...window.app.certs].sort((a, b) => {
                 if (window.app.isSortRel) {
                     // Sort by Relevance (Ascending)
@@ -1253,6 +1251,7 @@
                 }
             }).join('');
             
+            // Set button text based on current sort state
             document.getElementById('sortBtn').innerText = window.app.isSortRel ? 'Sort: Relevance' : 'Sort: Latest';
         };
 
@@ -1260,22 +1259,47 @@
             const container = document.getElementById('faq-container');
             if (!container) return;
             
-            // This markup adopts the clean, high-contrast border/shadow look from index(8)
-            container.innerHTML = window.app.faqData.map((item, index) => `
-                <div class="border border-slate-700 rounded-xl overflow-hidden shadow-terminal accordion-item">
-                    <button class="w-full flex justify-between items-center text-left p-4 bg-slate-800 hover:bg-slate-700 transition-colors" onclick="window.app.toggleAccordion(this)">
-                        <span class="text-sm font-bold text-accent-text-primary">${item.question}</span>
-                        <span class="ml-4 text-accent-primary transform transition-transform duration-300">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </span>
-                    </button>
-                    <div class="accordion-content bg-slate-900/50">
-                        <div class="p-4 border-t border-slate-700">
-                            <p class="text-sm text-accent-text-secondary leading-relaxed">${item.answer}</p>
+            // Renders the FAQ list items, dynamically adding links to the answer content if present.
+            container.innerHTML = window.app.faqData.map((item, index) => {
+                let linkElement = '';
+                
+                // Check if a valid link exists (starts with http)
+                if (item.link && item.link.startsWith('http')) {
+                    // Create a distinctive link element mirroring the requested style (icon only)
+                    linkElement = `
+                        <a href="${item.link}" target="_blank" rel="noopener noreferrer" 
+                            class="text-xs font-mono text-accent-primary flex items-center hover:text-white"
+                            onclick="event.stopPropagation(); if (typeof mixpanel !== 'undefined') mixpanel.track('FAQ Source Click', { 'Question': '${item.question.replace(/'/g, "\\'")}' });"
+                            aria-label="View Link">
+                            <svg class="w-3 h-3 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        </a>
+                    `;
+                }
+                // Structure the answer content to place the link element separately using flexbox.
+                const answerBody = linkElement ? 
+                    `<div class="flex justify-between items-start w-full">
+                        <p class="text-sm text-accent-text-secondary leading-relaxed mr-4">${item.answer}</p>
+                        ${linkElement}
+                    </div>` : 
+                    `<p class="text-sm text-accent-text-secondary leading-relaxed">${item.answer}</p>`;
+
+
+                return `
+                    <div class="border border-slate-700 rounded-xl overflow-hidden shadow-terminal accordion-item">
+                        <button class="w-full flex justify-between items-center text-left p-4 bg-slate-800 hover:bg-slate-700 transition-colors" onclick="window.app.toggleAccordion(this)">
+                            <span class="text-sm font-bold text-accent-text-primary">${item.question}</span>
+                            <span class="ml-4 text-accent-primary transform transition-transform duration-300">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </button>
+                        <div class="accordion-content bg-slate-900/50">
+                            <div class="p-4 border-t border-slate-700 flex items-center">
+                                ${answerBody}
+                            </div>
                         </div>
                     </div>
-                </div>
-            `).join('');
+                `;
+            }).join('');
         };
         
         // UPDATED: Renders the chronological timeline for the back face
@@ -1317,10 +1341,10 @@
             detail.innerText = data.desc;
             
             inds.forEach((ind, idx) => {
-               if (ind) {
-                   ind.style.opacity = idx === window.app.currentImpact ? '1' : '0.3';
-                   ind.className = `h-1 w-full rounded transition-all ${idx === window.app.currentImpact ? 'bg-accent-primary' : 'bg-slate-700'}`;
-               }
+                if (ind) {
+                    ind.style.opacity = idx === window.app.currentImpact ? '1' : '0.3';
+                    ind.className = `h-1 w-full rounded transition-all ${idx === window.app.currentImpact ? 'bg-accent-primary' : 'bg-slate-700'}`;
+                }
             });
         };
 
@@ -1407,18 +1431,22 @@
         window.app.fetchFAQData = async function() {
             const statusElement = document.getElementById('faq-status');
             if(statusElement) statusElement.innerText = "Fetching FAQs...";
-            const queryUrl = `https://docs.google.com/spreadsheets/d/${window.app.SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=FAQ&range=B:C`;
+            // UPDATED: Range B:D to pull Question (B), Answer (C), and Link (D)
+            const queryUrl = `https://docs.google.com/spreadsheets/d/${window.app.SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=FAQ&range=B:D`;
 
             try {
                 // Use fetchWithTimeout
                 const text = await window.app.fetchWithTimeout(queryUrl);
                 const rows = window.app.parseGoogleSheetData(text);
                 
+                // NOTE: FAQ sheet columns are B, C, D (indices 0, 1, 2)
                 if (rows.length > 1) { 
                     window.app.faqData = rows.slice(1).map(row => {
-                        const q = row.c[0]?.v; 
-                        const a = row.c[1]?.v;
-                        if (q && a) return { question: q, answer: a };
+                        const c = row.c; // Column data array
+                        const q = c[0]?.v; // Question (Col B)
+                        const a = c[1]?.v; // Answer (Col C)
+                        const l = c[2]?.v; // Link (Col D) - NEW
+                        if (q && a) return { question: q, answer: a, link: l };
                         return null;
                     }).filter(item => item !== null);
 
@@ -1461,10 +1489,10 @@
                            // Ensure Title (Col C, index 2) and Date (Col F, index 5) exist for sorting
                            if (!c || !c[2]?.v || (!c[5]?.v && !c[5]?.f)) return null; 
                            return {
-                               sno: c[0]?.v,      // Serial Number (Ignored for sorting)
-                               rel: c[1]?.v,      // Relevance Score (Col B, index 1)
-                               t: c[2]?.v,        // Title (Col C, index 2)
-                               i: c[3]?.v,        // Institution (Col D, index 3)
+                               sno: c[0]?.v,     // Serial Number (Ignored for sorting)
+                               rel: c[1]?.v,     // Relevance Score (Col B, index 1)
+                               t: c[2]?.v,       // Title (Col C, index 2)
+                               i: c[3]?.v,       // Institution (Col D, index 3)
                                sc: c[4]?.v,      // Score (Col E, index 4)
                                y: c[5]?.v || c[5]?.f, // Date (Col F, index 5)
                                l: c[6]?.v        // Link (Col G, index 6)
@@ -1519,7 +1547,7 @@
                 
                 // If the modal is open, show the fallback content immediately.
                 if (!document.getElementById('journeyModal').classList.contains('hidden')) {
-                     document.getElementById('journey-modal-content').innerHTML = window.app.journeyContent;
+                      document.getElementById('journey-modal-content').innerHTML = window.app.journeyContent;
                 }
                 
                 // Reset the content to the hardcoded fallback if the initial loading message is still visible
@@ -1534,7 +1562,7 @@
         /* --- 6. INTERACTION LOGIC --- */
         
         window.app.sortCerts = function() {
-            // Toggle between false (Latest: sort by date) and true (Relevance: sort by rel)
+            // Toggle between true (Relevance: sort by rel) and false (Latest: sort by date)
             window.app.isSortRel = !window.app.isSortRel;
             window.app.renderCerts();
         };
@@ -1615,13 +1643,13 @@
             if (window.innerWidth >= 1024) {
                  sb.classList.toggle('collapsed');
                  if(sb.classList.contains('collapsed')) {
-                     // Collapsed state: arrow points inwards
-                     toggleBtn.style.transform = "rotate(180deg)";
-                     sb.style.width = '64px'; // W-16
+                    // Collapsed state: arrow points inwards
+                    toggleBtn.style.transform = "rotate(180deg)";
+                    sb.style.width = '64px'; // W-16
                  } else {
-                     // Expanded state: arrow points outwards
-                     toggleBtn.style.transform = "rotate(0deg)"; // Fixed to 0deg (outwards)
-                     sb.style.width = '256px'; // W-64
+                    // Expanded state: arrow points outwards
+                    toggleBtn.style.transform = "rotate(0deg)"; // Fixed to 0deg (outwards)
+                    sb.style.width = '256px'; // W-64
                  }
             } else {
                 // If clicked on mobile, treat it as a nav-item click (mobile hidden/shown)
@@ -1645,21 +1673,19 @@
             }
         };
         
+        // RESTORED TAWK.TO WIDGET LOGIC
         window.app.toggleZenithChat = function() {
+            // Restore Tawk.to interaction
             if (typeof Tawk_API !== 'undefined' && Tawk_API.maximize) {
                 Tawk_API.maximize();
             } else {
-                // Fallback action for chat if the external script is not loaded
-                console.log("Zenith AI: I am ready to answer specific questions about Navneet's profile, projects, and domain expertise. Try asking: 'What's the ROI on Python automation?'");
+                // Fallback log if API isn't loaded yet
+                console.warn("ZENITH AI: Tawk.to chat widget is loading or initialization failed.");
             }
             if (typeof mixpanel !== 'undefined') mixpanel.track('Zenith Chat Click', { 'Context': 'Sidebar' });
         };
         
-        // Removed: window.app.base64ToArrayBuffer (TTS utility)
-        // Removed: window.app.pcmToWav (TTS utility)
-        // Removed: window.app.fetchTtsAudio (TTS utility)
-        // Removed: window.app.togglePitch (Pitch button logic)
-
+        // =======================================================================
 
         /* --- 7. D3 MIND MAP LOGIC (Encapsulated) --- */
 
@@ -1856,8 +1882,8 @@
 
         window.app.openMediaModal = function() {
             document.getElementById('mediaModal').classList.remove('hidden');
-            // Lazy load the iframe source
-            document.getElementById('ytFrame').src = "https://www.youtube.com/embed/videoseries?list=PLD0X_J8XpU_f8gY6o4Qk7E3qZq-1WqWqK";
+            // FIX: Updated YouTube embed source with reliable playlist parameters
+            document.getElementById('ytFrame').src = "https://www.youtube.com/embed/videoseries?list=PLD0X_J8XpU_f8gY6o4Qk7E3qZq-1WqWqK&rel=0&autoplay=1";
             if (typeof mixpanel !== 'undefined') mixpanel.track('Media Modal Opened');
         };
 
@@ -1874,7 +1900,7 @@
              if (contentDiv) {
                  // Check if the content is still the default 'Loading' message and re-run fetch if needed
                  if (contentDiv.querySelector('.animate-pulse')) {
-                      window.app.fetchJourneyData();
+                     window.app.fetchJourneyData();
                  } else {
                     // Update content with the latest fetched/fallback version
                     contentDiv.innerHTML = window.app.journeyContent;
@@ -1985,8 +2011,10 @@
                 }
             }, 250);
         });
-        
-        // Load Tawk.to Chat (Zenith AI)
+    </script>
+    
+    <!-- TAWK.TO WIDGET REINSTATED AS REQUESTED -->
+    <script>
         var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
         (function(){
         var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
