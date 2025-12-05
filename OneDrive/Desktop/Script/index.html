@@ -33,16 +33,16 @@
                             hover: '#334155',    // Slate 700
                         },
                         accent: {
-                            primary: '#10b981',    // Emerald 500 (Finance Positive)
+                            primary: '#10b981',     // Emerald 500 (Finance Positive)
                             primaryDark: '#047857', // Emerald 700 (For 3D Shadow)
                             secondary: '#24324f', // Dark Slate Blue (Professional, less vibrant)
                             secondaryDark: '#121a28', // Dark Blue Shadow
                             alert: '#ef4444',      // Red 500 (Risk/Stop)
                             alertDark: '#b91c1c', // Red 700 (For 3D Shadow)
                             text: {
-                                primary: '#f1f5f9',    // Slate 100
+                                primary: '#f1f5f9',     // Slate 100
                                 secondary: '#e2e8f0', // UPDATED: Brighter Secondary (Slate 200) for main body copy
-                                muted: '#cbd5e1',      // UPDATED: Used for labels/subtext (Slate 300 - better contrast)
+                                muted: '#cbd5e1',       // UPDATED: Used for labels/subtext (Slate 300 - better contrast)
                                 emphasis: '#10b981', // Emerald 500 (Used for inline text emphasis)
                             }
                         }
@@ -109,7 +109,7 @@
         #main-scroll {
             margin-top: 0 !important;
             padding-top: 0 !important;
-            /* FIX 4: Add left padding when mobile sidebar is open */
+            /* Dynamic padding for mobile sidebar */
             transition: padding-left 0.3s ease;
         }
 
@@ -230,6 +230,29 @@
             transform: translate(2px, 2px); 
             box-shadow: none !important;
         }
+        
+        /* NEW: Filter Button Styles */
+        .btn-filter {
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            background-color: #334155; /* Slate 700 */
+            color: #cbd5e1; /* Slate 300 */
+            border: 1px solid #475569; /* Slate 600 */
+            transition: all 0.15s ease;
+        }
+        .btn-filter:hover {
+            background-color: #475569; /* Slate 600 */
+            color: #f1f5f9;
+        }
+        .btn-filter.active {
+            background-color: #10b981; /* Accent Primary */
+            color: #0f172a; /* Dark Text */
+            border-color: #10b981;
+            box-shadow: 0 2px 5px rgba(16, 185, 129, 0.4);
+        }
 
         /* Sidebar Animations */
         #sidebar { transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
@@ -280,6 +303,7 @@
 
         .node circle {
             cursor: pointer;
+            stroke-width: 3px;
             stroke-width: 3px;
             transition: fill 0.3s, stroke 0.3s;
         }
@@ -463,9 +487,8 @@
                         <!-- Avatar, Social Icons, and Action Buttons (Consolidated) -->
                         <div class="flex flex-col items-center gap-3 shrink-0"> 
                             <div class="relative">
-                                <!-- Removed: Progress Ring SVG - Now just a static background for the image -->
+                                <!-- Photo Section: Adjusted sizing and position for compactness -->
                                 <div class="w-36 h-36 sm:w-40 sm:h-40 rounded-full bg-slate-700/50 flex items-center justify-center">
-                                    <!-- Photo Section: Adjusted sizing and position for compactness -->
                                     <img src="https://raw.githubusercontent.com/Navneet831/Intro/main/Profile.png" 
                                         class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full object-cover border-4 border-bg shadow-xl"
                                         style="width: 120px; height: 120px;"
@@ -554,7 +577,7 @@
                     
                     <!-- Dynamic Flashcard 2.0 (Glass) -->
                     <!-- ADDED: onmouseover/onmouseout events to control flashcard rotation -->
-                    <div id="flashcard" class="glass-card rounded-2xl p-4 shadow-terminal flex flex-col justify-center relative overflow-hidden group transition-colors"
+                    <div id="flashcard" class="glass-card rounded-2xl p-4 shadow-terminal relative overflow-hidden group transition-colors"
                         onmouseover="window.app.pauseFlashcardRotation()"
                         onmouseout="window.app.startFlashcardRotation()"> 
                         
@@ -732,12 +755,12 @@
                                     </div>
 
                                     <!-- 4. Volunteering (Career Break) -->
-                                    <div class="relative pl-0 mb-6 group">
+                                    <div class="relative pl-0 mb-6 group"> 
                                         <div class="flex justify-between items-start mb-1">
-                                            <h3 class="font-extrabold text-lg text-accent-primary border-b border-slate-700 pb-1 mb-2">Career Break & Volunteering</h3> <!-- Company/Group to green (accent-primary) -->
+                                            <h3 class="font-extrabold text-lg text-accent-primary border-b border-slate-700 pb-1 mb-2">Career Break & Volunteering</h3> <!-- Company to green (accent-primary) -->
                                             <span class="text-xs font-mono text-accent-primary bg-slate-800 px-2 py-1 rounded border border-slate-700">Sep 24 - Nov 24</span>
                                         </div>
-                                        <p class="text-sm text-blue-400 font-medium mb-1">Community Service & Family Medical Responsibilities</p> <!-- Designation/Role to blue-400 -->
+                                        <p class="text-sm text-blue-400 font-medium mb-1">Community Service & Family Medical Responsibilities</p> <!-- Designation to blue-400 -->
                                         <p class="text-sm text-accent-text-secondary italic pl-2">Volunteered (unpaid) with NGO, contributing time and effort to community service.</p>
                                     </div>
 
@@ -880,13 +903,22 @@
                     
                     <!-- Certifications (Scrollable List - Glass) -->
                     <section class="glass-card rounded-2xl shadow-terminal p-6">
-                        <div class="flex justify-between items-center mb-4">
-                            <h3 class="text-xs font-bold text-accent-text-muted uppercase tracking-wider">Certifications</h3>
-                            <!-- Initial text now reflects the default sort by Relevance (true) -->
-                            <button onclick="window.app.sortCerts()" class="text-xs text-accent-primary hover:underline" id="sortBtn">Sort: Relevance</button>
+                        <div class="flex flex-col mb-4">
+                            <!-- UPDATED SECTION TITLE & SORT BUTTON CONSOLIDATED IN ONE ROW -->
+                            <div class="flex justify-between items-center">
+                                <h3 class="text-xs font-bold text-accent-text-muted uppercase tracking-wider">Project & Certs</h3>
+                                <!-- Sort button moved up here -->
+                                <button onclick="window.app.sortCerts()" class="text-xs font-bold text-accent-primary hover:underline" id="sortBtn">Sort: Relevance</button>
+                            </div>
+                            
+                            <!-- DYNAMIC FILTER SLICERS CONTAINER -->
+                            <div id="filterSlicers" class="flex flex-wrap gap-2 mt-3">
+                                <!-- Filter buttons generated by JS based on unique categories -->
+                            </div>
                         </div>
-                        <div id="certList" class="space-y-2 max-h-[400px] overflow-y-auto custom-scrollbar pr-1"> 
-                            <p id="cert-status" class="text-xs text-text-muted italic">Loading certifications...</p>
+                        <!-- EDITED: Increased max-height from 200px to 350px to balance layout with Experience card (700px height) -->
+                        <div id="certList" class="space-y-2 max-h-[350px] overflow-y-auto custom-scrollbar pr-1"> 
+                            <p id="cert-status" class="text-xs text-text-muted italic">Loading projects and certifications...</p>
                             <!-- Content rendered by JS -->
                         </div>
                     </section>
@@ -1009,6 +1041,8 @@
 
         // Set Relevance as default (true) for Certifications, per user request.
         window.app.isSortRel = true; 
+        // UPDATED: Default filter set to 'C' (Certification)
+        window.app.currentFilter = 'C'; 
         window.app.flashcardInterval = null; 
         
         // FIX 3: Increased flashcard rotation time to 7000ms (7 seconds)
@@ -1025,15 +1059,15 @@
         
         // Hardcoded fallback data (Dates need to be accurate for sorting to work)
         window.app.fallbackCerts = [
-            // Using ISO 8601 strings for robust date parsing in the fallback
-            { t: "NISM Research Analyst", i: "SEBI Certified", y: "2024-03-01", l: "#", rel: 1, sc: 100 },
-            { t: "Financial Modelling", i: "The Wall Street School", y: "2024-07-15", l: "#", rel: 2, sc: 95 },
-            { t: "GST Taxation", i: "PwC", y: "2024-10-01", l: "#", rel: 3, sc: 90 },
-            { t: "FP&A: Building Budgets", i: "365 Financial Analysts", y: "2024-08-01", l: "#", rel: 4, sc: 90 },
-            { t: "Investment Banking", i: "365 Financial Analysts", y: "2024-06-01", l: "#", rel: 5, sc: 85 },
-            { t: "Google Data Analytics", i: "Google", y: "2023-12-01", l: "#", rel: 6, sc: 80 },
-            { t: "Finance for Managers", i: "IESE Business School", y: "2023-09-01", l: "#", rel: 7, sc: 75 },
-            { t: "Private Equity & VC", i: "Bocconi University", y: "2023-01-01", l: "#", rel: 8, sc: 70 },
+            // Category mapping used for fallback: C, P, Q, CP, W
+            { category: 'C', t: "NISM Research Analyst", i: "SEBI Certified", y: "2024-03-01", l: "#", rel: 1, sc: 100, catFull: "Certification" }, 
+            { category: 'P', t: "Financial Modelling (Project)", i: "The Wall Street School", y: "2024-07-15", l: "#", rel: 2, sc: 95, catFull: "Project" }, 
+            { category: 'CP', t: "GST Taxation (CP)", i: "PwC", y: "2024-10-01", l: "#", rel: 3, sc: 90, catFull: "Certificate of Participation" }, 
+            { category: 'Q', t: "FP&A: Building Budgets (Quiz)", i: "365 Financial Analysts", y: "2024-08-01", l: "#", rel: 4, sc: 90, catFull: "Quiz" }, 
+            { category: 'C', t: "Investment Banking", i: "365 Financial Analysts", y: "2024-06-01", l: "#", rel: 5, sc: 85, catFull: "Certification" }, 
+            { category: 'P', t: "Google Data Analytics (Project)", i: "Google", y: "2023-12-01", l: "#", rel: 6, sc: 80, catFull: "Project" }, 
+            { category: 'Q', t: "Finance for Managers (Quiz)", i: "IESE Business School", y: "2023-09-01", l: "#", rel: 7, sc: 75, catFull: "Quiz" }, 
+            { category: 'W', t: "Private Equity & VC (Webinar)", i: "Bocconi University", y: "2023-01-01", l: "#", rel: 8, sc: 70, catFull: "Workshop/Webinar" }, 
         ];
         
         // UPDATED: Added link parameter to fallback data
@@ -1063,7 +1097,7 @@
         window.app.professionalJourney.sort((a, b) => b.start - a.start);
 
         window.app.getHardcodedJourneyContent = function() {
-            // ... (rest of the journey content function remains the same, used for the modal)
+            // Updated hardcoded content for robustness and clarity
             return `<p class="text-sm text-accent-text-secondary">
                 <span class="font-bold text-accent-text-primary">The 'Why' Behind the Journey:</span> My career is defined by a consistent pursuit of efficiency and technological edge in finance. My experience has forged a 'T-Shaped' profile: deep domain expertise in FP&A/Accounting (Vertical Depth) combined with Python/RPA skills (Horizontal Breadth).
             </p>
@@ -1206,27 +1240,36 @@
             const list = document.getElementById('certList');
             if(!list) return;
             
-            // Sort:
-            // - If isSortRel (default), sort by Relevance (Col B/index 1) ascending (1=Most Relevant).
-            // - If !isSortRel, sort by Date (Col F/index 5) descending (Latest first).
-            const sorted = [...window.app.certs].sort((a, b) => {
+            // 1. Filter the list based on the current active category (window.app.currentFilter)
+            const filtered = window.app.currentFilter === 'ALL'
+                ? window.app.certs
+                : window.app.certs.filter(c => {
+                    // Filter based on the category string (C, P, Q, CP, W) from Column H
+                    return c.category === window.app.currentFilter;
+                });
+
+            // 2. Sort the filtered list
+            const sorted = [...filtered].sort((a, b) => {
                 if (window.app.isSortRel) {
-                    // Sort by Relevance (Ascending)
+                    // Sort by Relevance (Col A) - Ascending
                     return (a.rel || 99) - (b.rel || 99);
                 } else {
-                    // Sort by Date (Descending - Latest First)
+                    // Sort by Date (Col F) - Descending (Latest First)
                     const tA = window.app.getTimestamp(a.y); // 'y' is the date value (Col F)
                     const tB = window.app.getTimestamp(b.y); // 'y' is the date value (Col F)
                     return tB - tA;
                 }
             });
             
+            // 3. Render the list
             list.innerHTML = sorted.map(c => {
                 // Determine if score exists and apply formatting
                 const scoreText = (c.sc !== null && c.sc !== undefined) 
                     ? `<span class="text-blue-400 font-bold ml-1">(${c.sc}%)</span>` 
                     : '';
                 
+                // *** CATEGORY TAG DISPLAY REMOVED ***
+
                 const innerContent = `
                     <div class="flex justify-between items-center p-3 rounded-lg bg-bg hover:bg-slate-800 border border-transparent hover:border-slate-700 transition group cursor-pointer w-full">
                         <div>
@@ -1234,7 +1277,7 @@
                             <div class="text-xs text-accent-text-muted">${c.i}</div>
                         </div>
                         <div class="text-right shrink-0 flex flex-col items-end">
-                            <div class="text-xs font-mono text-accent-primary flex items-center">
+                            <div class="text-xs font-mono text-accent-primary flex items-center mb-0.5">
                                 <span>${window.app.formatDateMMYY(c.y)}</span>
                                 ${c.l && c.l !== '#' ? `<svg class="w-3 h-3 opacity-50 group-hover:opacity-100 text-slate-500 group-hover:text-accent-primary transition-colors ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>` : ''}
                             </div>
@@ -1244,7 +1287,7 @@
                     </div>
                 `;
                 
-                if (c.l && c.l !== '#') {
+                if (c.l && c.l !== '#' && c.l.startsWith('http')) {
                     return `<a href="${c.l}" target="_blank" rel="noopener noreferrer" class="block no-underline">${innerContent}</a>`;
                 } else {
                     return `<div class="block">${innerContent}</div>`;
@@ -1254,6 +1297,84 @@
             // Set button text based on current sort state
             document.getElementById('sortBtn').innerText = window.app.isSortRel ? 'Sort: Relevance' : 'Sort: Latest';
         };
+        
+        
+        // This function sets the tooltip/hover behavior for the filter buttons
+        window.app.setFilterTooltips = function() {
+            // This map should ideally be built dynamically from the fetched data's 'catFull' field
+            // But for safety/fallback consistency, we map the most common ones here.
+            const buttonMap = {
+                'P': 'Project',
+                'C': 'Certification',
+                'Q': 'Quiz',
+                'CP': 'Certificate of Participation',
+                'W': 'Workshop/Webinar',
+            };
+            
+            document.querySelectorAll('.btn-filter').forEach(btn => {
+                const filterValue = btn.getAttribute('data-filter');
+                let tooltipText = buttonMap[filterValue] || filterValue;
+
+                // Try to use the full name from the fetched data if available
+                const cert = window.app.certs.find(c => c.category === filterValue);
+                if (cert && cert.catFull) {
+                    tooltipText = cert.catFull;
+                }
+                
+                // Set the default title attribute for native browser hover/tooltip
+                btn.setAttribute('title', tooltipText);
+            });
+        };
+        
+        // Dynamic Filter Button Renderer
+        window.app.renderFilterButtons = function() {
+            const container = document.getElementById('filterSlicers');
+            if (!container) {
+                console.error("Filter container not found.");
+                return;
+            }
+            if (window.app.certs.length === 0) {
+                 container.innerHTML = `<p class="text-accent-alert text-xs">No project or certification data available.</p>`;
+                 return;
+            }
+
+            // 1. Collect unique categories from the fetched/fallback data
+            const uniqueCategories = [...new Set(window.app.certs.map(c => c.category))].filter(cat => cat && cat !== 'ALL');
+            
+            // Define the preferred order
+            const preferredOrder = ['C', 'P', 'Q', 'CP', 'W']; 
+            
+            // Sort categories based on preferred order
+            uniqueCategories.sort((a, b) => {
+                let indexA = preferredOrder.indexOf(a);
+                let indexB = preferredOrder.indexOf(b);
+                
+                // Handle categories not in preferredOrder gracefully
+                return indexA - indexB;
+            });
+            
+            // 2. Generate buttons
+            const buttonsHtml = uniqueCategories.map(cat => {
+                const filterValue = cat; 
+                const uiLabel = cat === 'W/B' ? 'W' : cat; // Display 'W' for the 'W/B' data key
+
+                // We filter based on 'cat', but the UI only shows 'uiLabel'
+                return `<button class="btn-filter" onclick="window.app.filterCerts('${filterValue}', this)" data-filter="${filterValue}">${uiLabel}</button>`;
+            }).join('');
+            
+            // 3. Insert into container
+            container.innerHTML = buttonsHtml;
+            
+            // 4. Re-apply tooltips (required after dynamic render)
+            window.app.setFilterTooltips();
+
+            // 5. Apply active class to the currently selected filter button
+            const activeFilterButton = document.querySelector(`#filterSlicers [data-filter="${window.app.currentFilter}"]`);
+            if (activeFilterButton) {
+                activeFilterButton.classList.add('active');
+            }
+        };
+
 
         window.app.renderFAQ = function() {
             const container = document.getElementById('faq-container');
@@ -1315,7 +1436,6 @@
                         <p class="text-sm font-bold" style="color: ${item.color};">${item.company} (${item.role})</p>
                         <span class="text-xs font-mono text-accent-text-muted">${item.tenure}</span>
                     </div>
-                    <!-- Removed: <p class="text-xs text-accent-text-secondary mt-1">${item.desc}</p> -->
                 </div>
             `).join('');
 
@@ -1404,8 +1524,27 @@
             }
         };
 
+        // NEW FUNCTION: Filters certifications/projects by category
+        window.app.filterCerts = function(filter, buttonElement) {
+            window.app.currentFilter = filter;
 
-        // =======================================================================
+            // Update active state for buttons
+            document.querySelectorAll('#filterSlicers .btn-filter').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            if (buttonElement) {
+                buttonElement.classList.add('active');
+            } else {
+                // Handle initial load where buttonElement is null
+                const defaultButton = document.querySelector(`#filterSlicers [data-filter="${window.app.currentFilter}"]`);
+                if (defaultButton) {
+                    defaultButton.classList.add('active');
+                }
+            }
+
+            window.app.renderCerts();
+        };
+
 
         /* --- 5. DATA FETCHING FUNCTIONS --- */
 
@@ -1431,7 +1570,7 @@
         window.app.fetchFAQData = async function() {
             const statusElement = document.getElementById('faq-status');
             if(statusElement) statusElement.innerText = "Fetching FAQs...";
-            // UPDATED: Range B:D to pull Question (B), Answer (C), and Link (D)
+            // Query Range B:D: B (Question), C (Answer), D (Link)
             const queryUrl = `https://docs.google.com/spreadsheets/d/${window.app.SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=FAQ&range=B:D`;
 
             try {
@@ -1473,45 +1612,74 @@
 
         window.app.fetchProfileData = async function() {
             const certStatusEl = document.getElementById('cert-status');
-            if(certStatusEl) certStatusEl.innerText = "Fetching certifications...";
+            if(certStatusEl) certStatusEl.innerText = "Fetching data for projects & certs...";
             
-            // Range A:G covers: A (Sno), B (Relevance), C (Title), D (Institution), E (Score), F (Date), G (Link)
-            const certUrl = `https://docs.google.com/spreadsheets/d/${window.app.SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=Certification&range=A:G`;
+            // Fetch range A:I to access Column I (index 8) for Category Full Name
+            // Columns: A (Relevance), B (Category ID), C (Title), D (Institution), E (Score), F (Date), G (Link), H (Category Code), I (Category Full Name)
+            // Indices: 0, 1, 2, 3, 4, 5, 6, 7, 8
+            const certUrl = `https://docs.google.com/spreadsheets/d/${window.app.SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=Certification&range=A:I`;
 
             try {
                 // Use fetchWithTimeout
                 const certText = await window.app.fetchWithTimeout(certUrl);
-                const certRows = window.app.parseGoogleSheetData(certText);
+                const rows = window.app.parseGoogleSheetData(certText);
                 
-                if (certRows.length > 1) { 
-                    window.app.certs = certRows.slice(1).map(row => {
+                if (rows.length > 1) { 
+                    window.app.certs = rows.slice(1).map(row => {
                            const c = row.c;
-                           // Ensure Title (Col C, index 2) and Date (Col F, index 5) exist for sorting
+                           // Ensure Title (Col C, index 2) and Date (Col F, index 5) exist for rendering/sorting
                            if (!c || !c[2]?.v || (!c[5]?.v && !c[5]?.f)) return null; 
+                           
+                           // Extract category string from Column H (index 7)
+                           const categoryString = c[7]?.v ? c[7].v.trim().toUpperCase() : '';
+                           // Extract full category name from Column I (index 8)
+                           const categoryFullName = c[8]?.v ? c[8].v.trim() : '';
+
                            return {
-                               sno: c[0]?.v,     // Serial Number (Ignored for sorting)
-                               rel: c[1]?.v,     // Relevance Score (Col B, index 1)
-                               t: c[2]?.v,       // Title (Col C, index 2)
-                               i: c[3]?.v,       // Institution (Col D, index 3)
-                               sc: c[4]?.v,      // Score (Col E, index 4)
+                               rel: c[0]?.v,       // Relevance Score (Col A, index 0)
+                               category: categoryString, // Category Code (Col H, index 7)
+                               t: c[2]?.v,         // Title (Col C, index 2)
+                               i: c[3]?.v,         // Institution (Col D, index 3)
+                               sc: c[4]?.v,        // Score (Col E, index 4)
                                y: c[5]?.v || c[5]?.f, // Date (Col F, index 5)
-                               l: c[6]?.v        // Link (Col G, index 6)
+                               l: c[6]?.v,         // Link (Col G, index 6)
+                               // NEW: Store full category name for tooltips
+                               catFull: categoryFullName // Category Full Name (Col I, index 8)
                            };
-                    }).filter(item => item !== null); 
+                    }).filter(item => item !== null && item.category !== ''); // Filter out empty/null items
                     
                     if(certStatusEl) certStatusEl.remove();
                 } else {
                     throw new Error("No certification data found in sheet.");
                 }
             } catch (e) {
-                 // FIX 5: Fallback logic executed on failure or timeout
-                console.warn("Certification Fetch Error (Using Fallback Data):", e);
+                 // Fallback logic executed on failure or timeout
+                console.warn("Project/Cert Fetch Error (Using Fallback Data):", e);
                 const certList = document.getElementById('certList');
                 if(certStatusEl) certStatusEl.remove();
                 if(certList) certList.innerHTML = `<p class="text-accent-alert text-xs p-2">⚠️ Data load failed/timed out. Showing hardcoded backup.</p>` + certList.innerHTML;
-                window.app.certs = window.app.fallbackCerts; // Use hardcoded fallback
+                
+                // Fallback data structure now uses 'category' string field (Col H format) and added 'catFull'
+                window.app.certs = [
+                    { category: 'C', t: "NISM Research Analyst", i: "SEBI Certified", y: "2024-03-01", l: "#", rel: 1, sc: 100, catFull: "Certification" }, 
+                    { category: 'P', t: "Financial Modelling (Project)", i: "The Wall Street School", y: "2024-07-15", l: "#", rel: 2, sc: 95, catFull: "Project" }, 
+                    { category: 'CP', t: "GST Taxation (CP)", i: "PwC", y: "2024-10-01", l: "#", rel: 3, sc: 90, catFull: "Certificate of Participation" }, 
+                    { category: 'Q', t: "FP&A: Building Budgets (Quiz)", i: "365 Financial Analysts", y: "2024-08-01", l: "#", rel: 4, sc: 90, catFull: "Quiz" }, 
+                    { category: 'C', t: "Investment Banking", i: "365 Financial Analysts", y: "2024-06-01", l: "#", rel: 5, sc: 85, catFull: "Certification" }, 
+                    { category: 'P', t: "Google Data Analytics (Project)", i: "Google", y: "2023-12-01", l: "#", rel: 6, sc: 80, catFull: "Project" }, 
+                    { category: 'Q', t: "Finance for Managers (Quiz)", i: "IESE Business School", y: "2023-09-01", l: "#", rel: 7, sc: 75, catFull: "Quiz" }, 
+                    { category: 'W', t: "Private Equity & VC (Webinar)", i: "Bocconi University", y: "2023-01-01", l: "#", rel: 8, sc: 70, catFull: "Workshop/Webinar" }, 
+                ];
             }
-            window.app.renderCerts(); 
+            
+            // Set initial filter to 'C' (Certification) if no filter is active
+            if (!window.app.currentFilter) {
+                window.app.currentFilter = 'C';
+            }
+            
+            // Re-render Filter Buttons and apply active filter state after data fetch
+            window.app.renderFilterButtons(); // Dynamically render buttons based on data
+            window.app.filterCerts(window.app.currentFilter); 
         };
 
         window.app.fetchJourneyData = async function() {
@@ -1546,13 +1714,9 @@
                 window.app.journeyContent = fallbackWarning + window.app.getHardcodedJourneyContent();
                 
                 // If the modal is open, show the fallback content immediately.
-                if (!document.getElementById('journeyModal').classList.contains('hidden')) {
-                      document.getElementById('journey-modal-content').innerHTML = window.app.journeyContent;
-                }
-                
-                // Reset the content to the hardcoded fallback if the initial loading message is still visible
-                if (statusElement) {
-                    statusElement.innerHTML = window.app.journeyContent;
+                const contentDiv = document.getElementById('journey-modal-content');
+                if (contentDiv) {
+                    contentDiv.innerHTML = window.app.journeyContent;
                 }
             }
         };
@@ -1646,11 +1810,11 @@
                     // Collapsed state: arrow points inwards
                     toggleBtn.style.transform = "rotate(180deg)";
                     sb.style.width = '64px'; // W-16
-                 } else {
+                   } else {
                     // Expanded state: arrow points outwards
                     toggleBtn.style.transform = "rotate(0deg)"; // Fixed to 0deg (outwards)
                     sb.style.width = '256px'; // W-64
-                 }
+                   }
             } else {
                 // If clicked on mobile, treat it as a nav-item click (mobile hidden/shown)
                 window.app.toggleSidebarMobile();
@@ -1899,8 +2063,8 @@
              const contentDiv = document.getElementById('journey-modal-content');
              if (contentDiv) {
                  // Check if the content is still the default 'Loading' message and re-run fetch if needed
-                 if (contentDiv.querySelector('.animate-pulse')) {
-                     window.app.fetchJourneyData();
+                 if (contentDiv.querySelector('.animate-pulse') || contentDiv.innerHTML.length < 100) {
+                    window.app.fetchJourneyData();
                  } else {
                     // Update content with the latest fetched/fallback version
                     contentDiv.innerHTML = window.app.journeyContent;
@@ -1972,6 +2136,8 @@
             
             // Initial render of the timeline (in case user flips to it immediately)
             window.app.renderTimeline();
+            
+            // Note: filterCerts is called at the end of fetchProfileData to ensure data exists.
         };
 
         window.addEventListener('resize', () => {
