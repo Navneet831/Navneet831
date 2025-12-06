@@ -6,7 +6,7 @@
     <title>NAVNEET CHAUDHARY | Strategic Finance & FinTech Hybrid</title>
     <meta name="description" content="T-Shaped Professional: Deep FP&A expertise combined with Python/RPA execution skills, delivering 2X-3X ROI and 80% efficiency gains.">
     
-    <!-- MANDATORY SEO COMPLIANCE: NO INDEXING -->
+    <!-- MANDATORY SEO COMPLIANCE: NO INDEXING (Prevents Google from listing this page) -->
     <meta name="robots" content="noindex"> 
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,16 +33,16 @@
                             hover: '#334155',    // Slate 700
                         },
                         accent: {
-                            primary: '#10b981',     // Emerald 500 (Finance Positive)
+                            primary: '#10b981',      // Emerald 500 (Finance Positive)
                             primaryDark: '#047857', // Emerald 700 (For 3D Shadow)
                             secondary: '#24324f', // Dark Slate Blue (Professional, less vibrant)
                             secondaryDark: '#121a28', // Dark Blue Shadow
                             alert: '#ef4444',      // Red 500 (Risk/Stop)
                             alertDark: '#b91c1c', // Red 700 (For 3D Shadow)
                             text: {
-                                primary: '#f1f5f9',     // Slate 100
+                                primary: '#f1f5f9',      // Slate 100
                                 secondary: '#e2e8f0', // UPDATED: Brighter Secondary (Slate 200) for main body copy
-                                muted: '#cbd5e1',       // UPDATED: Used for labels/subtext (Slate 300 - better contrast)
+                                muted: '#cbd5e1',        // UPDATED: Used for labels/subtext (Slate 300 - better contrast)
                                 emphasis: '#10b981', // Emerald 500 (Used for inline text emphasis)
                             }
                         }
@@ -64,27 +64,12 @@
         }
     </script>
 
-    <script>
-        // GTM Placeholder (Existing, required for tracking)
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GT-57Z944P3');
-        
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push('config', 'G-1XL4LRC5PP', {'anonymize_ip': true, 'allow_google_signals': false, 'user_id': undefined, 'send_page_view': false});
-    </script>
-
-    <!-- Mixpanel SDK: Wrapped in an IIFE to ensure local variable scope is correct for the minified library. -->
-    <script type="text/javascript">
-        (function(window, document) {
-            (function(e,c){if(!c.__SV){var l,h;window.mixpanel=c;c._i=[];c.init=function(q,r,f){function t(d,a){var g=a.split(".");2==g.length&&(d=d[g[0]],a=g[1]);d[a]=function(){d.push([a].concat(Array.prototype.slice.call(arguments,0)))}}var b=c;"undefined"!==typeof f?b=c[f]=[]:f="mixpanel";b.people=b.people||[];b.toString=function(d){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);d||(a+=" (stub)");return a};b.people.toString=function(){return b.toString(1)+".people (stub)"};l="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opt_in_tracking has_opt_out_tracking clear_opt_in_tracking clear_opt_in_out_tracking start_batch_senders start_session_recording stop_session_recording people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");
-            for(h=0;h<l.length;h++)t(b,l[h]);var n="set set_once union unset remove delete".split(" ");b.get_group=function(){function d(p){a[p]=function(){b.push([g,[p].concat(Array.prototype.slice.call(arguments,0))])}}for(var a={},g=["get_group"].concat(Array.prototype.slice.call(arguments,0)),m=0;m<n.length;m++)d(n[m]);return a};c._i.push([q,r,f])};c.__SV=1.2;var k=e.createElement("script");k.type="text/javascript";k.async=!0;k.src="https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=e.getElementsByTagName("script")[0];e.parentNode.insertBefore(k,e)}})(document,window.mixpanel||[])
-
-            mixpanel.init('c78b58539a26878c3d43e1a83a118494', {
-                autocapture: true,
-                record_sessions_percent: 100,
-            })
-        })(window, document);
-    </script>
-
+    <!-- 
+        NOTE ON ANALYTICS: 
+        All analytics scripts (GTM, Mixpanel, Hotjar) are now loaded via JS functions.
+        The core GTM snippet is loaded early. All tracking is UNCONDITIONAL, as requested.
+    -->
+    
     <style>
         /* Global Reset & Scrollbar Styling */
         html, body { 
@@ -392,9 +377,38 @@
             height: 10px;
         }
         
+        /* Media Modal Size adjustments for external app visibility */
+        /* Overrides max-w-4xl and fixed position for better responsiveness */
+        #mediaModal > div {
+            width: 98%; /* Slightly wider */
+            max-width: 6xl; /* Significantly wider max-width for large screens */
+            max-width: 90vw;
+            top: 50%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /* Set a better max-height for the modal container itself */
+            height: 95%;
+            max-height: 95vh;
+            padding: 1rem;
+        }
+        /* Ensure the iframe fills its container */
+        #mediaModal #ytFrame {
+            width: 100%;
+            height: 100%;
+        }
+        /* Ensure the iframe container takes up available space */
+        #mediaModal .bg-black {
+            flex-grow: 1; /* Allow the container to grow */
+            max-height: calc(100% - 60px); /* Account for header/padding */
+        }
+        
     </style>
 </head>
 <body class="antialiased flex h-screen overflow-hidden">
+    <!-- Google Tag Manager (noscript) - MANDATORY FOR GTM BEST PRACTICE -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GT-57Z944P3"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <!-- 1. SIDEBAR NAVIGATION (Collapsed by Default) -->
     <nav id="sidebar" class="w-16 lg:w-16 h-full bg-bg border-r border-slate-800 flex flex-col justify-between shrink-0 z-50 fixed lg:relative collapsed mobile-hidden lg:mobile-hidden">
@@ -547,19 +561,19 @@
                                 <div class="high-contrast-field rounded-xl p-2 flex flex-wrap items-center gap-3 shrink-0 backdrop-blur-sm w-full sm:w-auto"> 
                                     
                                     <!-- RESUME button -->
-                                    <a href="https://drive.google.com/uc?export=download&id=1UBxBOqUxtL386miSFkWOXQlG5HWMaUS2" target="_blank" class="btn-action-accent small flex items-center gap-2 text-sm font-bold transition-all duration-150 flex-1 whitespace-nowrap min-w-[100px] sm:min-w-0">
+                                    <a href="https://drive.google.com/uc?export=download&id=1UBxBOqUxtL386miSFkWOXQlG5HWMaUS2" target="_blank" class="btn-action-accent small flex items-center gap-2 text-sm font-bold transition-all duration-150 flex-1 whitespace-nowrap min-w-[100px] sm:min-w-0" onclick="window.app.trackEvent('Resume Download', { type: 'Resume' })">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                                         <span>RESUME</span>
                                     </a>
                                     
                                     <!-- COVER LETTER button -->
-                                    <a href="https://drive.google.com/uc?export=download&id=19VaToDZPDiaPzNfH8QOty_EjZtr9LIn6" target="_blank" class="btn-action-accent small flex items-center gap-2 text-sm font-bold transition-all duration-150 flex-1 whitespace-nowrap min-w-[100px] sm:min-w-0"> 
+                                    <a href="https://drive.google.com/uc?export=download&id=19VaToDZPDiaPzNfH8QOty_EjZtr9LIn6" target="_blank" class="btn-action-accent small flex items-center gap-2 text-sm font-bold transition-all duration-150 flex-1 whitespace-nowrap min-w-[100px] sm:min-w-0" onclick="window.app.trackEvent('Cover Letter Download', { type: 'CoverLetter' })"> 
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                                         <span>COVER LETTER</span>
                                     </a>
 
                                     <!-- SCHEDULE DISCUSSION button -->
-                                    <a href="https://calendar.app.google/qtFpe6bA8cr6qPDk8" target="_blank" class="btn-action-accent small flex items-center gap-2 text-sm font-bold transition-all duration-150 flex-1 whitespace-nowrap min-w-[100px] sm:min-w-0">
+                                    <a href="https://calendar.app.google/qtFpe6bA8cr6qPDk8" target="_blank" class="btn-action-accent small flex items-center gap-2 text-sm font-bold transition-all duration-150 flex-1 whitespace-nowrap min-w-[100px] sm:min-w-0" onclick="window.app.trackEvent('Schedule Discussion Click')">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                                         <span>SCHEDULE</span>
                                     </a>
@@ -584,7 +598,7 @@
                         <!-- Header -->
                         <div class="flex justify-between items-start mb-2"> 
                             <h3 id="fc-label" class="text-xs font-bold text-accent-primary uppercase tracking-wider transition-all duration-300">Efficiency Gain</h3>
-                            <button onclick="window.app.rotateFlashcard()" class="p-2 rounded-full bg-slate-700 hover:bg-slate-600 text-white transition-colors shadow-sm" aria-label="Next Impact Metric">
+                            <button onclick="window.app.rotateFlashcard(); window.app.trackEvent('Flashcard Rotate')" class="p-2 rounded-full bg-slate-700 hover:bg-slate-600 text-white transition-colors shadow-sm" aria-label="Next Impact Metric">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 0014.28 2.052L17.5 5.3m-1.761 4.717a1 1 0 01-1.292.213L10 8l-.3 1.5M4 12a8 8 0 0015.356 2.052L17.5 17.3m-1.761-4.717a1 1 0 01-1.292.213L10 16l-.3 1.5"></path></svg>
                             </button>
                         </div>
@@ -716,7 +730,7 @@
                                                 </div>
                                             </li>
                                             <li class="flex items-start">
-                                                <span class="text-accent-primary text-base leading-none mr-2">•</span>
+                                                <span class="text-primary text-base leading-none mr-2">•</span>
                                                 <div class="flex-1 leading-snug">
                                                     <span class="font-bold text-accent-text-primary">Naukri Creator Hub:</span> Selected for <span class="text-accent-primary">Naukri Creator Hub</span> (Nov 2025). Publishes finance & economics articles.
                                                 </div>
@@ -740,13 +754,13 @@
                                                 </div>
                                             </li>
                                             <li class="flex items-start">
-                                                <span class="text-accent-primary text-base leading-none mr-2">•</span>
+                                                <span class="accent-primary text-base leading-none mr-2">•</span>
                                                 <div class="flex-1 leading-snug">
                                                     <span class="font-bold text-accent-text-primary">Internal Control:</span> Implemented "No-Payment-Without-Visibility" framework (FP&A approval mandatory).
                                                 </div>
                                             </li>
                                             <li class="flex items-start">
-                                                <span class="text-accent-primary text-base leading-none mr-2">•</span>
+                                                <span class="accent-primary text-base leading-none mr-2">•</span>
                                                 <div class="flex-1 leading-snug">
                                                     <span class="font-bold text-accent-text-primary">FP&A:</span> Accelerated decision making by 30% via new forecasting models.
                                                 </div>
@@ -780,13 +794,13 @@
                                                 </div>
                                             </li>
                                             <li class="flex items-start">
-                                                <span class="text-accent-primary text-base leading-none mr-2">•</span>
+                                                <span class="accent-primary text-base leading-none mr-2">•</span>
                                                 <div class="flex-1 leading-snug">
                                                     <span class="font-bold text-accent-text-primary">FP&A:</span> Cut reporting errors by 40% via automated MIS generation.
                                                 </div>
                                             </li>
                                             <li class="flex items-start">
-                                                <span class="text-accent-primary text-base leading-none mr-2">•</span>
+                                                <span class="accent-primary text-base leading-none mr-2">•</span>
                                                 <div class="flex-1 leading-snug">
                                                     <span class="font-bold text-accent-text-primary">Asset Accounting:</span> Overhauled fixed assets, reduced discrepancies by 20%.
                                                 </div>
@@ -804,13 +818,13 @@
                                         <!-- Applied single-line alignment fix -->
                                         <ul class="list-none text-xs text-accent-text-secondary space-y-2 mb-2 pl-2">
                                             <li class="flex items-start">
-                                                <span class="text-accent-primary text-base leading-none mr-2">•</span>
+                                                <span class="accent-primary text-base leading-none mr-2">•</span>
                                                 <div class="flex-1 leading-snug">
                                                     <span class="font-bold text-accent-text-primary">AP Management:</span> Mitigated high-risk long pending dues.
                                                 </div>
                                             </li>
                                             <li class="flex items-start">
-                                                <span class="text-accent-primary text-base leading-none mr-2">•</span>
+                                                <span class="accent-primary text-base leading-none mr-2">•</span>
                                                 <div class="flex-1 leading-snug">
                                                     <span class="font-bold text-accent-text-primary">NPPA Compliance:</span> Adhered to Act guidelines for implant suppliers.
                                                 </div>
@@ -829,13 +843,13 @@
                                         <!-- Applied single-line alignment fix -->
                                         <ul class="list-none text-xs text-accent-text-secondary space-y-2 mb-2 pl-2">
                                             <li class="flex items-start">
-                                                <span class="text-accent-primary text-base leading-none mr-2">•</span>
+                                                <span class="accent-primary text-base leading-none mr-2">•</span>
                                                 <div class="flex-1 leading-snug">
                                                     <span class="font-bold text-accent-text-primary">Taxation:</span> Executed ITR computation for diverse client base.
                                                 </div>
                                             </li>
                                             <li class="flex items-start">
-                                                <span class="text-accent-primary text-base leading-none mr-2">•</span>
+                                                <span class="accent-primary text-base leading-none mr-2">•</span>
                                                 <div class="flex-1 leading-snug">
                                                     <span class="font-bold text-accent-text-primary">Audit:</span> Conducted statutory and stock audits (Inventory/Financial).
                                                 </div>
@@ -906,7 +920,7 @@
                         <div class="flex flex-col mb-4">
                             <!-- UPDATED SECTION TITLE & SORT BUTTON CONSOLIDATED IN ONE ROW -->
                             <div class="flex justify-between items-center">
-                                <h3 class="text-xs font-bold text-accent-text-muted uppercase tracking-wider">Project & Certs</h3>
+                                <h3 class="text-xs font-bold text-accent-text-muted uppercase tracking-wider">Projects & Certification</h3>
                                 <!-- Sort button moved up here -->
                                 <button onclick="window.app.sortCerts()" class="text-xs font-bold text-accent-primary hover:underline" id="sortBtn">Sort: Relevance</button>
                             </div>
@@ -943,8 +957,9 @@
             </section>
             
             <!-- FOOTER -->
+            <!-- REMOVED: "Data updated Nov 2025" and Analytics Status -->
             <footer class="text-center text-xs text-accent-text-muted py-2 border-t border-slate-800 mt-4 lg:mt-6"> 
-                &copy; 2025 Navneet Chaudhary. Data updated Nov 2025.
+                &copy; 2025 Navneet Chaudhary.
             </footer>
         </div>
     </main>
@@ -965,31 +980,19 @@
         </div>
     </div>
 
-    <!-- 2. Media/Portfolio Modal -->
+    <!-- 2. Media/Portfolio Modal (Expanded Size) -->
     <div id="mediaModal" class="fixed inset-0 z-50 hidden">
         <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="window.app.closeMediaModal()"></div>
-        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] max-w-4xl bg-bg border border-slate-700 rounded-xl shadow-2xl p-6 animate-in fade-in zoom-in duration-300">
-            <div class="flex justify-between items-center mb-4">
+        <!-- Adjusted maximum size of the modal -->
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[98%] max-w-7xl bg-bg border border-slate-700 rounded-xl shadow-2xl p-6 flex flex-col max-h-[95vh] animate-in fade-in zoom-in duration-300">
+            <div class="flex justify-between items-center mb-4 shrink-0">
                 <h2 class="text-lg font-bold text-white">Automation Portfolio</h2>
                 <button onclick="window.app.closeMediaModal()" class="text-accent-text-muted hover:text-white text-2xl">&times;</button>
             </div>
-            <div class="aspect-video bg-black rounded-lg overflow-hidden border border-slate-800 relative">
-                <!-- Lazy loaded iframe -->
-                <iframe id="ytFrame" class="w-full h-full" src="" title="Portfolio Playlist" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
-                <div class="p-3 bg-slate-800 rounded border-l-2 border-accent-primary">
-                    <div class="text-xs font-bold text-accent-primary">PROJECT 1</div>
-                    <div class="text-sm text-white">Cash Flow Analytics</div>
-                </div>
-                <div class="p-3 bg-slate-800 rounded border-l-2 border-accent-primary">
-                    <div class="text-xs font-bold text-accent-primary">PROJECT 2</div>
-                    <div class="text-sm text-white">Python PDF RPA</div>
-                </div>
-                <div class="p-3 bg-slate-800 rounded border-l-2 border-yellow-500">
-                    <div class="text-xs font-bold text-yellow-500">PROJECT 3</div>
-                    <div class="text-sm text-white">Fund Dashboard</div>
-                </div>
+            <!-- Ensure iframe container takes maximum height available -->
+            <div class="bg-black rounded-lg overflow-hidden border border-slate-800 relative flex-grow min-h-0">
+                <!-- Iframe for external application -->
+                <iframe id="ytFrame" class="w-full h-full" src="" title="External Project Portfolio" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
     </div>
@@ -1027,6 +1030,8 @@
             <iframe id="pitchDeckFrame" class="flex-1 w-full h-full border-none" src="" frameborder="0" allowfullscreen></iframe>
         </div>
     </div>
+    
+    <!-- CONSENT BANNER REMOVED -->
 
 
     <!-- LOGIC -->
@@ -1048,6 +1053,10 @@
         // FIX 3: Increased flashcard rotation time to 7000ms (7 seconds)
         window.app.FLASHCARD_INTERVAL_MS = 7000; 
         window.app.GOOGLE_SHEET_TIMEOUT_MS = 8000; // FIX 5: 8 second timeout for sheet fetching
+        
+        // ANALYTICS MANDATE CHANGE: Hardcode consent to true, no check
+        window.app.analyticsConsent = true; 
+
 
         window.app.impacts = [
             { label: "Efficiency Gain", value: "80%", desc: "Drastic reduction in manual reporting effort achieved through Python scripting & RPA (Systemic Efficiency Engineering).", color: "text-emerald-400", bg: "bg-emerald-500/10" },
@@ -1121,10 +1130,27 @@
         
         // =======================================================================
 
-        /* --- 2. MIXPANEL TRACKING LOGIC (Unchanged) --- */
+        /* --- 2. ANALYTICS & CONSENT LOGIC (Hardcoded True, No Banner) --- */
         
+        // Helper function to track events (now always tracks)
+        window.app.trackEvent = function(eventName, properties = {}) {
+            if (window.app.analyticsConsent) {
+                // Mixpanel Tracking
+                if (typeof mixpanel !== 'undefined' && mixpanel.track) {
+                    mixpanel.track(eventName, properties);
+                }
+                // GA4/GTM Tracking
+                if (window.dataLayer && window.dataLayer.push) {
+                    window.dataLayer.push('event', eventName, properties);
+                }
+                // Console log for local debugging/verification
+                console.log(`[Analytics] Tracked Event: ${eventName}`, properties);
+            }
+        };
+
         window.app.currentActiveSection = 'highlights'; 
         
+        // Mixpanel Time Tracking Logic (unconditionally active)
         window.app.getActiveSection = function() {
             const sections = ['highlights', 'skills', 'experience', 'faq'];
             let active = 'general';
@@ -1143,12 +1169,14 @@
         };
 
         window.app.trackSectionTime = function(newSection, eventType) {
+            if (!window.app.analyticsConsent) return;
+
             if (newSection !== window.app.currentActiveSection && newSection !== 'general') {
-                if (window.app.currentActiveSection !== 'general' && typeof mixpanel !== 'undefined' && mixpanel.track) {
-                        mixpanel.track('Time Spent on Section', {
-                            'Section Name': window.app.currentActiveSection,
-                            'Trigger': eventType
-                        });
+                if (window.app.currentActiveSection !== 'general') {
+                    window.app.trackEvent('Time Spent on Section', {
+                        'Section Name': window.app.currentActiveSection,
+                        'Trigger': eventType
+                    });
                 }
                 if (typeof mixpanel !== 'undefined' && mixpanel.time_event) {
                     mixpanel.time_event('Time Spent on Section');
@@ -1167,6 +1195,8 @@
         };
 
         window.app.startMixpanelTracking = function() {
+            if (!window.app.analyticsConsent) return;
+            
             const initialSection = window.app.getActiveSection();
             if (initialSection !== 'general' && typeof mixpanel !== 'undefined' && mixpanel.time_event) {
                 mixpanel.time_event('Time Spent on Section');
@@ -1176,7 +1206,48 @@
             if (mainScroll) {
                 mainScroll.addEventListener('scroll', window.app.handleScrollTimeTracking);
             }
+            window.app.trackEvent('Page View', { 'Path': window.location.pathname });
         };
+        
+        // Core function to initialize all tracking services (unconditional)
+        window.app.initializeTrackers = function() {
+            console.log("Analytics: Initializing trackers (Unconditional Tracking Enabled).");
+            
+            // --- 1. GOOGLE TAG MANAGER / GOOGLE ANALYTICS ---
+            window.dataLayer = window.dataLayer || [];
+            // This is the GA4 config push that starts GA tracking
+            window.dataLayer.push('config', 'G-1XL4LRC5PP', {'anonymize_ip': true, 'allow_google_signals': false, 'user_id': undefined, 'send_page_view': false});
+
+            // --- 2. MIXPANEL ---
+            (function(window, document) {
+                (function(e,c){if(!c.__SV){var l,h;window.mixpanel=c;c._i=[];c.init=function(q,r,f){function t(d,a){var g=a.split(".");2==g.length&&(d=d[g[0]],a=g[1]);d[a]=function(){d.push([a].concat(Array.prototype.slice.call(arguments,0)))}}var b=c;"undefined"!==typeof f?b=c[f]=[]:f="mixpanel";b.people=b.people||[];b.toString=function(d){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);d||(a+=" (stub)");return a};b.people.toString=function(){return b.toString(1)+".people (stub)"};l="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opt_in_tracking has_opt_out_tracking clear_opt_in_tracking clear_opt_in_out_tracking start_batch_senders start_session_recording stop_session_recording people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");
+                for(h=0;h<l.length;h++)t(b,l[h]);var n="set set_once union unset remove delete".split(" ");b.get_group=function(){function d(p){a[p]=function(){b.push([g,[p].concat(Array.prototype.slice.call(arguments,0))])}}for(var a={},g=["get_group"].concat(Array.prototype.slice.call(arguments,0)),m=0;m<n.length;m++)d(n[m]);return a};c._i.push([q,r,f])};c.__SV=1.2;var k=e.createElement("script");k.type="text/javascript";k.async=!0;k.src="https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=e.getElementsByTagName("script")[0];e.parentNode.insertBefore(k,e)}})(document,window.mixpanel||[])
+
+                mixpanel.init('c78b58539a26878c3d43e1a83a118494', {
+                    autocapture: true, // Auto-capture clicks/forms
+                    record_sessions_percent: 100,
+                })
+            })(window, document);
+
+            // --- 3. HOTJAR (for Heatmaps/Recordings) ---
+            (function(h,o,t,j,a,r){
+                h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+                h._hjSettings={hjid:4065476,hjsv:6};
+                a=o.getElementsByTagName('head')[0];
+                r=o.createElement('script');r.async=1;
+                r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+                a.appendChild(r);
+            })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+
+            window.app.analyticsConsent = true;
+            window.app.startFlashcardRotation(); // Start interaction tracking
+            window.app.startMixpanelTracking(); // Start time-on-page tracking
+        };
+        
+        // CONSENT MANAGEMENT FUNCTIONS REMOVED AS PER COMMAND.
+
+        // GTM Loader (loads the container, tags remain gated by GA config push in initializeTrackers)
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GT-57Z944P3');
         
         // =======================================================================
 
@@ -1288,7 +1359,7 @@
                 `;
                 
                 if (c.l && c.l !== '#' && c.l.startsWith('http')) {
-                    return `<a href="${c.l}" target="_blank" rel="noopener noreferrer" class="block no-underline">${innerContent}</a>`;
+                    return `<a href="${c.l}" target="_blank" rel="noopener noreferrer" class="block no-underline" onclick="window.app.trackEvent('Cert Link Click', { title: '${c.t.replace(/'/g, "\\'")}' })">${innerContent}</a>`;
                 } else {
                     return `<div class="block">${innerContent}</div>`;
                 }
@@ -1359,7 +1430,7 @@
                 const uiLabel = cat === 'W/B' ? 'W' : cat; // Display 'W' for the 'W/B' data key
 
                 // We filter based on 'cat', but the UI only shows 'uiLabel'
-                return `<button class="btn-filter" onclick="window.app.filterCerts('${filterValue}', this)" data-filter="${filterValue}">${uiLabel}</button>`;
+                return `<button class="btn-filter" onclick="window.app.filterCerts('${filterValue}', this); window.app.trackEvent('Cert Filter Click', { filter: '${filterValue}' })" data-filter="${filterValue}">${uiLabel}</button>`;
             }).join('');
             
             // 3. Insert into container
@@ -1390,7 +1461,7 @@
                     linkElement = `
                         <a href="${item.link}" target="_blank" rel="noopener noreferrer" 
                             class="text-xs font-mono text-accent-primary flex items-center hover:text-white"
-                            onclick="event.stopPropagation(); if (typeof mixpanel !== 'undefined') mixpanel.track('FAQ Source Click', { 'Question': '${item.question.replace(/'/g, "\\'")}' });"
+                            onclick="event.stopPropagation(); window.app.trackEvent('FAQ Source Click', { 'Question': '${item.question.replace(/'/g, "\\'")}' });"
                             aria-label="View Link">
                             <svg class="w-3 h-3 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                         </a>
@@ -1469,6 +1540,8 @@
         };
 
         window.app.rotateFlashcard = function() {
+            if (!window.app.analyticsConsent) return; // Unconditional tracking means this is always true
+            
             window.app.currentImpact = (window.app.currentImpact + 1) % window.app.impacts.length;
             const data = window.app.impacts[window.app.currentImpact];
             const label = document.getElementById('fc-label');
@@ -1510,6 +1583,9 @@
         };
 
         window.app.startFlashcardRotation = function() {
+            // Start rotation is UNCONDITIONAL, since analyticsConsent is hardcoded true
+            if (!window.app.analyticsConsent) return; 
+
             if (window.app.flashcardInterval) {
                 clearInterval(window.app.flashcardInterval);
             }
@@ -1546,7 +1622,7 @@
         };
 
 
-        /* --- 5. DATA FETCHING FUNCTIONS --- */
+        /* --- 5. DATA FETCHING FUNCTIONS (Unchanged) --- */
 
         window.app.fetchWithTimeout = function(url) {
              // FIX 5: Implemented fetch with timeout functionality
@@ -1636,13 +1712,13 @@
                            const categoryFullName = c[8]?.v ? c[8].v.trim() : '';
 
                            return {
-                               rel: c[0]?.v,       // Relevance Score (Col A, index 0)
+                               rel: c[0]?.v,     // Relevance Score (Col A, index 0)
                                category: categoryString, // Category Code (Col H, index 7)
-                               t: c[2]?.v,         // Title (Col C, index 2)
-                               i: c[3]?.v,         // Institution (Col D, index 3)
-                               sc: c[4]?.v,        // Score (Col E, index 4)
+                               t: c[2]?.v,       // Title (Col C, index 2)
+                               i: c[3]?.v,       // Institution (Col D, index 3)
+                               sc: c[4]?.v,      // Score (Col E, index 4)
                                y: c[5]?.v || c[5]?.f, // Date (Col F, index 5)
-                               l: c[6]?.v,         // Link (Col G, index 6)
+                               l: c[6]?.v,       // Link (Col G, index 6)
                                // NEW: Store full category name for tooltips
                                catFull: categoryFullName // Category Full Name (Col I, index 8)
                            };
@@ -1723,12 +1799,13 @@
 
         // =======================================================================
         
-        /* --- 6. INTERACTION LOGIC --- */
+        /* --- 6. INTERACTION LOGIC (Updated to use trackEvent) --- */
         
         window.app.sortCerts = function() {
             // Toggle between true (Relevance: sort by rel) and false (Latest: sort by date)
             window.app.isSortRel = !window.app.isSortRel;
             window.app.renderCerts();
+            window.app.trackEvent('Cert Sort Toggle', { sort: window.app.isSortRel ? 'Relevance' : 'Latest' });
         };
         
         // NEW FUNCTION: Toggles the flip state of the experience card
@@ -1738,10 +1815,8 @@
             if (flipContainer.classList.contains('flipped')) {
                 window.app.renderTimeline(); // Render the timeline whenever it's flipped to the back
             }
-            if (typeof mixpanel !== 'undefined') {
-                const action = flipContainer.classList.contains('flipped') ? 'Timeline View' : 'List View';
-                mixpanel.track('Experience View Toggled', { 'View': action });
-            }
+            const action = flipContainer.classList.contains('flipped') ? 'Timeline View' : 'List View';
+            window.app.trackEvent('Experience View Toggled', { 'View': action });
         };
 
         window.app.toggleAccordion = function(button) {
@@ -1764,16 +1839,17 @@
             });
             
             content.classList.toggle('active');
+            const questionText = button.querySelector('span').innerText;
             if (isActive) {
                 content.style.maxHeight = '0';
                 icon.style.transform = 'rotate(0deg)';
-                if (typeof mixpanel !== 'undefined') mixpanel.track('FAQ Closed', { 'Question': button.querySelector('span').innerText });
+                window.app.trackEvent('FAQ Closed', { 'Question': questionText });
             } else {
                 // Set max-height to scroll height + padding for smooth animation
                 // This accounts for the inner content height accurately
                 content.style.maxHeight = content.scrollHeight + 50 + "px"; 
                 icon.style.transform = 'rotate(180deg)';
-                if (typeof mixpanel !== 'undefined') mixpanel.track('FAQ Opened', { 'Question': button.querySelector('span').innerText });
+                window.app.trackEvent('FAQ Opened', { 'Question': questionText });
             }
             
             content.addEventListener('transitionend', () => {
@@ -1796,6 +1872,7 @@
             
             // FIX 4: Toggle class on main-scroll for mobile padding
             mainScroll.classList.toggle('sidebar-closed', isClosing);
+            window.app.trackEvent('Sidebar Toggled', { action: isClosing ? 'Closed' : 'Opened' });
         };
         
         // Desktop Collapse Logic
@@ -1810,15 +1887,16 @@
                     // Collapsed state: arrow points inwards
                     toggleBtn.style.transform = "rotate(180deg)";
                     sb.style.width = '64px'; // W-16
-                   } else {
+                    } else {
                     // Expanded state: arrow points outwards
                     toggleBtn.style.transform = "rotate(0deg)"; // Fixed to 0deg (outwards)
                     sb.style.width = '256px'; // W-64
-                   }
+                    }
             } else {
                 // If clicked on mobile, treat it as a nav-item click (mobile hidden/shown)
                 window.app.toggleSidebarMobile();
             }
+            window.app.trackEvent('Sidebar Toggled', { action: sb.classList.contains('collapsed') ? 'Collapsed' : 'Expanded' });
 
             // Important: Re-initialize Mind Map if open and size changes
             setTimeout(() => {
@@ -1846,7 +1924,7 @@
                 // Fallback log if API isn't loaded yet
                 console.warn("ZENITH AI: Tawk.to chat widget is loading or initialization failed.");
             }
-            if (typeof mixpanel !== 'undefined') mixpanel.track('Zenith Chat Click', { 'Context': 'Sidebar' });
+            window.app.trackEvent('Zenith Chat Click', { 'Context': 'Sidebar' });
         };
         
         // =======================================================================
@@ -2011,6 +2089,7 @@
                 if (!event.active) simulation.alphaTarget(0.3).restart();
                 event.subject.fx = event.subject.x;
                 event.subject.fy = event.subject.y;
+                window.app.trackEvent('Mind Map Drag Start', { node: event.subject.name });
             }
 
             function dragged(event) {
@@ -2022,6 +2101,7 @@
                 if (!event.active) simulation.alphaTarget(0);
                 event.subject.fx = null;
                 event.subject.fy = null;
+                window.app.trackEvent('Mind Map Drag End', { node: event.subject.name });
             }
 
             return d3.drag()
@@ -2032,30 +2112,30 @@
 
         window.app.openMindMapModal = function() {
             document.getElementById('mindMapModal').classList.remove('hidden');
-            if (typeof mixpanel !== 'undefined') mixpanel.track('Mind Map Opened');
+            window.app.trackEvent('Mind Map Opened');
             // Wait for the modal animation to settle before initializing D3
             setTimeout(window.app.initMindMap, 300); 
         };
 
         window.app.closeMindMapModal = function() {
             document.getElementById('mindMapModal').classList.add('hidden');
-            if (typeof mixpanel !== 'undefined') mixpanel.track('Mind Map Closed');
+            window.app.trackEvent('Mind Map Closed');
             // Clean up the D3 instance when closing
             window.app.cleanupMindMap();
         };
 
         window.app.openMediaModal = function() {
             document.getElementById('mediaModal').classList.remove('hidden');
-            // FIX: Updated YouTube embed source with reliable playlist parameters
-            document.getElementById('ytFrame').src = "https://www.youtube.com/embed/videoseries?list=PLD0X_J8XpU_f8gY6o4Qk7E3qZq-1WqWqK&rel=0&autoplay=1";
-            if (typeof mixpanel !== 'undefined') mixpanel.track('Media Modal Opened');
+            // Set the iframe source to the new external site URL
+            document.getElementById('ytFrame').src = "https://m2-coral.vercel.app/";
+            window.app.trackEvent('Media Modal Opened');
         };
 
         window.app.closeMediaModal = function() {
             document.getElementById('mediaModal').classList.add('hidden');
-            // Stop the video when closing
+            // Stop the iframe content when closing
             document.getElementById('ytFrame').src = "";
-            if (typeof mixpanel !== 'undefined') mixpanel.track('Media Modal Closed');
+            window.app.trackEvent('Media Modal Closed');
         };
 
         window.app.openJourneyModal = function() {
@@ -2072,12 +2152,12 @@
              }
 
              document.getElementById('journeyModal').classList.remove('hidden');
-             if (typeof mixpanel !== 'undefined') mixpanel.track('Journey Modal Opened');
+             window.app.trackEvent('Journey Modal Opened');
         };
 
         window.app.closeJourneyModal = function() {
              document.getElementById('journeyModal').classList.add('hidden');
-             if (typeof mixpanel !== 'undefined') mixpanel.track('Journey Modal Closed');
+             window.app.trackEvent('Journey Modal Closed');
         };
         
         // NEW INTERACTION LOGIC FOR PITCH DECK MODAL
@@ -2088,7 +2168,7 @@
             // Set the URL and ensure the modal is visible
             iframe.src = "https://navneet831-e3dgvu1.gamma.site/";
             modal.classList.remove('hidden');
-            if (typeof mixpanel !== 'undefined') mixpanel.track('Pitch Deck Modal Opened');
+            window.app.trackEvent('Pitch Deck Modal Opened');
         };
 
         window.app.closePitchDeckModal = function() {
@@ -2098,21 +2178,23 @@
             // Hide the modal and clear the iframe source to stop playback/reset state
             modal.classList.add('hidden');
             iframe.src = "";
-            if (typeof mixpanel !== 'undefined') mixpanel.track('Pitch Deck Modal Closed');
+            window.app.trackEvent('Pitch Deck Modal Closed');
         };
 
 
         /* --- 8. INITIALIZATION --- */
         
         window.onload = function() {
+            // UNCONDITIONAL TRACKING: Initialize all trackers immediately
+            window.app.initializeTrackers(); 
+
             // Fetch Dynamic Data from G-Sheet
             window.app.fetchFAQData();
             window.app.fetchProfileData();
             window.app.fetchJourneyData(); // <-- New call for B2 of 'About me' sheet
             
             window.app.renderFlashcard(0); // Initialize first card
-            window.app.startFlashcardRotation(); // Start rotation
-            window.app.startMixpanelTracking(); // Start Mixpanel
+            // Note: startFlashcardRotation() is called inside initializeTrackers() only if consent is granted.
             
             // Initial sidebar state for desktop
             const sidebar = document.getElementById('sidebar');
