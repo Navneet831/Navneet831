@@ -1,0 +1,2287 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAVNEET CHAUDHARY | Strategic Finance & FinTech Hybrid</title>
+    <meta name="description" content="T-Shaped Professional: Deep FP&A expertise combined with Python/RPA execution skills, delivering 2X-3X ROI and 80% efficiency gains.">
+    
+    <!-- MANDATORY SEO COMPLIANCE: NO INDEXING (Prevents Google from listing this page) -->
+    <meta name="robots" content="noindex"> 
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- D3 Library for the Mind Map -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        bg: {
+                            DEFAULT: '#0f172a', // Slate 900
+                            card: '#1e293b',    // Slate 800
+                            hover: '#334155',    // Slate 700
+                        },
+                        accent: {
+                            primary: '#10b981',      // Emerald 500 (Finance Positive)
+                            primaryDark: '#047857', // Emerald 700 (For 3D Shadow)
+                            secondary: '#24324f', // Dark Slate Blue (Professional, less vibrant)
+                            secondaryDark: '#121a28', // Dark Blue Shadow
+                            alert: '#ef4444',      // Red 500 (Risk/Stop)
+                            alertDark: '#b91c1c', // Red 700 (For 3D Shadow)
+                            text: {
+                                primary: '#f1f5f9',      // Slate 100
+                                secondary: '#e2e8f0', // UPDATED: Brighter Secondary (Slate 200) for main body copy
+                                muted: '#cbd5e1',        // UPDATED: Used for labels/subtext (Slate 300 - better contrast)
+                                emphasis: '#10b981', // Emerald 500 (Used for inline text emphasis)
+                            }
+                        }
+                    },
+                    boxShadow: {
+                        'terminal': '0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3)',
+                        'glow': '0 0 15px rgba(16, 185, 129, 0.1)',
+                        '3d-primary': '0 4px 0 #047857',
+                        '3d-secondary': '0 4px 0 #121a28', 
+                        '3d-alert': '0 4px 0 #b91c1c',
+                        '3d-slate': '0 4px 0 #334155',
+                    },
+                    transitionProperty: {
+                        'width': 'width',
+                        'spacing': 'margin, padding',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- 
+        NOTE ON ANALYTICS: 
+        All analytics scripts (GTM, Mixpanel, Hotjar) are now loaded via JS functions.
+        The core GTM snippet is loaded early. All tracking is UNCONDITIONAL, as requested.
+    -->
+    
+    <style>
+        /* Global Reset & Scrollbar Styling */
+        html, body { 
+            height: 100%; 
+            /* Dynamic Background for Glassmorphism: Dark Blue / Green Fade */
+            background-color: #0f172a; 
+            background-image: radial-gradient(at 0% 0%, #1e3a8a 0%, transparent 50%), 
+                              radial-gradient(at 100% 100%, #10b981 0%, transparent 50%);
+            background-attachment: fixed;
+            color: #f1f5f9; 
+            overflow-x: hidden; 
+        }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+        /* --- FIX FOR TOP SPACING (ZERO TOLERANCE) --- */
+        body { margin: 0; padding: 0; }
+
+        /* The main scrollable container */
+        #main-scroll {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+            /* Dynamic padding for mobile sidebar */
+            transition: padding-left 0.3s ease;
+        }
+
+        /* Mobile Sidebar Overlap Fix (on open) */
+        @media (max-width: 1023px) {
+            #main-scroll:not(.sidebar-closed) {
+                padding-left: 256px; /* Width of the expanded sidebar (w-64 = 256px) */
+            }
+        }
+
+        /* --- GLASSMORHISM STYLES --- */
+        .glass-card {
+            background-color: rgba(30, 41, 59, 0.7); /* Slate 800 with transparency */
+            border: 1px solid rgba(100, 116, 139, 0.3); /* Transparent Slate 500 border */
+            backdrop-filter: blur(10px); /* The Key Glass Effect */
+            -webkit-backdrop-filter: blur(10px); /* Safari support */
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); /* Stronger but translucent shadow */
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            background-color: rgba(30, 41, 59, 0.85); /* Less transparent on hover */
+            border-color: rgba(100, 116, 139, 0.5);
+        }
+        
+        /* Huli.io inspired HIGH-CONTRAST Field Style */
+        .high-contrast-field {
+            background-color: rgba(15, 23, 42, 0.9); /* Opaque Slate 900 for high contrast */
+            border: 1px solid #24324f; /* Using the new dark secondary accent for elevation */
+            box-shadow: 0 0 10px rgba(36, 50, 79, 0.3); /* Subtle blue glow */
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        /* OLD 3D Button Interactions (Keeping for social icons) */
+        .btn-3d { transition: all 0.1s; transform: translateY(0); }
+        .btn-3d:active { transform: translateY(4px); box-shadow: none !important; }
+
+        /* --- GLOSSY DARK BUTTON (SECONDARY ACTIONS: COVER/JOURNEY) --- */
+        .btn-action-primary {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #f1f5f9;  
+            border-radius: 12px; 
+            padding: 12px 30px; 
+            overflow: hidden;
+            /* Dark slate gradient matching the theme */
+            background: linear-gradient(to bottom, #475569 0%, #1e293b 100%); 
+            box-shadow: 6px 6px 0 0 #070b13; /* Deep, dark shadow */
+            transition: all 0.1s; 
+            transform: translateY(0);
+            border: 1px solid #64748b; 
+        }
+        
+        .btn-action-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 30%, rgba(255, 255, 255, 0) 60%);
+            border-radius: 12px;
+        }
+
+        /* --- GLOSSY ACCENT BUTTON (PRIMARY CALLS TO ACTION: RESUME/SCHEDULE) --- */
+        .btn-action-accent {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            border-radius: 12px; 
+            padding: 12px 30px; 
+            overflow: hidden;
+            transition: all 0.1s; 
+            transform: translateY(0);
+            
+            /* Override colors for high contrast (Emerald/Green) */
+            color: #0f172a; /* Dark text for contrast */
+            background: linear-gradient(to bottom, #34d399 0%, #10b981 100%); /* Emerald 300 to 500 */
+            box-shadow: 6px 6px 0 0 #047857; /* PrimaryDark Shadow */
+            border: 1px solid #6ee7b7; /* Emerald 300 Light Border */
+        }
+
+        .btn-action-accent::before {
+              content: '';
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              pointer-events: none;
+              background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.15) 30%, rgba(255, 255, 255, 0) 60%);
+              border-radius: 12px;
+        }
+        
+        /* Apply small variant styles */
+        .btn-action-primary.small {
+            padding: 10px 20px; border-radius: 10px; box-shadow: 4px 4px 0 0 #070b13; 
+        }
+        .btn-action-accent.small {
+            padding: 10px 20px; border-radius: 10px; box-shadow: 4px 4px 0 0 #047857; 
+        }
+        
+        /* General Active State (applies to all button types) */
+        /* FIX 2: Reduced button translation for subtle polish (3px/2px instead of 6px/4px) */
+        .btn-action-primary:active, .btn-action-accent:active { 
+            transform: translate(3px, 3px); 
+            box-shadow: none !important; 
+        }
+        .btn-action-primary.small:active, .btn-action-accent.small:active {
+            transform: translate(2px, 2px); 
+            box-shadow: none !important;
+        }
+        
+        /* NEW: Filter Button Styles */
+        .btn-filter {
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            background-color: #334155; /* Slate 700 */
+            color: #cbd5e1; /* Slate 300 */
+            border: 1px solid #475569; /* Slate 600 */
+            transition: all 0.15s ease;
+        }
+        .btn-filter:hover {
+            background-color: #475569; /* Slate 600 */
+            color: #f1f5f9;
+        }
+        .btn-filter.active {
+            background-color: #10b981; /* Accent Primary */
+            color: #0f172a; /* Dark Text */
+            border-color: #10b981;
+            box-shadow: 0 2px 5px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Sidebar Animations */
+        #sidebar { transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        #sidebar.collapsed .sidebar-text { opacity: 0; pointer-events: none; display: none; }
+        #sidebar:not(.collapsed) .sidebar-text { opacity: 1; display: inline-block; animation: fadeIn 0.3s ease-in; }
+        
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* FAQ Accordion Styling */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+        .accordion-content.active {
+            max-height: 500px; 
+            transition: max-height 0.6s ease-in;
+        }
+        
+        /* Fixed Height and Scroll for FAQ Content */
+        #faq-container-wrapper {
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+
+        /* --- MIND MAP SPECIFIC STYLES --- */
+        #mindMapContainer {
+            background-color: #0f172a;
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            cursor: grab;
+        }
+        
+        #mindMapContainer:active {
+            cursor: grabbing;
+        }
+
+        /* D3 Elements */
+        .link {
+            fill: none;
+            stroke: #6b7280;
+            stroke-width: 2px;
+            transition: stroke 0.3s ease;
+        }
+
+        .node circle {
+            cursor: pointer;
+            stroke-width: 3px;
+            stroke-width: 3px;
+            transition: fill 0.3s, stroke 0.3s;
+        }
+        
+        .node text {
+            fill: #f1f5f9;
+            font-size: 12px;
+            pointer-events: none;
+            font-weight: 500;
+            text-shadow: 0.5px 0.5px 1px rgba(15, 23, 42, 0.8);
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom Scrollbar for list and timeline */
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; border-radius: 2px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #475569; }
+        
+        /* Sidebar collapse for mobile */
+        #sidebar.mobile-hidden {
+              transform: translateX(-100%);
+        }
+        
+        /* Critical: Fix to force sidebar visibility on desktop when not collapsed */
+        @media (min-width: 1024px) {
+            #sidebar:not(.collapsed) {
+                width: 256px !important; 
+            }
+        }
+        
+        /* --- FLIP CARD STYLES --- */
+        .flip-container {
+            perspective: 1000px;
+            height: 700px; /* Max height to constrain the flip */
+        }
+
+        .flipper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-container.flipped .flipper {
+            transform: rotateY(180deg);
+        }
+
+        .front, .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            overflow: hidden;
+            border-radius: 12px;
+            /* Inherit base card styling */
+            background-color: rgba(30, 41, 59, 0.7); 
+            border: 1px solid rgba(100, 116, 139, 0.3); 
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); 
+        }
+
+        .back {
+            transform: rotateY(180deg);
+        }
+        
+        /* Timeline styling for the back face */
+        .timeline-item {
+            position: relative;
+            padding-left: 20px;
+            border-left: 2px solid #334155; /* Slate-700 for line */
+        }
+        .timeline-item:last-child {
+            border-left: none; /* End the line */
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -6px;
+            top: 12px;
+            /* Default background is overridden by inline style for infographic effect */
+            background-color: #10b981; 
+            border-radius: 50%;
+            border: 2px solid #0f172a; /* Slate 900 border to pop against the line */
+            width: 10px;
+            height: 10px;
+        }
+        
+        /* Media Modal Size adjustments for external app visibility */
+        /* Overrides max-w-4xl and fixed position for better responsiveness */
+        #mediaModal > div {
+            width: 98%; /* Slightly wider */
+            max-width: 6xl; /* Significantly wider max-width for large screens */
+            max-width: 90vw;
+            top: 50%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /* Set a better max-height for the modal container itself */
+            height: 95%;
+            max-height: 95vh;
+            padding: 1rem;
+        }
+        /* Ensure the iframe fills its container */
+        #mediaModal #ytFrame {
+            width: 100%;
+            height: 100%;
+        }
+        /* Ensure the iframe container takes up available space */
+        #mediaModal .bg-black {
+            flex-grow: 1; /* Allow the container to grow */
+            max-height: calc(100% - 60px); /* Account for header/padding */
+        }
+        
+    </style>
+</head>
+<body class="antialiased flex h-screen overflow-hidden">
+    <!-- Google Tag Manager (noscript) - MANDATORY FOR GTM BEST PRACTICE -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GT-57Z944P3"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- 1. SIDEBAR NAVIGATION (Collapsed by Default) -->
+    <nav id="sidebar" class="w-16 lg:w-16 h-full bg-bg border-r border-slate-800 flex flex-col justify-between shrink-0 z-50 fixed lg:relative collapsed mobile-hidden lg:mobile-hidden">
+        <div>
+            <!-- Brand / Profile Thumb -->
+            <div class="h-20 flex items-center justify-center border-b border-slate-800">
+                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-accent-primary to-blue-600 flex items-center justify-center text-white font-extrabold text-sm shadow-glow shrink-0 cursor-pointer hover:scale-105 transition" onclick="window.app.toggleSidebarDesktop()">NC</div>
+            </div>
+
+            <!-- Nav Links -->
+            <ul class="flex flex-col py-4 space-y-2">
+                <li>
+                    <a href="#highlights" onclick="window.app.scrollToSection('highlights')" class="flex items-center h-12 px-4 text-accent-text-secondary hover:text-white hover:bg-slate-800 transition group relative">
+                        <svg class="w-6 h-6 shrink-0 group-hover:text-accent-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                        <span class="ml-4 text-sm font-medium sidebar-text whitespace-nowrap">Highlights</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#experience" onclick="window.app.scrollToSection('experience')" class="flex items-center h-12 px-4 text-accent-text-secondary hover:text-white hover:bg-slate-800 transition group relative">
+                        <svg class="w-6 h-6 shrink-0 group-hover:text-accent-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        <span class="ml-4 text-sm font-medium sidebar-text whitespace-nowrap">Experience</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#skills" onclick="window.app.scrollToSection('skills')" class="flex items-center h-12 px-4 text-accent-text-secondary hover:text-white hover:bg-slate-800 transition group relative">
+                        <svg class="w-6 h-6 shrink-0 group-hover:text-accent-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                        <span class="ml-4 text-sm font-medium sidebar-text whitespace-nowrap">Skills & Tools</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#faq" onclick="window.app.scrollToSection('faq')" class="flex items-center h-12 px-4 text-accent-text-secondary hover:text-white hover:bg-slate-800 transition group relative">
+                        <svg class="w-6 h-6 shrink-0 group-hover:text-accent-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.734.143-1.478.275-2.222.396C10.51 13.91 10 14.545 10 15.25V17m0-7v7m0 0h.01"></path></svg>
+                        <span class="ml-4 text-sm font-medium sidebar-text whitespace-nowrap">FAQ</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" onclick="window.app.openMindMapModal(); return false;" class="flex items-center h-12 px-4 text-accent-text-secondary hover:text-white hover:bg-slate-800 transition group relative">
+                        <svg class="w-6 h-6 shrink-0 group-hover:text-accent-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 0L9 7"></path></svg>
+                        <span class="ml-4 text-sm font-medium sidebar-text whitespace-nowrap">Mind Map</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" onclick="window.app.openMediaModal(); return false;" class="flex items-center h-12 px-4 text-accent-text-secondary hover:text-white hover:bg-slate-800 transition group relative">
+                        <svg class="w-6 h-6 shrink-0 group-hover:text-accent-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197 2.132A1 1 0 0110 13.73v-3.46a1 1 0 011.555-.832l3.197 2.132z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span class="ml-4 text-sm font-medium sidebar-text whitespace-nowrap">Portfolio Media</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="border-t border-slate-800">
+            <!-- Ask Zenith -->
+            <div class="p-2 overflow-hidden">
+                <button onclick="window.app.toggleZenithChat()" class="w-full flex items-center justify-center h-12 rounded-lg bg-slate-800 hover:bg-slate-700 text-white transition group relative">
+                    <svg class="w-5 h-5 text-accent-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+                    <span class="ml-3 text-sm font-bold sidebar-text whitespace-nowrap">Ask Zenith</span>
+                </button>
+            </div>
+
+            <!-- Collapse Toggle -->
+            <button id="sidebarToggle" onclick="window.app.toggleSidebarDesktop()" class="w-full flex items-center justify-center h-12 text-accent-text-secondary hover:text-white hover:bg-slate-800 border-t border-slate-800 transition-colors">
+                <svg class="w-5 h-5 transform transition-transform duration-300 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"></path></svg>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Mobile Toggle Overlay -->
+    <div id="mobile-overlay" class="fixed inset-0 bg-black/50 z-40 hidden lg:hidden" onclick="window.app.toggleSidebarMobile()"></div>
+
+    <!-- 2. MAIN CONTENT AREA -->
+    <main class="flex-1 min-h-screen overflow-y-auto scroll-smooth sidebar-closed" id="main-scroll">
+        
+        <!-- Mobile Header (Hidden on large screens by default, fixed when active) -->
+        <div class="lg:hidden h-16 border-b border-slate-800 flex items-center justify-between px-4 shrink-0 bg-bg sticky top-0 z-30">
+            <span class="font-bold text-white text-xl tracking-tight">NAVNEET.C</span>
+            <button onclick="window.app.toggleSidebarMobile()" class="text-accent-text-secondary p-2"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+        </div>
+
+        <div class="max-w-7xl mx-auto w-full px-4 lg:px-10 !py-0"> 
+            
+            <!-- 1. HERO SECTION: Data Dense Profile (Highlights) -->
+            <section id="highlights" class="grid grid-cols-1 lg:grid-cols-12 gap-6 !pt-0 !pb-0 !mt-0 !mb-0"> 
+                
+                <!-- Left (8/12): Profile, Pitch, Contact -->
+                <div class="lg:col-span-8 glass-card rounded-2xl p-4 shadow-terminal relative overflow-hidden flex flex-col justify-center"> 
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-accent-primary/5 blur-3xl rounded-full -mr-20 -mt-20 pointer-events-none"></div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 items-center sm:items-start relative z-10"> 
+                        
+                        <!-- Avatar, Social Icons, and Action Buttons (Consolidated) -->
+                        <div class="flex flex-col items-center gap-3 shrink-0"> 
+                            <div class="relative">
+                                <!-- Photo Section: Adjusted sizing and position for compactness -->
+                                <div class="w-36 h-36 sm:w-40 sm:h-40 rounded-full bg-slate-700/50 flex items-center justify-center">
+                                    <img src="https://raw.githubusercontent.com/Navneet831/Intro/main/Profile.png" 
+                                        class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full object-cover border-4 border-bg shadow-xl"
+                                        style="width: 120px; height: 120px;"
+                                        alt="Profile"
+                                        onerror="this.src='https://placehold.co/150x150/1e293b/f1f5f9?text=NC'">
+                                </div>
+                            </div>
+                            
+                            <!-- Social Icons Row -->
+                            <div class="flex items-center gap-3 mt-1"> 
+                                <!-- LinkedIn -->
+                                <a href="https://www.linkedin.com/in/navneet831/" target="_blank" class="btn-3d flex items-center justify-center w-8 h-8 bg-[#0077b5] text-white rounded-full shadow-[0_4px_0_#005582] hover:bg-[#006097] transition-colors" aria-label="LinkedIn Profile">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                                </a>
+                                <!-- X1 -->
+                                <a href="https://x.com/navneet7162" target="_blank" class="btn-3d flex items-center justify-center w-8 h-8 bg-slate-900 text-white rounded-full shadow-[0_4px_0_#0f172a] hover:bg-black border border-slate-700 transition-colors" aria-label="X (Twitter) 1">
+                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                </a>
+                                <!-- X2 -->
+                                <a href="https://x.com/navneet831" target="_blank" class="btn-3d flex items-center justify-center w-8 h-8 bg-slate-900 text-white rounded-full shadow-[0_4px_0_#0f172a] hover:bg-black border border-slate-700 transition-colors" aria-label="X (Twitter) 2">
+                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                </a>
+                            </div>
+
+                            <!-- Action Buttons Group Vertical/Stacked (NOW FOR MEDIA LINKS ONLY) -->
+                            <div class="flex flex-col gap-2 w-full justify-center lg:justify-start"> 
+                                <!-- PITCH DECK button (Removed Interactive) -->
+                                <button onclick="window.app.openPitchDeckModal()" class="btn-action-primary small flex items-center justify-center gap-2 px-3 py-2 text-xs font-bold transition-all duration-150 whitespace-nowrap" aria-label="View Pitch Deck"> 
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 12H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                                    <span>PITCH DECK</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="flex-1 text-center sm:text-left w-full space-y-0.5"> 
+                            
+                            <!-- Main Header Text -->
+                            <div class="flex items-end gap-0"> 
+                                <h1 class="text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-none mt-0 pt-0">NAVNEET CHAUDHARY</h1> 
+                                <button onclick="window.app.openJourneyModal()" class="p-0.5 rounded-full text-accent-primary hover:bg-slate-700 transition-colors" aria-label="View Professional Journey">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                                </button>
+                            </div>
+                            <p class="text-accent-text-emphasis text-base font-medium tracking-wide pt-0">FP&A|FinTech|Strategic Finance|Automation Strategist|</p> 
+                            
+
+                            <!-- Recruiter-focused Pitch (Compact & Insightful) -->
+                            <p class="text-accent-text-secondary text-sm leading-snug max-w-2xl"> 
+                                A <strong class="text-white">T-Shaped FinTech-F&A Hybrid</strong>, bringing deep FP&A domain mastery combined with tangible Python/RPA execution capability. A proven source of Operational Alpha, specializing in transforming legacy finance processes into scalable, data-driven engines.
+                            </p>
+
+                            <!-- Pitch Controls & Schedule Discussion (Updated Layout) -->
+                            <div class="flex flex-col gap-2 pt-2 items-start w-full"> 
+                                
+                                <!-- Row 1: Resume, Cover Letter, Schedule Discussion (All accent color, in one row) -->
+                                <div class="high-contrast-field rounded-xl p-2 flex flex-wrap items-center gap-3 shrink-0 backdrop-blur-sm w-full sm:w-auto"> 
+                                    
+                                    <!-- RESUME button -->
+                                    <a href="https://drive.google.com/uc?export=download&id=1UBxBOqUxtL386miSFkWOXQlG5HWMaUS2" target="_blank" class="btn-action-accent small flex items-center gap-2 text-sm font-bold transition-all duration-150 flex-1 whitespace-nowrap min-w-[100px] sm:min-w-0" onclick="window.app.trackEvent('Resume Download', { type: 'Resume' })">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                                        <span>RESUME</span>
+                                    </a>
+                                    
+                                    <!-- COVER LETTER button -->
+                                    <a href="https://drive.google.com/uc?export=download&id=19VaToDZPDiaPzNfH8QOty_EjZtr9LIn6" target="_blank" class="btn-action-accent small flex items-center gap-2 text-sm font-bold transition-all duration-150 flex-1 whitespace-nowrap min-w-[100px] sm:min-w-0" onclick="window.app.trackEvent('Cover Letter Download', { type: 'CoverLetter' })"> 
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                                        <span>COVER LETTER</span>
+                                    </a>
+
+                                    <!-- SCHEDULE DISCUSSION button -->
+                                    <a href="https://calendar.app.google/qtFpe6bA8cr6qPDk8" target="_blank" class="btn-action-accent small flex items-center gap-2 text-sm font-bold transition-all duration-150 flex-1 whitespace-nowrap min-w-[100px] sm:min-w-0" onclick="window.app.trackEvent('Schedule Discussion Click')">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                        <span>SCHEDULE</span>
+                                    </a>
+                                </div>
+                                
+                                <!-- Row 2: Originally had Play Pitch and Pitch Deck - Pitch Deck is now in the avatar section. This row is now empty. -->
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right (4/12): Dynamic Flashcard -->
+                <div class="lg:col-span-4 space-y-2"> 
+                    
+                    <!-- Dynamic Flashcard 2.0 (Glass) -->
+                    <!-- ADDED: onmouseover/onmouseout events to control flashcard rotation -->
+                    <div id="flashcard" class="glass-card rounded-2xl p-4 shadow-terminal relative overflow-hidden group transition-colors"
+                        onmouseover="window.app.pauseFlashcardRotation()"
+                        onmouseout="window.app.startFlashcardRotation()"> 
+                        
+                        <!-- Header -->
+                        <div class="flex justify-between items-start mb-2"> 
+                            <h3 id="fc-label" class="text-xs font-bold text-accent-primary uppercase tracking-wider transition-all duration-300">Efficiency Gain</h3>
+                            <button onclick="window.app.rotateFlashcard(); window.app.trackEvent('Flashcard Rotate')" class="p-2 rounded-full bg-slate-700 hover:bg-slate-600 text-white transition-colors shadow-sm" aria-label="Next Impact Metric">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 0014.28 2.052L17.5 5.3m-1.761 4.717a1 1 0 01-1.292.213L10 8l-.3 1.5M4 12a8 8 0 0015.356 2.052L17.5 17.3m-1.761-4.717a1 1 0 01-1.292.213L10 16l-.3 1.5"></path></svg>
+                            </button>
+                        </div>
+                        
+                        <!-- Value Display -->
+                        <div class="flex items-baseline gap-3 mt-1">
+                            <span id="fc-value" class="text-4xl font-bold text-white tracking-tight transition-all duration-300">80%</span> 
+                            <span id="fc-desc" class="text-xs font-bold uppercase tracking-wide text-emerald-400 bg-emerald-500/10 px-2 py-1 rounded transition-all duration-300">▲ Impact</span>
+                        </div>
+                        
+                        <!-- Detail Text -->
+                        <p id="fc-detail" class="text-xs text-accent-text-secondary mt-2 leading-snug transition-all duration-300 h-10"> 
+                            Drastic reduction in manual reporting effort achieved through Python scripting & RPA (Systemic Efficiency Engineering).
+                        </p>
+                        
+                        <!-- Progress Indicators -->
+                        <div class="flex gap-1 mt-2"> 
+                            <div class="h-1 w-full rounded bg-accent-primary opacity-100 transition-all" id="ind-0"></div>
+                            <div class="h-1 w-full rounded bg-slate-700 opacity-50 transition-all" id="ind-1"></div>
+                            <div class="h-1 w-full rounded bg-slate-700 opacity-50 transition-all" id="ind-2"></div>
+                            <div class="h-1 w-full rounded bg-slate-700 opacity-50 transition-all" id="ind-3"></div>
+                        </div>
+                    </div>
+
+                    <!-- Education Table (Glass) - Adjusted width control -->
+                    <section class="glass-card rounded-2xl shadow-terminal p-6">
+                        <h3 class="text-xs font-bold text-accent-text-muted uppercase tracking-wider mb-4">Academic Foundation</h3>
+                        <!-- Container to naturally limit the width -->
+                        <div class="max-w-md mx-auto sm:mx-0">
+                            <table class="w-full text-xs text-left border-collapse">
+                                <thead class="text-accent-text-muted font-medium border-b border-slate-700">
+                                    <tr><th class="pb-2 pl-2">Degree</th><th class="pb-2">Institution</th><th class="pb-2 text-right pr-2">Year</th></tr>
+                                </thead>
+                                <tbody class="text-accent-text-secondary divide-y divide-slate-800">
+                                    <tr><td class="py-2 pl-2">MBA FM</td><td>IGNOU</td><td class="text-right pr-2">2026</td></tr> 
+                                    <tr><td class="py-2 pl-2">M.Com</td><td>IGNOU</td><td class="text-right pr-2">2024</td></tr> 
+                                    <tr><td class="py-2 pl-2">PGDIBO</td><td>IGNOU</td><td class="text-right pr-2">2022</td></tr> 
+                                    
+                                    <tr><td class="py-2 pl-2">B.Com</td><td>DU</td><td class="text-right pr-2">2020</td></tr> 
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+            </section>
+            
+            <!-- 2. MAIN GRID: Experience and Certs/Skills (Consolidated) -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-10">
+                
+                <!-- LEFT COLUMN (2/3): Experience Flip Card -->
+                <div class="lg:col-span-2 space-y-6">
+                    
+                    <!-- Experience Card (Flip Container) -->
+                    <section id="experience" class="flip-container shadow-terminal">
+                        <div id="exp-flipper" class="flipper">
+                            
+                            <!-- FRONT FACE: Condensed Experience List (Original view) -->
+                            <div class="front">
+                                <div class="p-4 border-b border-slate-700 flex justify-between items-center bg-slate-800/30 rounded-t-2xl"> 
+                                    <h2 class="text-lg font-bold text-white flex items-center gap-2">
+                                        <svg class="w-5 h-5 text-accent-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                        EXPERIENCE
+                                    </h2>
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-xs font-mono text-accent-primary bg-slate-800 px-2 py-1 rounded border border-slate-700 whitespace-nowrap">6+ YEARS</span>
+                                        <button onclick="window.app.flipExperienceCard()" class="btn-action-accent small flex items-center gap-1 text-xs font-bold px-2 py-1" aria-label="View Detailed Timeline">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"></path></svg>
+                                            <span>Timeline</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="p-4 relative max-h-[630px] overflow-y-auto custom-scrollbar" id="exp-scroll"> 
+                                    
+                                    <!-- 1. Grew Energy (Combined Roles) - Assistant Manager Accounts (Latest) -->
+                                    <div class="relative pl-0 mb-6 group"> 
+                                        <!-- Company Header -->
+                                        <h3 class="font-extrabold text-lg text-accent-primary border-b border-slate-700 pb-1 mb-2">Grew Energy Pvt Ltd.</h3> <!-- Company to green (accent-primary) -->
+
+                                        <!-- Role 1: Assistant Manager Accounts (CURRENT/LATEST) -->
+                                        <div class="flex justify-between items-start pt-1"> 
+                                            <p class="font-bold text-blue-400 text-sm">Assistant Manager Accounts</p> <!-- Designation to blue-400 -->
+                                            <span class="text-xs font-mono text-accent-primary bg-slate-800 px-2 py-1 rounded border border-slate-700 whitespace-nowrap">Dec 25 - Present</span>
+                                        </div>
+                                        
+                                        <!-- Role 2: Assistant Manager Finance -->
+                                        <div class="flex justify-between items-start mb-1"> 
+                                            <p class="font-bold text-blue-400 text-sm">Assistant Manager Finance</p> <!-- Designation to blue-400 -->
+                                            <span class="text-xs font-mono text-accent-primary bg-slate-800 px-2 py-1 rounded border border-slate-700 whitespace-nowrap">Dec 24 - Jun 25</span> <!-- DATE CORRECTION -->
+                                        </div>
+
+                                        <!-- Collective Responsibilities (Applied single-line alignment fix) -->
+                                        <ul class="list-none text-xs text-accent-text-secondary space-y-2 pl-2 mt-3"> 
+                                            <li class="flex items-start">
+                                                <span class="text-accent-primary text-base leading-none mr-2">•</span>
+                                                <div class="flex-1 leading-snug">
+                                                    <span class="font-bold text-accent-text-primary">Efficiency Engineering:</span> Engineered <span class="text-accent-primary">80% reduction</span> in MIS prep via Python/RPA (Systemic Efficiency Engineering).
+                                                </div>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="text-accent-primary text-base leading-none mr-2">•</span>
+                                                <div class="flex-1 leading-snug">
+                                                    <span class="font-bold text-accent-text-primary">Accounts Leadership:</span> Leading core accounts, <span class="text-accent-primary">compliance</span>, financial closure, and audit readiness.
+                                                </div>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="text-accent-primary text-base leading-none mr-2">•</span>
+                                                <div class="flex-1 leading-snug">
+                                                    <span class="font-bold text-accent-text-primary">Compliance & Control:</span> Led PV module stock audit and introduced financial controls.
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <!-- 2. Content Creation (Sep 25 - Dec 25) - UPDATED ROLE TEXT -->
+                                    <div class="relative pl-0 mb-6 group"> 
+                                        <div class="flex justify-between items-start mb-1"> 
+                                            <h3 class="font-extrabold text-lg text-accent-primary border-b border-slate-700 pb-1 mb-2">Career Break (Content Creation & Project Dev)</h3> <!-- Company/Group to green (accent-primary) -->
+                                            <span class="text-xs font-mono text-accent-primary bg-slate-800 px-2 py-1 rounded border border-slate-700">Sep 25 - Nov 25</span>
+                                        </div>
+                                        <p class="text-sm text-blue-400 font-medium mb-2">Tech Portfolio & Article Writing</p> <!-- Designation/Role updated here -->
+                                        <!-- Applied single-line alignment fix -->
+                                        <ul class="list-none text-xs text-accent-text-secondary space-y-2 mb-2 pl-2"> 
+                                            <li class="flex items-start">
+                                                <span class="text-accent-primary text-base leading-none mr-2">•</span>
+                                                <div class="flex-1 leading-snug">
+                                                    <span class="font-bold text-accent-text-primary">Portfolio Projects:</span> Building portfolio projects: Interactive Python Financial Dashboards (6 samples).
+                                                </div>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="text-primary text-base leading-none mr-2">•</span>
+                                                <div class="flex-1 leading-snug">
+                                                    <span class="font-bold text-accent-text-primary">Naukri Creator Hub:</span> Selected for <span class="text-accent-primary">Naukri Creator Hub</span> (Nov 2025). Publishes finance & economics articles.
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <!-- 3. Oriana Power (Role Title Updated) -->
+                                    <div class="relative pl-0 mb-6 group"> 
+                                        <div class="flex justify-between items-start mb-1">
+                                            <h3 class="font-extrabold text-lg text-accent-primary border-b border-slate-700 pb-1 mb-2">Oriana Power Ltd.</h3> <!-- Company to green (accent-primary) -->
+                                            <span class="text-xs font-mono text-accent-primary bg-slate-800 px-2 py-1 rounded border border-slate-700">Jun 25 - Sep 25</span>
+                                        </div>
+                                        <p class="text-sm text-blue-400 font-medium mb-2">Assistant Manager Finance</p> <!-- Designation to blue-400 -->
+                                        <!-- Applied single-line alignment fix -->
+                                        <ul class="list-none text-xs text-accent-text-secondary space-y-2 mb-2 pl-2">
+                                            <li class="flex items-start">
+                                                <span class="text-accent-primary text-base leading-none mr-2">•</span>
+                                                <div class="flex-1 leading-snug">
+                                                    <span class="font-bold text-accent-text-primary">Crisis Management:</span> Stabilized ops during liquidity crunch (8 days cash) via rapid cash restructuring and strategic funding.
+                                                </div>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="accent-primary text-base leading-none mr-2">•</span>
+                                                <div class="flex-1 leading-snug">
+                                                    <span class="font-bold text-accent-text-primary">Internal Control:</span> Implemented "No-Payment-Without-Visibility" framework (FP&A approval mandatory).
+                                                </div>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="accent-primary text-base leading-none mr-2">•</span>
+                                                <div class="flex-1 leading-snug">
+                                                    <span class="font-bold text-accent-text-primary">FP&A:</span> Accelerated decision making by 30% via new forecasting models.
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <!-- 4. Volunteering (Career Break) -->
+                                    <div class="relative pl-0 mb-6 group"> 
+                                        <div class="flex justify-between items-start mb-1">
+                                            <h3 class="font-extrabold text-lg text-accent-primary border-b border-slate-700 pb-1 mb-2">Career Break & Volunteering</h3> <!-- Company to green (accent-primary) -->
+                                            <span class="text-xs font-mono text-accent-primary bg-slate-800 px-2 py-1 rounded border border-slate-700">Sep 24 - Nov 24</span>
+                                        </div>
+                                        <p class="text-sm text-blue-400 font-medium mb-1">Community Service & Family Medical Responsibilities</p> <!-- Designation to blue-400 -->
+                                        <p class="text-sm text-accent-text-secondary italic pl-2">Volunteered (unpaid) with NGO, contributing time and effort to community service.</p>
+                                    </div>
+
+                                    <!-- 5. Ozone Pharma -->
+                                    <div class="relative pl-0 mb-6 group">
+                                        <div class="flex justify-between items-start mb-1">
+                                            <h3 class="font-extrabold text-lg text-accent-primary border-b border-slate-700 pb-1 mb-2">Ozone Pharmaceuticals Ltd.</h3> <!-- Company to green (accent-primary) -->
+                                            <span class="text-xs font-mono text-accent-primary bg-slate-800 px-2 py-1 rounded border border-slate-700">Feb 22 - Aug 24</span>
+                                        </div>
+                                        <p class="text-sm text-blue-400 font-medium mb-2">Senior Executive</p> <!-- Designation to blue-400 -->
+                                        <!-- Applied single-line alignment fix + colored compliance impact -->
+                                        <ul class="list-none text-xs text-accent-text-secondary space-y-2 mb-2 pl-2">
+                                            <li class="flex items-start">
+                                                <span class="text-accent-primary text-base leading-none mr-2">•</span>
+                                                <div class="flex-1 leading-snug">
+                                                    <span class="font-bold text-accent-text-primary">Tax Due Diligence:</span> Managed 31 GST registrations with <span class="text-accent-primary">100% compliance</span> (zero penalty record).
+                                                </div>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="accent-primary text-base leading-none mr-2">•</span>
+                                                <div class="flex-1 leading-snug">
+                                                    <span class="font-bold text-accent-text-primary">FP&A:</span> Cut reporting errors by 40% via automated MIS generation.
+                                                </div>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="accent-primary text-base leading-none mr-2">•</span>
+                                                <div class="flex-1 leading-snug">
+                                                    <span class="font-bold text-accent-text-primary">Asset Accounting:</span> Overhauled fixed assets, reduced discrepancies by 20%.
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <!-- 6. Shanti Mukand Hospital (Feb 21 - Feb 22) -->
+                                    <div class="relative pl-0 mb-6 group">
+                                        <div class="flex justify-between items-start mb-1">
+                                            <h3 class="font-extrabold text-lg text-accent-primary border-b border-slate-700 pb-1 mb-2">Shanti Mukand Hospital</h3> <!-- Company to green (accent-primary) -->
+                                            <span class="text-xs font-mono text-accent-primary bg-slate-800 px-2 py-1 rounded border border-slate-700">Feb 21 - Feb 22</span>
+                                        </div>
+                                        <p class="text-sm text-blue-400 font-medium mb-2">Junior Executive Finance</p> <!-- Designation to blue-400 -->
+                                        <!-- Applied single-line alignment fix -->
+                                        <ul class="list-none text-xs text-accent-text-secondary space-y-2 mb-2 pl-2">
+                                            <li class="flex items-start">
+                                                <span class="accent-primary text-base leading-none mr-2">•</span>
+                                                <div class="flex-1 leading-snug">
+                                                    <span class="font-bold text-accent-text-primary">AP Management:</span> Mitigated high-risk long pending dues.
+                                                </div>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="accent-primary text-base leading-none mr-2">•</span>
+                                                <div class="flex-1 leading-snug">
+                                                    <span class="font-bold text-accent-text-primary">NPPA Compliance:</span> Adhered to Act guidelines for implant suppliers.
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <!-- 7. Kumar Grover -->
+                                    <div class="relative pl-0 group">
+                                        <div class="flex justify-between items-start mb-1">
+                                            <h3 class="font-extrabold text-lg text-accent-primary border-b border-slate-700 pb-1 mb-2">Kumar Grover & Company</h3> <!-- Company to green (accent-primary) -->
+                                            <span class="text-xs font-mono text-accent-primary bg-slate-800 px-2 py-1 rounded border border-slate-700">Feb 19 - Jan 21</span>
+                                            
+                                        </div>
+                                        <p class="text-sm text-blue-400 font-medium mb-2">Accounts Assistant</p> <!-- Designation to blue-400 -->
+                                        <!-- Applied single-line alignment fix -->
+                                        <ul class="list-none text-xs text-accent-text-secondary space-y-2 mb-2 pl-2">
+                                            <li class="flex items-start">
+                                                <span class="accent-primary text-base leading-none mr-2">•</span>
+                                                <div class="flex-1 leading-snug">
+                                                    <span class="font-bold text-accent-text-primary">Taxation:</span> Executed ITR computation for diverse client base.
+                                                </div>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="accent-primary text-base leading-none mr-2">•</span>
+                                                <div class="flex-1 leading-snug">
+                                                    <span class="font-bold text-accent-text-primary">Audit:</span> Conducted statutory and stock audits (Inventory/Financial).
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+                            
+                            <!-- BACK FACE: Timeline View -->
+                            <div class="back p-4 flex flex-col">
+                                <div class="p-4 border-b border-slate-700 flex justify-between items-center bg-slate-800/30 -mx-4 -mt-4 rounded-t-xl shrink-0"> 
+                                    <h2 class="text-lg font-bold text-white flex items-center gap-2">
+                                        <svg class="w-5 h-5 text-accent-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                        PROFESSIONAL TIMELINE
+                                    </h2>
+                                    <button onclick="window.app.flipExperienceCard()" class="btn-action-accent small flex items-center gap-1 text-xs font-bold px-2 py-1" aria-label="View Detailed List">
+                                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                                        <span>Back to List</span>
+                                    </button>
+                                </div>
+                                
+                                <div id="exp-timeline-scroll" class="flex-1 overflow-y-auto custom-scrollbar pt-4 px-2">
+                                    <!-- Dynamic content will be rendered here by JS -->
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </section>
+                </div>
+
+                <!-- RIGHT COLUMN (1/3): Certs and Skills (Consolidated) -->
+                <div class="lg:col-span-1 space-y-6">
+                    
+                    <!-- NEW SECTION: T-Shaped Professional Model (MOVED HERE) -->
+                    <section class="glass-card rounded-2xl shadow-terminal p-6" id="skills"> 
+                        <h3 class="text-xs font-bold text-accent-text-muted uppercase tracking-wider mb-2">T-Shaped Professional Model</h3> 
+                        
+                        <!-- VERTICAL DEPTH (FP&A & Compliance) -->
+                        <div class="mb-2"> 
+                            <p class="text-xs font-bold text-accent-primary mb-1">VERTICAL DEPTH (Finance Domain)</p> 
+                            <div class="flex flex-wrap gap-1"> 
+                                <span class="ticker-item px-2 py-1 rounded-md text-xs text-accent-text-primary font-medium cursor-default bg-slate-800 border border-slate-600 hover:border-accent-primary transition-colors shadow-sm">FP&A</span> 
+                                <span class="ticker-item px-2 py-1 rounded-md text-xs text-accent-text-primary font-medium cursor-default bg-slate-800 border border-slate-600 hover:border-accent-primary transition-colors shadow-sm">Financial Modeling</span>
+                                <span class="ticker-item px-2 py-1 rounded-md text-xs text-accent-text-primary font-medium cursor-default bg-slate-800 border border-slate-600 hover:border-accent-primary transition-colors shadow-sm">SAP FICO</span> 
+                                <span class="ticker-item px-2 py-1 rounded-md text-xs text-accent-text-primary font-medium cursor-default bg-slate-800 border border-slate-600 hover:border-accent-primary transition-colors shadow-sm">GST / IFRS / IndAS</span>
+                                <span class="ticker-item px-2 py-1 rounded-md text-xs text-accent-text-primary font-medium cursor-default bg-slate-800 border border-slate-600 hover:border-accent-primary transition-colors shadow-sm">Risk & Liquidity Mgmt</span>
+                            </div>
+                        </div>
+
+                        <!-- HORIZONTAL BREADTH (Technology/FinTech) -->
+                        <div>
+                            <p class="text-xs font-bold text-accent-primary mb-1">HORIZONTAL BREADTH (FinTech & Data)</p> 
+                            <div class="flex flex-wrap gap-1">
+                                <span class="ticker-item px-2 py-1 rounded-md text-xs text-accent-text-primary font-medium cursor-default bg-slate-800 border border-slate-600 hover:border-accent-primary transition-colors shadow-sm">Python</span>
+                                <span class="ticker-item px-2 py-1 rounded-md text-xs text-accent-text-primary font-medium cursor-default bg-slate-800 border border-slate-600 hover:border-accent-primary transition-colors shadow-sm">RPA Scripting</span>
+                                <span class="ticker-item px-2 py-1 rounded-md text-xs text-accent-text-primary font-medium cursor-default bg-slate-800 border border-slate-600 hover:border-accent-primary transition-colors shadow-sm">Generative AI</span>
+                                <span class="ticker-item px-2 py-1 rounded-md text-xs text-accent-text-primary font-medium cursor-default bg-slate-800 border border-slate-600 hover:border-accent-primary transition-colors shadow-sm">SQL</span>
+                                <span class="ticker-item px-2 py-1 rounded-md text-xs text-accent-text-primary font-medium cursor-default bg-slate-800 border border-slate-600 hover:border-accent-primary transition-colors shadow-sm">Advanced Excel</span>
+                                <span class="ticker-item px-2 py-1 rounded-md text-xs text-accent-text-primary font-medium cursor-default bg-slate-800 border border-slate-600 hover:border-accent-primary transition-colors shadow-sm">PowerBI</span>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <!-- Certifications (Scrollable List - Glass) -->
+                    <section class="glass-card rounded-2xl shadow-terminal p-6">
+                        <div class="flex flex-col mb-4">
+                            <!-- UPDATED SECTION TITLE & SORT BUTTON CONSOLIDATED IN ONE ROW -->
+                            <div class="flex justify-between items-center">
+                                <h3 class="text-xs font-bold text-accent-text-muted uppercase tracking-wider">Projects & Certifications</h3>
+                                <!-- Sort button moved up here -->
+                                <button onclick="window.app.sortCerts()" class="text-xs font-bold text-accent-primary hover:underline" id="sortBtn">Sort: Relevance</button>
+                            </div>
+                            
+                            <!-- DYNAMIC FILTER SLICERS CONTAINER -->
+                            <div id="filterSlicers" class="flex flex-wrap gap-2 mt-3">
+                                <!-- Filter buttons generated by JS based on unique categories -->
+                            </div>
+                        </div>
+                        <!-- EDITED: Increased max-height from 200px to 350px to balance layout with Experience card (700px height) -->
+                        <div id="certList" class="space-y-2 max-h-[350px] overflow-y-auto custom-scrollbar pr-1"> 
+                            <p id="cert-status" class="text-xs text-text-muted italic">Loading projects and certifications...</p>
+                            <!-- Content rendered by JS -->
+                        </div>
+                    </section>
+                </div>
+            </div>
+            
+            <!-- NEW SECTION: FAQ at the very bottom (Full Width) -->
+            <section id="faq" class="glass-card rounded-2xl shadow-terminal p-6 mt-6 mb-6"> 
+                <div class="p-4 border-b border-slate-700 flex justify-between items-center bg-slate-800/30 -mx-6 -mt-6 rounded-t-2xl">
+                    <h2 class="text-lg font-bold text-white flex items-center gap-2 px-4 py-2">
+                        <svg class="w-5 h-5 text-accent-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.734.143-1.478.275-2.222.396C10.51 13.91 10 14.545 10 15.25V17m0-7v7m0 0h.01"></path></svg>
+                        FAQ & PROBING QUESTIONS
+                    </h2>
+                </div>
+                
+                <div id="faq-container-wrapper" class="space-y-3 custom-scrollbar">
+                    <div id="faq-container" class="space-y-3">
+                        <p id="faq-status" class="text-sm text-text-muted italic">Loading FAQs from Google Sheet...</p>
+                        <!-- Content rendered by JS -->
+                    </div>
+                </div>
+            </section>
+            
+            <!-- FOOTER -->
+            <!-- REMOVED: "Data updated Nov 2025" and Analytics Status -->
+            <footer class="text-center text-xs text-accent-text-muted py-2 border-t border-slate-800 mt-4 lg:mt-6"> 
+                &copy; 2025 Navneet Chaudhary.
+            </footer>
+        </div>
+    </main>
+
+    <!-- MODALS -->
+
+    <!-- 1. Mind Map Modal -->
+    <div id="mindMapModal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="window.app.closeMindMapModal()"></div>
+        <div class="absolute inset-4 lg:inset-10 bg-bg border border-slate-700 rounded-xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in zoom-in duration-300">
+            <div class="p-4 border-b border-slate-800 flex justify-between items-center bg-slate-900 shrink-0">
+                <h2 class="text-lg font-bold text-white">Career Architecture </h2>
+                <button onclick="window.app.closeMindMapModal()" class="text-accent-text-muted hover:text-white text-2xl">&times;</button>
+            </div>
+            <div id="mindMapContainer" class="flex-1 w-full h-full bg-slate-950 overflow-hidden relative cursor-grab active:cursor-grabbing">
+                <!-- D3 SVG Injected Here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Media/Portfolio Modal (Expanded Size) -->
+    <div id="mediaModal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="window.app.closeMediaModal()"></div>
+        <!-- Adjusted maximum size of the modal -->
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[98%] max-w-7xl bg-bg border border-slate-700 rounded-xl shadow-2xl p-6 flex flex-col max-h-[95vh] animate-in fade-in zoom-in duration-300">
+            <div class="flex justify-between items-center mb-4 shrink-0">
+                <h2 class="text-lg font-bold text-white">Automation Portfolio</h2>
+                <button onclick="window.app.closeMediaModal()" class="text-accent-text-muted hover:text-white text-2xl">&times;</button>
+            </div>
+            <!-- Ensure iframe container takes maximum height available -->
+            <div class="bg-black rounded-lg overflow-hidden border border-slate-800 relative flex-grow min-h-0">
+                <!-- Iframe for external application -->
+                <iframe id="ytFrame" class="w-full h-full" src="" title="External Project Portfolio" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Journey Modal -->
+    <div id="journeyModal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="window.app.closeJourneyModal()"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] max-w-3xl bg-bg border border-slate-700 rounded-xl shadow-2xl p-6 animate-in fade-in zoom-in duration-300">
+            <div class="flex justify-between items-center mb-4 border-b border-slate-800 pb-4">
+                <div class="flex items-center gap-3">
+                    <div class="p-2 rounded-lg bg-slate-800 text-white">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                    </div>
+                    <h2 class="text-lg font-bold text-white tracking-wide">PROFESSIONAL JOURNEY</h2>
+                </div>
+                <button onclick="window.app.closeJourneyModal()" class="text-accent-text-muted hover:text-white text-2xl">&times;</button>
+            </div>
+            <div id="journey-modal-content" class="text-sm text-accent-text-secondary leading-relaxed space-y-4 max-h-[60vh] overflow-y-auto custom-scrollbar">
+                <p class="animate-pulse text-accent-text-muted">Loading journey details...</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 4. Pitch Deck Modal (UPDATED TITLE) -->
+    <div id="pitchDeckModal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="window.app.closePitchDeckModal()"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[95%] max-w-6xl h-[95%] bg-bg border border-slate-700 rounded-xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in zoom-in duration-300">
+            <div class="p-4 border-b border-slate-800 flex justify-between items-center bg-slate-900 shrink-0">
+                <h2 class="text-lg font-bold text-white">Pitch Deck</h2>
+                <button onclick="window.app.closePitchDeckModal()" class="btn-action-primary small flex items-center justify-center text-white text-xs px-3 py-2" aria-label="Close Pitch Deck">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <span class="ml-1">CLOSE</span>
+                </button>
+            </div>
+            <iframe id="pitchDeckFrame" class="flex-1 w-full h-full border-none" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+    
+    <!-- CONSENT BANNER REMOVED -->
+
+
+    <!-- LOGIC -->
+    <script>
+        // Global App Object to prevent namespace pollution
+        window.app = window.app || {};
+
+        /* --- 1. STATE & DATA DECLARATION --- */
+        
+        // Placeholder for the Google Sheet ID. Replace with your actual ID.
+        window.app.SPREADSHEET_ID = '1ozWrImLTkJHvteWcmX7AXq_Se_pjk6QUkenB3XqIBxw';
+
+        // Set Relevance as default (true) for Certifications, per user request.
+        window.app.isSortRel = true; 
+        // UPDATED: Default filter set to 'C' (Certification)
+        window.app.currentFilter = 'C'; 
+        window.app.flashcardInterval = null; 
+        window.app.flashcardElements = null; // Cache for flashcard DOM elements
+        
+        // FIX 3: Increased flashcard rotation time to 7000ms (7 seconds)
+        window.app.FLASHCARD_INTERVAL_MS = 7000; 
+        window.app.GOOGLE_SHEET_TIMEOUT_MS = 8000; // FIX 5: 8 second timeout for sheet fetching
+        
+        // ANALYTICS MANDATE CHANGE: Hardcode consent to true, no check
+        window.app.analyticsConsent = true; 
+
+
+        window.app.impacts = [
+            { label: "Efficiency Gain", value: "80%", desc: "Drastic reduction in manual reporting effort achieved through Python scripting & RPA (Systemic Efficiency Engineering).", color: "text-emerald-400", bg: "bg-emerald-500/10" },
+            { label: "Compliance", value: "100%", desc: "Zero penalty record in GST filings across 31 registrations.", color: "text-white", bg: "bg-slate-500/10" },
+            { label: "Decision Speed", value: "30%", desc: "Accelerated management reporting via new forecasting models (Operational Alpha).", color: "text-yellow-400", bg: "bg-yellow-500/10" },
+            { label: "Accuracy", value: "20%", desc: "Reduction in fixed asset discrepancies via overhaul.", color: "text-purple-400", bg: "bg-purple-500/10" }
+        ];
+        window.app.currentImpact = 0; 
+        
+        // Hardcoded fallback data (Dates need to be accurate for sorting to work)
+        window.app.fallbackCerts = [
+            // Category mapping used for fallback: C, P, Q, CP, W
+            { category: 'C', t: "NISM Research Analyst", i: "SEBI Certified", y: "2024-03-01", l: "#", rel: 1, sc: 100, catFull: "Certification" }, 
+            { category: 'P', t: "Financial Modelling (Project)", i: "The Wall Street School", y: "2024-07-15", l: "#", rel: 2, sc: 95, catFull: "Project" }, 
+            { category: 'CP', t: "GST Taxation (CP)", i: "PwC", y: "2024-10-01", l: "#", rel: 3, sc: 90, catFull: "Certificate of Participation" }, 
+            { category: 'Q', t: "FP&A: Building Budgets (Quiz)", i: "365 Financial Analysts", y: "2024-08-01", l: "#", rel: 4, sc: 90, catFull: "Quiz" }, 
+            { category: 'C', t: "Investment Banking", i: "365 Financial Analysts", y: "2024-06-01", l: "#", rel: 5, sc: 85, catFull: "Certification" }, 
+            { category: 'P', t: "Google Data Analytics (Project)", i: "Google", y: "2023-12-01", l: "#", rel: 6, sc: 80, catFull: "Project" }, 
+            { category: 'Q', t: "Finance for Managers (Quiz)", i: "IESE Business School", y: "2023-09-01", l: "#", rel: 7, sc: 75, catFull: "Quiz" }, 
+            { category: 'W', t: "Private Equity & VC (Webinar)", i: "Bocconi University", y: "2023-01-01", l: "#", rel: 8, sc: 70, catFull: "Workshop/Webinar" }, 
+        ];
+        
+        // UPDATED: Added link parameter to fallback data
+        window.app.fallbackFAQ = [
+            { question: "What is the core value proposition?", answer: "Navneet is a 'T-Shaped Hybrid,' combining vertical depth in FP&A, Accounting, and Compliance with horizontal execution skills in Python, RPA, and Generative AI to drive tangible process automation and financial clarity.", link: "https://www.linkedin.com/in/navneet831/" },
+            { question: "What is your largest measurable impact?", answer: "At Grew Energy Pvt Ltd, proprietary Python/RPA scripts were deployed to automate MIS preparation, resulting in an 80% reduction in manual effort. This is the core of the Systemic Efficiency Engineering mandate.", link: "" },
+            { question: "Why the career gap in 2024?", answer: "The gap from Sep 2024 - Nov 2024 was a pre-planned break for family medical responsibilities, which are now fully resolved. The time was constructively used for community service (Robinhood Army) and professional development.", link: "" },
+            { question: "What is 'Operational Alpha'?", answer: "Operational Alpha refers to the quantifiable gains achieved beyond standard performance, including 30% acceleration in decision-making speed, 100% compliance record across 31 GST registrations, and stabilizing liquidity during a cash crisis.", link: "" }
+        ];
+        
+        // --- MASTER SOURCE OF TRUTH FOR PROFESSIONAL JOURNEY TIMELINE (UPDATED ROLE) ---
+        // Used to render the chronological timeline view (back face)
+        window.app.professionalJourney = [
+            // Note: Dates use 0-indexed month (0=Jan, 11=Dec) for accurate JS Date objects.
+            { company: "Grew Energy Pvt Ltd.", role: "Assistant Manager Accounts", tenure: "Dec 25 - Present", desc: "Accounts Leadership, Financial Closure, and FinTech integration.", start: new Date(2025, 11, 25), color: '#10b981' }, // GREEN
+            // UPDATED: role changed from "Naukri Creator Hub & Finance Writer"
+            { company: "Career break (Content Creation & Project Dev)", role: "Tech Portfolio & Article Writing", tenure: "Sep 25 - Nov 25", desc: "Built tech portfolio and article writing on Medium and LinkedIn; also selected for Naukri Creator Hub.", start: new Date(2025, 8, 1), color: '#ef4444' }, // RED
+            { company: "Oriana Power Ltd.", role: "Assistant Manager Finance", tenure: "Jun 25 - Sep 25", desc: "Crisis Cash Management and Internal Controls implementation during liquidity crunch.", start: new Date(2025, 5, 12), color: '#f59e0b' }, // YELLOW (Crisis/Pivot)
+            { company: "Grew Energy Pvt Ltd.", role: "Assistant Manager Finance", tenure: "Dec 24 - Jun 25", desc: "FP&A and MIS reporting.", start: new Date(2024, 11, 1), color: '#3b82f6' }, // BLUE (Core)
+            { company: "Career Break & Volunteering", role: "Community Service & Family Medical Emergency", tenure: "Sep 24 - Nov 24", desc: "Mothers medical treatment & community service at robinhood army.", start: new Date(2024, 8, 1), color: '#ef4444' }, // RED (Break)
+            { company: "Ozone Pharmaceuticals Ltd.", role: "Senior Executive", tenure: "Feb 22 - Aug 24", desc: "GST Compliance (100% record), Tax Due Diligence, and MIS automation.", start: new Date(2022, 1, 1), color: '#3b82f6' }, // BLUE (Core)
+            { company: "Shanti Mukand Hospital", role: "Junior Executive Finance", tenure: "Feb 21 - Feb 22", desc: "AP Management & NPPA compliance adherence.", start: new Date(2021, 1, 1), color: '#3b82f6' }, // BLUE (Foundation)
+            { company: "Kumar Grover & Company", role: "Accounts Assistant", tenure: "Feb 19 - Jan 21", desc: "Taxation (ITR) & Statutory Audits.", start: new Date(2019, 1, 1), color: '#3b82f6' }, // BLUE (Foundation)
+        ];
+        
+        // Sort the master data in reverse chronological order (newest first)
+        window.app.professionalJourney.sort((a, b) => b.start - a.start);
+
+        window.app.getHardcodedJourneyContent = function() {
+            // Updated hardcoded content for robustness and clarity
+            return `<p class="text-sm text-accent-text-secondary">
+                <span class="font-bold text-accent-text-primary">The 'Why' Behind the Journey:</span> My career is defined by a consistent pursuit of efficiency and technological edge in finance. My experience has forged a 'T-Shaped' profile: deep domain expertise in FP&A/Accounting (Vertical Depth) combined with Python/RPA skills (Horizontal Breadth).
+            </p>
+            <h4 class="text-md font-bold text-accent-primary mt-4 mb-2">Key Career Transitions</h4>
+            <ul class="list-disc list-inside text-xs text-accent-text-secondary space-y-2 pl-4">
+                <li><span class="font-bold text-text-primary">Transition to Tech Hybrid (2024 - Present):</span> Focused effort to integrate Python, RPA, and AI into financial workflows, driven by the realization that manual processes create systemic risk and limit strategic capacity. Example: 80% MIS automation at Grew Energy.</li>
+                <li class="pl-4 -indent-4"><span class="font-bold text-text-primary">Crisis Management & Stabilization (Oriana Power):</span> Took on a challenging role to stabilize liquidity and introduce critical internal controls, proving ability to operate effectively under extreme pressure.</li>
+                <li><span class="font-bold text-text-primary">100% Compliance & Process Optimization (Ozone Pharmaceuticals):</span> Established a 100% compliance track record for 31 GST registrations and initiated early automation efforts. This phase built a robust foundation in core accounting and compliance.</li>
+                <li><span class="font-bold text-text-primary">Foundation Building (Kumar Grover & Shanti Mukand):</span> Gained comprehensive exposure to audits, taxation, and core financial operations, establishing the domain expertise critical for strategic roles.</li>
+            </ul>
+            <p class="text-sm text-accent-text-secondary mt-4">
+                <span class="font-bold text-accent-text-primary">The Career Break (Sep-Nov 2024):</span> This was a deliberate, necessary period dedicated to family medical responsibilities. It provided a valuable opportunity for introspection and high-value, self-directed upskilling, reinforcing the commitment to continuous professional growth.
+            </p>
+            <p class="text-sm text-accent-text-secondary mt-4">
+                In summary, I am not just a financial analyst; I am an internal efficiency engineer whose primary tool is the integration of deep financial knowledge with scalable technology.
+            </p>
+            `;
+        }
+
+        window.app.journeyContent = window.app.getHardcodedJourneyContent();
+        
+        // =======================================================================
+
+        /* --- 2. ANALYTICS & CONSENT LOGIC (Hardcoded True, No Banner) --- */
+        
+        // Helper function to track events (now always tracks)
+        window.app.trackEvent = function(eventName, properties = {}) {
+            if (window.app.analyticsConsent) {
+                // Mixpanel Tracking
+                if (typeof mixpanel !== 'undefined' && mixpanel.track) {
+                    mixpanel.track(eventName, properties);
+                }
+                // GA4/GTM Tracking
+                if (window.dataLayer && window.dataLayer.push) {
+                    window.dataLayer.push('event', eventName, properties);
+                }
+                // Console log for local debugging/verification
+                console.log(`[Analytics] Tracked Event: ${eventName}`, properties);
+            }
+        };
+
+        window.app.currentActiveSection = 'highlights'; 
+        
+        // Mixpanel Time Tracking Logic (unconditionally active)
+        window.app.getActiveSection = function() {
+            const sections = ['highlights', 'skills', 'experience', 'faq'];
+            let active = 'general';
+            for (const id of sections) {
+                const el = document.getElementById(id);
+                if (el) {
+                    const rect = el.getBoundingClientRect();
+                    const viewportCenter = window.innerHeight / 2;
+                    if (rect.top < viewportCenter && rect.bottom > viewportCenter) {
+                        active = id;
+                        break;
+                    }
+                }
+            }
+            return active;
+        };
+
+        window.app.trackSectionTime = function(newSection, eventType) {
+            if (!window.app.analyticsConsent) return;
+
+            if (newSection !== window.app.currentActiveSection && newSection !== 'general') {
+                if (window.app.currentActiveSection !== 'general') {
+                    window.app.trackEvent('Time Spent on Section', {
+                        'Section Name': window.app.currentActiveSection,
+                        'Trigger': eventType
+                    });
+                }
+                if (typeof mixpanel !== 'undefined' && mixpanel.time_event) {
+                    mixpanel.time_event('Time Spent on Section');
+                    window.app.currentActiveSection = newSection;
+                }
+            }
+        };
+
+        window.app.scrollTimer = null;
+        window.app.handleScrollTimeTracking = function() {
+            clearTimeout(window.app.scrollTimer);
+            window.app.scrollTimer = setTimeout(() => {
+                const newSection = window.app.getActiveSection();
+                window.app.trackSectionTime(newSection, 'Scroll Change');
+            }, 500);
+        };
+
+        window.app.startMixpanelTracking = function() {
+            if (!window.app.analyticsConsent) return;
+            
+            const initialSection = window.app.getActiveSection();
+            if (initialSection !== 'general' && typeof mixpanel !== 'undefined' && mixpanel.time_event) {
+                mixpanel.time_event('Time Spent on Section');
+                window.app.currentActiveSection = initialSection;
+            }
+            const mainScroll = document.getElementById('main-scroll');
+            if (mainScroll) {
+                mainScroll.addEventListener('scroll', window.app.handleScrollTimeTracking);
+            }
+            window.app.trackEvent('Page View', { 'Path': window.location.pathname });
+        };
+        
+        // Core function to initialize all tracking services (unconditional)
+        window.app.initializeTrackers = function() {
+            console.log("Analytics: Initializing trackers (Unconditional Tracking Enabled).");
+            
+            // --- 1. GOOGLE TAG MANAGER / GOOGLE ANALYTICS ---
+            window.dataLayer = window.dataLayer || [];
+            // This is the GA4 config push that starts GA tracking
+            window.dataLayer.push('config', 'G-1XL4LRC5PP', {'anonymize_ip': true, 'allow_google_signals': false, 'user_id': undefined, 'send_page_view': false});
+
+            // --- 2. MIXPANEL ---
+            (function(window, document) {
+                (function(e,c){if(!c.__SV){var l,h;window.mixpanel=c;c._i=[];c.init=function(q,r,f){function t(d,a){var g=a.split(".");2==g.length&&(d=d[g[0]],a=g[1]);d[a]=function(){d.push([a].concat(Array.prototype.slice.call(arguments,0)))}}var b=c;"undefined"!==typeof f?b=c[f]=[]:f="mixpanel";b.people=b.people||[];b.toString=function(d){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);d||(a+=" (stub)");return a};b.people.toString=function(){return b.toString(1)+".people (stub)"};l="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opt_in_tracking has_opt_out_tracking clear_opt_in_tracking clear_opt_in_out_tracking start_batch_senders start_session_recording stop_session_recording people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");
+                for(h=0;h<l.length;h++)t(b,l[h]);var n="set set_once union unset remove delete".split(" ");b.get_group=function(){function d(p){a[p]=function(){b.push([g,[p].concat(Array.prototype.slice.call(arguments,0))])}}for(var a={},g=["get_group"].concat(Array.prototype.slice.call(arguments,0)),m=0;m<n.length;m++)d(n[m]);return a};c._i.push([q,r,f])};c.__SV=1.2;var k=e.createElement("script");k.type="text/javascript";k.async=!0;k.src="https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=e.getElementsByTagName("script")[0];e.parentNode.insertBefore(k,e)}})(document,window.mixpanel||[])
+
+                mixpanel.init('c78b58539a26878c3d43e1a83a118494', {
+                    autocapture: true, // Auto-capture clicks/forms
+                    record_sessions_percent: 100,
+                })
+            })(window, document);
+
+            // --- 3. HOTJAR (for Heatmaps/Recordings) ---
+            (function(h,o,t,j,a,r){
+                h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+                h._hjSettings={hjid:4065476,hjsv:6};
+                a=o.getElementsByTagName('head')[0];
+                r=o.createElement('script');r.async=1;
+                r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+                a.appendChild(r);
+            })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+
+            window.app.analyticsConsent = true;
+            window.app.startFlashcardRotation(); // Start interaction tracking
+            window.app.startMixpanelTracking(); // Start time-on-page tracking
+        };
+        
+
+        // GTM Loader (loads the container, tags remain gated by GA config push in initializeTrackers)
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GT-57Z944P3');
+        
+        // =======================================================================
+
+        /* --- 3. DATA FETCHING UTILITIES (Unchanged) --- */
+        window.app.parseGoogleSheetData = function(text) {
+            // Regex to extract the JSON payload from the Google Sheet wrapper
+            const jsonText = text.replace(/.*google.visualization.Query.setResponse\({(.*?)}\);/s, '{$1}');
+            try {
+                const json = JSON.parse(jsonText);
+                return json.table ? json.table.rows : [];
+            } catch (e) {
+                 console.error("Failed to parse Google Sheet JSON:", e);
+                 return [];
+            }
+        };
+
+        window.app.formatDateMMYY = function(dateString) {
+            if (!dateString) return '';
+            try {
+                let dateObj;
+                if (dateString.toString().includes("Date")) {
+                    const parts = dateString.match(/\d+/g);
+                    if (parts && parts.length >= 2) {
+                        // JS Date month is 0-indexed, but Google Sheets' Date(Y, M, D) uses 0 for January.
+                        // The regex parts are year, month, day. We must pass month-1 to Date() constructor.
+                        dateObj = new Date(parseInt(parts[0]), parseInt(parts[1]), parseInt(parts[2] || 1));
+                    }
+                } else {
+                    dateObj = new Date(dateString);
+                }
+
+                if (dateObj && !isNaN(dateObj.getTime())) {
+                    const mm = (dateObj.getMonth() + 1).toString().padStart(2, '0');
+                    const yy = dateObj.getFullYear().toString().slice(-2);
+                    return `${mm}/${yy}`;
+                }
+                return dateString;
+            } catch (e) {
+                return dateString;
+            }
+        };
+
+        window.app.getTimestamp = function(dStr) {
+            try {
+                if(!dStr) return 0;
+                // Check if it's the Google Sheet Date format
+                if (dStr.toString().includes("Date")) {
+                    const parts = dStr.match(/\d+/g);
+                    // Same adjustment for 0-indexed month when converting Google Sheet date to timestamp
+                    if (parts && parts.length) return new Date(parseInt(parts[0]), parseInt(parts[1]||0), parseInt(parts[2]||1)).getTime();
+                } 
+                // Treat as ISO 8601 or similar string
+                return new Date(dStr).getTime();
+            } catch(e) { return 0; }
+        };
+        // =======================================================================
+
+        /* --- 4. CORE RENDERING FUNCTIONS (Updated logic) --- */
+        
+        window.app.renderCerts = function() {
+            const list = document.getElementById('certList');
+            if(!list) return;
+            
+            // 1. Filter the list based on the current active category (window.app.currentFilter)
+            const filtered = window.app.currentFilter === 'ALL'
+                ? window.app.certs
+                : window.app.certs.filter(c => {
+                    // Filter based on the category string (C, P, Q, CP, W) from Column H
+                    return c.category === window.app.currentFilter;
+                });
+
+            // 2. Sort the filtered list
+            const sorted = [...filtered].sort((a, b) => {
+                if (window.app.isSortRel) {
+                    // Sort by Relevance (Col A) - Ascending
+                    return (a.rel || 99) - (b.rel || 99);
+                } else {
+                    // Sort by Date (Col F) - Descending (Latest First)
+                    const tA = window.app.getTimestamp(a.y); // 'y' is the date value (Col F)
+                    const tB = window.app.getTimestamp(b.y); // 'y' is the date value (Col F)
+                    return tB - tA;
+                }
+            });
+            
+            // 3. Render the list
+            list.innerHTML = sorted.map(c => {
+                // Determine if score exists and apply formatting
+                const scoreText = (c.sc !== null && c.sc !== undefined) 
+                    ? `<span class="text-blue-400 font-bold ml-1">(${c.sc}%)</span>` 
+                    : '';
+                
+                // *** CATEGORY TAG DISPLAY REMOVED ***
+
+                const innerContent = `
+                    <div class="flex justify-between items-center p-3 rounded-lg bg-bg hover:bg-slate-800 border border-transparent hover:border-slate-700 transition group cursor-pointer w-full">
+                        <div>
+                            <div class="text-sm font-medium text-accent-text-primary">${c.t}</div>
+                            <div class="text-xs text-accent-text-muted">${c.i}</div>
+                        </div>
+                        <div class="text-right shrink-0 flex flex-col items-end">
+                            <div class="text-xs font-mono text-accent-primary flex items-center mb-0.5">
+                                <span>${window.app.formatDateMMYY(c.y)}</span>
+                                ${c.l && c.l !== '#' ? `<svg class="w-3 h-3 opacity-50 group-hover:opacity-100 text-slate-500 group-hover:text-accent-primary transition-colors ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>` : ''}
+                            </div>
+                            <!-- Display Score below Date, colored blue -->
+                            <div class="text-xs font-mono text-blue-400">${scoreText.replace(/[()]/g, '')}</div>
+                        </div>
+                    </div>
+                `;
+                
+                if (c.l && c.l !== '#' && c.l.startsWith('http')) {
+                    return `<a href="${c.l}" target="_blank" rel="noopener noreferrer" class="block no-underline" onclick="window.app.trackEvent('Cert Link Click', { title: '${c.t.replace(/'/g, "\\'")}' })">${innerContent}</a>`;
+                } else {
+                    return `<div class="block">${innerContent}</div>`;
+                }
+            }).join('');
+            
+            // Set button text based on current sort state
+            document.getElementById('sortBtn').innerText = window.app.isSortRel ? 'Sort: Relevance' : 'Sort: Latest';
+        };
+        
+        
+        // This function sets the tooltip/hover behavior for the filter buttons
+        window.app.setFilterTooltips = function() {
+            // This map should ideally be built dynamically from the fetched data's 'catFull' field
+            // But for safety/fallback consistency, we map the most common ones here.
+            const buttonMap = {
+                'P': 'Project',
+                'C': 'Certification',
+                'Q': 'Quiz',
+                'CP': 'Certificate of Participation',
+                'W': 'Workshop/Webinar',
+            };
+            
+            document.querySelectorAll('.btn-filter').forEach(btn => {
+                const filterValue = btn.getAttribute('data-filter');
+                let tooltipText = buttonMap[filterValue] || filterValue;
+
+                // Try to use the full name from the fetched data if available
+                const cert = window.app.certs.find(c => c.category === filterValue);
+                if (cert && cert.catFull) {
+                    tooltipText = cert.catFull;
+                }
+                
+                // Set the default title attribute for native browser hover/tooltip
+                btn.setAttribute('title', tooltipText);
+            });
+        };
+        
+        // Dynamic Filter Button Renderer
+        window.app.renderFilterButtons = function() {
+            const container = document.getElementById('filterSlicers');
+            if (!container) {
+                console.error("Filter container not found.");
+                return;
+            }
+            if (window.app.certs.length === 0) {
+                 container.innerHTML = `<p class="text-accent-alert text-xs">No project or certification data available.</p>`;
+                 return;
+            }
+
+            // 1. Collect unique categories from the fetched/fallback data
+            const uniqueCategories = [...new Set(window.app.certs.map(c => c.category))].filter(cat => cat && cat !== 'ALL');
+            
+            // Define the preferred order
+            const preferredOrder = ['C', 'P', 'Q', 'CP', 'W']; 
+            
+            // Sort categories based on preferred order
+            uniqueCategories.sort((a, b) => {
+                let indexA = preferredOrder.indexOf(a);
+                let indexB = preferredOrder.indexOf(b);
+                
+                // Handle categories not in preferredOrder gracefully
+                return indexA - indexB;
+            });
+            
+            // 2. Generate buttons
+            const buttonsHtml = uniqueCategories.map(cat => {
+                const filterValue = cat; 
+                const uiLabel = cat === 'W/B' ? 'W' : cat; // Display 'W' for the 'W/B' data key
+
+                // We filter based on 'cat', but the UI only shows 'uiLabel'
+                return `<button class="btn-filter" onclick="window.app.filterCerts('${filterValue}', this); window.app.trackEvent('Cert Filter Click', { filter: '${filterValue}' })" data-filter="${filterValue}">${uiLabel}</button>`;
+            }).join('');
+            
+            // 3. Insert into container
+            container.innerHTML = buttonsHtml;
+            
+            // 4. Re-apply tooltips (required after dynamic render)
+            window.app.setFilterTooltips();
+
+            // 5. Apply active class to the currently selected filter button
+            const activeFilterButton = document.querySelector(`#filterSlicers [data-filter="${window.app.currentFilter}"]`);
+            if (activeFilterButton) {
+                activeFilterButton.classList.add('active');
+            }
+        };
+
+
+        window.app.renderFAQ = function() {
+            const container = document.getElementById('faq-container');
+            if (!container) return;
+            
+            // Renders the FAQ list items, dynamically adding links to the answer content if present.
+            container.innerHTML = window.app.faqData.map((item, index) => {
+                let linkElement = '';
+                
+                // Check if a valid link exists (starts with http)
+                if (item.link && item.link.startsWith('http')) {
+                    // Create a distinctive link element mirroring the requested style (icon only)
+                    linkElement = `
+                        <a href="${item.link}" target="_blank" rel="noopener noreferrer" 
+                            class="text-xs font-mono text-accent-primary flex items-center hover:text-white"
+                            onclick="event.stopPropagation(); window.app.trackEvent('FAQ Source Click', { 'Question': '${item.question.replace(/'/g, "\\'")}' });"
+                            aria-label="View Link">
+                            <svg class="w-3 h-3 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                        </a>
+                    `;
+                }
+                // Structure the answer content to place the link element separately using flexbox.
+                const answerBody = linkElement ? 
+                    `<div class="flex justify-between items-start w-full">
+                        <p class="text-sm text-accent-text-secondary leading-relaxed mr-4">${item.answer}</p>
+                        ${linkElement}
+                    </div>` : 
+                    `<p class="text-sm text-accent-text-secondary leading-relaxed">${item.answer}</p>`;
+
+
+                return `
+                    <div class="border border-slate-700 rounded-xl overflow-hidden shadow-terminal accordion-item">
+                        <button class="w-full flex justify-between items-center text-left p-4 bg-slate-800 hover:bg-slate-700 transition-colors" onclick="window.app.toggleAccordion(this)">
+                            <span class="text-sm font-bold text-accent-text-primary">${item.question}</span>
+                            <span class="ml-4 text-accent-primary transform transition-transform duration-300">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </button>
+                        <div class="accordion-content bg-slate-900/50">
+                            <div class="p-4 border-t border-slate-700 flex items-center">
+                                ${answerBody}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        };
+        
+        // UPDATED: Renders the chronological timeline for the back face
+        window.app.renderTimeline = function() {
+            const container = document.getElementById('exp-timeline-scroll');
+            if (!container) return;
+
+            // REMOVED: The 'desc' field from the rendered content per user request for a cleaner timeline.
+            const timelineHtml = window.app.professionalJourney.map(item => `
+                <div class="timeline-item pb-6">
+                    <span class="timeline-dot" style="background-color: ${item.color};"></span>
+                    <div class="flex items-baseline justify-between">
+                        <p class="text-sm font-bold" style="color: ${item.color};">${item.company} (${item.role})</p>
+                        <span class="text-xs font-mono text-accent-text-muted">${item.tenure}</span>
+                    </div>
+                </div>
+            `).join('');
+
+            container.innerHTML = timelineHtml;
+        };
+
+
+        window.app.renderFlashcard = function(index) {
+            window.app.currentImpact = index % window.app.impacts.length;
+            const data = window.app.impacts[window.app.currentImpact];
+
+            if (!window.app.flashcardElements) {
+                window.app.flashcardElements = {
+                    label: document.getElementById('fc-label'),
+                    val: document.getElementById('fc-value'),
+                    desc: document.getElementById('fc-desc'),
+                    detail: document.getElementById('fc-detail'),
+                    inds: [0,1,2,3].map(i => document.getElementById('ind-'+i))
+                };
+            }
+            const { label, val, desc, detail, inds } = window.app.flashcardElements;
+            
+            if (!label || !val || !desc || !detail) return;
+            
+            label.innerText = data.label;
+            val.innerText = data.value;
+            desc.innerText = "▲ Impact";
+            desc.className = `text-xs font-bold uppercase tracking-wide px-2 py-1 rounded transition-all duration-300 ${data.color} ${data.bg}`;
+            detail.innerText = data.desc;
+            
+            inds.forEach((ind, idx) => {
+                if (ind) {
+                    ind.style.opacity = idx === window.app.currentImpact ? '1' : '0.3';
+                    ind.className = `h-1 w-full rounded transition-all ${idx === window.app.currentImpact ? 'bg-accent-primary' : 'bg-slate-700'}`;
+                }
+            });
+        };
+
+        window.app.rotateFlashcard = function() {
+            if (!window.app.analyticsConsent) return; // Unconditional tracking means this is always true
+            
+            window.app.currentImpact = (window.app.currentImpact + 1) % window.app.impacts.length;
+            const data = window.app.impacts[window.app.currentImpact];
+
+            if (!window.app.flashcardElements) {
+                window.app.flashcardElements = {
+                    label: document.getElementById('fc-label'),
+                    val: document.getElementById('fc-value'),
+                    desc: document.getElementById('fc-desc'),
+                    detail: document.getElementById('fc-detail'),
+                    inds: [0,1,2,3].map(i => document.getElementById('ind-'+i))
+                };
+            }
+            const { label, val, desc, detail, inds } = window.app.flashcardElements;
+            
+            if (!label || !val || !desc || !detail) return;
+            
+            // Initiate fade out before changing content
+            label.style.opacity = 0;
+            val.style.opacity = 0;
+            desc.style.opacity = 0;
+            detail.style.opacity = 0;
+            
+            setTimeout(() => {
+                // Change content
+                label.innerText = data.label;
+                val.innerText = data.value;
+                desc.innerText = "▲ Impact";
+                desc.className = `text-xs font-bold uppercase tracking-wide px-2 py-1 rounded transition-all duration-300 ${data.color} ${data.bg}`;
+                detail.innerText = data.desc;
+                
+                // Update indicators
+                inds.forEach((ind, idx) => {
+                    if (ind) {
+                        ind.style.opacity = idx === window.app.currentImpact ? '1' : '0.3';
+                        ind.className = `h-1 w-full rounded transition-all ${idx === window.app.currentImpact ? 'bg-accent-primary' : 'bg-slate-700'}`;
+                    }
+                });
+                
+                // Initiate fade in
+                label.style.opacity = 1;
+                val.style.opacity = 1;
+                desc.style.opacity = 1;
+                detail.style.opacity = 1;
+            }, 100); 
+        };
+
+        window.app.startFlashcardRotation = function() {
+            // Start rotation is UNCONDITIONAL, since analyticsConsent is hardcoded true
+            if (!window.app.analyticsConsent) return; 
+
+            if (window.app.flashcardInterval) {
+                clearInterval(window.app.flashcardInterval);
+            }
+            // FIX 3: Increased interval from 4000ms to 7000ms
+            window.app.flashcardInterval = setInterval(window.app.rotateFlashcard, window.app.FLASHCARD_INTERVAL_MS); 
+        };
+        
+        window.app.pauseFlashcardRotation = function() {
+            if (window.app.flashcardInterval) {
+                clearInterval(window.app.flashcardInterval);
+                window.app.flashcardInterval = null; // Mark as paused
+            }
+        };
+
+        // NEW FUNCTION: Filters certifications/projects by category
+        window.app.filterCerts = function(filter, buttonElement) {
+            window.app.currentFilter = filter;
+
+            // Update active state for buttons
+            document.querySelectorAll('#filterSlicers .btn-filter').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            if (buttonElement) {
+                buttonElement.classList.add('active');
+            } else {
+                // Handle initial load where buttonElement is null
+                const defaultButton = document.querySelector(`#filterSlicers [data-filter="${window.app.currentFilter}"]`);
+                if (defaultButton) {
+                    defaultButton.classList.add('active');
+                }
+            }
+
+            window.app.renderCerts();
+        };
+
+
+        /* --- 5. DATA FETCHING FUNCTIONS (Unchanged) --- */
+
+        window.app.fetchWithTimeout = function(url) {
+             // FIX 5: Implemented fetch with timeout functionality
+            return new Promise((resolve, reject) => {
+                const timeout = setTimeout(() => reject(new Error('Fetch Timeout')), window.app.GOOGLE_SHEET_TIMEOUT_MS);
+                
+                fetch(url)
+                    .then(response => {
+                        clearTimeout(timeout);
+                        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                        return response.text();
+                    })
+                    .then(resolve)
+                    .catch(error => {
+                        clearTimeout(timeout);
+                        reject(error);
+                    });
+            });
+        };
+
+        window.app.fetchFAQData = async function() {
+            const statusElement = document.getElementById('faq-status');
+            if(statusElement) statusElement.innerText = "Fetching FAQs...";
+            // Query Range B:D: B (Question), C (Answer), D (Link)
+            const queryUrl = `https://docs.google.com/spreadsheets/d/${window.app.SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=FAQ&range=B:D`;
+
+            try {
+                // Use fetchWithTimeout
+                const text = await window.app.fetchWithTimeout(queryUrl);
+                const rows = window.app.parseGoogleSheetData(text);
+                
+                // NOTE: FAQ sheet columns are B, C, D (indices 0, 1, 2)
+                if (rows.length > 1) { 
+                    window.app.faqData = rows.slice(1).map(row => {
+                        const c = row.c; // Column data array
+                        const q = c[0]?.v; // Question (Col B)
+                        const a = c[1]?.v; // Answer (Col C)
+                        const l = c[2]?.v; // Link (Col D) - NEW
+                        if (q && a) return { question: q, answer: a, link: l };
+                        return null;
+                    }).filter(item => item !== null);
+
+                    if (window.app.faqData.length > 0) {
+                        const container = document.getElementById('faq-container');
+                        if (container && statusElement) statusElement.remove();
+                        window.app.renderFAQ(); 
+                    } else {
+                        throw new Error("FAQ Sheet is empty.");
+                    }
+                } else {
+                    throw new Error("No FAQ data found in sheet.");
+                }
+            } catch (error) {
+
+                console.warn("FAQ Fetch Error (Using Fallback Data):", error);
+                const container = document.getElementById('faq-container');
+                if(container && statusElement) statusElement.remove();
+                if(container) container.innerHTML = `<p class="text-accent-alert text-xs">⚠️ Data load timed out or failed. Showing hardcoded FAQs.</p>`;
+                window.app.faqData = window.app.fallbackFAQ;
+                window.app.renderFAQ(); 
+            }
+        };
+
+        window.app.fetchProfileData = async function() {
+            const certStatusEl = document.getElementById('cert-status');
+            if(certStatusEl) certStatusEl.innerText = "Fetching data for projects & certs...";
+            
+            // Fetch range A:I to access Column I (index 8) for Category Full Name
+            // Columns: A (Relevance), B (Category ID), C (Title), D (Institution), E (Score), F (Date), G (Link), H (Category Code), I (Category Full Name)
+            // Indices: 0, 1, 2, 3, 4, 5, 6, 7, 8
+            const certUrl = `https://docs.google.com/spreadsheets/d/${window.app.SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=Certification&range=A:I`;
+
+            try {
+                // Use fetchWithTimeout
+                const certText = await window.app.fetchWithTimeout(certUrl);
+                const rows = window.app.parseGoogleSheetData(certText);
+                
+                if (rows.length > 1) { 
+                    window.app.certs = rows.slice(1).map(row => {
+                           const c = row.c;
+                           // Ensure Title (Col C, index 2) and Date (Col F, index 5) exist for rendering/sorting
+                           if (!c || !c[2]?.v || (!c[5]?.v && !c[5]?.f)) return null; 
+                           
+                           // Extract category string from Column H (index 7)
+                           const categoryString = c[7]?.v ? c[7].v.trim().toUpperCase() : '';
+                           // Extract full category name from Column I (index 8)
+                           const categoryFullName = c[8]?.v ? c[8].v.trim() : '';
+
+                           return {
+                               rel: c[0]?.v,     // Relevance Score (Col A, index 0)
+                               category: categoryString, // Category Code (Col H, index 7)
+                               t: c[2]?.v,       // Title (Col C, index 2)
+                               i: c[3]?.v,       // Institution (Col D, index 3)
+                               sc: c[4]?.v,      // Score (Col E, index 4)
+                               y: c[5]?.v || c[5]?.f, // Date (Col F, index 5)
+                               l: c[6]?.v,       // Link (Col G, index 6)
+                               // NEW: Store full category name for tooltips
+                               catFull: categoryFullName // Category Full Name (Col I, index 8)
+                           };
+                    }).filter(item => item !== null && item.category !== ''); // Filter out empty/null items
+                    
+                    if(certStatusEl) certStatusEl.remove();
+                } else {
+                    throw new Error("No certification data found in sheet.");
+                }
+            } catch (e) {
+                 // Fallback logic executed on failure or timeout
+                console.warn("Project/Cert Fetch Error (Using Fallback Data):", e);
+                const certList = document.getElementById('certList');
+                if(certStatusEl) certStatusEl.remove();
+                if(certList) certList.innerHTML = `<p class="text-accent-alert text-xs p-2">⚠️ Data load failed/timed out. Showing hardcoded backup.</p>` + certList.innerHTML;
+                
+                // Fallback data structure now uses 'category' string field (Col H format) and added 'catFull'
+                window.app.certs = [
+                    { category: 'C', t: "NISM Research Analyst", i: "SEBI Certified", y: "2024-03-01", l: "#", rel: 1, sc: 100, catFull: "Certification" }, 
+                    { category: 'P', t: "Financial Modelling (Project)", i: "The Wall Street School", y: "2024-07-15", l: "#", rel: 2, sc: 95, catFull: "Project" }, 
+                    { category: 'CP', t: "GST Taxation (CP)", i: "PwC", y: "2024-10-01", l: "#", rel: 3, sc: 90, catFull: "Certificate of Participation" }, 
+                    { category: 'Q', t: "FP&A: Building Budgets (Quiz)", i: "365 Financial Analysts", y: "2024-08-01", l: "#", rel: 4, sc: 90, catFull: "Quiz" }, 
+                    { category: 'C', t: "Investment Banking", i: "365 Financial Analysts", y: "2024-06-01", l: "#", rel: 5, sc: 85, catFull: "Certification" }, 
+                    { category: 'P', t: "Google Data Analytics (Project)", i: "Google", y: "2023-12-01", l: "#", rel: 6, sc: 80, catFull: "Project" }, 
+                    { category: 'Q', t: "Finance for Managers (Quiz)", i: "IESE Business School", y: "2023-09-01", l: "#", rel: 7, sc: 75, catFull: "Quiz" }, 
+                    { category: 'W', t: "Private Equity & VC (Webinar)", i: "Bocconi University", y: "2023-01-01", l: "#", rel: 8, sc: 70, catFull: "Workshop/Webinar" }, 
+                ];
+            }
+            
+            // Set initial filter to 'C' (Certification) if no filter is active
+            if (!window.app.currentFilter) {
+                window.app.currentFilter = 'C';
+            }
+            
+            // Re-render Filter Buttons and apply active filter state after data fetch
+            window.app.renderFilterButtons(); // Dynamically render buttons based on data
+            window.app.filterCerts(window.app.currentFilter); 
+        };
+
+        window.app.fetchJourneyData = async function() {
+            const statusElement = document.getElementById('journey-modal-content');
+            // Set loading state in the modal content area
+            if(statusElement) statusElement.innerHTML = `<p class="animate-pulse text-accent-text-muted">Fetching journey details from sheet...</p>`;
+            
+            // Query for sheet 'About me', range 'B2'. Note: sheet name must be URI-encoded.
+            const queryUrl = `https://docs.google.com/spreadsheets/d/${window.app.SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=About%20me&range=B2`;
+
+            try {
+                const text = await window.app.fetchWithTimeout(queryUrl);
+                const rows = window.app.parseGoogleSheetData(text);
+                
+                // Rows[0] is the first (and only) row, c[0] is the first (and only) column (B2)
+                if (rows.length > 0 && rows[0].c[0]?.v) { 
+                    const fetchedContent = rows[0].c[0].v;
+                    window.app.journeyContent = fetchedContent; // Update global content
+                    
+                    // If the modal is currently open, update it instantly.
+                    if (!document.getElementById('journeyModal').classList.contains('hidden')) {
+                        document.getElementById('journey-modal-content').innerHTML = fetchedContent;
+                    }
+                } else {
+                    throw new Error("No data found in cell B2 of 'About me' sheet.");
+                }
+            } catch (error) {
+                console.warn("Journey Data Fetch Error (Using Fallback Data):", error);
+                
+                // Use the fallback content with a warning
+                const fallbackWarning = `<p class="text-accent-alert text-xs mb-4">⚠️ Data load timed out or failed for Journey data. Showing hardcoded narrative.</p>`;
+                window.app.journeyContent = fallbackWarning + window.app.getHardcodedJourneyContent();
+                
+                // If the modal is open, show the fallback content immediately.
+                const contentDiv = document.getElementById('journey-modal-content');
+                if (contentDiv) {
+                    contentDiv.innerHTML = window.app.journeyContent;
+                }
+            }
+        };
+
+        // =======================================================================
+        
+        /* --- 6. INTERACTION LOGIC (Updated to use trackEvent) --- */
+        
+        window.app.sortCerts = function() {
+            // Toggle between true (Relevance: sort by rel) and false (Latest: sort by date)
+            window.app.isSortRel = !window.app.isSortRel;
+            window.app.renderCerts();
+            window.app.trackEvent('Cert Sort Toggle', { sort: window.app.isSortRel ? 'Relevance' : 'Latest' });
+        };
+        
+        // NEW FUNCTION: Toggles the flip state of the experience card
+        window.app.flipExperienceCard = function() {
+            const flipContainer = document.getElementById('experience');
+            flipContainer.classList.toggle('flipped');
+            if (flipContainer.classList.contains('flipped')) {
+                window.app.renderTimeline(); // Render the timeline whenever it's flipped to the back
+            }
+            const action = flipContainer.classList.contains('flipped') ? 'Timeline View' : 'List View';
+            window.app.trackEvent('Experience View Toggled', { 'View': action });
+        };
+
+        window.app.toggleAccordion = function(button) {
+            const item = button.closest('.accordion-item');
+            const content = item.querySelector('.accordion-content');
+            const icon = button.querySelector('span svg');
+            
+            const isActive = content.classList.contains('active');
+            
+            document.querySelectorAll('.accordion-item .accordion-content.active').forEach(openContent => {
+                // Find the associated button/icon to rotate it back
+                const otherButton = openContent.closest('.accordion-item').querySelector('button');
+                const otherIcon = otherButton.querySelector('span svg');
+
+                if (openContent !== content) {
+                    openContent.classList.remove('active');
+                    openContent.style.maxHeight = '0';
+                    if(otherIcon) otherIcon.style.transform = 'rotate(0deg)';
+                }
+            });
+            
+            content.classList.toggle('active');
+            const questionText = button.querySelector('span').innerText;
+            if (isActive) {
+                content.style.maxHeight = '0';
+                icon.style.transform = 'rotate(0deg)';
+                window.app.trackEvent('FAQ Closed', { 'Question': questionText });
+            } else {
+                // Set max-height to scroll height + padding for smooth animation
+                // This accounts for the inner content height accurately
+                content.style.maxHeight = content.scrollHeight + 50 + "px"; 
+                icon.style.transform = 'rotate(180deg)';
+                window.app.trackEvent('FAQ Opened', { 'Question': questionText });
+            }
+            
+            content.addEventListener('transitionend', () => {
+                if (content.classList.contains('active')) {
+                    // Reset to a larger height after transition to handle dynamic content size
+                    content.style.maxHeight = '500px'; 
+                }
+            }, { once: true });
+        };
+        
+        window.app.toggleSidebarMobile = function() {
+            const sb = document.getElementById('sidebar');
+            const ov = document.getElementById('mobile-overlay');
+            const mainScroll = document.getElementById('main-scroll');
+            
+            const isClosing = !sb.classList.contains('mobile-hidden');
+
+            sb.classList.toggle('mobile-hidden'); // Use custom class for mobile
+            ov.classList.toggle('hidden');
+            
+            // Toggle class on main-scroll for mobile padding
+            mainScroll.classList.toggle('sidebar-closed', isClosing);
+            window.app.trackEvent('Sidebar Toggled', { action: isClosing ? 'Closed' : 'Opened' });
+        };
+        
+        // Desktop Collapse Logic
+        window.app.toggleSidebarDesktop = function() {
+            const sb = document.getElementById('sidebar');
+            const toggleBtn = document.getElementById('sidebarToggle').querySelector('svg');
+            
+            // Only apply toggle logic on screens large enough for the desktop sidebar (lg:)
+            if (window.innerWidth >= 1024) {
+                 sb.classList.toggle('collapsed');
+                 if(sb.classList.contains('collapsed')) {
+                    // Collapsed state: arrow points inwards
+                    toggleBtn.style.transform = "rotate(180deg)";
+                    sb.style.width = '64px'; // W-16
+                    } else {
+                    // Expanded state: arrow points outwards
+                    toggleBtn.style.transform = "rotate(0deg)"; // Fixed to 0deg (outwards)
+                    sb.style.width = '256px'; // W-64
+                    }
+            } else {
+                // If clicked on mobile, treat it as a nav-item click (mobile hidden/shown)
+                window.app.toggleSidebarMobile();
+            }
+            window.app.trackEvent('Sidebar Toggled', { action: sb.classList.contains('collapsed') ? 'Collapsed' : 'Expanded' });
+
+            // Important: Re-initialize Mind Map if open and size changes
+            setTimeout(() => {
+                if(!document.getElementById('mindMapModal').classList.contains('hidden')) {
+                    window.app.initMindMap(); 
+                }
+            }, 300);
+        };
+
+        window.app.scrollToSection = function(id) {
+            const target = document.getElementById(id);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+                if (window.innerWidth < 1024) window.app.toggleSidebarMobile();
+                window.app.trackSectionTime(id, 'Nav Click');
+            }
+        };
+        
+        // RESTORED TAWK.TO WIDGET LOGIC
+        window.app.toggleZenithChat = function() {
+            // Restore Tawk.to interaction
+            if (typeof Tawk_API !== 'undefined' && Tawk_API.maximize) {
+                Tawk_API.maximize();
+            } else {
+                // Fallback log if API isn't loaded yet
+                console.warn("ZENITH AI: Tawk.to chat widget is loading or initialization failed.");
+            }
+            window.app.trackEvent('Zenith Chat Click', { 'Context': 'Sidebar' });
+        };
+        
+        // =======================================================================
+
+        /* --- 7. D3 MIND MAP LOGIC (Encapsulated) --- */
+
+        window.app.mindMapData = {
+            "name": "NAVNEET CHAUDHARY (FP&A / FINTECH)",
+            "category": "Hybrid FinTech",
+            "children": [
+                { "name": "VERTICAL DEPTH (FP&A & Compliance)", "category": "Domain", "children": [
+                    { "name": "Strategic Forecasting", "category": "Core" },
+                    { "name": "Crisis Cash Mgmt (Oriana)", "category": "Core" },
+                    { "name": "100% GST Compliance (Ozone)", "category": "Core" },
+                    { "name": "Internal Controls", "category": "Core" }
+                ]},
+                { "name": "HORIZONTAL BREADTH (Tech & Alpha)", "category": "Tech", "children": [
+                    { "name": "Python/RPA (80% MIS Efficiency)", "category": "Impact" },
+                    { "name": "Generative AI", "category": "Skill" },
+                    { "name": "PowerBI/SQL Data Storytelling", "category": "Skill" }
+                ]},
+                { "name": "OUTPUT (Operational Alpha)", "category": "Impact", "children": [
+                    { "name": "2X-3X ROI Delivered", "category": "Metric" },
+                    { "name": "30% Faster Decision Making", "category": "Metric" },
+                    { "name": "T-Shaped Capability", "category": "Metric" }
+                ]}
+            ]
+        };
+
+        window.app.d3State = {
+            svg: null,
+            simulation: null,
+            g: null,
+            width: 0,
+            height: 0,
+            isMindMapReady: false
+        };
+
+        window.app.cleanupMindMap = function() {
+            // Stop simulation and remove SVG
+            if (window.app.d3State.simulation) {
+                window.app.d3State.simulation.stop();
+            }
+            const container = document.getElementById('mindMapContainer');
+            if (container) {
+                d3.select(container).selectAll('svg').remove(); 
+            }
+            window.app.d3State.isMindMapReady = false;
+        };
+
+        window.app.initMindMap = function() {
+            window.app.cleanupMindMap(); 
+
+            const container = document.getElementById('mindMapContainer');
+            if (!container) return;
+
+            // Wait for the container to have dimensions if it was just made visible
+            window.app.d3State.width = container.clientWidth;
+            window.app.d3State.height = container.clientHeight;
+            
+            if (window.app.d3State.width === 0 || window.app.d3State.height === 0) {
+                 setTimeout(window.app.initMindMap, 50); 
+                 return;
+            }
+
+            window.app.d3State.svg = d3.select(container).append("svg")
+                .attr("width", window.app.d3State.width)
+                .attr("height", window.app.d3State.height);
+
+            window.app.d3State.g = window.app.d3State.svg.append("g");
+
+            const zoom = d3.zoom()
+                .scaleExtent([0.5, 4])
+                .on("zoom", (event) => {
+                    window.app.d3State.g.attr("transform", event.transform);
+                });
+            window.app.d3State.svg.call(zoom);
+
+            window.app.d3State.simulation = d3.forceSimulation()
+                .force("link", d3.forceLink().id(d => d.id).distance(100).strength(0.5))
+                .force("charge", d3.forceManyBody().strength(-300))
+                .force("center", d3.forceCenter(window.app.d3State.width / 2, window.app.d3State.height / 2))
+                .on("tick", window.app.ticked);
+            
+            const hierarchy = d3.hierarchy(window.app.mindMapData).sum(d => d.children ? 0 : 1);
+            const nodes = hierarchy.descendants().map((d, i) => ({
+                id: i,
+                name: d.data.name,
+                category: d.data.category,
+                depth: d.depth
+            }));
+            
+            const links = hierarchy.links().map(l => {
+                const sourceNode = nodes.find(n => n.name === l.source.data.name);
+                const targetNode = nodes.find(n => n.name === l.target.data.name);
+                return {
+                    source: sourceNode ? sourceNode.id : null,
+                    target: targetNode ? targetNode.id : null
+                };
+            }).filter(l => l.source !== null && l.target !== null);
+
+            window.app.updateMindMap(nodes, links);
+            window.app.d3State.isMindMapReady = true;
+        };
+        
+        window.app.updateMindMap = function(nodes, links) {
+            const link = window.app.d3State.g.selectAll("line")
+                .data(links, d => d.source.id + "-" + d.target.id) 
+                .join("line")
+                .attr("stroke", "#6b7280")
+                .attr("stroke-width", 2);
+
+            const node = window.app.d3State.g.selectAll("g.node")
+                .data(nodes, d => d.id)
+                .join("g")
+                .attr("class", d => `node node--${d.depth === 0 ? "root" : (d.depth === 1 ? "main" : "leaf")}`)
+                .call(window.app.drag(window.app.d3State.simulation));
+
+            node.selectAll("circle").remove();
+            node.selectAll("text").remove();
+
+            node.append("circle")
+                .attr("r", d => d.depth === 0 ? 30 : (d.depth === 1 ? 15 : 8))
+                .attr("fill", d => d.depth === 0 ? '#10b981' : (d.depth === 1 ? '#24324f' : '#334155'))
+                .attr("stroke", d => d.depth === 0 ? '#047857' : (d.depth === 1 ? '#64748b' : '#94a3b8'))
+                .attr("stroke-width", d => d.depth === 0 ? 6 : 2);
+
+            node.append("text")
+                .attr("dy", d => d.depth === 0 ? -38 : 30)
+                .attr("x", 0)
+                .text(d => d.name)
+                .attr("text-anchor", "middle")
+                .style("font-size", d => d.depth === 0 ? "14px" : (d.depth === 1 ? "12px" : "10px"))
+                .style("font-weight", d => d.depth === 0 ? "800" : "500");
+
+            window.app.d3State.simulation.nodes(nodes);
+            window.app.d3State.simulation.force("link").links(links);
+            window.app.d3State.simulation.alpha(1).restart();
+            
+            if (!window.app.d3State.isMindMapReady && window.app.d3State.svg) {
+                // Initial center view
+                window.app.d3State.svg.call(d3.zoom().translateTo, window.app.d3State.width / 2, window.app.d3State.height / 2);
+            }
+        };
+
+        window.app.ticked = function() {
+            if (!window.app.d3State.g) return;
+
+            window.app.d3State.g.selectAll("line")
+                .attr("x1", d => d.source.x)
+                .attr("y1", d => d.source.y)
+                .attr("x2", d => d.target.x)
+                .attr("y2", d => d.target.y);
+
+            window.app.d3State.g.selectAll("g.node")
+                .attr("transform", d => `translate(${d.x},${d.y})`);
+        };
+
+        window.app.drag = function(simulation) {
+            function dragstarted(event) {
+                if (!event.active) simulation.alphaTarget(0.3).restart();
+                event.subject.fx = event.subject.x;
+                event.subject.fy = event.subject.y;
+                window.app.trackEvent('Mind Map Drag Start', { node: event.subject.name });
+            }
+
+            function dragged(event) {
+                event.subject.fx = event.x;
+                event.subject.fy = event.y;
+            }
+
+            function dragended(event) {
+                if (!event.active) simulation.alphaTarget(0);
+                event.subject.fx = null;
+                event.subject.fy = null;
+                window.app.trackEvent('Mind Map Drag End', { node: event.subject.name });
+            }
+
+            return d3.drag()
+                .on("start", dragstarted)
+                .on("drag", dragged)
+                .on("end", dragended);
+        };
+
+        window.app.openMindMapModal = function() {
+            document.getElementById('mindMapModal').classList.remove('hidden');
+            window.app.trackEvent('Mind Map Opened');
+            // Wait for the modal animation to settle before initializing D3
+            setTimeout(window.app.initMindMap, 300); 
+        };
+
+        window.app.closeMindMapModal = function() {
+            document.getElementById('mindMapModal').classList.add('hidden');
+            window.app.trackEvent('Mind Map Closed');
+            // Clean up the D3 instance when closing
+            window.app.cleanupMindMap();
+        };
+
+        window.app.openMediaModal = function() {
+            document.getElementById('mediaModal').classList.remove('hidden');
+            // Set the iframe source to the new external site URL
+            document.getElementById('ytFrame').src = "https://m2-coral.vercel.app/";
+            window.app.trackEvent('Media Modal Opened');
+        };
+
+        window.app.closeMediaModal = function() {
+            document.getElementById('mediaModal').classList.add('hidden');
+            // Stop the iframe content when closing
+            document.getElementById('ytFrame').src = "";
+            window.app.trackEvent('Media Modal Closed');
+        };
+
+        window.app.openJourneyModal = function() {
+             // The content is loaded by fetchJourneyData on initial load, but we update it here for safety/loading state
+             const contentDiv = document.getElementById('journey-modal-content');
+             if (contentDiv) {
+                 // Check if the content is still the default 'Loading' message and re-run fetch if needed
+                 if (contentDiv.querySelector('.animate-pulse') || contentDiv.innerHTML.length < 100) {
+                    window.app.fetchJourneyData();
+                 } else {
+                    // Update content with the latest fetched/fallback version
+                    contentDiv.innerHTML = window.app.journeyContent;
+                 }
+             }
+
+             document.getElementById('journeyModal').classList.remove('hidden');
+             window.app.trackEvent('Journey Modal Opened');
+        };
+
+        window.app.closeJourneyModal = function() {
+             document.getElementById('journeyModal').classList.add('hidden');
+             window.app.trackEvent('Journey Modal Closed');
+        };
+        
+        // NEW INTERACTION LOGIC FOR PITCH DECK MODAL
+        window.app.openPitchDeckModal = function() {
+            const modal = document.getElementById('pitchDeckModal');
+            const iframe = document.getElementById('pitchDeckFrame');
+            
+            // Set the URL and ensure the modal is visible
+            iframe.src = "https://navneet831-e3dgvu1.gamma.site/";
+            modal.classList.remove('hidden');
+            window.app.trackEvent('Pitch Deck Modal Opened');
+        };
+
+        window.app.closePitchDeckModal = function() {
+            const modal = document.getElementById('pitchDeckModal');
+            const iframe = document.getElementById('pitchDeckFrame');
+
+            // Hide the modal and clear the iframe source to stop playback/reset state
+            modal.classList.add('hidden');
+            iframe.src = "";
+            window.app.trackEvent('Pitch Deck Modal Closed');
+        };
+
+
+        /* --- 8. INITIALIZATION --- */
+        
+        window.onload = function() {
+            // UNCONDITIONAL TRACKING: Initialize all trackers immediately
+            window.app.initializeTrackers(); 
+
+            // Fetch Dynamic Data from G-Sheet
+            window.app.fetchFAQData();
+            window.app.fetchProfileData();
+            window.app.fetchJourneyData(); // <-- New call for B2 of 'About me' sheet
+            
+            window.app.renderFlashcard(0); // Initialize first card
+            // Note: startFlashcardRotation() is called inside initializeTrackers() only if consent is granted.
+            
+            // Initial sidebar state for desktop
+            const sidebar = document.getElementById('sidebar');
+            const toggleBtn = document.getElementById('sidebarToggle').querySelector('svg');
+            const mainScroll = document.getElementById('main-scroll');
+            
+            if (window.innerWidth >= 1024) {
+                 sidebar.classList.add('collapsed');
+                 sidebar.classList.remove('mobile-hidden'); // Ensure relative positioning on desktop
+                 sidebar.style.width = '64px';
+                 toggleBtn.style.transform = "rotate(180deg)";
+                 mainScroll.classList.add('sidebar-closed');
+            } else {
+                 sidebar.classList.add('mobile-hidden');
+                 // Ensure main content starts without padding if sidebar is hidden
+                 mainScroll.classList.add('sidebar-closed'); 
+            }
+
+            // NEW REQUIREMENT: Automatically open the Pitch Deck modal on load
+            window.app.openPitchDeckModal();
+            
+            // Initial render of the timeline (in case user flips to it immediately)
+            window.app.renderTimeline();
+            
+            // Note: filterCerts is called at the end of fetchProfileData to ensure data exists.
+        };
+
+        window.addEventListener('resize', () => {
+            if (window.resizeTimeout) clearTimeout(window.resizeTimeout);
+            window.resizeTimeout = setTimeout(() => {
+                // Re-render D3 on resize when modal is open
+                if(!document.getElementById('mindMapModal').classList.contains('hidden')) {
+                    window.app.initMindMap(); 
+                }
+                
+                // Adjust sidebar initial state on resize across breakpoint
+                const sidebar = document.getElementById('sidebar');
+                const toggleBtn = document.getElementById('sidebarToggle').querySelector('svg');
+                const mainScroll = document.getElementById('main-scroll');
+
+                if (window.innerWidth >= 1024) {
+                    // Desktop view: always relative, never pad main content on collapse.
+                    if (sidebar.classList.contains('collapsed')) {
+                        sidebar.style.width = '64px';
+                        toggleBtn.style.transform = "rotate(180deg)";
+                    } else {
+                        sidebar.style.width = '256px';
+                        toggleBtn.style.transform = "rotate(0deg)";
+                    }
+                    sidebar.classList.remove('mobile-hidden');
+                    document.getElementById('mobile-overlay').classList.add('hidden');
+                    mainScroll.classList.add('sidebar-closed'); // desktop never needs conditional padding-left
+                } else {
+                    // Mobile state: Ensure it's hidden by default and width is controlled by transform/class
+                    // Only remove the 'mobile-hidden' class if explicitly opened.
+                    if (sidebar.classList.contains('mobile-hidden')) {
+                         mainScroll.classList.add('sidebar-closed');
+                    } else {
+                         mainScroll.classList.remove('sidebar-closed');
+                    }
+                    sidebar.style.width = '256px'; 
+                }
+            }, 250);
+        });
+    </script>
+    
+    <!-- TAWK.TO WIDGET REINSTATED AS REQUESTED -->
+    <script>
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/68efdd0e7e16ad19527ac96f/1j7kff0qq';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+    </script>
+</body>
+</html>
