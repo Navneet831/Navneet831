@@ -98,7 +98,7 @@
             transition: padding-left 0.3s ease;
         }
 
-        /* FIX 4: Mobile Sidebar Overlap Fix (on open) */
+        /* Mobile Sidebar Overlap Fix (on open) */
         @media (max-width: 1023px) {
             #main-scroll:not(.sidebar-closed) {
                 padding-left: 256px; /* Width of the expanded sidebar (w-64 = 256px) */
@@ -1869,7 +1869,7 @@
             sb.classList.toggle('mobile-hidden'); // Use custom class for mobile
             ov.classList.toggle('hidden');
             
-            // FIX 4: Toggle class on main-scroll for mobile padding
+            // Toggle class on main-scroll for mobile padding
             mainScroll.classList.toggle('sidebar-closed', isClosing);
             window.app.trackEvent('Sidebar Toggled', { action: isClosing ? 'Closed' : 'Opened' });
         };
