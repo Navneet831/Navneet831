@@ -1050,7 +1050,6 @@
         window.app.currentFilter = 'C'; 
         window.app.flashcardInterval = null; 
         
-        // FIX 3: Increased flashcard rotation time to 7000ms (7 seconds)
         window.app.FLASHCARD_INTERVAL_MS = 7000; 
         window.app.GOOGLE_SHEET_TIMEOUT_MS = 8000; // FIX 5: 8 second timeout for sheet fetching
         
@@ -1589,7 +1588,6 @@
             if (window.app.flashcardInterval) {
                 clearInterval(window.app.flashcardInterval);
             }
-            // FIX 3: Increased interval from 4000ms to 7000ms
             window.app.flashcardInterval = setInterval(window.app.rotateFlashcard, window.app.FLASHCARD_INTERVAL_MS); 
         };
         
