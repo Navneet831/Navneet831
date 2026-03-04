@@ -1676,7 +1676,7 @@
                     throw new Error("No FAQ data found in sheet.");
                 }
             } catch (error) {
-                // FIX 5: Fallback logic executed on failure or timeout
+
                 console.warn("FAQ Fetch Error (Using Fallback Data):", error);
                 const container = document.getElementById('faq-container');
                 if(container && statusElement) statusElement.remove();
