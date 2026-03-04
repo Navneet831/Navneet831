@@ -1819,6 +1819,7 @@
             window.app.trackEvent('Experience View Toggled', { 'View': action });
         };
 
+        window.app.activeAccordion = null;
         window.app.toggleAccordion = function(button) {
             const item = button.closest('.accordion-item');
             const content = item.querySelector('.accordion-content');
@@ -1826,17 +1827,12 @@
             
             const isActive = content.classList.contains('active');
             
-            document.querySelectorAll('.accordion-item .accordion-content.active').forEach(openContent => {
-                // Find the associated button/icon to rotate it back
-                const otherButton = openContent.closest('.accordion-item').querySelector('button');
-                const otherIcon = otherButton.querySelector('span svg');
-
-                if (openContent !== content) {
-                    openContent.classList.remove('active');
-                    openContent.style.maxHeight = '0';
-                    if(otherIcon) otherIcon.style.transform = 'rotate(0deg)';
-                }
-            });
+            if (window.app.activeAccordion && window.app.activeAccordion.content !== content) {
+                const prev = window.app.activeAccordion;
+                prev.content.classList.remove('active');
+                prev.content.style.maxHeight = '0';
+                if(prev.icon) prev.icon.style.transform = 'rotate(0deg)';
+            }
             
             content.classList.toggle('active');
             const questionText = button.querySelector('span').innerText;
@@ -1844,12 +1840,14 @@
                 content.style.maxHeight = '0';
                 icon.style.transform = 'rotate(0deg)';
                 window.app.trackEvent('FAQ Closed', { 'Question': questionText });
+                window.app.activeAccordion = null;
             } else {
                 // Set max-height to scroll height + padding for smooth animation
                 // This accounts for the inner content height accurately
                 content.style.maxHeight = content.scrollHeight + 50 + "px"; 
                 icon.style.transform = 'rotate(180deg)';
                 window.app.trackEvent('FAQ Opened', { 'Question': questionText });
+                window.app.activeAccordion = { content, icon };
             }
             
             content.addEventListener('transitionend', () => {
