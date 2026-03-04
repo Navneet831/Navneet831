@@ -1049,6 +1049,7 @@
         // UPDATED: Default filter set to 'C' (Certification)
         window.app.currentFilter = 'C'; 
         window.app.flashcardInterval = null; 
+        window.app.flashcardElements = null; // Cache for flashcard DOM elements
         
         // FIX 3: Increased flashcard rotation time to 7000ms (7 seconds)
         window.app.FLASHCARD_INTERVAL_MS = 7000; 
@@ -1517,11 +1518,17 @@
         window.app.renderFlashcard = function(index) {
             window.app.currentImpact = index % window.app.impacts.length;
             const data = window.app.impacts[window.app.currentImpact];
-            const label = document.getElementById('fc-label');
-            const val = document.getElementById('fc-value');
-            const desc = document.getElementById('fc-desc');
-            const detail = document.getElementById('fc-detail');
-            const inds = [0,1,2,3].map(i => document.getElementById('ind-'+i));
+
+            if (!window.app.flashcardElements) {
+                window.app.flashcardElements = {
+                    label: document.getElementById('fc-label'),
+                    val: document.getElementById('fc-value'),
+                    desc: document.getElementById('fc-desc'),
+                    detail: document.getElementById('fc-detail'),
+                    inds: [0,1,2,3].map(i => document.getElementById('ind-'+i))
+                };
+            }
+            const { label, val, desc, detail, inds } = window.app.flashcardElements;
             
             if (!label || !val || !desc || !detail) return;
             
@@ -1544,11 +1551,17 @@
             
             window.app.currentImpact = (window.app.currentImpact + 1) % window.app.impacts.length;
             const data = window.app.impacts[window.app.currentImpact];
-            const label = document.getElementById('fc-label');
-            const val = document.getElementById('fc-value');
-            const desc = document.getElementById('fc-desc');
-            const detail = document.getElementById('fc-detail');
-            const inds = [0,1,2,3].map(i => document.getElementById('ind-'+i));
+
+            if (!window.app.flashcardElements) {
+                window.app.flashcardElements = {
+                    label: document.getElementById('fc-label'),
+                    val: document.getElementById('fc-value'),
+                    desc: document.getElementById('fc-desc'),
+                    detail: document.getElementById('fc-detail'),
+                    inds: [0,1,2,3].map(i => document.getElementById('ind-'+i))
+                };
+            }
+            const { label, val, desc, detail, inds } = window.app.flashcardElements;
             
             if (!label || !val || !desc || !detail) return;
             
