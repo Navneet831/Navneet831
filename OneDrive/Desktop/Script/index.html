@@ -1970,7 +1970,7 @@
             }
             const container = document.getElementById('mindMapContainer');
             if (container) {
-                 // FIX 6: Ensure any existing SVG is fully removed before creating a new one
+                 // Ensure any existing SVG is fully removed before creating a new one
                 d3.select(container).selectAll('svg').remove(); 
             }
             window.app.d3State.isMindMapReady = false;
