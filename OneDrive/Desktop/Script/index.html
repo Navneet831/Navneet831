@@ -1307,40 +1307,48 @@
 
         /* --- 4. CORE RENDERING FUNCTIONS (Updated logic) --- */
         
+        window.app.memoizedCerts = {};
         window.app.renderCerts = function() {
             const list = document.getElementById('certList');
             if(!list) return;
             
-            // 1. Filter the list based on the current active category (window.app.currentFilter)
-            const filtered = window.app.currentFilter === 'ALL'
-                ? window.app.certs
-                : window.app.certs.filter(c => {
-                    // Filter based on the category string (C, P, Q, CP, W) from Column H
-                    return c.category === window.app.currentFilter;
-                });
+            const cacheKey = `${window.app.currentFilter}_${window.app.isSortRel}`;
+            let sorted;
 
-            // 2. Sort the filtered list
-            const sorted = [...filtered].sort((a, b) => {
-                if (window.app.isSortRel) {
-                    // Sort by Relevance (Col A) - Ascending
-                    return (a.rel || 99) - (b.rel || 99);
-                } else {
-                    // Sort by Date (Col F) - Descending (Latest First)
-                    const tA = window.app.getTimestamp(a.y); // 'y' is the date value (Col F)
-                    const tB = window.app.getTimestamp(b.y); // 'y' is the date value (Col F)
-                    return tB - tA;
-                }
-            });
+            if (window.app.memoizedCerts[cacheKey]) {
+                sorted = window.app.memoizedCerts[cacheKey];
+            } else {
+                // 1. Filter the list based on the current active category (window.app.currentFilter)
+                const filtered = window.app.currentFilter === 'ALL'
+                    ? window.app.certs
+                    : window.app.certs.filter(c => {
+                        // Filter based on the category string (C, P, Q, CP, W) from Column H
+                        return c.category === window.app.currentFilter;
+                    });
+
+                // 2. Sort the filtered list
+                sorted = [...filtered].sort((a, b) => {
+                    if (window.app.isSortRel) {
+                        // Sort by Relevance (Col A) - Ascending
+                        return (a.rel || 99) - (b.rel || 99);
+                    } else {
+                        // Sort by Date (Col F) - Descending (Latest First)
+                        // Use pre-calculated timestamp if available
+                        const tA = a._ts !== undefined ? a._ts : window.app.getTimestamp(a.y);
+                        const tB = b._ts !== undefined ? b._ts : window.app.getTimestamp(b.y);
+                        return tB - tA;
+                    }
+                });
+                window.app.memoizedCerts[cacheKey] = sorted;
+            }
             
             // 3. Render the list
-            list.innerHTML = sorted.map(c => {
-                // Determine if score exists and apply formatting
+            const fragment = document.createDocumentFragment();
+            const listContent = sorted.map(c => {
                 const scoreText = (c.sc !== null && c.sc !== undefined) 
                     ? `<span class="text-blue-400 font-bold ml-1">(${c.sc}%)</span>` 
                     : '';
                 
-                // *** CATEGORY TAG DISPLAY REMOVED ***
-
                 const innerContent = `
                     <div class="flex justify-between items-center p-3 rounded-lg bg-bg hover:bg-slate-800 border border-transparent hover:border-slate-700 transition group cursor-pointer w-full">
                         <div>
@@ -1352,7 +1360,6 @@
                                 <span>${window.app.formatDateMMYY(c.y)}</span>
                                 ${c.l && c.l !== '#' ? `<svg class="w-3 h-3 opacity-50 group-hover:opacity-100 text-slate-500 group-hover:text-accent-primary transition-colors ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>` : ''}
                             </div>
-                            <!-- Display Score below Date, colored blue -->
                             <div class="text-xs font-mono text-blue-400">${scoreText.replace(/[()]/g, '')}</div>
                         </div>
                     </div>
@@ -1365,6 +1372,14 @@
                 }
             }).join('');
             
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = listContent;
+            while (tempDiv.firstChild) {
+                fragment.appendChild(tempDiv.firstChild);
+            }
+            list.innerHTML = '';
+            list.appendChild(fragment);
+
             // Set button text based on current sort state
             document.getElementById('sortBtn').innerText = window.app.isSortRel ? 'Sort: Relevance' : 'Sort: Latest';
         };
@@ -1720,10 +1735,14 @@
                                y: c[5]?.v || c[5]?.f, // Date (Col F, index 5)
                                l: c[6]?.v,       // Link (Col G, index 6)
                                // NEW: Store full category name for tooltips
-                               catFull: categoryFullName // Category Full Name (Col I, index 8)
+                               catFull: categoryFullName, // Category Full Name (Col I, index 8)
+                               _ts: window.app.getTimestamp(c[5]?.v || c[5]?.f) // Pre-calculate timestamp for sorting
                            };
                     }).filter(item => item !== null && item.category !== ''); // Filter out empty/null items
                     
+                    // Clear memoization cache when new data is fetched
+                    window.app.memoizedCerts = {};
+
                     if(certStatusEl) certStatusEl.remove();
                 } else {
                     throw new Error("No certification data found in sheet.");
@@ -1745,7 +1764,10 @@
                     { category: 'P', t: "Google Data Analytics (Project)", i: "Google", y: "2023-12-01", l: "#", rel: 6, sc: 80, catFull: "Project" }, 
                     { category: 'Q', t: "Finance for Managers (Quiz)", i: "IESE Business School", y: "2023-09-01", l: "#", rel: 7, sc: 75, catFull: "Quiz" }, 
                     { category: 'W', t: "Private Equity & VC (Webinar)", i: "Bocconi University", y: "2023-01-01", l: "#", rel: 8, sc: 70, catFull: "Workshop/Webinar" }, 
-                ];
+                ].map(c => ({ ...c, _ts: window.app.getTimestamp(c.y) }));
+
+                // Clear memoization cache
+                window.app.memoizedCerts = {};
             }
             
             // Set initial filter to 'C' (Certification) if no filter is active
