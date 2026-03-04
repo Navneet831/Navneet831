@@ -1300,7 +1300,8 @@
                     if (parts && parts.length) return new Date(parseInt(parts[0]), parseInt(parts[1]||0), parseInt(parts[2]||1)).getTime();
                 } 
                 // Treat as ISO 8601 or similar string
-                return new Date(dStr).getTime();
+                const ts = new Date(dStr).getTime();
+                return isNaN(ts) ? 0 : ts;
             } catch(e) { return 0; }
         };
         // =======================================================================
