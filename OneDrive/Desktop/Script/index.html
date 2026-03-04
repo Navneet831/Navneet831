@@ -1052,7 +1052,7 @@
         
         // FIX 3: Increased flashcard rotation time to 7000ms (7 seconds)
         window.app.FLASHCARD_INTERVAL_MS = 7000; 
-        window.app.GOOGLE_SHEET_TIMEOUT_MS = 8000; // FIX 5: 8 second timeout for sheet fetching
+        window.app.GOOGLE_SHEET_TIMEOUT_MS = 8000;
         
         // ANALYTICS MANDATE CHANGE: Hardcode consent to true, no check
         window.app.analyticsConsent = true; 
@@ -1624,23 +1624,21 @@
 
         /* --- 5. DATA FETCHING FUNCTIONS (Unchanged) --- */
 
-        window.app.fetchWithTimeout = function(url) {
-             // FIX 5: Implemented fetch with timeout functionality
-            return new Promise((resolve, reject) => {
-                const timeout = setTimeout(() => reject(new Error('Fetch Timeout')), window.app.GOOGLE_SHEET_TIMEOUT_MS);
-                
-                fetch(url)
-                    .then(response => {
-                        clearTimeout(timeout);
-                        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                        return response.text();
-                    })
-                    .then(resolve)
-                    .catch(error => {
-                        clearTimeout(timeout);
-                        reject(error);
-                    });
-            });
+        window.app.fetchWithTimeout = async function(url) {
+            const controller = new AbortController();
+            const id = setTimeout(() => controller.abort(), window.app.GOOGLE_SHEET_TIMEOUT_MS);
+            try {
+                const response = await fetch(url, { signal: controller.signal });
+                clearTimeout(id);
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                return await response.text();
+            } catch (error) {
+                clearTimeout(id);
+                if (error.name === 'AbortError') {
+                    throw new Error('Fetch Timeout');
+                }
+                throw error;
+            }
         };
 
         window.app.fetchFAQData = async function() {
@@ -1676,7 +1674,6 @@
                     throw new Error("No FAQ data found in sheet.");
                 }
             } catch (error) {
-                // FIX 5: Fallback logic executed on failure or timeout
                 console.warn("FAQ Fetch Error (Using Fallback Data):", error);
                 const container = document.getElementById('faq-container');
                 if(container && statusElement) statusElement.remove();
