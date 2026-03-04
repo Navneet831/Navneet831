@@ -344,7 +344,7 @@
             root.y = 0;
             nodes.forEach(d => { if (d.parent) d.x = d.parent.x + (d.x - root.x) * 0.6; }); // Adjusted compression for balanced spread
 
-            // Fix main branches to static vertical positions
+            // Anchor main branches to static vertical positions
             const n = root.children ? root.children.length : 0;
             if (n > 0) {
                 const halfSpread = (layoutSizeX / 2) - 100;
