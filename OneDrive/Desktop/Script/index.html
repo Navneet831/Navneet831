@@ -1303,6 +1303,20 @@
                 return new Date(dStr).getTime();
             } catch(e) { return 0; }
         };
+
+        window.app.escapeHTML = function(str) {
+            if (str === null || str === undefined) return '';
+            return String(str).replace(/[&<>"']/g, function(match) {
+                const escape = {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#39;'
+                };
+                return escape[match];
+            });
+        };
         // =======================================================================
 
         /* --- 4. CORE RENDERING FUNCTIONS (Updated logic) --- */
@@ -1334,9 +1348,14 @@
             
             // 3. Render the list
             list.innerHTML = sorted.map(c => {
+                const escapedTitle = window.app.escapeHTML(c.t);
+                const escapedInstitution = window.app.escapeHTML(c.i);
+                const escapedScore = window.app.escapeHTML(c.sc);
+                const escapedLink = window.app.escapeHTML(c.l);
+
                 // Determine if score exists and apply formatting
                 const scoreText = (c.sc !== null && c.sc !== undefined) 
-                    ? `<span class="text-blue-400 font-bold ml-1">(${c.sc}%)</span>` 
+                    ? `<span class="text-blue-400 font-bold ml-1">(${escapedScore}%)</span>`
                     : '';
                 
                 // *** CATEGORY TAG DISPLAY REMOVED ***
@@ -1344,8 +1363,8 @@
                 const innerContent = `
                     <div class="flex justify-between items-center p-3 rounded-lg bg-bg hover:bg-slate-800 border border-transparent hover:border-slate-700 transition group cursor-pointer w-full">
                         <div>
-                            <div class="text-sm font-medium text-accent-text-primary">${c.t}</div>
-                            <div class="text-xs text-accent-text-muted">${c.i}</div>
+                            <div class="text-sm font-medium text-accent-text-primary">${escapedTitle}</div>
+                            <div class="text-xs text-accent-text-muted">${escapedInstitution}</div>
                         </div>
                         <div class="text-right shrink-0 flex flex-col items-end">
                             <div class="text-xs font-mono text-accent-primary flex items-center mb-0.5">
@@ -1359,7 +1378,7 @@
                 `;
                 
                 if (c.l && c.l !== '#' && c.l.startsWith('http')) {
-                    return `<a href="${c.l}" target="_blank" rel="noopener noreferrer" class="block no-underline" onclick="window.app.trackEvent('Cert Link Click', { title: '${c.t.replace(/'/g, "\\'")}' })">${innerContent}</a>`;
+                    return `<a href="${escapedLink}" target="_blank" rel="noopener noreferrer" class="block no-underline" data-title="${escapedTitle}" onclick="window.app.trackEvent('Cert Link Click', { title: this.dataset.title })">${innerContent}</a>`;
                 } else {
                     return `<div class="block">${innerContent}</div>`;
                 }
@@ -1455,13 +1474,18 @@
             container.innerHTML = window.app.faqData.map((item, index) => {
                 let linkElement = '';
                 
+                const escapedQuestion = window.app.escapeHTML(item.question);
+                const escapedAnswer = window.app.escapeHTML(item.answer);
+                const escapedLink = window.app.escapeHTML(item.link);
+
                 // Check if a valid link exists (starts with http)
                 if (item.link && item.link.startsWith('http')) {
                     // Create a distinctive link element mirroring the requested style (icon only)
                     linkElement = `
-                        <a href="${item.link}" target="_blank" rel="noopener noreferrer" 
+                        <a href="${escapedLink}" target="_blank" rel="noopener noreferrer"
                             class="text-xs font-mono text-accent-primary flex items-center hover:text-white"
-                            onclick="event.stopPropagation(); window.app.trackEvent('FAQ Source Click', { 'Question': '${item.question.replace(/'/g, "\\'")}' });"
+                            data-question="${escapedQuestion}"
+                            onclick="event.stopPropagation(); window.app.trackEvent('FAQ Source Click', { 'Question': this.dataset.question });"
                             aria-label="View Link">
                             <svg class="w-3 h-3 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                         </a>
@@ -1470,16 +1494,16 @@
                 // Structure the answer content to place the link element separately using flexbox.
                 const answerBody = linkElement ? 
                     `<div class="flex justify-between items-start w-full">
-                        <p class="text-sm text-accent-text-secondary leading-relaxed mr-4">${item.answer}</p>
+                        <p class="text-sm text-accent-text-secondary leading-relaxed mr-4">${escapedAnswer}</p>
                         ${linkElement}
                     </div>` : 
-                    `<p class="text-sm text-accent-text-secondary leading-relaxed">${item.answer}</p>`;
+                    `<p class="text-sm text-accent-text-secondary leading-relaxed">${escapedAnswer}</p>`;
 
 
                 return `
                     <div class="border border-slate-700 rounded-xl overflow-hidden shadow-terminal accordion-item">
                         <button class="w-full flex justify-between items-center text-left p-4 bg-slate-800 hover:bg-slate-700 transition-colors" onclick="window.app.toggleAccordion(this)">
-                            <span class="text-sm font-bold text-accent-text-primary">${item.question}</span>
+                            <span class="text-sm font-bold text-accent-text-primary">${escapedQuestion}</span>
                             <span class="ml-4 text-accent-primary transform transition-transform duration-300">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                             </span>
