@@ -1257,7 +1257,7 @@
             const jsonText = text.replace(/.*google.visualization.Query.setResponse\({(.*?)}\);/s, '{$1}');
             try {
                 const json = JSON.parse(jsonText);
-                return json.table ? json.table.rows : [];
+                return (json.table && json.table.rows) ? json.table.rows : [];
             } catch (e) {
                  console.error("Failed to parse Google Sheet JSON:", e);
                  return [];
