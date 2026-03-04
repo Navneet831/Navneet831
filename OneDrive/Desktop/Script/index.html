@@ -1039,6 +1039,19 @@
         // Global App Object to prevent namespace pollution
         window.app = window.app || {};
 
+        // Utility to escape HTML to prevent XSS
+        window.app.escapeHTML = function(str) {
+            if (!str) return '';
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return String(str).replace(/[&<>"']/g, function(m) { return map[m]; });
+        };
+
         /* --- 1. STATE & DATA DECLARATION --- */
         
         // Placeholder for the Google Sheet ID. Replace with your actual ID.
@@ -1334,9 +1347,16 @@
             
             // 3. Render the list
             list.innerHTML = sorted.map(c => {
+                // Escape all data fields to prevent XSS
+                const escapedTitle = window.app.escapeHTML(c.t);
+                const escapedInst = window.app.escapeHTML(c.i);
+                const escapedScore = window.app.escapeHTML(c.sc);
+                const escapedDate = window.app.escapeHTML(window.app.formatDateMMYY(c.y));
+                const escapedLink = window.app.escapeHTML(c.l);
+
                 // Determine if score exists and apply formatting
-                const scoreText = (c.sc !== null && c.sc !== undefined) 
-                    ? `<span class="text-blue-400 font-bold ml-1">(${c.sc}%)</span>` 
+                const scoreDisplay = (c.sc !== null && c.sc !== undefined)
+                    ? `${escapedScore}%`
                     : '';
                 
                 // *** CATEGORY TAG DISPLAY REMOVED ***
@@ -1344,22 +1364,23 @@
                 const innerContent = `
                     <div class="flex justify-between items-center p-3 rounded-lg bg-bg hover:bg-slate-800 border border-transparent hover:border-slate-700 transition group cursor-pointer w-full">
                         <div>
-                            <div class="text-sm font-medium text-accent-text-primary">${c.t}</div>
-                            <div class="text-xs text-accent-text-muted">${c.i}</div>
+                            <div class="text-sm font-medium text-accent-text-primary">${escapedTitle}</div>
+                            <div class="text-xs text-accent-text-muted">${escapedInst}</div>
                         </div>
                         <div class="text-right shrink-0 flex flex-col items-end">
                             <div class="text-xs font-mono text-accent-primary flex items-center mb-0.5">
-                                <span>${window.app.formatDateMMYY(c.y)}</span>
+                                <span>${escapedDate}</span>
                                 ${c.l && c.l !== '#' ? `<svg class="w-3 h-3 opacity-50 group-hover:opacity-100 text-slate-500 group-hover:text-accent-primary transition-colors ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>` : ''}
                             </div>
                             <!-- Display Score below Date, colored blue -->
-                            <div class="text-xs font-mono text-blue-400">${scoreText.replace(/[()]/g, '')}</div>
+                            <div class="text-xs font-mono text-blue-400">${scoreDisplay}</div>
                         </div>
                     </div>
                 `;
                 
                 if (c.l && c.l !== '#' && c.l.startsWith('http')) {
-                    return `<a href="${c.l}" target="_blank" rel="noopener noreferrer" class="block no-underline" onclick="window.app.trackEvent('Cert Link Click', { title: '${c.t.replace(/'/g, "\\'")}' })">${innerContent}</a>`;
+                    // Use data attribute instead of inline onclick for security
+                    return `<a href="${escapedLink}" target="_blank" rel="noopener noreferrer" class="block no-underline cert-link" data-title="${escapedTitle}">${innerContent}</a>`;
                 } else {
                     return `<div class="block">${innerContent}</div>`;
                 }
@@ -1405,7 +1426,11 @@
                 return;
             }
             if (window.app.certs.length === 0) {
-                 container.innerHTML = `<p class="text-accent-alert text-xs">No project or certification data available.</p>`;
+                 container.innerHTML = '';
+                 const noData = document.createElement('p');
+                 noData.className = 'text-accent-alert text-xs';
+                 noData.textContent = 'No project or certification data available.';
+                 container.appendChild(noData);
                  return;
             }
 
@@ -1426,11 +1451,12 @@
             
             // 2. Generate buttons
             const buttonsHtml = uniqueCategories.map(cat => {
-                const filterValue = cat; 
-                const uiLabel = cat === 'W/B' ? 'W' : cat; // Display 'W' for the 'W/B' data key
+                const filterValue = window.app.escapeHTML(cat);
+                const uiLabel = cat === 'W/B' ? 'W' : filterValue; // Display 'W' for the 'W/B' data key
 
                 // We filter based on 'cat', but the UI only shows 'uiLabel'
-                return `<button class="btn-filter" onclick="window.app.filterCerts('${filterValue}', this); window.app.trackEvent('Cert Filter Click', { filter: '${filterValue}' })" data-filter="${filterValue}">${uiLabel}</button>`;
+                // Removed inline onclick for security
+                return `<button class="btn-filter" data-filter="${filterValue}">${uiLabel}</button>`;
             }).join('');
             
             // 3. Insert into container
@@ -1453,15 +1479,19 @@
             
             // Renders the FAQ list items, dynamically adding links to the answer content if present.
             container.innerHTML = window.app.faqData.map((item, index) => {
+                const escapedQuestion = window.app.escapeHTML(item.question);
+                const escapedAnswer = window.app.escapeHTML(item.answer);
+                const escapedLink = window.app.escapeHTML(item.link);
                 let linkElement = '';
                 
                 // Check if a valid link exists (starts with http)
                 if (item.link && item.link.startsWith('http')) {
                     // Create a distinctive link element mirroring the requested style (icon only)
+                    // Removed inline onclick for security, added class for event delegation
                     linkElement = `
-                        <a href="${item.link}" target="_blank" rel="noopener noreferrer" 
-                            class="text-xs font-mono text-accent-primary flex items-center hover:text-white"
-                            onclick="event.stopPropagation(); window.app.trackEvent('FAQ Source Click', { 'Question': '${item.question.replace(/'/g, "\\'")}' });"
+                        <a href="${escapedLink}" target="_blank" rel="noopener noreferrer"
+                            class="text-xs font-mono text-accent-primary flex items-center hover:text-white faq-source-link"
+                            data-question="${escapedQuestion}"
                             aria-label="View Link">
                             <svg class="w-3 h-3 opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                         </a>
@@ -1470,16 +1500,16 @@
                 // Structure the answer content to place the link element separately using flexbox.
                 const answerBody = linkElement ? 
                     `<div class="flex justify-between items-start w-full">
-                        <p class="text-sm text-accent-text-secondary leading-relaxed mr-4">${item.answer}</p>
+                        <p class="text-sm text-accent-text-secondary leading-relaxed mr-4">${escapedAnswer}</p>
                         ${linkElement}
                     </div>` : 
-                    `<p class="text-sm text-accent-text-secondary leading-relaxed">${item.answer}</p>`;
+                    `<p class="text-sm text-accent-text-secondary leading-relaxed">${escapedAnswer}</p>`;
 
 
                 return `
                     <div class="border border-slate-700 rounded-xl overflow-hidden shadow-terminal accordion-item">
-                        <button class="w-full flex justify-between items-center text-left p-4 bg-slate-800 hover:bg-slate-700 transition-colors" onclick="window.app.toggleAccordion(this)">
-                            <span class="text-sm font-bold text-accent-text-primary">${item.question}</span>
+                        <button class="w-full flex justify-between items-center text-left p-4 bg-slate-800 hover:bg-slate-700 transition-colors faq-accordion-btn">
+                            <span class="text-sm font-bold text-accent-text-primary">${escapedQuestion}</span>
                             <span class="ml-4 text-accent-primary transform transition-transform duration-300">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                             </span>
@@ -1500,15 +1530,20 @@
             if (!container) return;
 
             // REMOVED: The 'desc' field from the rendered content per user request for a cleaner timeline.
-            const timelineHtml = window.app.professionalJourney.map(item => `
+            const timelineHtml = window.app.professionalJourney.map(item => {
+                const escapedCompany = window.app.escapeHTML(item.company);
+                const escapedRole = window.app.escapeHTML(item.role);
+                const escapedTenure = window.app.escapeHTML(item.tenure);
+                return `
                 <div class="timeline-item pb-6">
                     <span class="timeline-dot" style="background-color: ${item.color};"></span>
                     <div class="flex items-baseline justify-between">
-                        <p class="text-sm font-bold" style="color: ${item.color};">${item.company} (${item.role})</p>
-                        <span class="text-xs font-mono text-accent-text-muted">${item.tenure}</span>
+                        <p class="text-sm font-bold" style="color: ${item.color};">${escapedCompany} (${escapedRole})</p>
+                        <span class="text-xs font-mono text-accent-text-muted">${escapedTenure}</span>
                     </div>
                 </div>
-            `).join('');
+                `;
+            }).join('');
 
             container.innerHTML = timelineHtml;
         };
@@ -1645,7 +1680,7 @@
 
         window.app.fetchFAQData = async function() {
             const statusElement = document.getElementById('faq-status');
-            if(statusElement) statusElement.innerText = "Fetching FAQs...";
+            if(statusElement) statusElement.textContent = "Fetching FAQs...";
             // Query Range B:D: B (Question), C (Answer), D (Link)
             const queryUrl = `https://docs.google.com/spreadsheets/d/${window.app.SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=FAQ&range=B:D`;
 
@@ -1680,7 +1715,13 @@
                 console.warn("FAQ Fetch Error (Using Fallback Data):", error);
                 const container = document.getElementById('faq-container');
                 if(container && statusElement) statusElement.remove();
-                if(container) container.innerHTML = `<p class="text-accent-alert text-xs">⚠️ Data load timed out or failed. Showing hardcoded FAQs.</p>`;
+                if(container) {
+                    container.innerHTML = '';
+                    const errorMsg = document.createElement('p');
+                    errorMsg.className = 'text-accent-alert text-xs';
+                    errorMsg.textContent = '⚠️ Data load timed out or failed. Showing hardcoded FAQs.';
+                    container.appendChild(errorMsg);
+                }
                 window.app.faqData = window.app.fallbackFAQ;
                 window.app.renderFAQ(); 
             }
@@ -1688,7 +1729,7 @@
 
         window.app.fetchProfileData = async function() {
             const certStatusEl = document.getElementById('cert-status');
-            if(certStatusEl) certStatusEl.innerText = "Fetching data for projects & certs...";
+            if(certStatusEl) certStatusEl.textContent = "Fetching data for projects & certs...";
             
             // Fetch range A:I to access Column I (index 8) for Category Full Name
             // Columns: A (Relevance), B (Category ID), C (Title), D (Institution), E (Score), F (Date), G (Link), H (Category Code), I (Category Full Name)
@@ -1733,7 +1774,12 @@
                 console.warn("Project/Cert Fetch Error (Using Fallback Data):", e);
                 const certList = document.getElementById('certList');
                 if(certStatusEl) certStatusEl.remove();
-                if(certList) certList.innerHTML = `<p class="text-accent-alert text-xs p-2">⚠️ Data load failed/timed out. Showing hardcoded backup.</p>` + certList.innerHTML;
+                if(certList) {
+                    const errorMsg = document.createElement('p');
+                    errorMsg.className = 'text-accent-alert text-xs p-2';
+                    errorMsg.textContent = '⚠️ Data load failed/timed out. Showing hardcoded backup.';
+                    certList.prepend(errorMsg);
+                }
                 
                 // Fallback data structure now uses 'category' string field (Col H format) and added 'catFull'
                 window.app.certs = [
@@ -1761,7 +1807,13 @@
         window.app.fetchJourneyData = async function() {
             const statusElement = document.getElementById('journey-modal-content');
             // Set loading state in the modal content area
-            if(statusElement) statusElement.innerHTML = `<p class="animate-pulse text-accent-text-muted">Fetching journey details from sheet...</p>`;
+            if(statusElement) {
+                statusElement.innerHTML = '';
+                const loadingMsg = document.createElement('p');
+                loadingMsg.className = 'animate-pulse text-accent-text-muted';
+                loadingMsg.textContent = 'Fetching journey details from sheet...';
+                statusElement.appendChild(loadingMsg);
+            }
             
             // Query for sheet 'About me', range 'B2'. Note: sheet name must be URI-encoded.
             const queryUrl = `https://docs.google.com/spreadsheets/d/${window.app.SPREADSHEET_ID}/gviz/tq?tqx=out:json&sheet=About%20me&range=B2`;
@@ -1772,7 +1824,7 @@
                 
                 // Rows[0] is the first (and only) row, c[0] is the first (and only) column (B2)
                 if (rows.length > 0 && rows[0].c[0]?.v) { 
-                    const fetchedContent = rows[0].c[0].v;
+                    const fetchedContent = window.app.escapeHTML(rows[0].c[0].v);
                     window.app.journeyContent = fetchedContent; // Update global content
                     
                     // If the modal is currently open, update it instantly.
@@ -1786,7 +1838,8 @@
                 console.warn("Journey Data Fetch Error (Using Fallback Data):", error);
                 
                 // Use the fallback content with a warning
-                const fallbackWarning = `<p class="text-accent-alert text-xs mb-4">⚠️ Data load timed out or failed for Journey data. Showing hardcoded narrative.</p>`;
+                const fallbackWarning = '<p class="text-accent-alert text-xs mb-4">⚠️ Data load timed out or failed for Journey data. Showing hardcoded narrative.</p>';
+                // Note: getHardcodedJourneyContent returns HTML, so we still have some HTML here, but it's hardcoded.
                 window.app.journeyContent = fallbackWarning + window.app.getHardcodedJourneyContent();
                 
                 // If the modal is open, show the fallback content immediately.
@@ -2187,6 +2240,39 @@
         window.onload = function() {
             // UNCONDITIONAL TRACKING: Initialize all trackers immediately
             window.app.initializeTrackers(); 
+
+            // Event Delegation for dynamic elements
+            document.getElementById('certList').addEventListener('click', function(e) {
+                const link = e.target.closest('.cert-link');
+                if (link) {
+                    const title = link.getAttribute('data-title');
+                    window.app.trackEvent('Cert Link Click', { title: title });
+                }
+            });
+
+            document.getElementById('filterSlicers').addEventListener('click', function(e) {
+                const btn = e.target.closest('.btn-filter');
+                if (btn) {
+                    const filterValue = btn.getAttribute('data-filter');
+                    window.app.filterCerts(filterValue, btn);
+                    window.app.trackEvent('Cert Filter Click', { filter: filterValue });
+                }
+            });
+
+            document.getElementById('faq-container').addEventListener('click', function(e) {
+                const sourceLink = e.target.closest('.faq-source-link');
+                if (sourceLink) {
+                    e.stopPropagation();
+                    const question = sourceLink.getAttribute('data-question');
+                    window.app.trackEvent('FAQ Source Click', { 'Question': question });
+                    return;
+                }
+
+                const accordionBtn = e.target.closest('.faq-accordion-btn');
+                if (accordionBtn) {
+                    window.app.toggleAccordion(accordionBtn);
+                }
+            });
 
             // Fetch Dynamic Data from G-Sheet
             window.app.fetchFAQData();
