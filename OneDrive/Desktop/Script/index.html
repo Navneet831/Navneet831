@@ -1870,7 +1870,7 @@
             sb.classList.toggle('mobile-hidden'); // Use custom class for mobile
             ov.classList.toggle('hidden');
             
-            // FIX 4: Toggle class on main-scroll for mobile padding
+            // Toggle class on main-scroll for mobile padding
             mainScroll.classList.toggle('sidebar-closed', isClosing);
             window.app.trackEvent('Sidebar Toggled', { action: isClosing ? 'Closed' : 'Opened' });
         };
